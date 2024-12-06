@@ -1,0 +1,6 @@
+---
+hidden: true
+---
+
+# Lag compensation
+
