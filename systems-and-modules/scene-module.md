@@ -15,7 +15,7 @@ networkManager.sceneModule.LoadSceneAsync("sceneName");
 
 There are multiple overloads to the `LoadSceneAsync` method (see image below), such as directly setting the load mode directly, using Unity `LoadSceneParameters`, or adding custom PurrNet settings.
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption><p>Overloads for the LoadSceneAsync</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/Code_LoadSceneOverloads.png" alt=""><figcaption><p>Overloads for the LoadSceneAsync</p></figcaption></figure>
 
 You can also load a scene with custom scene settings called `PurrSceneSettings`, see example below:
 
@@ -43,6 +43,6 @@ Unloading scenes with PurrNet is as easy as calling the unload of the scene, sim
 networkManager.sceneModule.UnloadSceneAsync("sceneName");
 ```
 
-<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption><p>Overloads for UnloadSceneAsync</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/Code_UnloadSceneOverloads.png" alt=""><figcaption><p>Overloads for UnloadSceneAsync</p></figcaption></figure>
 
 The [UnloadSceneOptions](https://docs.unity3d.com/ScriptReference/SceneManagement.UnloadSceneOptions.html) are a Unity class, which by default is None when using the UnloadSceneAsync.&#x20;

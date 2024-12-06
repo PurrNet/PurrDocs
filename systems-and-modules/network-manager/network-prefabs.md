@@ -4,7 +4,7 @@ The Network Prefabs is a scriptable object used by PurrNet to cross identify pre
 
 This is set as a reference on your [NetworkManager](./)
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption><p>The Network Prefabs scriptable having pulled a bunch of project prefabs</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Unity_NetworkPrefabs.png" alt=""><figcaption><p>The Network Prefabs scriptable having pulled a bunch of project prefabs</p></figcaption></figure>
 
 Settings of the Network Prefabs scriptable allows you to easily modify from where it pulls the objects. If you have a prefabs folder which you intend to hold all prefabs, it would be optimal to set the folder to that. It will automatically search any sub-folders.
 

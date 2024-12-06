@@ -35,4 +35,4 @@ public void InvokeSyncEvent()
 
 The SyncEvent is serializable in the Unity editor as a Unity Event, meaning that you can easily add events straight from the inspector view.
 
-<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Unity_SyncEvent.png" alt=""><figcaption></figcaption></figure>

@@ -41,4 +41,4 @@ private void ChangeMyDictionary()
 
 The SyncDictionary is custom serialized in editor, in order to make visual debugging easier.
 
-<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Unity_SyncDictionary.png" alt=""><figcaption></figcaption></figure>

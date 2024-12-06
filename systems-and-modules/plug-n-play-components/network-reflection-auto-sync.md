@@ -6,4 +6,4 @@ The Network Reflection component will take another component as input, and will 
 
 It also holds the "Owner Auth" setting, in order to change who is responsible for this synchronizing, whether that'd be the owner or server.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>Example of the component used on a trail renderer to auto sync the emitting property</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Unity_NetworkReflection.png" alt=""><figcaption><p>Example of the component used on a trail renderer to auto sync the emitting property</p></figcaption></figure>
