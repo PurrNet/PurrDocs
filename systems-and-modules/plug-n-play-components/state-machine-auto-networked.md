@@ -21,7 +21,7 @@ The scene setup is easy! All you have to do, is add the State Machine to your sc
 
 For every **StateNode** that you make, you can add that to your scene as well. I typically do it as a child of the **StateMachine** gameobject.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Example setup of the State Machine</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Unity_StateMachine.png" alt=""><figcaption><p>Example setup of the State Machine</p></figcaption></figure>
 
 ### State Nodes
 
