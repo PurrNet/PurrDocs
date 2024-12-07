@@ -4,6 +4,8 @@ The Network Manager is the very core of the network. It acts as the heart and br
 
 Look at the [Installation/Setup](../../guides/installation-setup.md) segment for a guide on the setup.
 
+{% embed url="https://youtu.be/CdkCjyjMF7w?si=VDKglsqtj5PzcQTi" %}
+
 ### Settings in the Network manager
 
 **Start Server Flags: These** are the conditions for the server to automatically start upon seeing the NetworkManager
