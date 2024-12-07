@@ -5,11 +5,11 @@ The Auto networked state machine of PurrNet makes it very easy to align state ma
 The state machine also have a custom editor allowing for easy debugging and runtime manipulation of the active state. It also attempts to serialize custom node data.
 
 The state machine is extremely useful at keeping games aligned, and we personally use it for game state handling, which could look something like:\
-&#xNAN;_&#x31;. Countdown state_\
-_2. Spawning enemies state_\
-_3. Spawning boss state_\
-_4. Round end state_\
-_5. Shop state_
+\&#xNAN;_1. Countdown state_\
+&#xNAN;_&#x32;. Spawning enemies state_\
+&#xNAN;_&#x33;. Spawning boss state_\
+&#xNAN;_&#x34;. Round end state_\
+&#xNAN;_&#x35;. Shop state_
 
 You can move between states as you please, but also have an easy way of moving sequentially through state.
 
@@ -21,7 +21,7 @@ The scene setup is easy! All you have to do, is add the State Machine to your sc
 
 For every **StateNode** that you make, you can add that to your scene as well. I typically do it as a child of the **StateMachine** gameobject.
 
-<figure><img src="../../.gitbook/assets/Unity_StateMachine.png" alt=""><figcaption><p>Example setup of the State Machine</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Unity_StateMachine (1).png" alt=""><figcaption><p>Example setup of the State Machine</p></figcaption></figure>
 
 ### State Nodes
 

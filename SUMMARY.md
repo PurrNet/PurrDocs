@@ -62,3 +62,5 @@
   * [Client Auth/Everyone (Unsafe)](terminology/client-auth-everyone-unsafe.md)
   * [Host](terminology/host.md)
   * [Server Auth (Safe)](terminology/server-auth-safe.md)
+* [💡 Integrations](integrations/README.md)
+  * [Dissonance](integrations/dissonance.md)
