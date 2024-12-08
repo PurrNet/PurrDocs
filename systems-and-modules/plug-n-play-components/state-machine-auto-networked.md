@@ -2,18 +2,22 @@
 
 The Auto networked state machine of PurrNet makes it very easy to align state machines even with custom state data if necessary.
 
+{% embed url="https://youtu.be/rJm0YPoLBGs" %}
+
 The state machine also have a custom editor allowing for easy debugging and runtime manipulation of the active state. It also attempts to serialize custom node data.
 
+By default, the state machine is server auth, but you can use the bool in the inspector, to change whether you'd rather have it be owner auth. The main difference is who is allowed to change states on the state machine. The "controller" (whether that is the server or owner), will always handle state changes local to make it fast and responsive.
+
 The state machine is extremely useful at keeping games aligned, and we personally use it for game state handling, which could look something like:\
-\&#xNAN;_1. Countdown state_\
+&#x31;_. Countdown state_\
 &#xNAN;_&#x32;. Spawning enemies state_\
 &#xNAN;_&#x33;. Spawning boss state_\
 &#xNAN;_&#x34;. Round end state_\
 &#xNAN;_&#x35;. Shop state_
 
-You can move between states as you please, but also have an easy way of moving sequentially through state.
+_They can also be used for other things like the state of your player, in the case of using owner auth._
 
-{% embed url="https://youtu.be/rJm0YPoLBGs" %}
+You can move between states as you please, but also have an easy way of moving sequentially through state.
 
 ### Scene setup
 
