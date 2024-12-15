@@ -15,6 +15,7 @@
     * [In build](guides/test-with-friends/in-build.md)
   * [Setting up a server](guides/setting-up-a-server.md)
   * [Networking custom classes, structs & types](guides/networking-custom-classes-structs-and-types.md)
+  * [Chat system with broadcasts](guides/broadcast-chat-system.md)
 * [🖥️ Systems and modules](systems-and-modules/README.md)
   * [Network Manager](systems-and-modules/network-manager/README.md)
     * [Network Rules](systems-and-modules/network-manager/network-rules.md)
