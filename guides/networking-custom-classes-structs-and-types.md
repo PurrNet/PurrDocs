@@ -1,6 +1,6 @@
 # Networking custom classes, structs & types
 
-PurrNet auto networks structs, classes and interfaces for you, given they directly or indirectly consists of serializable data.
+PurrNet auto networks structs, classes and interfaces for you, given they directly or indirectly consist of serializable data.
 
 Networking custom classes and structs can be extremely useful to send over the network, for example by using basic [RPC's](../systems-and-modules/remote-procedure-call-rpc/).
 
@@ -8,8 +8,8 @@ Networking custom classes and structs can be extremely useful to send over the n
 
 ### IPackedSimple
 
-This allows you to handle your serialization yourself. This is the easiest way if you need to make your own serializer.\
-An example of using this below:
+This allows you to handle the serialization yourself. This is the easiest way if you need to make your own serializer.\
+An example of using this is below:
 
 ```csharp
 public struct ManagedStruct : IPackedSimple
@@ -27,8 +27,8 @@ public struct ManagedStruct : IPackedSimple
 
 ### IPacked
 
-This allows you to handle the serialization yourself. Contrary to the previous method, this allows you to disconnect the reading and writing of data, for more special cases.\
-An example of using this below:
+This also allows you to handle the serialization yourself. Contrary to the previous method, this allows you to disconnect the reading and writing of data, for more special cases.\
+An example of using this is below:
 
 ```csharp
 public struct ManagedStruct : IPacked
@@ -53,7 +53,7 @@ public struct ManagedStruct : IPacked
 ### Static custom type
 
 This is the most performant way of handling custom reading and writing of your data. The PurrNet serialization system will automatically find your static type.\
-An example of using this below with a Vector2:
+Below is an example of using this with a Vector2:
 
 ```csharp
 public static CustomSerializerForExternalType
