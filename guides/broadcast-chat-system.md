@@ -6,7 +6,7 @@ description: >-
 # Chat System with Broadcasting
 
 ## Introduction
-Broadcasting in PurrNet is useful, as it allows us to do some basic network functionality without needing a `NetworkBehaviour` on our object. For things that are trivial, such as game chat, we don't necessarily need all the functionality of a `NetworkBehaviour`.
+Broadcasting in PurrNet is useful, as it allows us to do some basic network functionality without needing a [Network Behaviour](..\systems-and-modules\network-identity\networkbehaviour.md) on our object. For things that are trivial, such as game chat, we don't necessarily need all the functionality of a [Network Behaviour](..\systems-and-modules\network-identity\networkbehaviour.md).
 
 The idea is as follows:
 1. Create a `ChatMessage` struct to store data such as a `name` and `message`.
