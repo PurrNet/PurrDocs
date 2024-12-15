@@ -1,3 +1,8 @@
+---
+description: >-
+  Broadcast and chat
+---
+
 # Chat System with Broadcasting
 
 ## 0. The Idea
