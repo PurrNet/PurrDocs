@@ -1,7 +1,7 @@
 # Converting from FishNet
 
 {% hint style="info" %}
-Content on this page can be out of date, as both PurrNet and FishNet are systems rapidly in development and could be prone to change. For the most updated information on PurrNet, have a look at the relative pages for the topics.
+Keep in mind that both PurrNet and FishNet are systems which are constantly evolving and could be prone to change.
 {% endhint %}
 
 Converting from FishNet to PurrNet is likely as simple as it gets. A lot of the naming conventions from FishNet still stands in PurrNet.
