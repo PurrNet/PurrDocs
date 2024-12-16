@@ -4,7 +4,7 @@
 Keep in mind that both PurrNet and Mirror are systems which are constantly evolving and could be prone to change.
 {% endhint %}
 
-Converting from Mirror to PurrNet fairly simple given that both systems have similar logic for developers.
+Converting from Mirror to PurrNet is fairly simple given that both systems have similar logic for developers.
 
 It is recommended to do the conversion in a separate project in order to use the "old" project for comparison.
 
@@ -50,7 +50,7 @@ In both systems, everything that needs to act on the network, must have a Networ
 
 ✔️ Supports nested prefabs.
 
-✔️ Allows split ownership across a single gameobject.
+✔️ Allows different ownership per component on a GameObject
 
 ✔️ Enables dynamic transform management at runtime.
 
@@ -66,7 +66,7 @@ NetworkServer.Spawn(go, connectionToClient);
 NetworkServer.Destroy(go);
 ```
 
-In PurrNet handles [spawning & despawning](../../systems-and-modules/spawning-and-despawning.md) automatically, however, if you want to modify something relative to the identity, you can do that at the same time as spawning it, and it will arrive in the same packet.\
+PurrNet handles [spawning & despawning](../../systems-and-modules/spawning-and-despawning.md) automatically, however, if you want to modify something relative to the identity, you can do that at the same time as spawning it, and it will arrive in the same packet.\
 **PurrNet:**
 
 ```csharp
@@ -87,7 +87,7 @@ Working with RPC's from **Mirror** to **PurrNet** is pretty easy, as the naming 
 
 ### SyncTypes
 
-Synchronizing is ab it different between the systems. It's similar in naming and nature. Both systems are meant to automatically sync for you, however, the setup and usage slightly varies.\
+Synchronizing is a bit different between the systems. It's similar in naming and nature. Both systems are meant to automatically sync for you, however, the setup and usage slightly varies.\
 \
 Other than that, PurrNet also allows for fully owner authorized SyncTypes, making them instantly responsive to it's controller. Read more on this in the individual [SyncType guides](../../systems-and-modules/network-identity/sync-types/).\
 \
@@ -109,5 +109,32 @@ private SyncVar<string> mySyncName = new();
 
 private void MyMethod(string newName) {
     mySyncName.value = newName;
+}
+```
+
+**Subscribing to changes** with synchronized variables is also a bit different, but easy with both systems
+
+**Mirror:**
+
+```csharp
+[SyncVar(hook = nameof(OnNameChange))]
+private string mySyncName;
+
+private void OnNameChange(string oldName, string newName) {
+    
+}
+```
+
+**PurrNet**
+
+```csharp
+private SyncVar<string> mySyncName = new();
+
+private void Awake() {
+    mySyncName.onChanged += OnNameChange;
+}
+
+private void OnNameChange(string newName) {
+    
 }
 ```
