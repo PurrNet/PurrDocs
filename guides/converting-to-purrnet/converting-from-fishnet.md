@@ -41,15 +41,13 @@ A major difference between FishNet and PurrNet, is the understanding of ownershi
 For example:
 
 ❌ Can't nest prefabs that are both network objects, as there can only be one NetworkObject per prefab.\
-❌Can't have different owners per GameObject (or nested GameObjects)\
-❌Can't un-parent nested Transforms at runtime
+❌Can't have different owners per component
 
 In PurrNet every networked component stands on its own, meaning that every networked component ([Network Identity](../../systems-and-modules/network-identity/)) can have individual ownership, and be nested exactly as you would with the normal Unity workflow.\
 For example:
 
 ✔️ Can nest prefabs, whether they are networked or not\
-✔️ Can have split ownership on a gameobject across several components\
-✔️ Can un-parent Transforms as you want at runtime
+✔️ Can have split ownership on a gameobject across several components
 
 ### Spawning & Despawning
 
