@@ -1,6 +1,6 @@
 # SyncList
 
-A Synchronized List, more commonly referred to as a "SyncList", is easily definable in your code. It will handle automatically aligning the contents of a list between all [players](../../playerid-client-connection.md).&#x20;
+A Synchronized List, more commonly referred to as a "SyncList", is easily definable in your code. It will handle automatically aligning the contents of a list between all [players](../../playerid-client-connection.md).
 
 Working with SyncLists is as easy as using a regular list, you have only to be mindful of who has authority over it.
 
@@ -26,10 +26,10 @@ private void OnListChanged(SyncListChange<int> change)
 private void ChangeMyList()
 {
     //This will change or add a value
-    myList[0] = 0.69f;
+    myList[0] = 69;
     
     //This will remove the value
-    myList.Remove(0.69f);
+    myList.Remove(69);
     
     //This will remove the entry at the given index
     myList.RemoveAt(0);

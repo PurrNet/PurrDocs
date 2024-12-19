@@ -39,6 +39,7 @@
     * [Sync Types](systems-and-modules/network-identity/sync-types/README.md)
       * [SyncVar](systems-and-modules/network-identity/sync-types/syncvar.md)
       * [SyncList](systems-and-modules/network-identity/sync-types/synclist.md)
+      * [SyncQueue](systems-and-modules/network-identity/sync-types/synclist-1.md)
       * [SyncDictionary](systems-and-modules/network-identity/sync-types/syncdictionary.md)
       * [SyncEvent](systems-and-modules/network-identity/sync-types/syncevent.md)
       * [SyncHashset](systems-and-modules/network-identity/sync-types/synchashset.md)
