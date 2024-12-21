@@ -85,7 +85,7 @@ private void OnTick(bool asServer)
     //We generate the input struct that will be sent to the server
     var input = new InputData()
     {
-        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")),
+        movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")),
         jump = _willJump
     };
 
@@ -106,7 +106,7 @@ private void Move(InputData inputData)
     //perspective of the server
     
     //We generate the movement vector from the given input.
-    var movement = new Vector3(inputData.input.x, 0, inputData.input.y) * moveForce;
+    var movement = new Vector3(inputData.movement.x, 0, inputData.movement.y) * moveForce;
     
     rigidbody.AddForce(movement);
     
@@ -128,10 +128,10 @@ private void OnCollisionEnter(Collision other)
     rigidbody.AddForce(direction * bounceForce, ForceMode.Impulse);
 }
 
-//Struct in which we send the data. This isn't necessary, just a clean approach
+//Struct in which we hold input data. This isn't necessary, just a clean approach
 private struct InputData
 {
-    public Vector2 input;
+    public Vector2 movement;
     public bool jump;
 }
 ```
