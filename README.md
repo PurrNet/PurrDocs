@@ -19,13 +19,13 @@ Check out the [ROADMAP](introduction/roadmap.md) to see what we are currently pl
 
 PurrNet is our attempt at the purrfect networking solution... It's a 100% free Unity Networking solution with no pro or premium version, and no features locked behind a pay-gate. You can use it to release, and we ask nothing in return! Read the [Unique to PurrNet](introduction/unique-to-purrnet.md) section to see what we offer above other solutions!
 
-We have taken inspiration from other networking systems we've worked a lot with in the past like [Mirror](https://mirror-networking.gitbook.io/) and [Fish-Net](https://fish-networking.gitbook.io/). We've tried to keep our version of what the like about these systems, and improve or innovate where we felt needed.
+We have taken inspiration from other networking systems we've worked a lot with in the past like [Mirror](https://mirror-networking.gitbook.io/), [Fish-Net](https://fish-networking.gitbook.io/) and [Photon Quantum](https://www.photonengine.com/quantum). We've tried to keep our version of what the like about these systems, and improve or innovate where we felt needed.
 
 Our mission has been to embrace the natural workflow of Unity rather than fight it, as we've felt other networking solutions do.
 
 Make sure to join our Discord here: [https://discord.gg/NP9tP9Qx9R](https://discord.gg/NP9tP9Qx9R)
 
-Similar to other great networking systems like Mirror and Fish-Net, we also use the same modular transport system, allowing for easy integration to any servers, relays or similar.
+Similar to other great networking systems like Mirror, we also use the same modular transport system, allowing for easy integration to any servers, relays or similar.
 
 Our high-level API, allows for super easy and quick network development, with plenty of freedom for you as the developer. Use our [Network Rule system](systems-and-modules/network-manager/network-rules.md), to define how you prefer your workflow and game to function, from fully [safe/server auth](terminology/server-auth-safe.md), to full [client auth](terminology/client-auth-everyone-unsafe.md) allowing for the quickest multiplayer development!
 
