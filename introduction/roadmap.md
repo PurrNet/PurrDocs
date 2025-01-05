@@ -6,19 +6,18 @@ description: >-
 
 # 🏎️ Roadmap
 
-* [ ] Auto network object pooling
 * [ ] Authentication
-* [ ] Connection Authentication
-* [ ] Network LOD
 * [ ] Epic Games Transport
 * [ ] Lag compensation component (collider rollback)
-* [ ] Broadcast attribute (for easy broadcasting)
 * [ ] Easy packet compression
 * [ ] Auto networked saving/loading
 * [ ] Improved logging
 * [ ] Network Profiler tool
 * [ ] Client Side Prediction
-* [ ] Scriptable object referencing
+* [ ] Referencing assets
+* [x] Plug n' play lobby setup
+* [x] Free relay for easy development testing
+* [x] Auto network object pooling
 * [x] Nesting network modules
 * [x] Steamworks Transport
 * [x] Auto networked state machine
