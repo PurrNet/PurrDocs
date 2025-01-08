@@ -2,7 +2,7 @@
 
 With PurrNet, it's exceptionally easy to get started with a lobby in your game. We've built a plug n' play lobby setup for you to use with any provider (or self host) that you'd like. It comes with a Steam provider ready to use.
 
-{% embed url="https://youtu.be/fIBAlOJxqtg" %}
+{% embed url="https://www.youtube.com/watch?v=fIBAlOJxqtg" %}
 
 ### Importing
 
