@@ -17,6 +17,7 @@
     * [In Unity](guides/test-with-friends/in-unity.md)
     * [In build](guides/test-with-friends/in-build.md)
   * [Setting up a server](guides/setting-up-a-server.md)
+  * [Lobby System](guides/lobby-system.md)
   * [Networking custom classes, structs & types](guides/networking-custom-classes-structs-and-types.md)
   * [Chat system with broadcasts](guides/broadcast-chat-system.md)
   * [Easy Multiplayer Physics (input Sync)](guides/easy-multiplayer-physics-input-sync.md)
