@@ -19,11 +19,11 @@ Tests carried out with the following occurring every tick at a tick-rate (send r
 Mind that this only covers RPC benchmarks for now. See the [Why RPC Tests](performance.md#why-rpc-tests) section for more on that.
 {% endhint %}
 
-* PurrNet vs. FishNet: \~33.54% lower usage.
-* PurrNet vs. Mirror: \~66.27% lower usage.
+* PurrNet vs. FishNet: \~49.15% lower usage.
+* PurrNet vs. Mirror: \~74.18% lower usage.
 * FishNet vs. Mirror: \~49.23% lower usage.
 
-<figure><img src="../.gitbook/assets/1ad4cfec-1454-4fe3-921c-8cdf94439bf1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/a15dcad8-dcf8-4087-8763-1b3dfbf93d93.png" alt=""><figcaption></figcaption></figure>
 
 ## Average usage
 
@@ -31,7 +31,7 @@ This is the average across 3 RPC tests with different data parameters. See the [
 
 | System  | Download    | Upload      |
 | ------- | ----------- | ----------- |
-| PurrNet | 16.147 KB/s | 16.147 KB/s |
+| PurrNet | 12.357 KB/s | 12.357 KB/s |
 | FishNet | 24.303 KB/s | 24.303 KB/s |
 | Mirror  | 47.867 KB/s | 47.867 KB/s |
 
@@ -48,13 +48,14 @@ Download and Upload speed is the same, because both editors are represented. The
 ### PurrNet 1.5.0
 
 Vector3 + Quaternion + bool\
-![](<../.gitbook/assets/image (9).png>)
+![](<../.gitbook/assets/image (13).png>)
 
 Vector3\
-![](<../.gitbook/assets/image (8).png>)
+![](<../.gitbook/assets/image (12).png>)
 
 RPC Only:\
-![](<../.gitbook/assets/image (7).png>)
+![](<../.gitbook/assets/image (10).png>)\
+
 
 ### FishNet 4.5.6R Pro
 
