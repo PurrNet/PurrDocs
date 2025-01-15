@@ -22,6 +22,8 @@
   * [Networking custom classes, structs & types](guides/networking-custom-classes-structs-and-types.md)
   * [Chat system with broadcasts](guides/broadcast-chat-system.md)
   * [Easy Multiplayer Physics (input Sync)](guides/easy-multiplayer-physics-input-sync.md)
+* [🎮 Full game guides](full-game-guides/README.md)
+  * [🔫 First Person Shooter](full-game-guides/first-person-shooter.md)
 * [🖥️ Systems and modules](systems-and-modules/README.md)
   * [Network Manager](systems-and-modules/network-manager/README.md)
     * [Network Rules](systems-and-modules/network-manager/network-rules.md)
