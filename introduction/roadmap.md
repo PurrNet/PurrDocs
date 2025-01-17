@@ -6,15 +6,15 @@ description: >-
 
 # 🗺️ Roadmap
 
-* [ ] Authentication
-* [ ] Epic Games Transport
+* [ ] Client Side Prediction
 * [ ] Lag compensation component (collider rollback)
 * [ ] Easy packet compression
 * [ ] Auto networked saving/loading
+* [ ] Epic Games Transport
 * [ ] Improved logging
 * [ ] Network Profiler tool
-* [ ] Client Side Prediction
 * [ ] Referencing assets
+* [x] Authentication
 * [x] Plug n' play lobby setup
 * [x] Free relay for easy development testing
 * [x] Auto network object pooling
