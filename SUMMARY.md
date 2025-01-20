@@ -62,7 +62,7 @@
     * [Awaitable RPC](systems-and-modules/remote-procedure-call-rpc/awaitable-rpc.md)
     * [Fully Local RPC](systems-and-modules/remote-procedure-call-rpc/fully-local-rpc.md)
   * [Instance Handler](systems-and-modules/instance-handler.md)
-  * [Scene Module](systems-and-modules/scene-module.md)
+  * [Scene Management](systems-and-modules/scene-module.md)
   * [Broadcast](systems-and-modules/broadcast.md)
   * [Lag compensation](systems-and-modules/lag-compensation.md)
   * [Bots](systems-and-modules/bots.md)
