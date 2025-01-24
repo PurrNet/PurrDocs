@@ -12,6 +12,9 @@ You can add PurrNet to your project in 3 ways:\
 **Git (Package Manager):** Through the package manager you can add a package using a git URL. Just add the following URL, and whenever you need PurrNet updated, you can update it directly from the package manager:\
 `https://github.com/BlenMiner/PurrNet.git?path=/Assets/PurrNet#release` \
 \
+You can also use the `dev` branch if you're looking to access the latest features, though it may come at the cost of stability. You can switch at any time by using either of the following URLs:
+`https://github.com/BlenMiner/PurrNet.git?path=/Assets/PurrNet#dev` \
+\
 **GitHub (Package Import):** You can download the latest release from [this page](https://github.com/BlenMiner/PurrNet/releases) and simply double click it to import it into your project
 
 You can now continue on to the [Getting Started](getting-started.md) page
