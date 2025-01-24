@@ -67,6 +67,7 @@
   * [Lag compensation](systems-and-modules/lag-compensation.md)
   * [Bots](systems-and-modules/bots.md)
   * [Network Modules](systems-and-modules/network-modules.md)
+  * [Client Side Prediction](systems-and-modules/client-side-prediction.md)
 * [🤓 Terminology](terminology/README.md)
   * [Channels](terminology/channels.md)
   * [Client Auth/Everyone (Unsafe)](terminology/client-auth-everyone-unsafe.md)
