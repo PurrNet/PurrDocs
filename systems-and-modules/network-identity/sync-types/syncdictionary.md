@@ -1,6 +1,6 @@
 # SyncDictionary
 
-Synchronized Dictionary, or most commonly referred as "SyncDictionary" are easily definable in your code, and will handle automatically align a dictionary between all [players](../../playerid-client-connection.md).&#x20;
+Synchronized Dictionary, or most commonly referred as "SyncDictionary" are easily definable in your code, and will handle automatically align a dictionary between all [players](../../playerid-client-connection.md).
 
 In theory, you could just convert a dictionary to a SyncDictionary, and it should work. Working with it is the exact same with adding, setting, removing or clearing.
 
@@ -41,4 +41,4 @@ private void ChangeMyDictionary()
 
 The SyncDictionary is custom serialized in editor, in order to make visual debugging easier.
 
-<figure><img src="../../../.gitbook/assets/Unity_SyncDictionary.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>

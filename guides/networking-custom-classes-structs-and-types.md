@@ -7,7 +7,8 @@ Networking custom classes and structs can be extremely useful to send over the n
 {% embed url="https://youtu.be/Ck13MQuYBV0?si=AUuMKixhUCXphEkK" %}
 
 ### IPackedAuto
-This will allow PurrNet to automatically handle the serialization for you. This is useful for [Broadcasting](..\systems-and-modules\broadcast.md), as data outside of a [Network Behaviour](..\systems-and-modules\broadcast.md) may have trouble serializing over the network.\
+
+This will allow PurrNet to automatically handle the serialization for you. This is useful for [Broadcasting](https://github.com/BlenMiner/PurrNet-Docs/blob/main/systems-and-modules/broadcast.md), as data outside of a [Network Behaviour](https://github.com/BlenMiner/PurrNet-Docs/blob/main/systems-and-modules/broadcast.md) may have trouble serializing over the network.\
 An example of using this is below:
 
 ```csharp

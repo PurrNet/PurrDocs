@@ -2,13 +2,13 @@
 description: Made by network game developers with experience.
 ---
 
-# 🐈‍⬛ Introduction
+# 🐈 Introduction
 
 ### Early release!
 
 PurrNet is still in the early stages! So keep in mind that things could be prone to change, have bugs, or be sub-optimal. We are using it ourselves as well, so we feel confident that it is a ready-to-use system, but it is under constant development and improvement.
 
-Check out the [ROADMAP](introduction/roadmap.md) to see what we are currently planning to add. This can also be a good overview of "what is missing" from the system at this point.
+Check out the [ROADMAP](readme/roadmap.md) to see what we are currently planning to add. This can also be a good overview of "what is missing" from the system at this point.
 
 [**Get it on the Unity Asset Store**](https://assetstore.unity.com/packages/slug/297320)\
 [**Get it on GitHub**](https://github.com/BlenMiner/PurrNet)
@@ -17,7 +17,7 @@ Check out the [ROADMAP](introduction/roadmap.md) to see what we are currently pl
 
 ### Our mission
 
-PurrNet is our attempt at the purrfect networking solution... It's a 100% free Unity Networking solution with no pro or premium version, and no features locked behind a pay-gate. You can use it to release, and we ask nothing in return! Read the [Unique to PurrNet](introduction/unique-to-purrnet.md) section to see what we offer above other solutions!
+PurrNet is our attempt at the purrfect networking solution... It's a 100% free Unity Networking solution with no pro or premium version, and no features locked behind a pay-gate. You can use it to release, and we ask nothing in return! Read the [Unique to PurrNet](readme/unique-to-purrnet.md) section to see what we offer above other solutions!
 
 We have taken inspiration from other networking systems we've worked a lot with in the past like [Mirror](https://mirror-networking.gitbook.io/), [Fish-Net](https://fish-networking.gitbook.io/) and [Photon Quantum](https://www.photonengine.com/quantum). We've tried to keep our version of what the like about these systems, and improve or innovate where we felt needed.
 

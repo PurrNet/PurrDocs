@@ -1,11 +1,11 @@
 # Table of contents
 
-* [🐈‍⬛ Introduction](README.md)
-  * [‼️ Unique to PurrNet](introduction/unique-to-purrnet.md)
-  * [💲 Pricing](introduction/pricing.md)
-  * [💻 Compatibility](introduction/compatibility.md)
-  * [📚 Addon library](introduction/addon-library.md)
-  * [🗺️ Roadmap](introduction/roadmap.md)
+* [🐈 Introduction](README.md)
+  * [‼️ Unique to PurrNet](readme/unique-to-purrnet.md)
+  * [💲 Pricing](readme/pricing.md)
+  * [💻 Compatibility](readme/compatibility.md)
+  * [📚 Addon library](readme/addon-library.md)
+  * [🗺️ Roadmap](readme/roadmap.md)
   * [🏎️ Performance](readme/performance.md)
 * [📚 Guides](guides/README.md)
   * [Installation/Setup](guides/installation-setup.md)

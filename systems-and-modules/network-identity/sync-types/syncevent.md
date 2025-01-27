@@ -1,6 +1,6 @@
 # SyncEvent
 
-Synchronized Event, or most commonly referred as "SyncEvent" are easily definable in your code, and will handle automatically calling events to all [players](../../playerid-client-connection.md) listening to the event.&#x20;
+Synchronized Event, or most commonly referred as "SyncEvent" are easily definable in your code, and will handle automatically calling events to all [players](../../playerid-client-connection.md) listening to the event.
 
 Working with SyncEvent is as easy as using a regular UnityEvent, only having to be mindful of who has authority.
 
@@ -35,4 +35,4 @@ public void InvokeSyncEvent()
 
 The SyncEvent is serializable in the Unity editor as a Unity Event, meaning that you can easily add events straight from the inspector view.
 
-<figure><img src="../../../.gitbook/assets/Unity_SyncEvent.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
