@@ -47,4 +47,4 @@ private void ChangeMyList()
 
 The SyncList is serialized in editor, however, you shouldn't edit it here. This is purely for visual debugging
 
-<figure><img src="../../../.gitbook/assets/Unity_SyncList.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
