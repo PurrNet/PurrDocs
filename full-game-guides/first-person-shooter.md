@@ -1,12 +1,12 @@
 ---
 description: >-
   Learn step by step how you can go about building a multiplayer first person
-  shooter game
+  shooter game in Unity
 ---
 
 # 🔫 First Person Shooter
 
-The whole series is out as a video, and more videos can be added in the future, so keep an eye on the playlist.
+The whole series is out as videos, and more videos can be added in the future, so keep an eye on the playlist.
 
 {% embed url="https://www.youtube.com/playlist?list=PLF6lFlLzb6CTq16028FAVkMQEgeTXLk8L" %}
 
