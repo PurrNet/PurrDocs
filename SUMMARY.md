@@ -74,7 +74,6 @@
     * [Best Practices](systems-and-modules/client-side-prediction/best-practices.md)
     * [Input Handling](systems-and-modules/client-side-prediction/input-handling.md)
     * [State Handling](systems-and-modules/client-side-prediction/state-handling.md)
-    * [Interacting between identities](systems-and-modules/client-side-prediction/interacting-between-identities.md)
     * [Views and Interpolation](systems-and-modules/client-side-prediction/views-and-interpolation.md)
 * [🤓 Terminology](terminology/README.md)
   * [Channels](terminology/channels.md)
