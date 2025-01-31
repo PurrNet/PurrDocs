@@ -6,7 +6,6 @@ description: >-
 
 # 🗺️ Roadmap
 
-* [ ] Client Side Prediction
 * [ ] Lag compensation component (collider rollback)
 * [ ] Easy packet compression
 * [ ] Auto networked saving/loading
@@ -14,6 +13,7 @@ description: >-
 * [ ] Improved logging
 * [ ] Network Profiler tool
 * [ ] Referencing assets
+* [x] Client Side Prediction
 * [x] Authentication
 * [x] Plug n' play lobby setup
 * [x] Free relay for easy development testing
