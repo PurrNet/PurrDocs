@@ -6,6 +6,10 @@ description: >-
 
 # 🗺️ Roadmap
 
+* [ ] Predicted state machine
+* [ ] Deterministic physics for prediction
+* [ ] Delta serialization
+* [ ] Compression of prediction
 * [ ] Lag compensation component (collider rollback)
 * [ ] Easy packet compression
 * [ ] Auto networked saving/loading
