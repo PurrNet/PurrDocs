@@ -6,7 +6,7 @@ description: >-
 
 # 🗺️ Roadmap
 
-* [ ] Predicted state machine
+* [ ] Plug-n-play prediction components
 * [ ] Deterministic physics for prediction
 * [ ] Delta serialization
 * [ ] Compression of prediction
@@ -17,6 +17,7 @@ description: >-
 * [ ] Improved logging
 * [ ] Network Profiler tool
 * [ ] Referencing assets
+* [x] Predicted state machine
 * [x] Client Side Prediction
 * [x] Authentication
 * [x] Plug n' play lobby setup
