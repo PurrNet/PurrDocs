@@ -85,3 +85,4 @@
   * [Server Auth (Safe)](terminology/server-auth-safe.md)
 * [💡 Integrations](integrations/README.md)
   * [Dissonance](integrations/dissonance.md)
+  * [Cozy Weather](integrations/cozy-weather.md)
