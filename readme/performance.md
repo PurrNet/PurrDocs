@@ -1,7 +1,7 @@
 # 🏎️ Performance
 
 {% hint style="warning" %}
-PurrNet has yet to do any active performance optimizations. All results seen below are prior to any attempts and bettering performance, and it should only improve for future updates.
+PurrNet has yet to do any active performance optimizations. All results seen below are prior to any attempts at bettering performance, and it should only improve for future updates.
 {% endhint %}
 
 Tests are benchmarked using the [NetLimiter](https://www.netlimiter.com/) tool, as a neutral third party, to monitor process bandwidth for both download and upload rates. We also ensured that the Unity Editors (which this was tested within) was at 0 download and 0 upload before beginning any tests.
