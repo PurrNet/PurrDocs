@@ -52,6 +52,7 @@
       * [SyncHashset](systems-and-modules/network-identity/sync-types/synchashset.md)
       * [SyncTimer](systems-and-modules/network-identity/sync-types/synctimer.md)
     * [Don't destroy on load](systems-and-modules/network-identity/dont-destroy-on-load.md)
+  * [Collider Rollback](systems-and-modules/collider-rollback.md)
   * [Client Side Prediction](systems-and-modules/client-side-prediction/README.md)
     * [Overview](systems-and-modules/client-side-prediction/overview.md)
     * [Predicted Identities](systems-and-modules/client-side-prediction/predicted-identities.md)
