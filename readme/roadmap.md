@@ -10,13 +10,13 @@ description: >-
 * [ ] Deterministic physics for prediction
 * [ ] Delta serialization
 * [ ] Compression of prediction
-* [ ] Lag compensation component (collider rollback)
 * [ ] Easy packet compression
 * [ ] Auto networked saving/loading
 * [ ] Epic Games Transport
 * [ ] Improved logging
 * [ ] Network Profiler tool
 * [ ] Referencing assets
+* [x] Lag compensation component (collider rollback)
 * [x] Predicted state machine
 * [x] Client Side Prediction
 * [x] Authentication
