@@ -83,7 +83,7 @@ Vector3\
 RPC Only:\
 ![](<../../.gitbook/assets/image (14).png>)
 
-### NetCode for GameObjects
+### NetCode for GameObjects 2.2.0
 
 Vector3 + Quaternion + bool\
 ![](<../../.gitbook/assets/image (2).png>)
