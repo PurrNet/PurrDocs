@@ -1,7 +1,7 @@
-# 🏎️ Performance
+# RPC Benchmarks
 
 {% hint style="warning" %}
-PurrNet has yet to do any active performance optimizations. All results seen below are prior to any attempts at bettering performance, and it should only improve for future updates.
+PurrNet has yet to do most active performance optimization on RPC's. All results seen below are prior to most attempts at bettering performance, and it should only improve for future updates.
 {% endhint %}
 
 Tests are benchmarked using the [NetLimiter](https://www.netlimiter.com/) tool, as a neutral third party, to monitor process bandwidth for both download and upload rates. We also ensured that the Unity Editors (which this was tested within) was at 0 download and 0 upload before beginning any tests.
@@ -23,7 +23,7 @@ Mind that this only covers RPC benchmarks for now. See the [Why RPC Tests](perfo
 * PurrNet vs. Mirror: \~74.18% lower usage.
 * FishNet vs. Mirror: \~49.23% lower usage.
 
-<figure><img src="../.gitbook/assets/a15dcad8-dcf8-4087-8763-1b3dfbf93d93.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/a15dcad8-dcf8-4087-8763-1b3dfbf93d93.png" alt=""><figcaption></figcaption></figure>
 
 ## Average usage
 
@@ -48,33 +48,33 @@ Download and Upload speed is the same, because both editors are represented. The
 ### PurrNet 1.5.0
 
 Vector3 + Quaternion + bool\
-![](<../.gitbook/assets/image (26).png>)
+![](<../../.gitbook/assets/image (26).png>)
 
 Vector3\
-![](<../.gitbook/assets/image (25).png>)
+![](<../../.gitbook/assets/image (25).png>)
 
 RPC Only:\
-![](<../.gitbook/assets/image (23).png>)\
+![](<../../.gitbook/assets/image (23).png>)\
 
 
 ### FishNet 4.5.6R Pro
 
 Vector3 + Quaternion + bool\
-![](<../.gitbook/assets/image (19).png>)
+![](<../../.gitbook/assets/image (19).png>)
 
 Vector3\
-![](<../.gitbook/assets/image (18).png>)
+![](<../../.gitbook/assets/image (18).png>)
 
 RPC Only:\
-![](<../.gitbook/assets/image (17).png>)
+![](<../../.gitbook/assets/image (17).png>)
 
 ### Mirror 93.0.1
 
 Vector3 + Quaternion + bool\
-![](<../.gitbook/assets/image (16).png>)
+![](<../../.gitbook/assets/image (16).png>)
 
 Vector3\
-![](<../.gitbook/assets/image (15).png>)
+![](<../../.gitbook/assets/image (15).png>)
 
 RPC Only:\
-![](<../.gitbook/assets/image (14).png>)
+![](<../../.gitbook/assets/image (14).png>)
