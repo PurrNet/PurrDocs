@@ -19,11 +19,14 @@ Tests carried out with the following occurring every tick at a tick-rate (send r
 Mind that this only covers RPC benchmarks for now. See the [Why RPC Tests](performance.md#why-rpc-tests) section for more on that.
 {% endhint %}
 
-* PurrNet vs. FishNet: \~49.15% lower usage.
-* PurrNet vs. Mirror: \~74.18% lower usage.
-* FishNet vs. Mirror: \~49.23% lower usage.
+* PurrNet vs. FishNet: \~49.15% lower usage
+* PurrNet vs. Mirror: \~74.18% lower usage
+* PurrNet vs Netcode: \~73.81% lower usage
+* FishNet vs. Mirror: \~49.23% lower usage
+* FishNet vs. NetCode: \~48.48% lower usage
+* Mirror vs. NetCode: \~1.44% higher usage for Mirror
 
-<figure><img src="../../.gitbook/assets/a15dcad8-dcf8-4087-8763-1b3dfbf93d93.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 ## Average usage
 
@@ -34,6 +37,7 @@ This is the average across 3 RPC tests with different data parameters. See the [
 | PurrNet | 12.357 KB/s | 12.357 KB/s |
 | FishNet | 24.303 KB/s | 24.303 KB/s |
 | Mirror  | 47.867 KB/s | 47.867 KB/s |
+| NetCode | 47.187 KB/s | 47.187 KB/s |
 
 ## Why RPC Tests?
 
@@ -78,3 +82,14 @@ Vector3\
 
 RPC Only:\
 ![](<../../.gitbook/assets/image (14).png>)
+
+### NetCode for GameObjects
+
+Vector3 + Quaternion + bool\
+![](<../../.gitbook/assets/image (2).png>)
+
+Vector3\
+![](<../../.gitbook/assets/image (1).png>)
+
+RPC Only\
+![](../../.gitbook/assets/image.png)

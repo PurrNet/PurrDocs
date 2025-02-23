@@ -41,4 +41,4 @@ private void ChangeMyQueue()
 
 The SyncQueue is serialized in editor. It will also attempt to auto serialize non-serializable classes/structs by grabbing the ToString().
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
