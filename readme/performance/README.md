@@ -8,7 +8,7 @@ We do our best to run non-biased tests, also meaning that we don't pick tests fr
 
 ## Average of all tests
 
-This currently includes data from the [RPC Benchmarks](performance.md) and [Network Transform Benchmarks](../../systems-and-modules/plug-n-play-components/network-transform.md). This is purely an average, so see the individual articles for more accurate representations.
+This currently includes data from the [RPC Benchmarks](performance.md) and [Network Transform Benchmarks](network-transform-benchmarks.md). This is purely an average, so see the individual articles for more accurate representations.
 
 * **PurrNet vs. FishNet** → **49.00% lower usage**
 * **PurrNet vs. Mirror** → **55.67% lower usage**
