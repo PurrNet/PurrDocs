@@ -19,7 +19,7 @@ Check out the [ROADMAP](readme/roadmap.md) to see what we are currently planning
 
 PurrNet is our attempt at the purrfect networking solution... It's a 100% free Unity Networking solution with no pro or premium version, and no features locked behind a pay-gate. You can use it to release, and we ask nothing in return! Read the [Unique to PurrNet](readme/unique-to-purrnet.md) section to see what we offer above other solutions!
 
-We have taken inspiration from other networking systems we've worked a lot with in the past like [Mirror](https://mirror-networking.gitbook.io/), [Fish-Net](https://fish-networking.gitbook.io/) and [Photon Quantum](https://www.photonengine.com/quantum). We've tried to keep our version of what the like about these systems, and improve or innovate where we felt needed.
+We have taken inspiration from other networking systems we've worked a lot with in the past like [Mirror](https://mirror-networking.gitbook.io/), [Fish-Net](https://fish-networking.gitbook.io/) and [Photon Quantum](https://www.photonengine.com/quantum). We've tried to keep our version of what the like about these systems, and improve or innovate where we felt needed. And clearly we're doing something right as FirstGearGames (FishNet) himself said: "anything to slow down purrnet development"
 
 Our mission has been to embrace the natural workflow of Unity rather than fight it, as we've felt other networking solutions do.
 
