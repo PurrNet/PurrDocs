@@ -6,11 +6,11 @@ description: >-
 
 # 🗺️ Roadmap
 
+* [ ] Easy network conversion tools (Components)
 * [ ] Plug-n-play prediction components
 * [ ] Deterministic physics for prediction
-* [ ] Delta serialization
 * [ ] Compression of prediction
-* [ ] Easy packet compression
+* [ ] Easy network conversion tools (Code)
 * [ ] Auto networked saving/loading
 * [ ] Epic Games Transport
 * [ ] Improved logging
@@ -19,6 +19,8 @@ description: >-
 * [x] Lag compensation component (collider rollback)
 * [x] Predicted state machine
 * [x] Client Side Prediction
+* [x] Delta serialization
+* [x] Easy packet compression
 * [x] Authentication
 * [x] Plug n' play lobby setup
 * [x] Free relay for easy development testing
