@@ -19,14 +19,14 @@ All the tests include 100 NT’s in the scene. The only thing that is modified b
 
 ## Results & Conclusion
 
-* PurrNet vs. FishNet: \~48.84% lower usage
-* PurrNet vs. Mirror: \~37.15% lower usage
-* PurrNet vs. NetCode: \~71.32% lower usage
-* Mirror vs. FishNet: \~18.46% lower usage
-* FishNet vs. NetCode: \~43.97% lower usage
-* Mirror vs. NetCode: \~54.35% lower usage
+* PurrNet vs. FishNet → 49.00% lower usage
+* PurrNet vs. Mirror → 61.43% lower usage
+* PurrNet vs. NetCode → 72.56% lower usage
+* FishNet vs. Mirror → 24.83% lower usage
+* FishNet vs. NetCode → 46.38% lower usage
+* Mirror vs. NetCode → 24.96% lower usage
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Average Usage
 
@@ -35,7 +35,7 @@ This is the average across all 5 tests. See the [Raw results](network-transform-
 | System                  | Download    | Upload      |
 | ----------------------- | ----------- | ----------- |
 | PurrNet                 | 11.598 KB/s | 11.598 KB/s |
-| Mirror                  | 18.456 KB/s | 18.456 KB/s |
+| Mirror                  | 30,356 KB/s | 30,356 KB/s |
 | FishNet                 | 22,676 KB/s | 22,676 KB/s |
 | NetCode For GameObjects | 40.434 KB/s | 40.434 KB/s |
 
@@ -57,9 +57,9 @@ Download and Upload speed is the same, because both editors are represented. The
 
 <figure><img src="../../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
 
-### Mirror 93.0.1
+### Mirror 93.0.1 (Unreliable NT)
 
-<figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ### FishNet 4.5.6R Pro
 

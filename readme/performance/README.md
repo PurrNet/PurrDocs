@@ -11,6 +11,6 @@ We do our best to run non-biased tests, also meaning that we don't pick tests fr
 This currently includes data from the [RPC Benchmarks](performance.md) and [Network Transform Benchmarks](network-transform-benchmarks.md). This is purely an average of how PurrNet compares to other systems, so see the individual articles for more accurate representations.
 
 * **PurrNet vs. FishNet** → **49.00% lower usage**
-* **PurrNet vs. Mirror** → **55.67% lower usage**
+* **PurrNet vs. Mirror** → **67.80% lower usage**
 * **PurrNet vs. NetCode** → **72.56% lower usage**
 
