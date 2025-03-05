@@ -73,7 +73,7 @@
     * [Generic RPC](systems-and-modules/remote-procedure-call-rpc/generic-rpc.md)
     * [Static RPC](systems-and-modules/remote-procedure-call-rpc/static-rpc.md)
     * [Awaitable RPC](systems-and-modules/remote-procedure-call-rpc/awaitable-rpc.md)
-    * [Fully Local RPC](systems-and-modules/remote-procedure-call-rpc/fully-local-rpc.md)
+    * [Direct Local Execution of RPCs](systems-and-modules/remote-procedure-call-rpc/fully-local-rpc.md)
   * [Instance Handler](systems-and-modules/instance-handler.md)
   * [Scene Management](systems-and-modules/scene-module.md)
   * [Broadcast](systems-and-modules/broadcast.md)
