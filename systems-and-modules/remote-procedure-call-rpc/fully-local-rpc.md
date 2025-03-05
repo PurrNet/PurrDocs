@@ -13,7 +13,7 @@ public void PerformAction()
     PurrCompilerFlags.EnterLocalExecution();
 
     // Any RPCs called here will bypass purrnet
-    // They will be locally without sending it over the network
+    // They will be called locally without sending it over the network
 
     PurrCompilerFlags.ExitLocalExecution();
     
