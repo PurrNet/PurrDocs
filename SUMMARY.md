@@ -41,6 +41,7 @@
       * [Local Transport](systems-and-modules/network-manager/transports/local-transport.md)
       * [Steam Transport](systems-and-modules/network-manager/transports/steam-transport.md)
       * [Purr Transport](systems-and-modules/network-manager/transports/purr-transport.md)
+    * [Authentication](systems-and-modules/network-manager/authentication.md)
   * [PlayerID (Client connection)](systems-and-modules/playerid-client-connection.md)
   * [Network Identity](systems-and-modules/network-identity/README.md)
     * [NetworkBehaviour](systems-and-modules/network-identity/networkbehaviour.md)

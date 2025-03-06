@@ -89,7 +89,7 @@ Vector3 + Quaternion + bool\
 ![](<../../.gitbook/assets/image (2) (1).png>)
 
 Vector3\
-![](<../../.gitbook/assets/image (1) (1).png>)
+![](<../../.gitbook/assets/image (1) (1) (1).png>)
 
 RPC Only\
 ![](<../../.gitbook/assets/image (2).png>)

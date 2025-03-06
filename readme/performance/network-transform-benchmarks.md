@@ -26,7 +26,7 @@ All the tests include 100 NT’s in the scene. The only thing that is modified b
 * FishNet vs. NetCode → 46.38% lower usage
 * Mirror vs. NetCode → 24.96% lower usage
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Average Usage
 
@@ -45,8 +45,6 @@ The Network Transform is one of the most common components used with any network
 
 Keep in mind that specific components can hold different functionality across different systems, and it can range widely how they are handled behind the scenes. This means that the [RPC benchmarks](performance.md) is likely a better indicator for the overall performance of the networking solution.
 
-
-
 ## Raw results <a href="#raw-results" id="raw-results"></a>
 
 Keep in mind that every data-point was fluctuating with \~0.2 KB/s. The picture was taken when seen around the mid-point of fluctuation, but this leaves margin for small inaccuracy in comparison.
@@ -59,7 +57,7 @@ Download and Upload speed is the same, because both editors are represented. The
 
 ### Mirror 93.0.1 (Unreliable NT)
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ### FishNet 4.5.6R Pro
 
