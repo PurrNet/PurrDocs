@@ -10,3 +10,4 @@ Network Identity components can have an owner, and the behavior and control give
 
 A single gameobject can have as many Network Identities as you'd want, and [ownership ](ownership.md)doesn't necessarily act on a per gameobject level, but can also be handled on a **per component level**. So one gameobject can have multiple components with different owners. There is a setting on the network identity, to propagate this ownership to the entire object on which it resides. This is also a default setting on the [Network Rules](../network-manager/network-rules.md).
 
+<figure><img src="../../.gitbook/assets/PurrNet execution order(2).jpg" alt=""><figcaption><p>Order of execution within the Network Identity</p></figcaption></figure>
