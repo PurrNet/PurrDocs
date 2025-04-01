@@ -32,5 +32,3 @@ When populating the SyncVar, you can do a few things:
 * Feed it nothing: `new();`
 * Feed it a default: `new(5);` //In case of number
 * Feed it settings like `ownerAuth` or `sendIntervalInSeconds`
-
-The owner auth setting default value can be found in your active network rules.
