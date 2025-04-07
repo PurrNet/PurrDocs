@@ -46,6 +46,12 @@ In both systems, everything that needs to act on the network, must have a Networ
 
 ❌ No runtime un-parenting of transforms.
 
+❌ Can't do generic RPC's
+
+❌ Can't do static RPC's
+
+❌ Can't do returnable RPC's
+
 **PurrNet:**
 
 ✔️ Supports nested prefabs.
@@ -53,6 +59,12 @@ In both systems, everything that needs to act on the network, must have a Networ
 ✔️ Allows different ownership per component on a GameObject
 
 ✔️ Enables dynamic transform management at runtime.
+
+✔️ Can do generic RPC's
+
+✔️ Cam do static RPC's
+
+✔️ Can do returnable RPC's
 
 ### Spawning & Despawning
 
