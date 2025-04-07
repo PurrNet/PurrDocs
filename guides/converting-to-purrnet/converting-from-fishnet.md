@@ -40,13 +40,21 @@ So setting up your Network Manager with PurrNet is as easy as making a new gameO
 A major difference between FishNet and PurrNet, is the understanding of ownership and networked objects/identities. In FishNet, NetworkObjects are automatically added to the root of any object that needs to act on the network. Though this adds a solid level of simplicity to the understanding of something like ownership, it can also easily impose some limitations to the developer. \
 For example:
 
-❌ Can't nest prefabs that are both network objects, as there can only be one NetworkObject per prefab.\
+❌Can't do generic RPC's\
+❌Can't do static RPC's\
+❌Can't do returnable RPC's\
+❌Only supports RPC's in NetworkBehaviours (under MonoBehaviour)\
+❌Requires baking process (scenes, prefabs, etc.)\
 ❌Can't have different owners per component
 
 In PurrNet every networked component stands on its own, meaning that every networked component ([Network Identity](../../systems-and-modules/network-identity/)) can have individual ownership, and be nested exactly as you would with the normal Unity workflow.\
 For example:
 
-✔️ Can nest prefabs, whether they are networked or not\
+✔️ Can do generic RPC's\
+✔️ Can do static RPC's\
+✔️ Can do returnable RPC's\
+✔️ Network modules allowing non-mono networking (also nested)\
+✔️ Doesn't require a backing process\
 ✔️ Can have split ownership on a gameobject across several components
 
 ### Spawning & Despawning
