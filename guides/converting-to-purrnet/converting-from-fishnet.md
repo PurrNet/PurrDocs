@@ -54,7 +54,7 @@ For example:
 ✔️ Can do static RPC's\
 ✔️ Can do returnable RPC's\
 ✔️ Network modules allowing non-mono networking (also nested)\
-✔️ Doesn't require a backing process\
+✔️ Doesn't require a baking process\
 ✔️ Can have split ownership on a gameobject across several components
 
 ### Spawning & Despawning
