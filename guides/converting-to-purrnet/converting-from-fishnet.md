@@ -41,7 +41,6 @@ A major difference between FishNet and PurrNet, is the understanding of ownershi
 For example:
 
 ❌Can't do generic RPC's\
-❌Can't do static RPC's\
 ❌Can't do returnable RPC's\
 ❌Only supports RPC's in NetworkBehaviours (under MonoBehaviour)\
 ❌Requires baking process (scenes, prefabs, etc.)\
@@ -51,7 +50,6 @@ In PurrNet every networked component stands on its own, meaning that every netwo
 For example:
 
 ✔️ Can do generic RPC's\
-✔️ Can do static RPC's\
 ✔️ Can do returnable RPC's\
 ✔️ Network modules allowing non-mono networking (also nested)\
 ✔️ Doesn't require a baking process\
