@@ -42,6 +42,7 @@ For example:
 
 ❌Can't do generic RPC's\
 ❌Can't do returnable RPC's\
+❌Doesn't have static type synchronization\
 ❌Only supports RPC's in NetworkBehaviours (under MonoBehaviour)\
 ❌Requires baking process (scenes, prefabs, etc.)\
 ❌Can't have different owners per component
@@ -51,6 +52,7 @@ For example:
 
 ✔️ Can do generic RPC's\
 ✔️ Can do returnable RPC's\
+✔️ Has static type synchronization\
 ✔️ Network modules allowing non-mono networking (also nested)\
 ✔️ Doesn't require a baking process\
 ✔️ Can have split ownership on a gameobject across several components
