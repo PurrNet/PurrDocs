@@ -13,9 +13,9 @@ description: >-
 * [ ] Easy network conversion tools (Code)
 * [ ] Auto networked saving/loading
 * [ ] Epic Games Transport
-* [ ] Improved logging
-* [ ] Network Profiler tool
 * [ ] Referencing assets
+* [x] Network Profiler tool
+* [x] Improved logging
 * [x] Lag compensation component (collider rollback)
 * [x] Predicted state machine
 * [x] Client Side Prediction
