@@ -1,44 +1,36 @@
-# SyncQueue
+# SyncArray
 
-A Synchronized Queue, more commonly referred to as a "SyncQueue", is easily definable in your code. It will handle automatically aligning the contents of a list between all [players](../../playerid-client-connection.md).
+A Synchronized Array, more commonly referred to as a "SyncArray", is easily definable in your code. It will handle automatically aligning the contents of an array between all [players](../../playerid-client-connection.md).
 
-Working with a SyncQueue is as easy as using a regular queue, you have only to be mindful of who has authority over it.
+Working with SyncArrays is as easy as using a regular array, you have only to be mindful of who has authority over it.
 
-SyncQueue's are built with the Network Module setup, meaning that you have to initialize it. Below is a usage example:
+SyncArrays are built with the Network Module setup, meaning that you have to initialize it. Below is a usage example:
 
 ```csharp
-//Creates a new instance of the queue - `true` means it is owner auth. 
-[SerializeField] private SyncQueue<int> myQueue = new(true);
+//Creates a new instance of the array
+//20 sets the initial length of the array
+//`true` means it is owner auth. 
+public SyncArray<int> syncArray = new(20, true);
 
 protected override void OnSpawned()
 {
-    //Subscribing to changes made to the list
-    myQueue .onChanged += OnQueueChanged;
+    //Subscribing to changes made to the array
+    syncArray.onChanged += OnArrayChange;
 }
 
-private void OnQueueChanged(SyncQueueChange<int> change)
+private void OnArrayChange(SyncArrayChange<int> change)
 {
-    //This is called for everyone when the queue changes.
-    //It will log out the value and operation
-    Debug.Log($"Queue updated: {change}");
+    //This is now called for everyone when the array changes.
+    //It will log out the value, index and operation
+    Debug.Log(change);
 }
 
-private void ChangeMyQueue()
+private void ChangeMyArray()
 {
-    //This will enqueue into the queue
-    myQueue.Enqueue(69);
+    //This will change or add a value
+    syncArray [0] = 69;
     
-    //This will dequeue the first element in the queue
-    myQueue.Dequeue();
-    
-    //This will clear the queue
-    myQueue.Clear();
-    
-    //This will peek at the first element
-    var myVal = myQueue.Peek();
+    //Resized the array to 15 elements
+    syncArray.Length = 15;
 }
 ```
-
-The SyncQueue is serialized in editor. It will also attempt to auto serialize non-serializable classes/structs by grabbing the ToString().
-
-<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
