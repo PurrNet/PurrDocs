@@ -31,7 +31,7 @@ public class HealthModule : NetworkModule
             if (!isServer) return;
 
             // Synchronize health with all clients
-            RpcUpdateHealth(_health);
+            RpcUpdateHealth(value);
         }
     }
 
