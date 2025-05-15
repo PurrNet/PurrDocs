@@ -6,12 +6,12 @@ description: >-
 
 # 🗺️ Roadmap
 
-* [ ] Easy network conversion tools (Components)
 * [ ] Modularized delta compression
 * [ ] Code-stripping
 * [ ] Plug-n-play prediction components
 * [ ] Deterministic physics for prediction
 * [ ] Compression of prediction
+* [ ] Easy network conversion tools (Components)
 * [ ] Easy network conversion tools (Code)
 * [ ] Auto networked saving/loading
 * [ ] Epic Games Transport
