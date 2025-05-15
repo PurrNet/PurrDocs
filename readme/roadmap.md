@@ -7,6 +7,8 @@ description: >-
 # 🗺️ Roadmap
 
 * [ ] Easy network conversion tools (Components)
+* [ ] Modularized delta compression
+* [ ] Code-stripping
 * [ ] Plug-n-play prediction components
 * [ ] Deterministic physics for prediction
 * [ ] Compression of prediction
