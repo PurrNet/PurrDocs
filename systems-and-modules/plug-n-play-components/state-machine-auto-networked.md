@@ -106,3 +106,16 @@ machine.Next(5);
 //Goes to a specified state while feeding data
 machine.SetState(specificState, 5);
 ```
+
+### Advanced state transitions
+
+The PurrNet State Machine supports advanced transition logic through the `CanEnter` and `CanExit` methods, allowing for conditional state changes.
+
+**Implementing Conditional Transitions**
+
+Each `StateNode` can override these methods to define custom logic:
+
+* **Non-Generic States**: Override `CanEnter()` and `CanExit()` to implement logic without additional data.
+* **Generic States**: Override `CanEnter(T data)` and `CanExit()` to implement logic that considers external data.
+
+By utilizing these methods, you can ensure that your state machine transitions only occur when certain conditions are met, enhancing the robustness of your game's logic.
