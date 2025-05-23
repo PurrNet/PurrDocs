@@ -119,3 +119,20 @@ Each `StateNode` can override these methods to define custom logic:
 * **Generic States**: Override `CanEnter(T data)` and `CanExit()` to implement logic that considers external data.
 
 By utilizing these methods, you can ensure that your state machine transitions only occur when certain conditions are met, enhancing the robustness of your game's logic.
+
+### Dynamically add & remove states
+
+The networked state machine also holds the ability to dynamically modify states. This will be automatically synced as well, meaning that you could instantiate a new state and add it to an existing state machine, or remove existing states as needed.
+
+Adding and removing states dynamically, is very similar to working with a list:
+
+```csharp
+//Adds a state to the end of the states list
+machine.AddState(_stateToAdd);
+//Removes the state given as a reference
+machine.RemoveState(_stateToAdd);
+//Adds/inserts a state at a given index
+machine.InsertState(_stateToAdd, _indexTest);
+//Removes a state from a given index
+machine.RemoveStateAt(_indexTest);
+```
