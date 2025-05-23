@@ -55,6 +55,7 @@
       * [SyncEvent](systems-and-modules/network-identity/sync-types/syncevent.md)
       * [SyncHashset](systems-and-modules/network-identity/sync-types/synchashset.md)
       * [SyncTimer](systems-and-modules/network-identity/sync-types/synctimer.md)
+      * [SyncInput](systems-and-modules/network-identity/sync-types/syncinput.md)
     * [Don't destroy on load](systems-and-modules/network-identity/dont-destroy-on-load.md)
   * [Network Modules](systems-and-modules/network-modules.md)
   * [Collider Rollback](systems-and-modules/collider-rollback.md)
