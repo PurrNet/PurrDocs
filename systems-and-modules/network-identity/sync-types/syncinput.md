@@ -30,7 +30,13 @@ Other than just sending input from client to server, is also allows the case of 
 This can be easily adjusted in editor, or during creation of the SyncInput. This is defined in **ms** (ping):
 
 ```csharp
-private SyncInput<bool> _jumpInput = new(defaultValue:false, hostPing:100f);
+private SyncInput<bool> _mySyncInput = new(defaultValue:false, hostPing:100f);
+```
+
+This can also easily be adjusted dynamically, if for example you'd want to match clients avg. ping. You can set it easily on the server/host by doing:
+
+```csharp
+_mySyncInput.simulatedHostPing = 250f;
 ```
 
 ### Simple usage example
