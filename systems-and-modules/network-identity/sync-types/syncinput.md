@@ -23,6 +23,16 @@ Essentially the big strength of Input Synchronization is the workflow. It's extr
 
 `SyncInput<T>` takes any unmanaged or IEquatable type, meaning that you can not only use simple types, but also custom structs or classes as long as they can be compared with the equatable setup.
 
+### Simulate host delay
+
+Other than just sending input from client to server, is also allows the case of host input to also have a simulated delay. The delay will cause the host to experience a similar experience to what clients do, in order to improve overall fairness.
+
+This can be easily adjusted in editor, or during creation of the SyncInput. This is defined in **ms** (ping):
+
+```csharp
+private SyncInput<bool> _jumpInput = new(defaultValue:false, hostPing:100f);
+```
+
 ### Simple usage example
 
 ```csharp
