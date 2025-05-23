@@ -19,6 +19,10 @@ Essentially the big strength of Input Synchronization is the workflow. It's extr
 * Human: Fall Flat
 * Stick Fight: The Game
 
+### The type
+
+`SyncInput<T>` takes any unmanaged or IEquatable type, meaning that you can not only use simple types, but also custom structs or classes as long as they can be compared with the equatable setup.
+
 ### Simple usage example
 
 ```csharp
