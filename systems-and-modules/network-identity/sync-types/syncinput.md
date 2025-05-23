@@ -109,7 +109,8 @@ private void OnSentData()
 
 private void OnJump(bool newInput)
 {
-    _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+    if(newInput)
+        _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 }
 
 private void Update()
