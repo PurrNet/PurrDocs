@@ -25,6 +25,7 @@
   * [Networking custom classes, structs & types](guides/networking-custom-classes-structs-and-types.md)
   * [Chat system with broadcasts](guides/broadcast-chat-system.md)
   * [Easy Multiplayer Physics (input Sync)](guides/easy-multiplayer-physics-input-sync.md)
+  * [Simulating latency](guides/simulating-latency.md)
 * [🎮 Full game guides](full-game-guides/README.md)
   * [🔫 First Person Shooter](full-game-guides/first-person-shooter.md)
   * [🪓 Survival Game](full-game-guides/survival-game.md)
