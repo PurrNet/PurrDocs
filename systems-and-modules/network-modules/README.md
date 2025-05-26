@@ -1,6 +1,6 @@
 # Network Modules
 
-NetworkModule is a base class in the PurrNet networking solution that allows you to create modular, network-aware components that are not MonoBehaviours. These modules can be attached to any [NetworkIdentity](network-identity/), enabling code reuse and clean separation of concerns in your networked game.
+NetworkModule is a base class in the PurrNet networking solution that allows you to create modular, network-aware components that are not MonoBehaviours. These modules can be attached to any [NetworkIdentity](../network-identity/), enabling code reuse and clean separation of concerns in your networked game.
 
 ### Key Features
 

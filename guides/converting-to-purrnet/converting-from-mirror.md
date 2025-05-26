@@ -101,7 +101,7 @@ Working with RPC's from **Mirror** to **PurrNet** is pretty easy, as the naming 
 
 Synchronizing is a bit different between the systems. It's similar in naming and nature. Both systems are meant to automatically sync for you, however, the setup and usage slightly varies.\
 \
-Other than that, PurrNet also allows for fully owner authorized SyncTypes, making them instantly responsive to it's controller. Read more on this in the individual [SyncType guides](../../systems-and-modules/network-identity/sync-types/).\
+Other than that, PurrNet also allows for fully owner authorized SyncTypes, making them instantly responsive to it's controller. Read more on this in the individual [SyncType guides](../../systems-and-modules/network-modules/sync-types/).\
 \
 **Setting up a SyncVar and changing value in Mirror:**
 

@@ -50,9 +50,9 @@ With the [network rules](systems-and-modules/network-manager/network-rules.md), 
 
 And for despawning? It's the exact same thing! Simply call "Destroy()" as you would in Unity, and the rest is automatically networked for you.
 
-#### [RPC's](systems-and-modules/remote-procedure-call-rpc/) and[ SyncVars](systems-and-modules/network-identity/sync-types/syncvar.md)
+#### [RPC's](systems-and-modules/remote-procedure-call-rpc/) and[ SyncVars](systems-and-modules/network-modules/sync-types/syncvar.md)
 
-With the [Network Rules](systems-and-modules/network-manager/network-rules.md), you can also set up whether the [SyncVar ](systems-and-modules/network-identity/sync-types/syncvar.md)or[ Rpc's ](systems-and-modules/remote-procedure-call-rpc/)allow for [everyone ](terminology/client-auth-everyone-unsafe.md)to call them. This in turn means that you don't have to ensure that the logic runs over the server, like in other networking solutions. This allows for quicker code writing and an easier workflow to learn.
+With the [Network Rules](systems-and-modules/network-manager/network-rules.md), you can also set up whether the [SyncVar ](systems-and-modules/network-modules/sync-types/syncvar.md)or[ Rpc's ](systems-and-modules/remote-procedure-call-rpc/)allow for [everyone ](terminology/client-auth-everyone-unsafe.md)to call them. This in turn means that you don't have to ensure that the logic runs over the server, like in other networking solutions. This allows for quicker code writing and an easier workflow to learn.
 
 We even have [Generic](systems-and-modules/remote-procedure-call-rpc/generic-rpc.md), [Static ](systems-and-modules/remote-procedure-call-rpc/static-rpc.md)and [Awaitable ](systems-and-modules/remote-procedure-call-rpc/awaitable-rpc.md)RPC's which have not been seen before! (as far as we know)
 

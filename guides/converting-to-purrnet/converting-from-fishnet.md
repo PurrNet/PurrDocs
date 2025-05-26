@@ -108,15 +108,15 @@ private void MyRpc() { }
 ### Sync types
 
 Working with Synchronizing from FishNet to PurrNet is generally the same as well. The major difference between the two, is that PurrNet also allows for owner authorized SyncTypes, meaning you can handle them locally, and not forcibly through the server. You can read more on his on the individual page for the SyncTypes.\
-Our SyncTypes are built using the [Network Modules ](../../systems-and-modules/network-modules.md)of PurrNet, however, usage wise they are nearly identical.
+Our SyncTypes are built using the [Network Modules ](../../systems-and-modules/network-modules/)of PurrNet, however, usage wise they are nearly identical.
 
-| FishNet        | PurrNet                                                                                   |
-| -------------- | ----------------------------------------------------------------------------------------- |
-| SyncVar        | [SyncVar](../../systems-and-modules/network-identity/sync-types/syncvar.md)               |
-| SyncList       | [SyncList](../../systems-and-modules/network-identity/sync-types/synclist.md)             |
-| SyncHashSet    | [SyncHashSet](../../systems-and-modules/network-identity/sync-types/synchashset.md)       |
-| SyncDictionary | [SyncDictionary](../../systems-and-modules/network-identity/sync-types/syncdictionary.md) |
-| SyncTimer      | [SyncTimer](../../systems-and-modules/network-identity/sync-types/synctimer.md)           |
+| FishNet        | PurrNet                                                                                  |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| SyncVar        | [SyncVar](../../systems-and-modules/network-modules/sync-types/syncvar.md)               |
+| SyncList       | [SyncList](../../systems-and-modules/network-modules/sync-types/synclist.md)             |
+| SyncHashSet    | [SyncHashSet](../../systems-and-modules/network-modules/sync-types/synchashset.md)       |
+| SyncDictionary | [SyncDictionary](../../systems-and-modules/network-modules/sync-types/syncdictionary.md) |
+| SyncTimer      | [SyncTimer](../../systems-and-modules/network-modules/sync-types/synctimer.md)           |
 
 There are few functional differences with some of them, for example the SyncTimer of PurrNet handles reconciliation, ensuring that the timers align on clients and doesn't get de-synced
 
