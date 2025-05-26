@@ -1,4 +1,8 @@
-# Installation/Setup
+---
+icon: unity
+---
+
+# Installation
 
 Getting set up with PurrNet is very easy, and takes only a few steps to get you started making multiplayer games!
 

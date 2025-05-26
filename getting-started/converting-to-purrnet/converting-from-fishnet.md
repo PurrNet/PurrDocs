@@ -76,7 +76,7 @@ var identity = Instantiate(myIdentityPrefab);
 identity.GiveOwnership(ownerPlayer);
 ```
 
-And despawning in PurrNet is as easy as calling Destroy on the object as you would normally in Unity. Give the specific page on [Spawning and despawning](../../systems-and-modules/spawning-and-despawning.md) a read for a more in depth explanation.
+And despawning in PurrNet is as easy as calling Destroy on the object as you would normally in Unity. Give the specific page on [Spawning and despawning](../../systems-and-modules/network-identity/spawning-and-despawning.md) a read for a more in depth explanation.
 
 ### RPC's
 

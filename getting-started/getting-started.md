@@ -2,9 +2,10 @@
 description: >-
   This page takes you through the basics of setting up your project with
   PurrNet.
+icon: sign-posts-wrench
 ---
 
-# Getting Started
+# Minimal Setup
 
 In order to get started using PurrNet, it doesn't require a lot of effort. You simply need to set up a [network manager](../systems-and-modules/network-manager/), and you're ready to go.
 

@@ -10,7 +10,7 @@ It not only allows for you to wait till RPC logic is finished, but allows you to
 
 Below is a real use-case example of a way for the player to set ready on the server and it will return true if all players are ready, and false if not all players are ready (handled by the CheckForReady method)
 
-It also has a fail safe in with the [networked State Machine](../plug-n-play-components/state-machine-auto-networked.md) setup in case this isn't the game state were in:
+It also has a fail safe in with the [networked State Machine](../../plug-n-play-components/state-machine-auto-networked.md) setup in case this isn't the game state were in:
 
 ```csharp
 //The asyncTimeoutInSec is how long the caller should await a response. 

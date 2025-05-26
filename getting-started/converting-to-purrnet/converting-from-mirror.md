@@ -78,7 +78,7 @@ NetworkServer.Spawn(go, connectionToClient);
 NetworkServer.Destroy(go);
 ```
 
-PurrNet handles [spawning & despawning](../../systems-and-modules/spawning-and-despawning.md) automatically, however, if you want to modify something relative to the identity, you can do that at the same time as spawning it, and it will arrive in the same packet.\
+PurrNet handles [spawning & despawning](../../systems-and-modules/network-identity/spawning-and-despawning.md) automatically, however, if you want to modify something relative to the identity, you can do that at the same time as spawning it, and it will arrive in the same packet.\
 **PurrNet:**
 
 ```csharp

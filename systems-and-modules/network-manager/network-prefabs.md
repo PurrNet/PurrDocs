@@ -1,6 +1,6 @@
 # Network Prefabs
 
-The Network Prefabs is a scriptable object used by PurrNet to cross identify prefabs. This is used for [spawning and despawning](../spawning-and-despawning.md) of objects.
+The Network Prefabs is a scriptable object used by PurrNet to cross identify prefabs. This is used for [spawning and despawning](../network-identity/spawning-and-despawning.md) of objects.
 
 This is set as a reference on your [NetworkManager](./)
 

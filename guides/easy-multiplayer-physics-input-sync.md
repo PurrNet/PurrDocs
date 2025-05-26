@@ -30,7 +30,7 @@ This is why various techniques has to be used in order to properly network physi
 
 ### How does it work
 
-The idea and execution is very simple. Essentially it's fully a server auth simulation, that is conveyed to clients using the [Network Transform](../systems-and-modules/plug-n-play-components/network-transform.md).
+The idea and execution is very simple. Essentially it's fully a server auth simulation, that is conveyed to clients using the [Network Transform](../plug-n-play-components/network-transform.md).
 
 Essentially: The client sends only it's input and intentions to the server, and the server does the actual action locally, and thus the server becomes the single point of truth for the whole game. This is what makes it cheat proof, and also able to handle physics interactions (because they are all simulated in one place)
 
