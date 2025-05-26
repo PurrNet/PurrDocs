@@ -80,7 +80,7 @@
   * [Network Transform](plug-n-play-components/network-transform.md)
   * [Network Animator](plug-n-play-components/network-animator.md)
   * [Network Reflection](plug-n-play-components/network-reflection-auto-sync.md)
-  * [State Machine](plug-n-play-components/state-machine-auto-networked.md)
+  * [Network State Machine](plug-n-play-components/state-machine-auto-networked.md)
 * [🎮 Full game guides](full-game-guides/README.md)
   * [🔫 First Person Shooter](full-game-guides/first-person-shooter.md)
   * [🪓 Survival Game](full-game-guides/survival-game.md)
