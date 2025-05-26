@@ -1,4 +1,8 @@
-# State Machine (Auto Networked)
+---
+icon: table-cells
+---
+
+# Network State Machine
 
 The Auto networked state machine of PurrNet makes it very easy to align state machines even with custom state data if necessary.
 
@@ -25,7 +29,7 @@ The scene setup is easy! All you have to do, is add the State Machine to your sc
 
 For every **StateNode** that you make, you can add that to your scene as well. I typically do it as a child of the **StateMachine** gameobject.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption><p>Example setup of the State Machine</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption><p>Example setup of the State Machine</p></figcaption></figure>
 
 ### State Nodes
 

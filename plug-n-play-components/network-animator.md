@@ -1,3 +1,7 @@
+---
+icon: circle-play
+---
+
 # Network Animator
 
 This allows you to automatically network any parameter value within the Animator. This component needs to be on the same object as an Animator, otherwise it won't work.

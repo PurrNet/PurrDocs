@@ -1,3 +1,7 @@
+---
+icon: user-police
+---
+
 # Network Ownership Toggle
 
 This component allows you to enable/activate components/gameobjects based on [ownership](../systems-and-modules/network-identity/ownership.md).\

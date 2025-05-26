@@ -1,3 +1,7 @@
+---
+icon: maximize
+---
+
 # Network Transform
 
 This component allows you to automatically network the Position, Rotation, Scale and parent of the corresponding transform to which it's attached.
@@ -12,4 +16,4 @@ This component allows you to automatically network the Position, Rotation, Scale
 \
 **Tolerances:** This allows you to adjust how much values should change before it syncs. Simply to avoid unnecessary synchronizing for numbers so small that they aren't noticeable.
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption><p>The Network Transform component with the default values</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption><p>The Network Transform component with the default values</p></figcaption></figure>
