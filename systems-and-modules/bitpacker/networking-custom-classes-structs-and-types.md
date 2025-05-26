@@ -2,7 +2,7 @@
 
 PurrNet auto networks structs, classes and interfaces for you, given they directly or indirectly consist of serializable data.
 
-Networking custom classes and structs can be extremely useful to send over the network, for example by using basic [RPC's](../systems-and-modules/remote-procedure-call-rpc/).
+Networking custom classes and structs can be extremely useful to send over the network, for example by using basic [RPC's](../remote-procedure-call-rpc/).
 
 {% embed url="https://youtu.be/Ck13MQuYBV0?si=AUuMKixhUCXphEkK" %}
 

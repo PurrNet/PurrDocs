@@ -1,6 +1,6 @@
 # SyncList
 
-A Synchronized List, more commonly referred to as a "SyncList", is easily definable in your code. It will handle automatically aligning the contents of a list between all [players](../../playerid-client-connection.md).
+A Synchronized List, more commonly referred to as a "SyncList", is easily definable in your code. It will handle automatically aligning the contents of a list between all [players](../../../terminology/playerid-client-connection.md).
 
 Working with SyncLists is as easy as using a regular list, you have only to be mindful of who has authority over it.
 

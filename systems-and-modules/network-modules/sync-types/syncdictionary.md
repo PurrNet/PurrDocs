@@ -1,6 +1,6 @@
 # SyncDictionary
 
-Synchronized Dictionary, or most commonly referred as "SyncDictionary" are easily definable in your code, and will handle automatically align a dictionary between all [players](../../playerid-client-connection.md).
+Synchronized Dictionary, or most commonly referred as "SyncDictionary" are easily definable in your code, and will handle automatically align a dictionary between all [players](../../../terminology/playerid-client-connection.md).
 
 In theory, you could just convert a dictionary to a SyncDictionary, and it should work. Working with it is the exact same with adding, setting, removing or clearing.
 

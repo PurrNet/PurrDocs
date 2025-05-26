@@ -1,3 +1,7 @@
+---
+icon: mountain-sun
+---
+
 # Scene Management
 
 Using the Scene Module in PurrNet is as easy as changing scene with Unity's default scene manager. But there is also some more depth to understanding the logic of players in scenes.

@@ -1,3 +1,7 @@
+---
+icon: phone-flip
+---
+
 # Remote Procedure Call (RPC)
 
 In short, an RPC allows you to call a method on another device/machine. If you're on a client and successfully call a ServerRpc, that method will now be called on the server machine and not on the local machine actually calling the method. This makes it very easy to interact with other machines over the network.
@@ -86,17 +90,17 @@ The ObserversRPC will call **Server -> All clients,** or **Client -> All clients
 **It holds the following parameters:**
 
 * _**RequireServer**_ - This will override any settings within the [Network Rules](../network-manager/network-rules.md) as to whether clients can call the ObserversRpc directly.
-* _**BufferLast**_ - If set to true, when a new [client](../playerid-client-connection.md) joins, they will get the most recent call of the method with the data within the parameters.
+* _**BufferLast**_ - If set to true, when a new [client](../../terminology/playerid-client-connection.md) joins, they will get the most recent call of the method with the data within the parameters.
 * _**RunLocally**_ - If set to true, the caller will run the method logic locally, avoiding the networking route. If the server calls it, the server will also run the method. If a client calls it, the client will run the method immediately, instead of awaiting the servers call.
 
 #### TargetRPC:
 
-The TargetRPC will call **Server -> Client**, or **Client -> Client** if your [network rules](../network-manager/network-rules.md) allow it. This means that the method called, will only be triggered on the client which [PlayerID](../playerid-client-connection.md) is given.
+The TargetRPC will call **Server -> Client**, or **Client -> Client** if your [network rules](../network-manager/network-rules.md) allow it. This means that the method called, will only be triggered on the client which [PlayerID](../../terminology/playerid-client-connection.md) is given.
 
 **It holds the following parameters:**
 
 * _**RequireServer**_ - This will override any settings within the [Network Rules](../network-manager/network-rules.md) as to whether clients can call the ObserversRpc directly.
-* _**BufferLast**_ - If set to true, when the target [client](../playerid-client-connection.md) joins again (we can only hold their data if we've seen them before), they will get the most recent call of the method with the data within the parameters.
+* _**BufferLast**_ - If set to true, when the target [client](../../terminology/playerid-client-connection.md) joins again (we can only hold their data if we've seen them before), they will get the most recent call of the method with the data within the parameters.
 * _**RunLocally**_ - If set to true, the caller will run the method logic locally, avoiding the networking route. If the server calls it, the server will also run the method. If a client calls it, the client will run the method immediately, instead of awaiting the servers call.
 
 ### RPC Info

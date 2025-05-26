@@ -22,7 +22,7 @@ Just like most other systems, we have the classic and expected behaviour, such a
   NetworkModule is a base class in the PurrNet networking solution that allows you to create modular, network-aware components that are not MonoBehaviours. These modules can be attached to any NetworkIdentity, enabling code reuse and clean separation of concerns in your networked game.
 * **Easy testing**\
   We're doing as much as we can to allow for easy testing. For example at runtime, you can just drag and drop any prefab within your [Network Prefabs scriptable](../systems-and-modules/network-manager/network-prefabs.md), and it will automatically be spawned. And deleting a network identity from the hierarchy will despawn it. Making multiplayer testing super easy!
-* [**Persistent Player data**](../systems-and-modules/playerid-client-connection.md)\
+* [**Persistent Player data**](../terminology/playerid-client-connection.md)\
   With PurrNet, you have persistent user data. If a user disconnects and later connects again, they will retain the same player ID and meta data as when they left!
 * **No baked components**\
   We're **NOT** big fans of baking. It simply creates unnecessary limitations and opens up for a lot of annoying edge cases, and therefore, we don't do that!

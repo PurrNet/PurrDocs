@@ -1,3 +1,7 @@
+---
+icon: fingerprint
+---
+
 # Network Identity
 
 The Network Identity is the core of most networking logic. This plays into the component based nature of object oriented programming with Unity. The [Network Behaviour](networkbehaviour.md) also inherits from Network Identity, meaning that nearly any script interacting on the network, is also a Network Identity.

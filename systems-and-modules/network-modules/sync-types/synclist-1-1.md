@@ -1,6 +1,6 @@
 # SyncQueue
 
-A Synchronized Queue, more commonly referred to as a "SyncQueue", is easily definable in your code. It will handle automatically aligning the contents of a list between all [players](../../playerid-client-connection.md).
+A Synchronized Queue, more commonly referred to as a "SyncQueue", is easily definable in your code. It will handle automatically aligning the contents of a list between all [players](../../../terminology/playerid-client-connection.md).
 
 Working with a SyncQueue is as easy as using a regular queue, you have only to be mindful of who has authority over it.
 

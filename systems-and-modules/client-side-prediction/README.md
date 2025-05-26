@@ -1,3 +1,7 @@
+---
+icon: crystal-ball
+---
+
 # Client Side Prediction
 
 {% embed url="https://youtu.be/WNvI6AoA_4M" %}

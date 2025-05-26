@@ -1,3 +1,7 @@
+---
+icon: diamonds-4
+---
+
 # Instance Handler
 
 The Instance Handler allows you to easily get access the [Network Manager](network-manager/) from anywhere, even non [Network Identity ](network-identity/)or [Network Behaviour ](network-identity/networkbehaviour.md)scripts:

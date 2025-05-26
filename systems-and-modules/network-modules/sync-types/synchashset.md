@@ -1,6 +1,6 @@
 # SyncHashset
 
-Synchronized HashSet, or most commonly referred as "SyncHashSet" are easily definable in your code, and will handle automatically align a list between all [players](../../playerid-client-connection.md).
+Synchronized HashSet, or most commonly referred as "SyncHashSet" are easily definable in your code, and will handle automatically align a list between all [players](../../../terminology/playerid-client-connection.md).
 
 Working with SyncHashSet is as easy as using a regular HashSet, only having to be mindful of who has authority.
 

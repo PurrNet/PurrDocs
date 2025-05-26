@@ -1,6 +1,6 @@
 # SyncArray
 
-A Synchronized Array, more commonly referred to as a "SyncArray", is easily definable in your code. It will handle automatically aligning the contents of an array between all [players](../../playerid-client-connection.md).
+A Synchronized Array, more commonly referred to as a "SyncArray", is easily definable in your code. It will handle automatically aligning the contents of an array between all [players](../../../terminology/playerid-client-connection.md).
 
 Working with SyncArrays is as easy as using a regular array, you have only to be mindful of who has authority over it.
 

@@ -1,3 +1,7 @@
+---
+icon: megaphone
+---
+
 # Broadcast
 
 Broadcasting in networking systems (like PurrNet) allows you to easily send and receive data without requiring network identities. It can be useful in certain systems and situations, however, for most setups, it will be just as good and easier to work with [RPC's](remote-procedure-call-rpc/).

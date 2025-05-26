@@ -1,3 +1,7 @@
+---
+icon: truck-ramp-box
+---
+
 # Spawning & Despawning
 
 Spawning and Despawning in PurrNet is as easy as instantiating and destroying in Unity!\

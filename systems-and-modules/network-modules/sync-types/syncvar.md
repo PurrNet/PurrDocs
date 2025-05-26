@@ -1,6 +1,6 @@
 # SyncVar
 
-Synchronized variables, or most commonly referred as "SyncVar" are easily definable in your code, and will handle automatically align a script variable between all [players](../../playerid-client-connection.md).&#x20;
+Synchronized variables, or most commonly referred as "SyncVar" are easily definable in your code, and will handle automatically align a script variable between all [players](../../../terminology/playerid-client-connection.md).
 
 {% embed url="https://youtu.be/35N_nfny6Ec" %}
 

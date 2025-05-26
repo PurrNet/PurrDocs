@@ -1,3 +1,7 @@
+---
+icon: brain
+---
+
 # Network Manager
 
 The Network Manager is the very core of the network. It acts as the heart and brain of PurrNet, so all settings of your network are setup through your network manager.
