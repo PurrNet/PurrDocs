@@ -79,6 +79,7 @@
 * [Plug n' play components](plug-n-play-components/README.md)
   * [Network Transform](plug-n-play-components/network-transform.md)
   * [Network Animator](plug-n-play-components/network-animator.md)
+  * [Network Ownership Toggle](plug-n-play-components/network-ownership-toggle.md)
   * [Network Reflection](plug-n-play-components/network-reflection-auto-sync.md)
   * [Network State Machine](plug-n-play-components/state-machine-auto-networked.md)
 * [🎮 Full game guides](full-game-guides/README.md)
