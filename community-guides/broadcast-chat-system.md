@@ -17,7 +17,7 @@ The idea is as follows:
 
 ## Creating the `ChatMessage` struct:
 
-To get our chat message to the **Server**, we need to first create a struct to hold our data. As previously mentioned, this struct will hold a `name`, and a `message`. This struct will need to implement the [IPackedAuto](../systems-and-modules/bitpacker/networking-custom-classes-structs-and-types.md#IPackedAuto) interface, which will automatically handle the reading and writing of the data to the network. If this is not your style, take a look at the [IPacked](../systems-and-modules/bitpacker/networking-custom-classes-structs-and-types.md#IPacked) and [IPackedSimple](../systems-and-modules/bitpacker/networking-custom-classes-structs-and-types.md#IPackedSimple) interfaces.
+To get our chat message to the **Server**, we need to first create a struct to hold our data. As previously mentioned, this struct will hold a `name`, and a `message`. This struct will need to implement the [IPackedAuto](../systems-and-modules/bitpacker-serialization/networking-custom-classes-structs-and-types.md#IPackedAuto) interface, which will automatically handle the reading and writing of the data to the network. If this is not your style, take a look at the [IPacked](../systems-and-modules/bitpacker-serialization/networking-custom-classes-structs-and-types.md#IPacked) and [IPackedSimple](../systems-and-modules/bitpacker-serialization/networking-custom-classes-structs-and-types.md#IPackedSimple) interfaces.
 
 The final struct is as follows:
 
