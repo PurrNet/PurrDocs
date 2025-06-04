@@ -7,7 +7,6 @@ description: >-
 # 🗺️ Roadmap
 
 * [ ] Modularized delta compression
-* [ ] Code-stripping
 * [ ] Plug-n-play prediction components
 * [ ] Deterministic physics for prediction
 * [ ] Compression of prediction
@@ -16,6 +15,7 @@ description: >-
 * [ ] Auto networked saving/loading
 * [ ] Epic Games Transport
 * [ ] Referencing assets
+* [x] Code-stripping
 * [x] Network Profiler tool
 * [x] Improved logging
 * [x] Lag compensation component (collider rollback)
