@@ -42,3 +42,11 @@ private void ChangeMyQueue()
 The SyncQueue is serialized in editor. It will also attempt to auto serialize non-serializable classes/structs by grabbing the ToString().
 
 <figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+### SyncQueueChange
+
+When working with the SyncQueueChange which comes with the onChanged callback, you have some basic information available to you.
+
+The `.operation` tells you what the change is, that can be: Enqueued, Dequeued, Cleared.
+
+The  `.value` is the new value which it has been changed. This is of type T to match the type of the SyncQueue.

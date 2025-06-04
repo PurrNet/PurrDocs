@@ -42,3 +42,13 @@ private void ChangeMyDictionary()
 The SyncDictionary is custom serialized in editor, in order to make visual debugging easier.
 
 <figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+### SyncDictionaryChange
+
+When working with the SyncDictionaryChange which comes with the onChanged callback, you have some basic information available to you.
+
+The `.operation` tells you what the change is, that can be: Set, Cleared, Resized.
+
+The `.key` tells you at what key the change has occurred. This is the type of TKey to match the type of the SyncDictionary
+
+The  `.value` is the new value which it has been changed. This is of type TValue to match the type of the SyncDictionary.

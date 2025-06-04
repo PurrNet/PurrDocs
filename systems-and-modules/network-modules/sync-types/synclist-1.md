@@ -34,3 +34,13 @@ private void ChangeMyArray()
     syncArray.Length = 15;
 }
 ```
+
+### SyncArrayChange&#x20;
+
+When working with the SyncArrayChange which comes with the onChanged callback, you have some basic information available to you.
+
+The `.operation` tells you what the change is, that can be: Set, Cleared, Resized.
+
+The  `.value` is the new value which it has been changed. This is of type T to match the type of the SyncArray.
+
+The `.index` tells you at what index this change is relevant.

@@ -48,3 +48,13 @@ private void ChangeMyList()
 The SyncList is serialized in editor, however, you shouldn't edit it here. This is purely for visual debugging
 
 <figure><img src="../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+
+### SyncListChange&#x20;
+
+When working with the SyncListChange which comes with the onChanged callback, you have some basic information available to you.
+
+The `.operation` tells you what the change is, that can be: Added, Removed, Insert, Set, Cleared.
+
+The  `.value` is the new value which it has been changed. This is of type T to match the type of the SyncList.
+
+The `.index` tells you at what index this change is relevant.
