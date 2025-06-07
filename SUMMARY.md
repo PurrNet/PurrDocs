@@ -75,6 +75,7 @@
   * [BitPacker (Serialization)](systems-and-modules/bitpacker-serialization/README.md)
     * [Networking custom classes, structs & types](systems-and-modules/bitpacker-serialization/networking-custom-classes-structs-and-types.md)
   * [Code stripping](systems-and-modules/code-stripping.md)
+  * [Bandwidth Profiler](systems-and-modules/bandwidth-profiler.md)
   * [Lag compensation](systems-and-modules/lag-compensation.md)
   * [Bots](systems-and-modules/bots.md)
 * [Plug n' play components](plug-n-play-components/README.md)
