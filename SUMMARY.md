@@ -43,6 +43,7 @@
     * [Spawning & Despawning](systems-and-modules/network-identity/spawning-and-despawning.md)
     * [NetworkBehaviour](systems-and-modules/network-identity/networkbehaviour.md)
     * [Don't destroy on load](systems-and-modules/network-identity/dont-destroy-on-load.md)
+    * [Pooling](systems-and-modules/network-identity/pooling.md)
   * [Network Modules](systems-and-modules/network-modules/README.md)
     * [Common Pitfalls](systems-and-modules/network-modules/common-pitfalls.md)
     * [Sync Types](systems-and-modules/network-modules/sync-types/README.md)
