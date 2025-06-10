@@ -100,5 +100,6 @@
   * [Server Auth (Safe)](terminology/server-auth-safe.md)
   * [PlayerID](terminology/playerid-client-connection.md)
 * [💡 Integrations](integrations/README.md)
+  * [UniTask](integrations/unitask.md)
   * [Dissonance](integrations/dissonance.md)
   * [Cozy Weather](integrations/cozy-weather.md)

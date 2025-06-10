@@ -4,7 +4,7 @@ Pooling is the act of re-utilizing prefabs when old ones are no longer being use
 
 To can enable pooling on your network prefabs:
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 The way to utilize pooling is quite simple with PurrNet, in fact if you ticked the box you are already done. You keep calling `Instantiate` and `Destroy` and we handle it for you.
 
