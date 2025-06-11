@@ -6,8 +6,8 @@ description: >-
 
 # 🗺️ Roadmap
 
-* [ ] Modularized delta compression
 * [ ] Plug-n-play prediction components
+* [ ] PurrNet Plug-n-play **voice chat**
 * [ ] Deterministic physics for prediction
 * [ ] Compression of prediction
 * [ ] Easy network conversion tools (Components)
@@ -15,6 +15,7 @@ description: >-
 * [ ] Auto networked saving/loading
 * [ ] Epic Games Transport
 * [ ] Referencing assets
+* [x] Modularized delta compression
 * [x] Code-stripping
 * [x] Network Profiler tool
 * [x] Improved logging
