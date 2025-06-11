@@ -61,6 +61,7 @@
     * [Static RPC](systems-and-modules/remote-procedure-call-rpc/static-rpc.md)
     * [Awaitable RPC](systems-and-modules/remote-procedure-call-rpc/awaitable-rpc.md)
     * [Direct Local Execution of RPCs](systems-and-modules/remote-procedure-call-rpc/fully-local-rpc.md)
+    * [Pre/Post Processors](systems-and-modules/remote-procedure-call-rpc/pre-post-processors.md)
   * [Broadcasts](systems-and-modules/broadcast.md)
   * [Scene Management](systems-and-modules/scene-module.md)
   * [Client Side Prediction](systems-and-modules/client-side-prediction/README.md)
