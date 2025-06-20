@@ -27,7 +27,7 @@
   * [Network Manager](systems-and-modules/network-manager/README.md)
     * [Network Rules](systems-and-modules/network-manager/network-rules.md)
     * [Network Prefabs](systems-and-modules/network-manager/network-prefabs.md)
-    * [Network Assets](systems-and-modules/network-manager/network-prefabs-1.md)
+    * [Network Assets](systems-and-modules/network-manager/network-assets.md)
     * [Network Visibility](systems-and-modules/network-manager/network-visibility/README.md)
       * [Distance condition](systems-and-modules/network-manager/network-visibility/distance-condition.md)
     * [Authentication](systems-and-modules/network-manager/authentication.md)
