@@ -4,7 +4,7 @@ The Network Assets is a scriptable object used by PurrNet to cross identify any 
 
 This is set as a reference on your [NetworkManager](./)
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+{% embed url="https://youtu.be/fj61Q8NEL9o" %}
 
 Settings of the Network Assets scriptable allows you to easily modify which project objects/assets it will pull when you hit the generate button.
 
