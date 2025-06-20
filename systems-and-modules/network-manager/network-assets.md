@@ -12,4 +12,9 @@ Refreshing the type list might be necessary if you add or remove types from your
 
 ### How to use it?
 
-All you need is the network assets assigned in your network manager and do networking as you normally would and it will just work!
+All you need is the network assets assigned in your network manager and do networking as you normally would and it will just work!\
+(Make sure your asset is in the assets list)
+
+### Is this needed?
+
+Absolutely not. This is an "opt-in" situation. You can utilize it for networking anything, but you don't have to, and you can still easily write your own serialization as well. This is used as a first layer of fallback, so if some type can't be written, it'll send it from the Network Assets Scriptable.
