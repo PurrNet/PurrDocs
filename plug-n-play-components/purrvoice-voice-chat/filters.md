@@ -37,7 +37,7 @@ private void SetStrength(float strength)
 
 You can add and remove filters on the fly, and this will be synchronized initially. It's a very lightweight action to do, and only at this level is the strength synced (initial value)
 
-This can only be done by the controller.
+This can only be done by the [controller](../../terminology/controller.md).
 
 Here is a simple example:
 

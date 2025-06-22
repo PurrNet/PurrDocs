@@ -87,7 +87,7 @@
   * [Network Ownership Toggle](plug-n-play-components/network-ownership-toggle.md)
   * [Network Reflection](plug-n-play-components/network-reflection-auto-sync.md)
   * [Network State Machine](plug-n-play-components/state-machine-auto-networked.md)
-  * [PurrVoice (Voice chat)](plug-n-play-components/purrvoice-voice-chat/README.md)
+  * [PurrVoice (Voice chat)](plug-n-play-components/purrvoice-voice-chat.md)
     * [Filters](plug-n-play-components/purrvoice-voice-chat/filters.md)
 * [🎮 Full game guides](full-game-guides/README.md)
   * [🔫 First Person Shooter](full-game-guides/first-person-shooter.md)
