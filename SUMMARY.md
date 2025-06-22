@@ -89,6 +89,7 @@
   * [Network State Machine](plug-n-play-components/state-machine-auto-networked.md)
   * [PurrVoice (Voice chat)](plug-n-play-components/purrvoice-voice-chat.md)
     * [Filters](plug-n-play-components/purrvoice-voice-chat/filters.md)
+    * [Muting](plug-n-play-components/purrvoice-voice-chat/muting.md)
 * [🎮 Full game guides](full-game-guides/README.md)
   * [🔫 First Person Shooter](full-game-guides/first-person-shooter.md)
   * [🪓 Survival Game](full-game-guides/survival-game.md)
