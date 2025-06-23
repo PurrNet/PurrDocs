@@ -90,6 +90,8 @@
   * [PurrVoice (Voice chat)](plug-n-play-components/purrvoice-voice-chat.md)
     * [Filters](plug-n-play-components/purrvoice-voice-chat/filters.md)
     * [Muting](plug-n-play-components/purrvoice-voice-chat/muting.md)
+    * [Microphone Input](plug-n-play-components/purrvoice-voice-chat/microphone-input.md)
+    * [Lip Sync](plug-n-play-components/purrvoice-voice-chat/lip-sync.md)
 * [🎮 Full game guides](full-game-guides/README.md)
   * [🔫 First Person Shooter](full-game-guides/first-person-shooter.md)
   * [🪓 Survival Game](full-game-guides/survival-game.md)
