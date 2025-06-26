@@ -114,6 +114,7 @@
 * [🕹️ Made with PurrNet](made-with-purrnet/README.md)
   * [🐟 Glorb](made-with-purrnet/glorb.md)
   * [🐻 Kuroro Wilds](made-with-purrnet/kuroro-wilds.md)
+  * [👾 Land of Symbiosis](made-with-purrnet/land-of-symbiosis.md)
   * [💖 On-Together](made-with-purrnet/on-together.md)
   * [🤯 Five Heads](made-with-purrnet/five-heads.md)
   * [🤪 Playomoji](made-with-purrnet/playomoji.md)
