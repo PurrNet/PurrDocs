@@ -2,7 +2,7 @@
 icon: phone-flip
 ---
 
-# Remote Procedure Call (RPC)
+# Remote Procedure Calls
 
 In short, an RPC allows you to call a method on another device/machine. If you're on a client and successfully call a ServerRpc, that method will now be called on the server machine and not on the local machine actually calling the method. This makes it very easy to interact with other machines over the network.
 
@@ -107,7 +107,7 @@ The TargetRPC will call **Server -> Client**, or **Client -> Client** if your [n
 
 RPC Info is a super useful tool to get information about an RPC that has just been sent.
 
-You simply add the RPCInfo as a parameter of your RPC and default the value to **default** and it will auto populate upon receiving the RPC
+You simply add the RPCInfo as the last parameter of your RPC and default the value to **default** and it will auto populate upon receiving the RPC
 
 ```csharp
 [ServerRpc]
