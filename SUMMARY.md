@@ -98,7 +98,7 @@
 * [✊ Community Guides](community-guides/README.md)
   * [Chat system with broadcasts](community-guides/broadcast-chat-system.md)
 * [🧩 Addons](addons/README.md)
-  * [Lobby System](addons/lobby-system/README.md)
+  * [Lobby System](addons/lobby-system.md)
     * [Making your own provider](addons/lobby-system/making-your-own-provider.md)
     * [Steam Provider](addons/lobby-system/steam-provider.md)
     * [Unity Lobby Provider](addons/lobby-system/unity-lobby-provider.md)

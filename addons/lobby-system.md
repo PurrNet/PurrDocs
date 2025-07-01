@@ -18,7 +18,7 @@ Open up your build settings, and add the two scenes found in the setup to your b
 
 ### Choosing a provider
 
-At the time of writing this guide, the only providers available is the[ **Steam Provider**](steam-provider.md) and the [**Unity Lobby Provider**](unity-lobby-provider.md)**.** The steam provider is already in the scene by default. If you want to use a different provider, you can go to the Making your own provider section to read more. Alternatively, more providers might be available already, or built by the community.
+At the time of writing this guide, the only providers available is the[ **Steam Provider**](lobby-system/steam-provider.md) and the [**Unity Lobby Provider**](lobby-system/unity-lobby-provider.md)**.** The steam provider is already in the scene by default. If you want to use a different provider, you can go to the [Making your own provider](lobby-system/making-your-own-provider.md) section to read more. Alternatively, more providers might be available already, or built by the community.
 
 In order to choose a provider, all you need to do is open the **LobbyManager** gameobject in the hierarchy. Here you'll see the **Lobby Manager** component, which acts as the brain of the whole system. Then you have "providers" which are responsible for the communication between the brain and the database of your choice (ex. Steam, Unity Lobbies, Epic Games, Your own database, etc.)
 
@@ -26,7 +26,7 @@ You can change providers by having them on the **LobbyManager** gameobject as co
 
 ### Lobby Manager
 
-As mentioned in the [Choosing a provider](./#choosing-a-provider) section, the **Lobby Manager** acts as the brain of the system.
+As mentioned in the [Choosing a provider](lobby-system.md#choosing-a-provider) section, the **Lobby Manager** acts as the brain of the system.
 
 It's very simple to use, yet very powerful for both debugging and an easy setup. A few foldout groups can be found on this:
 
