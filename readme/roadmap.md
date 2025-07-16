@@ -6,15 +6,15 @@ description: >-
 
 # 🗺️ Roadmap
 
-* [ ] Plug-n-play prediction components
-* [ ] PurrNet Plug-n-play **voice chat**
-* [ ] Deterministic physics for prediction
-* [ ] Compression of prediction
 * [ ] Easy network conversion tools (Components)
+* [ ] Client owned scenes
+* [ ] Deterministic physics for prediction
 * [ ] Easy network conversion tools (Code)
-* [ ] Auto networked saving/loading
 * [ ] Epic Games Transport
-* [ ] Referencing assets
+* [x] Plug-n-play prediction components
+* [x] PurrNet Plug-n-play **voice chat**
+* [x] Referencing assets
+* [x] Compression of prediction
 * [x] Modularized delta compression
 * [x] Code-stripping
 * [x] Network Profiler tool
