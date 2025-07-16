@@ -72,6 +72,8 @@
     * [Best Practices](systems-and-modules/client-side-prediction/best-practices.md)
     * [Input Handling](systems-and-modules/client-side-prediction/input-handling.md)
     * [State Handling](systems-and-modules/client-side-prediction/state-handling.md)
+    * [Predicted State Machine](systems-and-modules/client-side-prediction/predicted-state-machine/README.md)
+      * [Predicted State Node](systems-and-modules/client-side-prediction/predicted-state-machine/predicted-state-node.md)
     * [Views and Interpolation](systems-and-modules/client-side-prediction/views-and-interpolation.md)
   * [Instance Handler](systems-and-modules/instance-handler.md)
   * [Collider Rollback](systems-and-modules/collider-rollback.md)
