@@ -4,11 +4,9 @@ description: Made by network game developers with experience.
 
 # 🐈 Introduction
 
-### Early release!
+PurrNet is a free, powerful, [performant](readme/performance/) and highly modular networking library for Unity with a high level of focus towards the best possible developer experience. We do everything we can to avoid clutter & baking, without taking away any freedom to the developer. We're constantly improving and adding new tools, and have much more we can do!
 
-PurrNet is still in the early stages! So keep in mind that things could be prone to change, have bugs, or be sub-optimal. We are using it ourselves as well, so we feel confident that it is a ready-to-use system, but it is under constant development and improvement.
-
-Check out the [ROADMAP](readme/roadmap.md) to see what we are currently planning to add. This can also be a good overview of "what is missing" from the system at this point.
+Check out the [ROADMAP](readme/roadmap.md) to see what we are currently planning to add.
 
 [**Get it on the Unity Asset Store**](https://assetstore.unity.com/packages/slug/297320)\
 [**Get it on GitHub**](https://github.com/BlenMiner/PurrNet)
@@ -50,7 +48,7 @@ With the [network rules](systems-and-modules/network-manager/network-rules.md), 
 
 And for despawning? It's the exact same thing! Simply call "Destroy()" as you would in Unity, and the rest is automatically networked for you.
 
-#### [RPC's](systems-and-modules/remote-procedure-call-rpc/) and[ SyncVars](systems-and-modules/network-modules/sync-types/syncvar.md)
+#### [RPC's](systems-and-modules/remote-procedure-call-rpc/) and [SyncVars](systems-and-modules/network-modules/sync-types/syncvar.md)
 
 With the [Network Rules](systems-and-modules/network-manager/network-rules.md), you can also set up whether the [SyncVar ](systems-and-modules/network-modules/sync-types/syncvar.md)or[ Rpc's ](systems-and-modules/remote-procedure-call-rpc/)allow for [everyone ](terminology/client-auth-everyone-unsafe.md)to call them. This in turn means that you don't have to ensure that the logic runs over the server, like in other networking solutions. This allows for quicker code writing and an easier workflow to learn.
 
