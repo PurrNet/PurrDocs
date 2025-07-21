@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # 🐻 Kuroro Wilds
 
 [Check them out on their Website](https://www.kuroro.com/)
