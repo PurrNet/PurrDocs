@@ -9,7 +9,7 @@ This is easy enough to do by utilizing RPC's, but can become non-performant quit
 ### Why utilize Input Synchronization?
 
 There are really only a few good ways of going about player on player interactions in Multiplayer. \
-1\. [Client Side Prediction](../../client-side-prediction/) - Difficult to work with and understand, but most responsive outcome\
+1\. [Client Side Prediction](../../../tools/client-side-prediction/) - Difficult to work with and understand, but most responsive outcome\
 2\. Input Synchronization - Easy to work with, but ping = input delay
 
 Essentially the big strength of Input Synchronization is the workflow. It's extremely easy to understand and get working, given that all the game logic just has to run on the server and be conveyed to the clients. That's the whole idea. This is utilized in games such as:

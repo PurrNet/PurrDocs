@@ -12,7 +12,7 @@ description: >-
 * [ ] Easy network conversion tools (Code)
 * [ ] Epic Games Transport
 * [x] [Network Any Asset](../systems-and-modules/network-manager/network-assets.md)
-* [x] PurrNet Plug-n-play [**voice chat**](../plug-n-play-components/purrvoice-voice-chat.md)
+* [x] PurrNet Plug-n-play [**voice chat**](../tools/purrvoice-voice-chat/)
 * [x] Plug-n-play prediction components
 * [x] Compression of prediction
 * [x] Modularized delta compression
@@ -20,8 +20,8 @@ description: >-
 * [x] [Network Profiler tool](../systems-and-modules/bandwidth-profiler.md)
 * [x] Improved logging
 * [x] Lag compensation component ([collider rollback](../systems-and-modules/collider-rollback.md))
-* [x] [Predicted state machine](../systems-and-modules/client-side-prediction/predicted-state-machine/)
-* [x] [Client Side Prediction](../systems-and-modules/client-side-prediction/)
+* [x] [Predicted state machine](../tools/client-side-prediction/predicted-state-machine/)
+* [x] [Client Side Prediction](../tools/client-side-prediction/)
 * [x] Delta serialization
 * [x] Easy packet compression
 * [x] [Authentication](../systems-and-modules/network-manager/authentication.md)
