@@ -6,7 +6,7 @@ description: >-
 
 # ‼️ Unique to PurrNet
 
-Just like most other systems, we have the classic and expected behaviour, such as easy [synchronizing](../systems-and-modules/network-modules/sync-types/syncvar.md), [remote procedure calls](../systems-and-modules/remote-procedure-call-rpc/), [spawning & despawning](../systems-and-modules/network-identity/spawning-and-despawning.md) and much more.
+Just like most other systems, we have the classic and expected behaviour, such as easy [synchronizing](../systems-and-modules/network-modules/sync-types/syncvar.md), [remote procedure calls](../systems-and-modules/remote-procedure-call-rpc/), [spawning & despawning](../systems-and-modules/network-identity/spawning-and-despawning/) and much more.
 
 ### Features
 
@@ -22,7 +22,7 @@ Just like most other systems, we have the classic and expected behaviour, such a
   These allow for you to fully customize your networking experience for the easiest possible workflow or full server authority to ensure a cheat-free experience.
 * **No Network Objects!**\
   A lot of the limitations of network systems come from the enforced use of Network Objects to identify across the network. PurrNet doesn't do that, instead, we have every [NetworkBehavior ](../systems-and-modules/network-identity/networkbehaviour.md)act as its own [identity](../systems-and-modules/network-identity/).
-* [**Easy spawning & despawning**](../systems-and-modules/network-identity/spawning-and-despawning.md)\
+* [**Easy spawning & despawning**](../systems-and-modules/network-identity/spawning-and-despawning/)\
   In order to spawn or despawn something, it can be as easy as just instantiating and destroying the object. Even our built-in object pooling system, plays into these standard Unity calls, making it super easy to adapt your workflow. If you prefer, you can modify your Network Rules to go to a spawn call like other systems.
 * **Easy testing**\
   We're doing as much as we can to allow for easy testing. For example at runtime, you can just drag and drop any prefab within your [Network Prefabs scriptable](../systems-and-modules/network-manager/network-prefabs.md), and it will automatically be spawned. And deleting a network identity from the hierarchy will despawn it. Making multiplayer testing super easy!
