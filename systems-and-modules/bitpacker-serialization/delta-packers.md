@@ -12,9 +12,10 @@ PurrNet automatically generates delta serializers for your types. You can also d
 ## When to use
 
 Use delta packers when:
-- Your values change slightly or sparsely (e.g., vectors, rotations, small structs).
-- You want fewer bits on the wire than full value writes.
-- You're fine with the automatic delta, or you want to override it with your own logic.
+
+* Your values change slightly or sparsely (e.g., vectors, rotations, small structs).
+* You want fewer bits on the wire than full value writes.
+* You're fine with the automatic delta, or you want to override it with your own logic.
 
 If a delta isn't applicable (or an error occurs), we'll automatically write a small "changed" marker and, if needed, the full value.
 
@@ -32,42 +33,29 @@ T DeltaPacker<T>.Read(BitPacker packer, T oldValue)
 ```
 
 Notes:
-- You don't need to register anything for built-in or auto-discovered static serializers.
-- If no delta is available, a compact fallback is used automatically.
+
+* You don't need to register anything for built-in or auto-discovered static serializers.
+* If no delta is available, a compact fallback is used automatically.
 
 ## How it works (high level)
 
-- Write decides if anything changed and writes only what's needed.
-- Read consumes exactly what Write produced to rebuild the current value from the old one.
-- If a type doesn't have a delta serializer available, we write a single "changed" bit and, when true, the full value (safe fallback).
+* Write decides if anything changed and writes only what's needed.
+* Read consumes exactly what Write produced to rebuild the current value from the old one.
+* If a type doesn't have a delta serializer available, we write a single "changed" bit and, when true, the full value (safe fallback).
 
 ## Examples
 
-### Float with a small dead-zone
-Only send a delta when the change is meaningful; keep the rest free.
+Only write changed fields of a Vector3.
 
 ```csharp
 // Writing
-var wrote = DeltaPacker<float>.Write(packer, oldHealth, newHealth);
+DeltaPacker<Vector3>.Write(packer, oldPosition, newPosition);
 
 // Reading
-var currentHealth = DeltaPacker<float>.Read(packer, oldHealth);
+Vector3 oldValue = ..;
+Vector3 result = default;
+var currentPosition = DeltaPacker<Vector3>.Read(packer, oldValue, ref result);
 ```
-
-Tip: With auto-generated deltas, this already "just works." You only need your own logic if you want a specific threshold or quantization scheme.
-
-### Vector3 (changed-components pattern)
-Send a small mask to indicate which components changed, then only write those.
-
-```csharp
-// Writing
-bool wrote = DeltaPacker<Vector3>.Write(packer, oldPosition, newPosition);
-
-// Reading
-var currentPosition = DeltaPacker<Vector3>.Read(packer, oldPosition);
-```
-
-This is a common pattern: bitmask first, followed by only the changed components.
 
 ## Custom delta (advanced, optional)
 
