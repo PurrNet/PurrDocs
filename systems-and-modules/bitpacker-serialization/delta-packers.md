@@ -29,7 +29,7 @@ Only the essentials you'll typically call:
 bool DeltaPacker<T>.Write(BitPacker packer, T oldValue, T newValue)
 
 // Reads a delta and applies it to oldValue, producing the result.
-T DeltaPacker<T>.Read(BitPacker packer, T oldValue)
+void DeltaPacker<T>.Read(BitPacker packer, T oldValue, ref T newValue)
 ```
 
 Notes:
