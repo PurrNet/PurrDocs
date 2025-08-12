@@ -126,7 +126,7 @@
   * [Dissonance](integrations/dissonance.md)
   * [Cozy Weather](integrations/cozy-weather.md)
 * [🕹️ Made with PurrNet](made-with-purrnet/README.md)
-  * [🐟 Glorb](made-with-purrnet/glorb.md)
+  * [🔥 CRACKED](made-with-purrnet/cracked.md)
   * [🐻 Kuroro Wilds](made-with-purrnet/kuroro-wilds.md)
   * [👾 Land of Symbiosis](made-with-purrnet/land-of-symbiosis.md)
   * [💖 On-Together](made-with-purrnet/on-together.md)
@@ -135,3 +135,4 @@
   * [🏰 Tower Arena Survive](made-with-purrnet/tower-arena-survive.md)
   * [👿 Cirque de Slay](made-with-purrnet/cirque-de-slay.md)
   * [👖 Pantless](made-with-purrnet/pantless.md)
+  * [🐟 Glorb](made-with-purrnet/glorb.md)
