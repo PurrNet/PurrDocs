@@ -87,6 +87,7 @@
     * [Lip Sync](tools/purrvoice-voice-chat/lip-sync.md)
   * [PurrDiction (Client Side Prediction)](tools/client-side-prediction/README.md)
     * [Overview](tools/client-side-prediction/overview.md)
+    * [Installation](tools/client-side-prediction/installation.md)
     * [Predicted Identities](tools/client-side-prediction/predicted-identities.md)
     * [Predicted Hierarchy](tools/client-side-prediction/predicted-hierarchy.md)
     * [Best Practices](tools/client-side-prediction/best-practices.md)
