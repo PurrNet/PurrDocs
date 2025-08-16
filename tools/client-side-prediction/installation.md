@@ -33,7 +33,7 @@ openupm add dev.purrnet.purrdiction
 ### **Unity Asset store**
 
 {% hint style="warning" %}
-The asset is still in the process of being approver by the Unity team
+The asset is still in the process of being approved by the Unity team
 {% endhint %}
 
 It's as easy as going to the asset store using this link, and adding it like a normal package:
