@@ -2,6 +2,8 @@
 
 ## Adding it to your project
 
+You first need to make sure you have `PurrNet v1.14.0` or higher [installed ](../../getting-started/installation-setup.md)as PurrDiction uses PurrNet to function.
+
 ### **Git through Package Manager**
 
 Through the package manager you can add a package using a git URL. Just add the following URL, and whenever you need PurrDiction updated, you can update it directly from the package manager:
