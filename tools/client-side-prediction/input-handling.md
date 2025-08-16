@@ -14,15 +14,12 @@ Input handling in the Client-Side Prediction (CSP) system is straightforward and
     **Example**:
 
     ```csharp
-    protected override SimpleWASDInput GetInput()
+    protected override void GetFinalInput(ref Input input)
     {
-        return new SimpleWASDInput
-        {
-            horizontal = Input.GetAxisRaw("Horizontal"),
-            vertical = Input.GetAxisRaw("Vertical"),
-            jump = Input.GetKey(KeyCode.Space),
-            dash = Input.GetKey(KeyCode.LeftShift)
-        };
+        input.horizontal = Input.GetAxisRaw("Horizontal"),
+        input.vertical = Input.GetAxisRaw("Vertical"),
+        input.jump = Input.GetKey(KeyCode.Space),
+        input.sprint = Input.GetKey(KeyCode.LeftShift)
     }
     ```
 
@@ -44,15 +41,12 @@ Input handling in the Client-Side Prediction (CSP) system is straightforward and
             _jumpKeyDown = true;
     }
 
-    protected override SimpleWASDInput GetInput()
+    protected override SimpleWASDInput GetFinalInput(SimpleWASDInput input)
     {
-        var input = new SimpleWASDInput
-        {
-            horizontal = Input.GetAxisRaw("Horizontal"),
-            vertical = Input.GetAxisRaw("Vertical"),
-            jump = _jumpKeyDown,
-            dash = Input.GetKey(KeyCode.LeftShift)
-        };
+        input.horizontal = Input.GetAxisRaw("Horizontal"),
+        input.vertical = Input.GetAxisRaw("Vertical"),
+        input.jump = _jumpKeyDown,
+        input.dash = Input.GetKey(KeyCode.LeftShift)
 
         // Clear the cached key-down event
         _jumpKeyDown = false;
@@ -68,6 +62,6 @@ Input handling in the Client-Side Prediction (CSP) system is straightforward and
 **Why This Works**
 
 * **Flexibility**:
-  * The `GetInput` method allows you to define exactly how input is captured and structured, making it adaptable to different control schemes.
+  * The `GetFinalInput` method allows you to define exactly how input is captured and structured, making it adaptable to different control schemes.
 * **Key-Down Events**:
-  * By caching key-down events in `Update` and clearing them in `GetInput`, you ensure that these events are only processed once, preventing unintended behavior (e.g., multiple jumps from a single key press).
+  * By caching key-down events in `Update` and clearing them in `GetFinalInput`, you ensure that these events are only processed once, preventing unintended behavior (e.g., multiple jumps from a single key press).
