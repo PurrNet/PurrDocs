@@ -2,9 +2,9 @@
 icon: crystal-ball
 ---
 
-# Client Side Prediction
+# PurrDiction (Client Side Prediction)
 
-{% embed url="https://youtu.be/WNvI6AoA_4M" %}
+{% embed url="https://youtu.be/GcDFfpGypZM" %}
 
 {% hint style="warning" %}
 Prediction is currently in [**Early Access**](../../terminology/early-access.md)**,** meaning that only paid support members in the Discord has access to it. This will become available for free in the future!
