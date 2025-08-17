@@ -108,6 +108,7 @@
 * [✊ Community Guides](community-guides/README.md)
   * [Chat system with broadcasts](community-guides/broadcast-chat-system.md)
   * [Client Side Prediction](community-guides/client-side-prediction.md)
+  * [Purrdicted Character Controller](community-guides/character-controller-client-side-prediction.md)
 * [🧩 Addons](addons/README.md)
   * [Lobby System](addons/lobby-system.md)
     * [Making your own provider](addons/lobby-system/making-your-own-provider.md)
