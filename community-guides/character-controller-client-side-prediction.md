@@ -7,7 +7,7 @@ description: by Shelby
 ## Introduction
 While PurrDiction's main flagship feature is supporting `Rigidbody` controllers, we can still predict with the `CharacterController` as well!
 
-Before we begin, it's highly recommended to read through the [PurrDiction](..\tools\client-side-prediction\README.md) docs to get a better understanding of how the system works. This guide will assume you have a basic understandin of how prediction works, as well as setting up a basic scene.
+Before we begin, it's highly recommended to read through the [PurrDiction](../tools/client-side-prediction/README.md) docs to get a better understanding of how the system works. This guide will assume you have a basic understandin of how prediction works, as well as setting up a basic scene.
 
 ## Getting Started
 To get started, let's create a new script called `PredictedCharacterController` and inherit from `PredictedIdentity`. As well as that, let's create the `STATE` and `INPUT` structs, and implement the `Simulate` and `UpdateInput` methods.
