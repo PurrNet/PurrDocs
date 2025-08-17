@@ -11,12 +11,12 @@ Before we begin, it's highly recommended to read through the [PurrDiction](../to
 
 For further reading, you should also check out a series of articles on [Client Side Prediction](client-side-prediction.md) by Neotime, which provides a far more in-depth look at Client Side Prediction principles.
 
-This guide will assume you have a basic understandin of how PurrDiction works, as well as a basic understanding of PurrNet.
+This guide will assume you have a basic understanding of how PurrDiction works, as well as a basic understanding of PurrNet.
 
 ## Getting Started
 To get started, let's create a new script called `PredictedCharacterController` and inherit from `PredictedIdentity`. As well as that, let's create the `STATE` and `INPUT` structs, and implement the `Simulate` and `UpdateInput` methods.
 
-`UpdateInput` is called every **frame** on the client, and is where we will gather our input to later simulate. 
+`UpdateInput` is called every **frame** on the client and is where we will gather our input to later simulate. 
 `Simulate` is called every **tick**, and is where we will apply our input to the state of our player.
 
 ```csharp
@@ -43,7 +43,7 @@ public class PredictedCharacterController : PredictedIdentity<PredictedCharacter
 ```
 
 ## INPUT
-The `INPUT` struct is what holds all of the input that we want to be able to check and use inside `Simulate`. For now, let's keep things extremely simple and check for Movement, and jumping, Which we can do by adding a `Vector3` for movement and a `bool` for jumping.
+The `INPUT` struct is what holds all of the input that we want to be able to check and use inside `Simulate`. For now, let's keep things extremely simple and check for Movement, and jumping, which we can do by adding a `Vector3` for movement and a `bool` for jumping.
 
 ```csharp
 public struct PredictedCharacterControllerInput : IPredictedData<PredictedCharacterControllerInput>
@@ -74,11 +74,13 @@ Now that we have our `INPUT` and `STATE` structs, we can begin gathering input t
 protected override void UpdateInput(ref PredictedCharacterControllerInput input)
 {
     input.Movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-    input.Jump = Input.GetKeyDown(KeyCode.Space);
+    input.Jump |= Input.GetKeyDown(KeyCode.Space); // Same thing as: input.Jump = Input.GetKeyDown(KeyCode.Space) || input.Jump;
 }
 ```
 
-## Simulating with our Input
+You may be curious to why we are using `|=` for `input.Jump` instead of just `=`, and that is because while `UpdateInput` is called every frame, `Simulate` is called every tick, which means that if we press the jump button between ticks, we may miss the jump input.
+
+## Simulating with Our Input
 Now that we have gathered our input, we can simulate! To do this, we can override the `Simulate` method, which is called every tick. If you are familiar with writing a basic `CharacterController`, the rest of this will be very familiar to you!
 
 This code is modified from the Unity documentation on [CharacterController.Move](https://docs.unity3d.com/ScriptReference/CharacterController.Move.html).
@@ -155,7 +157,7 @@ public class PredictedCharacterController : PredictedIdentity<PredictedCharacter
     protected override void UpdateInput(ref PredictedCharacterControllerInput input)
     {
         input.Movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        input.Jump = Input.GetKeyDown(KeyCode.Space);
+        input.Jump |= Input.GetKeyDown(KeyCode.Space);
     }
 
     protected override void Simulate(PredictedCharacterControllerInput input, ref PredictedCharacterControllerState state, float delta)
@@ -189,7 +191,7 @@ public class PredictedCharacterController : PredictedIdentity<PredictedCharacter
 ## Creating the Player Prefab
 1. Inside of Unity, Create a new Empty `GameObject` and name it **Player**. 
 2. Add the `PredictedCharacterController` component we just created, and also add the `PredictedTransform` component mentioned earlier to handle the Position and Rotation state. 
-3. Under the **Player**, Create a new `Capsule` and name it **Graphics**. This will be our graphical representation of our player. Make sure to remove the `CapsuleCollider` from the **Graphics**, as having colliders on Graphical objects is not allowed. 
+3. Under the **Player**, Create a new `Capsule` and name it **Graphics**. This will be our graphical representation of our player. Make sure to remove the `CapsuleCollider` from the **Graphics** object, as having colliders on Graphical objects is not allowed. 
 4. Finally, assign the **Graphics** GameObject to the `PredictedTransform` component's `Graphics` field.
 
 ## Testing
