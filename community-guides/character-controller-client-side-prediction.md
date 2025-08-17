@@ -74,7 +74,7 @@ Now that we have our `INPUT` and `STATE` structs, we can begin gathering input t
 protected override void UpdateInput(ref PredictedCharacterControllerInput input)
 {
     input.Movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-    input.Jump |= Input.GetKeyDown(KeyCode.Space); // Same thing as: input.Jump = Input.GetKeyDown(KeyCode.Space) || input.Jump;
+    input.Jump |= Input.GetKeyDown(KeyCode.Space); // identical to: input.Jump = Input.GetKeyDown(KeyCode.Space) || input.Jump;
 }
 ```
 
