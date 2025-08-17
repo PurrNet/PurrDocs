@@ -5,12 +5,19 @@ description: by Shelby
 # Purrdicted Character Controller
 
 ## Introduction
-While PurrDiction's main flagship feature is supporting `Rigidbody` controllers, we can still predict with the `CharacterController` as well!
+While PurrDiction's main flagship feature is supporting `Rigidbody` controllers and interaction, we can still predict with the `CharacterController` as well (as well as everything else)!
 
-Before we begin, it's highly recommended to read through the [PurrDiction](../tools/client-side-prediction/README.md) docs to get a better understanding of how the system works. This guide will assume you have a basic understandin of how prediction works, as well as setting up a basic scene.
+Before we begin, it's highly recommended to read through the [PurrDiction](../tools/client-side-prediction/README.md) docs to get a better understanding of how the system works.
+
+For further reading, you should also check out a series of articles on [Client Side Prediction](client-side-prediction.md) by Neotime, which provides a far more in-depth look at Client Side Prediction principles.
+
+This guide will assume you have a basic understandin of how PurrDiction works, as well as a basic understanding of PurrNet.
 
 ## Getting Started
 To get started, let's create a new script called `PredictedCharacterController` and inherit from `PredictedIdentity`. As well as that, let's create the `STATE` and `INPUT` structs, and implement the `Simulate` and `UpdateInput` methods.
+
+`UpdateInput` is called every **frame** on the client, and is where we will gather our input to later simulate. 
+`Simulate` is called every **tick**, and is where we will apply our input to the state of our player.
 
 ```csharp
 using PurrNet.Prediction;
@@ -36,7 +43,7 @@ public class PredictedCharacterController : PredictedIdentity<PredictedCharacter
 ```
 
 ## INPUT
-The `INPUT` struct is what holds all of the input that we want to be able to check inside `Simulate`. For now, let's keep things extremely simple and check for Movement, and jumping, Which we can do by adding a `Vector3` for movement and a `bool` for jumping.
+The `INPUT` struct is what holds all of the input that we want to be able to check and use inside `Simulate`. For now, let's keep things extremely simple and check for Movement, and jumping, Which we can do by adding a `Vector3` for movement and a `bool` for jumping.
 
 ```csharp
 public struct PredictedCharacterControllerInput : IPredictedData<PredictedCharacterControllerInput>
@@ -61,7 +68,7 @@ public struct PredictedCharacterControllerState : IPredictedData<PredictedCharac
 ```
 
 ## Gathering Input
-Now that we have our `INPUT` and `STATE` structs, we can begin gathering input to later simulate. To do this, we use the `UpdateInput` method, which is called every frame on the client.
+Now that we have our `INPUT` and `STATE` structs, we can begin gathering input to later simulate. To do this, we use the `UpdateInput` method, which is called every frame on the client. You can gather input in any way you like, but for simplicity, we will use Unity's old input system.
 
 ```csharp
 protected override void UpdateInput(ref PredictedCharacterControllerInput input)
@@ -191,3 +198,10 @@ public class PredictedCharacterController : PredictedIdentity<PredictedCharacter
 3. Create an empty `GameObject`, and name it **Prediction Manager**. Add the `PredictionManager` component to it. Click on *New* under the `PredictedPrefabs` field to create a new `PredictedPrefabs` asset.
 4. Add the `PredictedPlayerSpawner` component to the **Prediction Manager** and assign the **Player** prefab to the `Player Prefab` field.
 5. Run the scene and confirm you can jump and move around!
+
+## Conclusion
+Congratulations! You (hopefully) have a capsule that can run around and jump! Fire up a client and use the [PurrTransport](../systems-and-modules/transports/purr-transport.md) and try it out with real world latency!
+
+As long as you always modify your state inside `Simulate`, and gather your input inside `UpdateInput` (or `GetFinalInput`), you'll notice the workflow becomes very similar to writing singleplayer code.
+
+If you have any questions, feel free to ask in the [Discord server](https://discord.gg/HnNKdkq9ta)!
