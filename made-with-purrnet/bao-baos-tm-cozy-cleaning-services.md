@@ -4,7 +4,7 @@
 
 Relax with Bao Bao in this cozy 2D pressure washing sim. Clean pastel environments, chill lo-fi beats, and no stress, just peaceful vibes. Play solo or with up to 3 friends. A peaceful pressure washing game for quiet minds and cozy days.
 
-<figure><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3832380/2c59622bf296061c07637591e2a51217dbadf58f/header.jpg?t=1756351179" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Multiplayer (1).gif" alt=""><figcaption></figcaption></figure>
 
 ### Welcome to Bao Bao’s Cozy Cleaning Services
 
