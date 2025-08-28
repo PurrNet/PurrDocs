@@ -131,6 +131,7 @@
   * [🐻 Kuroro Wilds](made-with-purrnet/kuroro-wilds.md)
   * [👾 Land of Symbiosis](made-with-purrnet/land-of-symbiosis.md)
   * [🐼 Bao Bao's™ Cozy Cleaning Services](made-with-purrnet/bao-baos-tm-cozy-cleaning-services.md)
+  * [🐻 Sport Animals](made-with-purrnet/sport-animals.md)
   * [💖 On-Together](made-with-purrnet/on-together.md)
   * [🤯 Five Heads](made-with-purrnet/five-heads.md)
   * [🤪 Playomoji](made-with-purrnet/playomoji.md)
