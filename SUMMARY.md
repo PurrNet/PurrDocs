@@ -44,6 +44,7 @@
     * [Spawning & Despawning](systems-and-modules/network-identity/spawning-and-despawning/README.md)
       * [Client Spawning Validation](systems-and-modules/network-identity/spawning-and-despawning/client-spawning-validation.md)
     * [NetworkBehaviour](systems-and-modules/network-identity/networkbehaviour.md)
+    * [PlayerIdentity](systems-and-modules/network-identity/playeridentity.md)
     * [Don't destroy on load](systems-and-modules/network-identity/dont-destroy-on-load.md)
     * [Pooling](systems-and-modules/network-identity/pooling.md)
   * [Network Modules](systems-and-modules/network-modules/README.md)
