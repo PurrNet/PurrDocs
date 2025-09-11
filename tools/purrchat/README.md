@@ -89,5 +89,3 @@ Questions or support? Join our Discord: https://discord.gg/NP9tP9Qx9R
   pattern with return values.”
 
 ---
-
-References: Official PurrNet documentation (PurrDocs on GitHub )
