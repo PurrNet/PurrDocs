@@ -1,6 +1,6 @@
 ---
 description: >-
-  Community Made by Neotime - Your AI copilot for PurrNet. Built on official
+  Community Project by Neotime - Your AI copilot for PurrNet. Built on official
   docs and source code. Free plan for life.
 icon: comments
 ---
