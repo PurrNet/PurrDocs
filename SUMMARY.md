@@ -76,6 +76,7 @@
   * [Bandwidth Profiler](systems-and-modules/bandwidth-profiler.md)
   * [Bots](systems-and-modules/bots.md)
 * [🧰 Tools](tools/README.md)
+  * [PurrChat (AI assistant)](tools/purrchat/README.md)
   * [PurrVoice (Voice chat)](tools/purrvoice-voice-chat/README.md)
     * [Providers](tools/purrvoice-voice-chat/providers/README.md)
       * [Input Providers](tools/purrvoice-voice-chat/providers/input-providers/README.md)
