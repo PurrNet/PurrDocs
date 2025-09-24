@@ -56,3 +56,11 @@ Let's configure our NetworkManager to look like this:
 ![img_9.png](img_9.png)
 
 ### Step 4 Script Setup:
+
+
+**Concluding Remarks:** Please feel free to ping me in the [PurrNet Community Discord](https://discord.gg/HnNKdkq9ta) if you found this guide helpful or have feedback on how I can improve it. This is certainly not an exhaustive guide, but I hope it helps you get started!
+
+
+Cheers,
+
+Judsin
