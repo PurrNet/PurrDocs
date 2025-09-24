@@ -32,7 +32,7 @@ Open the scene:
 Right-click anywhere in the Hierarchy and go to PurrNet → NetworkManager
 ![img_3.png](img_3.png)
 
-#### Step 4 Configure GameObject:
+### Step 3 Configure GameObject:
 Click on the newly created PurrNet GameObject and feel free to name it whatever you want; I prefer "NetworkManager":
 ![img_4.png](img_4.png)
 
@@ -55,4 +55,4 @@ Select the "Unsafe" rules for now if you don't know what these are and just want
 Let's configure our NetworkManager to look like this:
 ![img_9.png](img_9.png)
 
-### Step 5 Script Setup:
+### Step 4 Script Setup:
