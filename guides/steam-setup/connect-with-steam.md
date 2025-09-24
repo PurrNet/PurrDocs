@@ -1,5 +1,7 @@
 ﻿# Connect with Steam Using the Steam Transport
-If you're looking for a quick and easy guide that will teach you how to connect with players over steam then you've come to the right place. Before we begin let's clarify what this document is and is not below:
+Greetings!
+
+So you want to make a multiplayer Steam game, and you're looking to get started with PurrNet? You've come to the right place! My name is Judsin, and I'm going to show you how to connect with your friends over Steam so that you can get started testing today! I will do my best to be extremely clear and provide you with screenshots every step of the way. Before we begin, let's clarify what this document is and is not below:
 #### This is:
 ✔️ A guide on how to use the Steam Transport\
 ✔️ A resource for how you can leverage PurrNet and connect with your friends over steam
