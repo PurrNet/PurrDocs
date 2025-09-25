@@ -19,6 +19,7 @@ This guide is being written using the following:
 - Unity 6002.2.0f1
 - PurrNet 1.15.0
 - Heathen's Toolkit for Steakworks 2025
+- Steam installed and running
 
 For PurrNet installation instructions please reference the [installation guide](../../getting-started/installation-setup.md). If you aren't familiar with Heathen's Toolkit for Steakworks SDK I highly recommend checking it out if you're serious about using Steam—it just makes your life easier. If you don't want to use Heathen's, then the script example I show won't be relevant to you, but the majority of this guide will still be helpful. We will install Heathen's Toolkit at the end of this guide to ensure that everyone can follow along until then.
 
@@ -76,6 +77,9 @@ When you first do this it will create a SteamMain Steam Settings object in your 
 
 You can optionally add a Demo setting and as many Playtest settings as you would like. All of them will be added to the Settings folder in their own Steam Settings object.
 
+Next, let's add a canvas with a Host and Join button as well as a text field to display the Host ID (that only the host will see) and a text input field that the client can type in. This prompted me to install TextMesh Pro so I installed it:
+![img_16.png](img_16.png)
+
 Next, let's create a script to handle the connection to Steam. Create a new script called "ConnectionManager" and put it in your scripts folder.\
 ![img_10.png](img_10.png)
 
@@ -86,11 +90,8 @@ Below is a loose way of structuring your code but one that should give you some 
 
 ```
 
-Let's add this script as a component to an empty GameObject in the scene and then drag and drop out Steam settings into the SerializedField.
-![img_14.png](img_14.png)
-
-Press play, and you should see a series of initialization messages in the console:
-![img_15.png](img_15.png)
+Let's add this script as a component to an empty GameObject in the scene and then drag and drop our Steam settings, buttons, and TMP objects into their SerializedFields.
+![img_17.png](img_17.png)
 
 ### Step 5 App ID:
 Now that we have our Steam Transport setup, we need to get our App ID. You can get your App ID by going to the [Steamworks Developer Dashboard](https://partner.steamgames.com/dashboard/apps) or if you don't have one, you can use the "480"-app ID (Spacewar) that Steam provides. Open the folder that your project is in and at the root directory create or modify the "steam_appid.txt" file and place your ID inside and save.
@@ -98,8 +99,14 @@ Now that we have our Steam Transport setup, we need to get our App ID. You can g
 ![img_11.png](img_11.png)
 
 ### Step 6 Testing:
-Now that we have everything set up, we can finally test our connection to Steam. Open the scene and press play. You should see that
-If you are using a friend or teammate to test, you can invite them to your game, and they should be able to join. If you are testing on your own, you can use the "Invite Friends" button on the Steam Transport component to invite your friends.
+Now that we have everything set up, we can finally test our connection to Steam. Press play, and you should see a series of initialization messages in the console:
+![img_15.png](img_15.png)
+
+Press the Host button, and you should see your Host ID in the text field if the PurrNet server is running:
+
+
+
+If you are using a friend or teammate to test, have them connect in Unity editor or over a build, and they should be able to join!
 
 **Concluding Remarks:** Please feel free to ping me in the [PurrNet Community Discord](https://discord.gg/HnNKdkq9ta) if you found this guide helpful or have feedback on how I can improve it. This is certainly not an exhaustive guide, but I hope it helps you get started!
 
