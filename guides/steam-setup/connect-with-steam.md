@@ -1,11 +1,11 @@
 ﻿# Connect with Steam Using the Steam Transport
 Greetings!
 
-So you want to make a multiplayer Steam game, and you're looking to get started with PurrNet? You've come to the right place! My name is Judsin, and I'm going to show you how to connect with your friends over Steam so that you can get started testing today! I will do my best to be extremely clear and provide you with screenshots every step of the way. Before we begin, let's clarify what this document is and is not below:
+So you want to make a multiplayer Steam game, and you're looking to get started with PurrNet? You've come to the right place! My name is [Judsin](https://github.com/Spell-Bound-Studios), and I'm going to show you how to connect with your friends over Steam so that you can get started testing your game today! I will do my best to be extremely clear and provide you with screenshots every step of the way. Before we begin, let's clarify what this document is and is not below:
 
 #### This is:
 ✔️ A guide on how to use the Steam Transport\
-✔️ A resource for how you can leverage PurrNet and connect with your friends over steam
+✔️ A resource for how you can leverage PurrNet and Heathens to connect with your friends in Unity over Steam
 
 #### This is not:
 ❌ A guide on how to use a lobby\
@@ -21,23 +21,23 @@ This guide is being written using the following:
 - Heathen's Toolkit for Steakworks 2025
 - Steam installed and running
 
-For PurrNet installation instructions please reference the [installation guide](../../getting-started/installation-setup.md). If you aren't familiar with Heathen's Toolkit for Steakworks SDK I highly recommend checking it out if you're serious about using Steam—it just makes your life easier. If you don't want to use Heathen's, then the script example I show won't be relevant to you, but the majority of this guide will still be helpful. We will install Heathen's Toolkit at the end of this guide to ensure that everyone can follow along until then.
+For PurrNet installation instructions please reference the [installation guide](../../getting-started/installation-setup.md). If you aren't familiar with Heathen's Toolkit for Steakworks SDK I highly recommend checking it out if you're serious about using Steam—it just makes your life easier. If you don't want to use Heathen's, then the script example I show won't work out of the box for you, but the majority of this guide will still be helpful. We will install Heathen's Toolkit at the end of this guide to ensure that everyone can follow along until then.
 
 For reference, my Package Manager looks like the following after PurrNet installation:\
 ![img.png](img.png)
 
-### Step 1 Create Scene:
+### Step 1 Create the Scene:
 This is a fresh project, so I'm going to start by creating a new scene and putting it in the Assets/Scenes folder. I will call this scene "NetworkedSteamScene" and I will delete the "SampleScene" already in the folder:\
 ![img_1.png](img_1.png)
 
 Open the scene:\
 ![img_2.png](img_2.png)
 
-### Step 2 Create NetworkManager:
+### Step 2 Create the NetworkManager:
 Right-click anywhere in the Hierarchy and go to PurrNet → NetworkManager:\
 ![img_3.png](img_3.png)
 
-### Step 3 Configure GameObject:
+### Step 3 Configure the GameObject:
 Click on the newly created PurrNet GameObject and feel free to name it whatever you want; I prefer "NetworkManager":\
 ![img_4.png](img_4.png)
 
@@ -159,6 +159,7 @@ namespace SteamExample {
                 return;
             }
 
+            // This is a Heathens API call.
             var user = UserData.Get();
 
             steamTransport.peerToPeer = true;
@@ -188,6 +189,7 @@ namespace SteamExample {
                 return;
             }
 
+            // This is a Heathens API call.
             var hostAddress = UserData.Get(steamCode);
 
             if (!hostAddress.IsValid) {
