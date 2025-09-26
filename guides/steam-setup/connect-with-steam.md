@@ -272,7 +272,7 @@ Congratulations! You have successfully connected to Steam, and you're ready to c
 
 **Concluding Remarks:** Please feel free to ping me in the [PurrNet Community Discord](https://discord.gg/HnNKdkq9ta) if you found this guide helpful or have feedback on how we can improve it. This is certainly not an exhaustive guide, but we hope it helps you get started!
 
-The source code and example project can be found [here](https://github.com/Spell-Bound-Studios/PurrNet-SteamTransportGuide).
+The source code and example project can be found [here,](https://github.com/Spell-Bound-Studios/PurrNet-SteamTransportGuide) but you must manually install Heathen's Toolkit for Steamworks until I can update this into a more formal package.
 
 Cheers,
 
