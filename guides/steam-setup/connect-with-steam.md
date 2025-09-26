@@ -206,9 +206,11 @@ namespace SteamExample {
         /// This method is responsible for calling StartHost() and changing the UI visuals.
         /// </summary>
         private void HandleHostClicked() {
-            if (hostButton == null || hostTextField == null)
+            if (hostButton == null || hostTextField == null) {
                 Debug.LogError("Host button or host text field is null. " +
                                "Please drag and drop it into the ConnectionManager.", this);
+                return;
+            }
             
             StartHost();
 
