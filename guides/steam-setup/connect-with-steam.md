@@ -32,50 +32,61 @@ This guide is being written using the following:
 
 For PurrNet installation instructions please reference the [installation guide](../../getting-started/installation-setup.md). If you aren't familiar with Heathen's Toolkit for Steakworks SDK I highly recommend checking it out if you're serious about using Steam—it just makes your life easier. If you don't want to use Heathen's, then the script example I show won't work out of the box for you, but the majority of this guide will still be helpful. We will install Heathen's Toolkit at the end of this guide to ensure that everyone can follow along until then.
 
-For reference, my Package Manager looks like the following after PurrNet installation:\
-![img.png](../../.gitbook/assets/stg_fresh_package_manager.png)
+For reference, my Package Manager looks like the following after PurrNet installation:
+
+<figure><img src="../../.gitbook/assets/stg_fresh_package_manager.png" alt=""></figure>
 
 ### Step 1 Create the Scene:
 
-This is a fresh project, so I'm going to start by creating a new scene and putting it in the Assets/Scenes folder. I will call this scene "NetworkedSteamScene" and I will delete the "SampleScene" already in the folder:\
-![img\_1.png](../../.gitbook/assets/stg_create_scene.png)
+This is a fresh project, so I'm going to start by creating a new scene and putting it in the Assets/Scenes folder. I will call this scene "NetworkedSteamScene" and I will delete the "SampleScene" already in the folder:
 
-Open the scene:\
-![img\_2.png](../../.gitbook/assets/stg_open_scene.png)
+<figure><img src="../../.gitbook/assets/stg_create_scene.png" alt=""></figure>
+
+Open the scene:
+
+<figure><img src="../../.gitbook/assets/stg_open_scene.png" alt=""></figure>
 
 ### Step 2 Create the NetworkManager:
 
-Right-click anywhere in the Hierarchy and go to PurrNet → NetworkManager:\
-![img\_3.png](../../.gitbook/assets/stg_create_network_manager.png)
+Right-click anywhere in the Hierarchy and go to PurrNet → NetworkManager:
+
+<figure><img src="../../.gitbook/assets/stg_create_network_manager.png" alt=""></figure>
 
 ### Step 3 Configure the GameObject:
 
-Click on the newly created PurrNet GameObject and feel free to name it whatever you want; I prefer "NetworkManager":\
-![img\_4.png](../../.gitbook/assets/stg_rename_network_manager.png)
+Click on the newly created PurrNet GameObject and feel free to name it whatever you want; I prefer "NetworkManager":
 
-Remove the UDP Transport and add the Steam Transport:\
-![img\_5.png](../../.gitbook/assets/stg_remove_udp.png)
+<figure><img src="../../.gitbook/assets/stg_rename_network_manager.png" alt=""></figure>
+
+Remove the UDP Transport and add the Steam Transport:
+
+<figure><img src="../../.gitbook/assets/stg_remove_udp.png" alt=""></figure>
 
 If you want to know more about the Steam Transport, please reference [Steam Transport](../../systems-and-modules/transports/steam-transport.md).
 
 Now click "Add SteamWorks.Net to Package Manager" on the Steam Transport component—this will add Steamworks.NET to your project. If this gives you an error, please make sure you have git installed on your machine.
 
-If this works correctly, then your setup should look like this:\
-![img\_6.png](../../.gitbook/assets/stg_add_steam_transport.png)
+If this works correctly, then your setup should look like this:
 
-Let's add the [Network Rules](../../systems-and-modules/network-manager/network-rules.md) to the Network Manager component by clicking the target icon and add the default rules:\
-![img\_7.png](../../.gitbook/assets/stg_network_rules.png)
+<figure><img src="../../.gitbook/assets/stg_add_steam_transport.png" alt=""></figure>
 
-Select the "Unsafe" rules for now if you don't know what these are and just want to get Steam working. Doing so will make the NetworkManager look like this:\
-![img\_8.png](../../.gitbook/assets/stg_network_manager_after_rule_selection.png)
+Let's add the [Network Rules](../../systems-and-modules/network-manager/network-rules.md) to the Network Manager component by clicking the target icon and add the default rules:
 
-Let's configure our NetworkManager to look like this:\
-![img\_9.png](../../.gitbook/assets/stg_final_network_manager.png)
+<figure><img src="../../.gitbook/assets/stg_network_rules.png" alt=""></figure>
+
+Select the "Unsafe" rules for now if you don't know what these are and just want to get Steam working. Doing so will make the NetworkManager look like this:
+
+<figure><img src="../../.gitbook/assets/stg_network_manager_after_rule_selection.png" alt=""></figure>
+
+Let's configure our NetworkManager to look like this:
+
+<figure><img src="../../.gitbook/assets/stg_final_network_manager.png" alt=""></figure>
 
 ### Step 4 Script Setup:
 
-This step is where we will use Heathen's Toolkit for Steamworks to make our lives easier. If you don't have this package, the code below will still be useful to you. I will comment what is a Heathen's API call so that you know what parts you need to go solve with whatever Steamworks API wrapper you're using. Now let's install Heathen's Toolkit for Steamworks. Below is a screenshot of my PackageManager:\
-![img\_13.png](../../.gitbook/assets/stg_heathens_install_package_manager.png)
+This step is where we will use Heathen's Toolkit for Steamworks to make our lives easier. If you don't have this package, the code below will still be useful to you. I will comment what is a Heathen's API call so that you know what parts you need to go solve with whatever Steamworks API wrapper you're using. Now let's install Heathen's Toolkit for Steamworks. Below is a screenshot of my PackageManager:
+
+<figure><img src="../../.gitbook/assets/stg_heathens_install_package_manager.png" alt=""></figure>
 
 First things first, we need to create a Steam Settings object. You can skip this part if you don't have Heathens. Below is a copy and paste from the Heathen's website on how to do this:
 
@@ -89,11 +100,13 @@ When you first do this, it will create a SteamMain Steam Settings object in your
 
 You can optionally add a Demo setting and as many Playtest settings as you would like. All of them will be added to the Settings folder in their own Steam Settings object.
 
-Next, let's add a canvas with a Host and Join button as well as a text field to display the Host ID (that only the host will see) and a text input field that the client can type in. This prompted me to install TextMesh Pro so I installed it:\
-![img\_16.png](../../.gitbook/assets/stg_canvas_view.png)
+Next, let's add a canvas with a Host and Join button as well as a text field to display the Host ID (that only the host will see) and a text input field that the client can type in. This prompted me to install TextMesh Pro so I installed it:
 
-Next, let's create a script to handle the connection to Steam. Create a new script called "ConnectionManager" and put it in your scripts folder.\
-![img\_10.png](../../.gitbook/assets/stg_connection_manager_script.png)
+<figure><img src="../../.gitbook/assets/stg_canvas_view.png" alt=""></figure>
+
+Next, let's create a script to handle the connection to Steam. Create a new script called "ConnectionManager" and put it in your scripts folder.
+
+<figure><img src="../../.gitbook/assets/stg_connection_manager_script.png" alt=""></figure>
 
 Below is a loose way of structuring your code but one that should give you some insight and intuition on how to adapt it to your game. It looks long, but I promise it's really only two methods—I just tried to make it as clear as possible.\\
 
@@ -264,26 +277,31 @@ namespace SteamExample {
 }
 ```
 
-Let's add this script as a component to an empty GameObject in the scene and then drag and drop our Steam settings, buttons, and TMP objects into their SerializedFields.\
-![img\_17.png](../../.gitbook/assets/stg_connection_manager_drag_drop.png)
+Let's add this script as a component to an empty GameObject in the scene and then drag and drop our Steam settings, buttons, and TMP objects into their SerializedFields.
+
+<figure><img src="../../.gitbook/assets/stg_connection_manager_drag_drop.png" alt=""></figure>
 
 ### Step 5 App ID:
 
-Now that we have our Steam Transport setup, we need to get our App ID. You can get your App ID by going to the [Steamworks Developer Dashboard](https://partner.steamgames.com/dashboard/apps) or if you don't have one, you can use the "480"-app ID (Spacewar) that Steam provides. Open the folder that your project is in and at the root directory create or modify the "steam\_appid.txt" file and place your ID inside and save.\
-![img\_11.png](../../.gitbook/assets/stg_app_id.png)
+Now that we have our Steam Transport setup, we need to get our App ID. You can get your App ID by going to the [Steamworks Developer Dashboard](https://partner.steamgames.com/dashboard/apps) or if you don't have one, you can use the "480"-app ID (Spacewar) that Steam provides. Open the folder that your project is in and at the root directory create or modify the "steam\_appid.txt" file and place your ID inside and save.
+
+<figure><img src="../../.gitbook/assets/stg_app_id.png" alt=""></figure>
 
 **App ID Remarks:** The 480-app ID is Steams' free app ID for development and testing. When you start your game in Unity, Steam will automatically say that you are playing the game "Spacewar". This is intended and should be used until you register your game with Steam and get an App ID of your own. You can read more about this [here](https://partner.steamgames.com/doc/sdk/api/example)
 
 ### Step 6 Testing:
 
-Now that we have everything set up, we can finally test our connection to Steam. Press play, and you should see a series of initialization messages in the console:\
-![img\_15.png](../../.gitbook/assets/stg_testing_console.png)
+Now that we have everything set up, we can finally test our connection to Steam. Press play, and you should see a series of initialization messages in the console:
 
-Press the Host button, and you should see your Host ID in the text field if the PurrNet server is running. You can also go click on the NetworkManager and confirm that the player count is 1 and that you're connected:\
-![img\_18.png](../../.gitbook/assets/stg_testing_host_clicked.png)
+<figure><img src="../../.gitbook/assets/stg_testing_console.png" alt=""></figure>
 
-If you are using a friend or teammate to test, have them connect in Unity editor or over a build and provide them with your Host ID. If they connect successfully, their screen will look like this:\
-![img\_19.png](../../.gitbook/assets/stg_testing_client_clicked.png)
+Press the Host button, and you should see your Host ID in the text field if the PurrNet server is running. You can also go click on the NetworkManager and confirm that the player count is 1 and that you're connected:
+
+<figure><img src="../../.gitbook/assets/stg_testing_host_clicked.png" alt=""></figure>
+
+If you are using a friend or teammate to test, have them connect in Unity editor or over a build and provide them with your Host ID. If they connect successfully, their screen will look like this:
+
+<figure><img src="../../.gitbook/assets/stg_testing_client_clicked.png" alt=""></figure>
 
 Congratulations! You have successfully connected to Steam, and you're ready to continue your journey with multiplayer!
 
