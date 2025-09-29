@@ -2,6 +2,8 @@
 
 The Steam Transport comes with PurrNet by default, but requires at a minimum the Steamworks.Net package in order to work.
 
+[Read the comprehensive guide by Judsin here.](../../guides/steam-setup/connect-with-steam.md)
+
 ### Parameters
 
 * Server Port - The port to connect through
