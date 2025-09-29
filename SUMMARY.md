@@ -109,6 +109,7 @@
   * [🔫 First Person Shooter](full-game-guides/first-person-shooter.md)
   * [🪓 Survival Game](full-game-guides/survival-game.md)
 * [✊ Community Guides](community-guides/README.md)
+  * [Steam setup](guides/steam-setup/connect-with-steam.md)
   * [Chat system with broadcasts](community-guides/broadcast-chat-system.md)
   * [Client Side Prediction](community-guides/client-side-prediction.md)
   * [Purrdicted Character Controller](community-guides/character-controller-client-side-prediction.md)
