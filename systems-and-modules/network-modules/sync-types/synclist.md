@@ -47,7 +47,7 @@ private void ChangeMyList()
 
 The SyncList is serialized in editor, however, you shouldn't edit it here. This is purely for visual debugging
 
-<figure><img src="../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### SyncListChange&#x20;
 

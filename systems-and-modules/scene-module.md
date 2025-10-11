@@ -21,7 +21,7 @@ networkManager.sceneModule.LoadSceneAsync("sceneName");
 
 There are multiple overloads to the `LoadSceneAsync` method (see image below), such as directly setting the load mode directly, using Unity `LoadSceneParameters`, or adding custom PurrNet settings.
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption><p>Overloads for the LoadSceneAsync</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption><p>Overloads for the LoadSceneAsync</p></figcaption></figure>
 
 You can also load a scene with custom scene settings called `PurrSceneSettings`, see example below:
 

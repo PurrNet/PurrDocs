@@ -41,7 +41,7 @@ private void ChangeMyDictionary()
 
 The SyncDictionary is custom serialized in editor, in order to make visual debugging easier.
 
-<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### SyncDictionaryChange
 
