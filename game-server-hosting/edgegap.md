@@ -18,7 +18,7 @@ Go your your top toolbar: `Tools -> PurrNet -> Addon Library -> Install EdgeGap`
 **You must have** [**Git installed**](https://git-scm.com/downloads) on your system for Unity to fetch packages via git URLs.
 {% endhint %}
 
-**\[Insert Image here of EdgeGap in the Addon Library with the mouse on the install button]**
+<figure><img src="../.gitbook/assets/Screenshot 2025-10-14 213647.png" alt=""><figcaption></figcaption></figure>
 
 To help you get started we have setup a menu item that allows you to verify all the required dependencies and also help guide you to properly install them or remind you to open required tools.
 
