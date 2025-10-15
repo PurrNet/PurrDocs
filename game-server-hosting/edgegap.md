@@ -24,7 +24,7 @@ First, start by getting setup and logged in to [Edgegap](https://app.edgegap.com
 
 ### Installing Edgegap in Unity
 
-Go your your top toolbar: `Tools -> PurrNet -> Addon Library -> Install Edgegap`. This will automatically import the tool into your project!
+Go your your top toolbar: `Tools > PurrNet > Addon Library` and click `Install` on the `Edgegap` addon. This will automatically import the tool into your project!
 
 {% hint style="warning" %}
 **You must have** [**Git installed**](https://git-scm.com/downloads) on your system for Unity to fetch packages via git URLs.
@@ -76,10 +76,19 @@ Then fill in your token:
 
 <figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
-Once you have that setup you can skip most of those steps and go straight to step 5.\
-In step 5 you need to choose your target application, a server image name (this can be whatever you want) and finally just press the `Rebuild from Source` button.
+Once your token is setup and validated we can proceed to step 2 (building your server). All you have to do is press the `Build Server` button. This is just like a normal Unity build so make sure you have your scene list properly setup. The build target will be a Linux dedicated server which is why you had to install the extra modules.
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
+
+With the build done we need to containerize it. This is where docker comes into play, it is essentially packaging your build in a way that Edgegap can work with it. Just press `Containerize with Docker`.
+
+<figure><img src="../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
+
+We will skip step 4, you can use it to locally run the container you just created to test the server locally (even if your operating system isn't Linux).
+
+In step 5 you need to choose your target application, a server image name (this can be whatever you want) and finally just press the `Upload image and Create app version` button.
+
+<figure><img src="../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
 
 Once it finishes you can either `Deploy to Cloud` from the website dashboard or from step 6.
 
