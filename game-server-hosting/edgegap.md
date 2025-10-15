@@ -6,6 +6,18 @@ description: In partnership with Edgegap - Simplifying game server deployment
 
 In this simple guide, we'll go through how you get started hosting your dedicated server(s) with Edgegap in PurrNet. Luckily, this is very easy!
 
+### Preparation
+
+{% hint style="success" %}
+You will need to have [an Edegap account](https://app.edgegap.com/auth/register) to properly follow this guide
+{% endhint %}
+
+{% hint style="success" %}
+Using your account make sure to have [your token](https://app.edgegap.com/user-settings?tab=tokens) at hand
+{% endhint %}
+
+### Getting Started
+
 First, start by getting setup and logged in to [Edgegap](https://app.edgegap.com/) so you can access the dashboard. And after this, have a brief look at [their own documentation](https://docs.edgegap.com/), to get setup with their Unity editor tool.
 
 **\[Insert video here going through using and deploying with Edgegap in PurrNet]**
@@ -40,7 +52,7 @@ When Edgegap is properly installed a little box will show up for supported trans
 
 The auto configuration will detect when inside an Edgegap environment automatically and use environment variables to automatically setup the correct ports and even SSL settings on your behalf. The client still needs to properly configure these but you can rest assured that the server is handled.
 
-In case you have multiple UDP ports you are using for one server you might want to disable this and manually handle your setup.
+In case you have multiple of the same protocol for one server you might want to disable this and manually handle your setup accordingly.
 
 ### Deploying the server
 
@@ -48,7 +60,7 @@ There are a few steps required to reach from nothing to a deployed server.
 
 1. Unity Linux Build
 2. Containerize The Build Files
-   1. This is why you need docker installed, if you are not familiar with docker you can think of this step almost like zipping your project. I'm making a huge disservice to the technology behind the scenes but you don't need those details and if you want to you can learn more for yourself.
+   1. This is why you need docker installed, if you are not familiar with docker you can think of this step almost like zipping your project. I'm making a huge disservice to the technology behind the scenes but you don't need those details and can always learn more for yourself.
 3. Upload container to Edgegap
 4. Deploy your application!
 
@@ -69,7 +81,7 @@ In step 5 you need to choose your target application, a server image name (this 
 
 <figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-Once it finishes you can either `Deploy` from the website dashboard or from step 6.
+Once it finishes you can either `Deploy to Cloud` from the website dashboard or from step 6.
 
 <figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
@@ -80,7 +92,10 @@ On the website's dashboard you can manually find the information required to con
 
 <figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
-You would use the \`Host\` as your address and \`External\` port as your client port.
+You would use the \`Host\` as your address and \`External\` port as your client port.\
+Here is an example of a correct setup inside Unity (notice `Server Port` and `Address`):
+
+<figure><img src="../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure>
 
 ### Easy as that!
 
