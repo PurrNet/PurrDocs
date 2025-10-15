@@ -115,7 +115,7 @@
   * [Purrdicted Character Controller](community-guides/character-controller-client-side-prediction.md)
   * [Purrdicted Character Controller Knockback](community-guides/character-controller-knockback-client-side-prediction.md)
 * [☁️ Game Server Hosting](game-server-hosting/README.md)
-  * [EdgeGap](game-server-hosting/edgegap.md)
+  * [Edgegap](game-server-hosting/edgegap.md)
 * [🧩 Addons](addons/README.md)
   * [Lobby System](addons/lobby-system.md)
     * [Making your own provider](addons/lobby-system/making-your-own-provider.md)
