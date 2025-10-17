@@ -20,7 +20,7 @@ Using your account make sure to have [your token](https://app.edgegap.com/user-s
 
 First, start by getting setup and logged in to [Edgegap](https://app.edgegap.com/) so you can access the dashboard. And after this, have a brief look at [their own documentation](https://docs.edgegap.com/), to get setup with their Unity editor tool.
 
-**\[Insert video here going through using and deploying with Edgegap in PurrNet]**
+{% embed url="https://youtu.be/Df6y4bV7V3k" %}
 
 ### Installing Edgegap in Unity
 
