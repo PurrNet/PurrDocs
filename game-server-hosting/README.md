@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # ☁️ Game Server Hosting
 
 A dedicated server is a separate application that runs your game's server logic without any client-side components like rendering, input handling, or UI. This approach provides better performance, security, and scalability for multiplayer games.
