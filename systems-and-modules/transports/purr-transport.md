@@ -13,3 +13,5 @@ To use this transport simply add the `PurrTransport` component and assign it to 
 {% hint style="warning" %}
 The default relay address found in the transport is meant for development only, any production use is prohibited. You can use the transport layer for production if you setup your own relay server for it.
 {% endhint %}
+
+<figure><img src="../../.gitbook/assets/PurrTransportExample.png" alt=""><figcaption><p>Example of Purr transport component</p></figcaption></figure>

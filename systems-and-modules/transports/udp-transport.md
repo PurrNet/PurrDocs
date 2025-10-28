@@ -9,3 +9,5 @@ We're utilizing the [LiteNetLib](https://github.com/RevenantX/LiteNetLib) MIT li
 * Server Port - The port which the server will start on, and clients connect to
 * Max Connections - The max amount of client connections allowed
 * Address - This is the IP of the server. Default is the local host
+
+<figure><img src="../../.gitbook/assets/UdpTransportExample.png" alt=""><figcaption><p>Example of UDP transport component</p></figcaption></figure>
