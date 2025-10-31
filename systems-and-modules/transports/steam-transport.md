@@ -14,3 +14,5 @@ The Steam Transport comes with PurrNet by default, but requires at a minimum the
 ### Steam isn't networking!
 
 It's highly important that devs understand that networking isn't Steam and Steam isn't networking. A Steam "Lobby" isn't network related either. Purely a way for Steam users to share meta data through Steam (usernames, Steam ID, chat, etc.)
+
+<figure><img src="../../.gitbook/assets/SteamTransportExample.png" alt=""><figcaption><p>Example of steam transport component</p></figcaption></figure>

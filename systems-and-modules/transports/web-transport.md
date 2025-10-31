@@ -13,3 +13,5 @@ The web transport handles connections through web, which is handled differently 
 * Cert Path - Path of the SSL Certificate
 * Cert Password - The password of the SSL
 * Ssl Protocols - The protocol for the SSL
+
+<figure><img src="../../.gitbook/assets/WebTransportComponent.png" alt=""><figcaption><p>Example of web transport component</p></figcaption></figure>
