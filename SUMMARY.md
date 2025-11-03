@@ -52,6 +52,7 @@
     * [Common Pitfalls](systems-and-modules/network-modules/common-pitfalls.md)
     * [Sync Types](systems-and-modules/network-modules/sync-types/README.md)
       * [SyncVar](systems-and-modules/network-modules/sync-types/syncvar.md)
+      * [Validated SyncVar](systems-and-modules/network-modules/sync-types/validated-syncvar.md)
       * [SyncList](systems-and-modules/network-modules/sync-types/synclist.md)
       * [SyncArray](systems-and-modules/network-modules/sync-types/synclist-1.md)
       * [SyncQueue](systems-and-modules/network-modules/sync-types/synclist-1-1.md)
