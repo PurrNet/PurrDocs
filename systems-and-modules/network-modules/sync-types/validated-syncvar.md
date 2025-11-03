@@ -2,6 +2,10 @@
 
 This is a more advanced variation of the [SyncVar](syncvar.md) which allows you to get the best of both world in terms of client sided responsiveness with server authorized changes.
 
+{% hint style="warning" %}
+This module is automatically owner-authenticated and bound to the **NetworkIdentity** it resides in.
+{% endhint %}
+
 The idea of the validated SyncVar is quite easy:\
 \- Client makes local change and gets immediate response\
 \- Server is notified of this change and can validate whether the change should be validated\
