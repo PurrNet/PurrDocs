@@ -17,7 +17,7 @@ This allows you to easily add cheat proofing to the Validated SyncVar whilst sti
 Below is a simple example usage, which only allows the value to be counted up, but never down.&#x20;
 
 ```csharp
-public ValidatedSyncVar<int> _testVar = new();
+private ValidatedSyncVar<int> _testVar = new();
 
 private void OnEnable()
 {
