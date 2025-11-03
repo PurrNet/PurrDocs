@@ -48,3 +48,16 @@ private void ResumeGameTimer()
     timer.ResumeTimer();
 }
 ```
+
+Beyond using the SyncTimers automatic countdown, you can also advance the timer yourself with whatever delta you please giving you more freedom to count up, down, faster or slower.&#x20;
+
+The bare minimum setup of this would love like this:
+
+```csharp
+private SyncTimer _timer = new(manualUpdate:true);
+
+private void Update()
+{
+    _timer.Advance(Time.deltaTime);
+}
+```
