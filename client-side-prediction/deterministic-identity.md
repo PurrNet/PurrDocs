@@ -6,8 +6,7 @@
 
 **When to Use**
 
-* Systems that must produce identical results on all machines from the same inputs (e.g., strategy sim, deterministic AI, fixed math gameplay).
-* You want optional runtime validation that the simulated states match exactly.
+* Systems that can produce identical results on all machines from the same inputs (e.g., strategy sim, deterministic AI, fixed math gameplay).
 
 If you don’t require strict bit‑determinism, prefer `PredictedIdentity<STATE>` for simpler float‑based logic.
 
@@ -15,7 +14,6 @@ If you don’t require strict bit‑determinism, prefer `PredictedIdentity<STATE
 
 **Key Properties**
 
-* `isDeterministic` = true — tagged for tooling/validation.
 * Uses `sfloat` delta in `Simulate`/`LateSimulate` for deterministic time steps.
 * History, rollback, and interpolation are the same pattern as stateful identities.
 * Networking: by default it doesn’t send state each tick; instead, you can turn on validation to compare states.
@@ -35,7 +33,7 @@ Prediction Manager setting:
 * `protected virtual void UpdateView(STATE viewState, STATE? verified)`
 * `protected virtual STATE Interpolate(STATE from, STATE to, float t)`
 
-Note the `sfloat` delta — use deterministic math throughout your simulation.
+Note the `sfloat` delta — use deterministic math throughout your simulation. You can also mix in `FP` for fixed point math.
 
 ***
 
@@ -76,8 +74,6 @@ public class Oscillator : DeterministicIdentity<OscState>
     protected override void UpdateView(OscState view, OscState? verified)
     {
         // Convert to float for rendering only
-        var y = (float)(sfloat.Sin(view.phase) * view.amplitude);
-        transform.localPosition = new UnityEngine.Vector3(0, y, 0);
     }
 }
 ```
