@@ -74,7 +74,7 @@ First, you want to open Edgegap's editor window.
 
 Then fill in your token:
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (2).png" alt=""><figcaption></figcaption></figure>
 
 Once your token is setup and validated we can proceed to step 2 (building your server). All you have to do is press the `Build Server` button. This is just like a normal Unity build so make sure you have your scene list properly setup. The build target will be a Linux dedicated server which is why you had to install the extra modules.
 

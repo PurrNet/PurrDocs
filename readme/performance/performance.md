@@ -26,7 +26,7 @@ Mind that this only covers RPC benchmarks for now. See the [Why RPC Tests](perfo
 * FishNet vs. NetCode: \~48.48% lower usage
 * Mirror vs. NetCode: \~1.44% higher usage for Mirror
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Average usage
 
@@ -55,11 +55,10 @@ Vector3 + Quaternion + bool\
 ![](<../../.gitbook/assets/image (26).png>)
 
 Vector3\
-![](<../../.gitbook/assets/image (25).png>)
+![](<../../.gitbook/assets/image (24) (1).png>)
 
 RPC Only:\
-![](<../../.gitbook/assets/image (23).png>)\
-
+![](<../../.gitbook/assets/image (23).png>)\\
 
 ### FishNet 4.5.6R Pro
 

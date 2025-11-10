@@ -8,7 +8,7 @@ Code stripping allows for server code to be automatically removed from client bu
 
 It will automatically strip all server specific code from all builds but Server builds. You can find the setting in Project Settings -> Networking -> PurrNet -> Strip Server Code, and simply toggle the bool.
 
-<figure><img src="../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (34) (1).png" alt=""><figcaption></figcaption></figure>
 
 You also have `ServerOnly` attribute at your disposal to strip and ensure methods are only ever executed by server.
 

@@ -7,7 +7,7 @@ Tests are setup with 1 editor as a server and 1 editor as a client (made with Pa
 All tests were performed in the exact same project.
 
 **Tests carried out with the following setup**\
-**-** Exact same [MonoBehaviour script](https://gist.github.com/BobsiUnity/9e7379e7f6018ed10b32fa9460d0fe0e) used to move, rotate and scale objects\
+&#xNAN;**-** Exact same [MonoBehaviour script](https://gist.github.com/BobsiUnity/9e7379e7f6018ed10b32fa9460d0fe0e) used to move, rotate and scale objects\
 \- Network Systems own network transform added to all objects\
 \- Default Network Transform settings on all objects
 

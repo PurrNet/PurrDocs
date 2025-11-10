@@ -49,6 +49,6 @@ Unloading scenes with PurrNet is as easy as calling the unload of the scene, sim
 networkManager.sceneModule.UnloadSceneAsync("sceneName");
 ```
 
-<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption><p>Overloads for UnloadSceneAsync</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12) (1).png" alt=""><figcaption><p>Overloads for UnloadSceneAsync</p></figcaption></figure>
 
 The [UnloadSceneOptions](https://docs.unity3d.com/ScriptReference/SceneManagement.UnloadSceneOptions.html) are a Unity class, which by default is None when using the UnloadSceneAsync.

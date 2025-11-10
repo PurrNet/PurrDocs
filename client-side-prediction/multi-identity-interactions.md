@@ -1,7 +1,3 @@
----
-icon: link
----
-
 # Interacting With Multiple Identities
 
 Many features require one predicted identity to read or affect another (e.g., projectiles applying knockback, an ability system modifying player state, or a shared input bus). This guide covers safe, deterministic patterns to discover, read, and modify other identities and their input.
@@ -10,14 +6,12 @@ Many features require one predicted identity to read or affect another (e.g., pr
 
 **Discovery and References**
 
-- Prefer stable handles over direct `GameObject` references when objects can be created/destroyed under prediction.
-- Use the Predicted Hierarchy to resolve components from IDs:
-
-  - `TryCreate(...)` / `Create(...)` → returns `PredictedObjectID`
-  - `GetComponent<T>(PredictedObjectID?)` → resolve an identity or component at runtime
-  - `TryGetId(GameObject, out PredictedObjectID)` → convert a known object into a stable ID
-
-- For long‑lived relationships, store `PredictedObjectID` in your `STATE` so it survives rollback/replay.
+* Prefer stable handles over direct `GameObject` references when objects can be created/destroyed under prediction.
+* Use the Predicted Hierarchy to resolve components from IDs:
+  * `TryCreate(...)` / `Create(...)` → returns `PredictedObjectID`
+  * `GetComponent<T>(PredictedObjectID?)` → resolve an identity or component at runtime
+  * `TryGetId(GameObject, out PredictedObjectID)` → convert a known object into a stable ID
+* For long‑lived relationships, store `PredictedObjectID` in your `STATE` so it survives rollback/replay.
 
 ```csharp
 public struct AbilityState : IPredictedData<AbilityState>
@@ -34,8 +28,8 @@ var targetCtrl = predictionManager.hierarchy.GetComponent<MyController>(state.ta
 
 **Reading and Writing Another Identity’s STATE**
 
-- You may read or modify another identity’s state during simulation. Keep it deterministic and do it only while simulating.
-- Access the other identity as its concrete type and mutate via its `currentState`:
+* You may read or modify another identity’s state during simulation. Keep it deterministic and do it only while simulating.
+* Access the other identity as its concrete type and mutate via its `currentState`:
 
 ```csharp
 // inside Simulate(...)
@@ -49,15 +43,15 @@ if (target != null)
 
 Tips:
 
-- Only mutate in `Simulate`/`LateSimulate` (the simulation phase). You can annotate helpers with `[SimulationOnly]` to ensure they only run while simulating.
-- Keep inter‑identity logic order‑independent when possible. If order matters, consolidate logic into a single orchestrator identity.
+* Only mutate in `Simulate`/`LateSimulate` (the simulation phase). You can annotate helpers with `[SimulationOnly]` to ensure they only run while simulating.
+* Keep inter‑identity logic order‑independent when possible. If order matters, consolidate logic into a single orchestrator identity.
 
 ***
 
 **Using Another Identity’s Input**
 
-- You can read another identity’s input for the current tick via its `currentInput` (for identities with input).
-- Use this sparingly; prefer sharing intent/state rather than raw input when possible.
+* You can read another identity’s input for the current tick via its `currentInput` (for identities with input).
+* Use this sparingly; prefer sharing intent/state rather than raw input when possible.
 
 ```csharp
 var player = predictionManager.hierarchy.GetComponent<PlayerController>(state.player);
@@ -74,7 +68,7 @@ Note: Do not attempt to modify another identity’s input history. Instead, muta
 
 **Cross‑Identity Events**
 
-- Use `PredictedEvent`/`PredictedEvent<T>` for view‑safe eventing across identities. Events only invoke when it’s valid to do so (server, owner while not replaying, or verified client), preventing double‑fire during replays.
+* Use `PredictedEvent`/`PredictedEvent<T>` for view‑safe eventing across identities. Events only invoke when it’s valid to do so (server, owner while not replaying, or verified client), preventing double‑fire during replays.
 
 ```csharp
 // In an identity
@@ -91,22 +85,22 @@ void SimulateHit()
 
 **Ownership and Control**
 
-- If you only want the controller/owner to make a change, gate logic with `isController` or `IsOwner()`.
-- For player‑centric lookups and events, use `predictionManager.players` to iterate or react to players joining/leaving.
+* If you only want the controller/owner to make a change, gate logic with `isController` or `IsOwner()`.
+* For player‑centric lookups and events, use `predictionManager.players` to iterate or react to players joining/leaving.
 
 ***
 
 **Create/Destroy + IDs**
 
-- When spawning transient objects (e.g., projectiles), capture their `PredictedObjectID` in the originating identity’s `STATE` if you’ll need to interact with them later.
-- Use the Hierarchy to `Delete(id)` deterministically when cleaning up.
+* When spawning transient objects (e.g., projectiles), capture their `PredictedObjectID` in the originating identity’s `STATE` if you’ll need to interact with them later.
+* Use the Hierarchy to `Delete(id)` deterministically when cleaning up.
 
 ***
 
 **Ordering and Determinism**
 
-- The manager updates identities in a consistent order (by object ID then component ID). Avoid relying on a specific order for correctness.
-- If strict ordering is required (e.g., system A before B), move the shared mutation into a single identity (an aggregator) and have others read the outcome.
+* The manager updates identities in a consistent order (by object ID then component ID). Avoid relying on a specific order for correctness.
+* If strict ordering is required (e.g., system A before B), move the shared mutation into a single identity (an aggregator) and have others read the outcome.
 
 ***
 
@@ -132,4 +126,3 @@ public class Projectile : PredictedIdentity<ProjectileState>
     }
 }
 ```
-

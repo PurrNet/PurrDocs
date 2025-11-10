@@ -20,8 +20,8 @@ description: >-
 * [x] [Network Profiler tool](../systems-and-modules/bandwidth-profiler.md)
 * [x] Improved logging
 * [x] Lag compensation component ([collider rollback](../systems-and-modules/collider-rollback.md))
-* [x] [Predicted state machine](../tools/client-side-prediction/predicted-state-machine/)
-* [x] [Client Side Prediction](../tools/client-side-prediction/)
+* [x] [Predicted state machine](../client-side-prediction/predicted-state-machine/)
+* [x] [Client Side Prediction](../client-side-prediction/)
 * [x] Delta serialization
 * [x] Easy packet compression
 * [x] [Authentication](../systems-and-modules/network-manager/authentication.md)
