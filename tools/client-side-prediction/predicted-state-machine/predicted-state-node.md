@@ -13,8 +13,27 @@ These can override a few different methods, in order for you to run functionalit
 
 * `Enter` This is optimal for running simulation logic upon entering the state
 * `Exit` This is optimal for running simulation logic upon exiting the state
-* `StateSimulate` This is essentially your Simulate method, but it only runs when the state is active
-* `ViewEnter` Here you will run view/visual logic upon entering the state
-* `ViewExit` Here you will run view/visual logic upon exiting the state
+* `StateSimulate` This is your per‑tick state simulation; runs only when this state is active
+* `ViewEnter` Run view/visual logic upon entering the state (predicted or verified)
+* `ViewExit` Run view/visual logic upon exiting the state (predicted or verified)
 
 Mind you, you still have the normal predicted identity override as well!
+
+### Snippet
+
+```csharp
+public class AttackState : PredictedStateNode<MyInput, MyState>
+{
+    public override void Enter() { /* start attack windup */ }
+
+    protected override void StateSimulate(in MyInput i, ref MyState s, float dt)
+    {
+        // simulate attack timing using only s and i
+        s.attackTimer = Mathf.Max(0, s.attackTimer - dt);
+        if (s.attackTimer == 0) machine.SetState(nextState);
+    }
+
+    public override void ViewEnter(bool verified)
+    { /* play VFX/SFX, camera shake, etc */ }
+}
+```

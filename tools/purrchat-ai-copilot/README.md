@@ -30,7 +30,7 @@ What if instead you could just ask? Always available. Always grounded in the off
 
 ## How PurrChat helps
 
-* “Netcode is hard.” PurrChat turns vague theory into clear, working patterns.
+* "Netcode is hard." PurrChat turns vague theory into clear, working patterns.
 * Server vs client authority? Understand trade-offs and when to use each.
 * Prediction headaches? Get structured controllers that reduce input latency the right way.
 * Smooth owners, jittery others? Fix interpolation and prediction mismatches in minutes.
@@ -59,12 +59,12 @@ Questions or support? Join our Discord: https://discord.gg/NP9tP9Qx9R
 
 ## Ready-to-ask prompts
 
-* “Explain server authority vs client authority in PurrNet. Which should I use for \[my mechanic], and why?”
-* “Create a minimal client-side prediction controller for \[movement], with Simulate() logic and UpdateView() visuals.”
-* “Owned player is smooth; non-owned players jitter. Show me the correct view/interpolation setup and where I likely went wrong.”
-* “Observed players rollback when I use prediction. Audit my state vs view responsibilities and fix the rollback cause.”
-* “What belongs in my predicted state for a melee combo system? What must stay out (and where do I put it)?”
-* “How do I build a lobby with the Lobby System and then move players into a game scene?”
-* “Why is my async RPC not returning on the client? Show the correct async RPC pattern with return values.”
+* "Explain server authority vs client authority in PurrNet. Which should I use for \[my mechanic], and why?"
+* "Create a minimal client-side prediction controller for \[movement], with Simulate() logic and UpdateView() visuals."
+* "Owned player is smooth; non-owned players jitter. Show me the correct view/interpolation setup and where I likely went wrong."
+* "Observed players rollback when I use prediction. Audit my state vs view responsibilities and fix the rollback cause."
+* "What belongs in my predicted state for a melee combo system? What must stay out (and where do I put it)?"
+* "How do I build a lobby with the Lobby System and then move players into a game scene?"
+* "Why is my async RPC not returning on the client? Show the correct async RPC pattern with return values."
 
 ***

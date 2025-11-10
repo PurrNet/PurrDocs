@@ -1,20 +1,64 @@
 # State Handling
 
-State handling is at the core of the Client-Side Prediction (CSP) system. The `STATE` struct represents the current state of your entity, and it is the primary source of truth for all simulation logic. Here’s what you need to know about state handling:
+`STATE` is the single source of truth for your simulation. PurrDiction records, reconciles, and interpolates states so clients stay responsive while remaining consistent with server authority.
 
 ***
 
-**Key Concepts**
+**Requirements**
 
-1. **`STATE` as the Source of Truth**:
-   * The `STATE` struct contains all the data that defines the entity's current state (e.g., position, rotation, velocity, flags like `isJumping`).
-   * This is the data you should rely on for all simulation logic.
-2. **Automatic Reconciliation**:
-   * The CSP system automatically reconciles the `STATE` with the server's authoritative state.
-   * If the client's predicted state differs from the server's state, the system will adjust the `STATE` to match the server's version.
-3. **Proxying Unity State**:
-   * If your `STATE` affects Unity components (e.g., `Transform`, `Rigidbody`), use the following overrides to synchronize them:
-     * **`protected override void GetUnityState(ref STATE state)`**:
-       * Updates the `STATE` struct with data from Unity components (e.g., reading the `Transform.position`).
-     * **`protected override void SetUnityState(STATE state)`**:
-       * Applies the `STATE` to Unity components (e.g., setting the `Transform.position`).
+- `STATE` must be a struct implementing `IPredictedData<STATE>` (which extends `IMath<STATE>` and `IPackedAuto`).
+- Provide deterministic math on your state via `IMath<T>` methods (the default linear interpolation uses `Add`, `Scale`, `Negate`).
+
+***
+
+**What Goes in STATE**
+
+- Simulation‑critical data only: positions, rotations, velocities, timers, flags; anything that affects future ticks.
+- Do not store transient view data; compute those in `UpdateView`.
+
+***
+
+**Lifecycle and Reconciliation**
+
+- Simulation loop writes `currentState` each tick.
+- PurrDiction saves snapshots and reconciles against server frames as they arrive.
+- On rollback:
+  - `ReadState` loads the verified snapshot.
+  - `Rollback(tick)` applies it and calls `SetUnityState(state)` for external components.
+  - `UpdateRollbackInterpolationState(delta, accumulateError)` adjusts view smoothing.
+
+Unity bridging:
+
+- `protected override void GetUnityState(ref STATE state)` — Read Unity → STATE when needed.
+- `protected override void SetUnityState(STATE state)` — Write STATE → Unity on rollback.
+
+***
+
+**View vs Verified**
+
+- `viewState` is the smoothed state to render this frame.
+- `verifiedState` exposes the most recent authoritative snapshot, when present.
+- Override `UpdateView(STATE viewState, STATE? verified)` to drive visuals.
+- Call `ResetInterpolation()` to clear accumulated error (e.g., teleports).
+
+***
+
+**Example: Minimal STATE**
+
+```csharp
+public struct MyState : IPredictedData<MyState>
+{
+    public Vector3 pos; public Quaternion rot;
+    public void Dispose() {}
+    // IMath<MyState> default ops come from packer codegen; override Interpolate if non-linear
+}
+
+public class Mover : PredictedIdentity<MyState>
+{
+    protected override MyState GetInitialState() => new MyState { pos = transform.position, rot = transform.rotation };
+    protected override void GetUnityState(ref MyState s) { s.pos = transform.position; s.rot = transform.rotation; }
+    protected override void SetUnityState(MyState s) { transform.SetPositionAndRotation(s.pos, s.rot); }
+    protected override void Simulate(ref MyState s, float dt) { /* mutate s deterministically */ }
+    protected override void UpdateView(MyState view, MyState? verified) { transform.SetPositionAndRotation(view.pos, view.rot); }
+}
+```

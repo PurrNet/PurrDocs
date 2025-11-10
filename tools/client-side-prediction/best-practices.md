@@ -121,6 +121,21 @@ protected override void SetUnityState(MyState state)
 
 ***
 
+**7. Implement `IDuplicate<T>` on Complex Structs**
+
+- PurrDiction copies states frequently for history and reconciliation.
+- If your `STATE` contains nested complex structs, implement `IDuplicate<T>` on those types so the packer can clone them without serialize/deserialize overhead.
+- Also implement `IEquatable<T>` to speed up delta/equality checks.
+
+***
+
+**8. Prefer Inspector Labels in Docs**
+
+- Use the Inspector’s friendly labels in guidance (e.g., Interpolation Settings, Float Accuracy).
+- Code still references exact identifiers; search by label or identifier as needed.
+
+***
+
 #### Summary of Best Practices
 
 | **Practice**                            | **Why It Matters**                                                              |

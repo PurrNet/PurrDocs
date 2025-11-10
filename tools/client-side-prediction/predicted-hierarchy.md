@@ -67,3 +67,21 @@ The `Predicted Hierarchy` system provides a set of methods for dynamically creat
        ```csharp
        public bool TryGetGameObject(PredictedObjectID? id, out GameObject go);
        ```
+
+**Prefabs and Pooling**
+
+- Predicted object creation uses a central `PredictedPrefabs` asset referenced by `PredictionManager`.
+- Prefabs can opt into pooling; pooled instances are kept under a hidden parent for fast reuse.
+- When reconciling, pooled objects may be disabled/enabled; avoid parenting critical visuals to the root identity if you rely on `SetActive` state — or use `PredictedTransform`’s optional graphics unparenting.
+
+**Spawning Network Identities**
+
+- Use `PredictedIdentitySpawner` to mirror a set of `NetworkIdentity` objects between server and clients based on prediction state.
+- Mark spawner with `[PredictionUnsafe]` since it orchestrates side‑effects outside deterministic simulation.
+- The spawner coordinates early spawn, observer assignment, ownership, and finalization in both server and verified client passes.
+
+**Best Practices**
+
+- Only create/destroy from within simulation code paths (or via machine/state transitions) to keep behavior deterministic under replay.
+- Prefer `TryCreate` and check the boolean to handle invalid or unregistered prefabs gracefully.
+- Store and pass around `PredictedObjectID` rather than `GameObject` to remain resilient across rollbacks.
