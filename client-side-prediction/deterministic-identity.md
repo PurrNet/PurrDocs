@@ -8,7 +8,7 @@
 
 * Systems that can produce identical results on all machines from the same inputs (e.g., strategy sim, deterministic AI, fixed math gameplay).
 
-If you don’t require strict bit‑determinism, prefer `PredictedIdentity<STATE>` for simpler float‑based logic.
+If you don’t require strict bit‑determinism, prefer [`PredictedIdentity<STATE>`](predicted-identities.md) for simpler float‑based logic.
 
 ***
 

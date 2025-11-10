@@ -6,7 +6,7 @@ The **Client-Side Prediction (CSP)** system is designed to provide a seamless an
 
 1. **PredictionManager**:
    * Acts as the central "world" for client-side prediction.
-   * Manages all predicted entities and systems.
+   * Manages all predicted entities and systems within the scene it resides.
    * Handles the lifecycle of predicted states, including prediction, reconciliation, and view updates.
 2. **PredictedIdentity**:
    * Unity components that define the behavior of predicted entities.
@@ -32,4 +32,3 @@ The **Client-Side Prediction (CSP)** system is designed to provide a seamless an
 
 * **Prediction Errors**: Incorrect predictions may require corrections, which can occasionally result in visual "snapping" or adjustments.
 * **Complexity**: While the system simplifies networking, it introduces new challenges in managing predicted states and reconciliation.
-
