@@ -39,6 +39,7 @@
     * [Local Transport](systems-and-modules/transports/local-transport.md)
     * [Steam Transport](systems-and-modules/transports/steam-transport.md)
     * [Purr Transport](systems-and-modules/transports/purr-transport.md)
+    * [EOS Transport (Community)](systems-and-modules/transports/eos-transport-community.md)
     * [Simulating latency](systems-and-modules/transports/simulating-latency.md)
   * [Network Identity](systems-and-modules/network-identity/README.md)
     * [Ownership](systems-and-modules/network-identity/ownership.md)
