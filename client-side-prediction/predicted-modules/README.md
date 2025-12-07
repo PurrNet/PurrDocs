@@ -6,6 +6,9 @@ description: Non-mono bound predicted code for maximum flexibility
 
 {% hint style="warning" %}
 This is new functionality and currently only available on the dev branch. Once it's been tested, it'll be released fully.
+
+This was introduced in 1.2.2-beta.3\
+In case you don't see the functionality, ensure you are at least on this version of PurrDiction
 {% endhint %}
 
 The PredictedModule system allows you to encapsulate specific game logic and state into reusable, self-contained units. Instead of writing a `PredictedIdentity` that handles singular logic like timers, inventory, health, and such all in one script, you can break these features down into individual modules.
