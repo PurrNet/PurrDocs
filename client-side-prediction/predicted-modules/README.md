@@ -7,7 +7,7 @@ description: Non-mono bound predicted code for maximum flexibility
 {% hint style="warning" %}
 This is new functionality and currently only available on the dev branch. Once it's been tested, it'll be released fully.
 
-This was introduced in 1.2.2-beta.3\
+This was introduced in 1.2.2-beta.4\
 In case you don't see the functionality, ensure you are at least on this version of PurrDiction
 {% endhint %}
 
