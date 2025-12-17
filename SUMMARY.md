@@ -158,3 +158,4 @@
   * [👿 Cirque de Slay](made-with-purrnet/cirque-de-slay.md)
   * [👖 Pantless](made-with-purrnet/pantless.md)
   * [🐟 Glorb](made-with-purrnet/glorb.md)
+* [API Documentation](api-documentation.md)
