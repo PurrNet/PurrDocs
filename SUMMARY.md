@@ -62,6 +62,8 @@
       * [SyncHashset](systems-and-modules/network-modules/sync-types/synchashset.md)
       * [SyncTimer](systems-and-modules/network-modules/sync-types/synctimer.md)
       * [SyncInput](systems-and-modules/network-modules/sync-types/syncinput.md)
+    * [SyncBigData](systems-and-modules/network-modules/syncbigdata/README.md)
+      * [SyncTextureFile](systems-and-modules/network-modules/syncbigdata/synctexturefile.md)
   * [Remote Procedure Calls](systems-and-modules/remote-procedure-call-rpc/README.md)
     * [Generic RPC](systems-and-modules/remote-procedure-call-rpc/generic-rpc.md)
     * [Static RPC](systems-and-modules/remote-procedure-call-rpc/static-rpc.md)
