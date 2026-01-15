@@ -10,7 +10,7 @@ description: >-
 * [ ] Client owned scenes
 * [ ] Deterministic physics for prediction
 * [ ] Easy network conversion tools (Code)
-* [ ] Epic Games Transport
+* [x] Epic Games Transport (EOS)
 * [x] [Network Any Asset](../systems-and-modules/network-manager/network-assets.md)
 * [x] PurrNet Plug-n-play [**voice chat**](../tools/purrvoice-voice-chat/)
 * [x] Plug-n-play prediction components
