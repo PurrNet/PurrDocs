@@ -7,6 +7,8 @@ description: >-
 # 🗺️ Roadmap
 
 * [ ] Easy network conversion tools (Components)
+* [ ] Addressables support
+* [ ] Host migration
 * [ ] Client owned scenes
 * [ ] Deterministic physics for prediction
 * [ ] Easy network conversion tools (Code)
