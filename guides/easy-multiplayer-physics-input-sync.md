@@ -2,6 +2,14 @@
 
 The easiest way (in my humble opinion) to add physics interactions in multiplayer, is to use Input Synchronizing. The most popular alternative is Client Side Prediction (CSP). Both have their pros and cons.
 
+{% hint style="info" %}
+If you need physics in multiplayer, you might want to read the [Physics In Multiplayer](physics-in-multiplayer.md) page to see your options.
+{% endhint %}
+
+{% hint style="warning" %}
+\[Old] This can be done much easier now by utilizing the [SyncInput](../systems-and-modules/network-modules/sync-types/syncinput.md) network module!
+{% endhint %}
+
 {% embed url="https://youtu.be/Nvc8CaAEJis" %}
 Guide going over implementing Input Synchronization with PurrNet
 {% endembed %}
@@ -135,4 +143,3 @@ private struct InputData
     public bool jump;
 }
 ```
-
