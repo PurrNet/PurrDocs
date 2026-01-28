@@ -10,6 +10,8 @@ This component allows you to very easily utilize the Rigidbody over the network.
 If you need physics in multiplayer, you might want to read the [Physics In Multiplayer](../guides/physics-in-multiplayer.md) page
 {% endhint %}
 
+{% embed url="https://youtu.be/cCeHzBMch58" %}
+
 ### Settings
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
