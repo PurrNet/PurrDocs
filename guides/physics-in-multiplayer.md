@@ -4,7 +4,7 @@ Networking physics is a tricky thing. Things need to align, collisions should be
 
 There are essentially 3 main ways you can get physics to work with PurrNet. Which one is best, entirely depends on your use case and experience as a developer!
 
-<table><thead><tr><th width="123">Method</th><th>Network Rigidbody</th><th>Input Sync</th><th>PurrDiction (CSP)</th></tr></thead><tbody><tr><td><a data-footnote-ref href="#user-content-fn-1">Workflow</a></td><td>Plug n play</td><td>Very easy</td><td>Hard</td></tr><tr><td><a data-footnote-ref href="#user-content-fn-2">Responsive</a></td><td>✅</td><td>❌</td><td>✅</td></tr><tr><td><a data-footnote-ref href="#user-content-fn-3">Competitive</a></td><td>❌</td><td>✅</td><td>✅</td></tr></tbody></table>
+<table><thead><tr><th width="123">Method</th><th>Network Rigidbody</th><th>Input Sync</th><th>PurrDiction (CSP)</th></tr></thead><tbody><tr><td><a data-footnote-ref href="#user-content-fn-1">Workflow</a></td><td>Plug n play</td><td>Very easy</td><td>Hard</td></tr><tr><td><a data-footnote-ref href="#user-content-fn-2">Responsive</a></td><td>✅</td><td>❌</td><td>✅</td></tr><tr><td><a data-footnote-ref href="#user-content-fn-3">Competitive</a></td><td>❌</td><td>✅</td><td>✅</td></tr><tr><td><a data-footnote-ref href="#user-content-fn-4">Result quality</a></td><td>3/5</td><td>5/5</td><td>4/5</td></tr></tbody></table>
 
 As you can see from the matrix above, there isn't one solution that has everything. And of course there are more depth to the answers, which you can read below.
 
@@ -37,3 +37,5 @@ It is very important to note that PurrDiction is essentially it's own networking
 [^2]: Whether it has input lag
 
 [^3]: Can be used for competitive fairness
+
+[^4]: How consistent will the results match across all screens
