@@ -49,6 +49,6 @@ namespace YourNamespace
 
 To use your custom authenticator add it somewhere on your scene as a component and link it to your network manager like so:
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Congratulations! You've successfully created a custom authenticator in PurrNet. This allows you to control access to your multiplayer game more securely and flexibly. Experiment with different types of authenticators and tailor them to fit your specific requirements.

@@ -26,7 +26,7 @@ All the tests include 100 NT’s in the scene. The only thing that is modified b
 * FishNet vs. NetCode → 46.38% lower usage
 * Mirror vs. NetCode → 24.96% lower usage
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Average Usage
 
@@ -57,7 +57,7 @@ Download and Upload speed is the same, because both editors are represented. The
 
 ### Mirror 93.0.1 (Unreliable NT)
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### FishNet 4.5.6R Pro
 

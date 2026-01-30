@@ -34,7 +34,7 @@ Go your your top toolbar: `Tools > PurrNet > Addon Library` and click `Install` 
 
 To help you get started we have setup a menu item that allows you to verify all the required dependencies and also help guide you to properly install them or remind you to open required tools.
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 But to give you a summary you need these tools:
 
@@ -48,7 +48,7 @@ For more details checkout [Edegap's documentation](https://app.gitbook.com/u/2sV
 
 When Edgegap is properly installed a little box will show up for supported transport that let's you toggle on or off the auto configuration of these transports.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The auto configuration will detect when inside an Edgegap environment automatically and use environment variables to automatically setup the correct ports and even SSL settings on your behalf. The client still needs to properly configure these but you can rest assured that the server is handled.
 
@@ -70,7 +70,7 @@ Feel free to checkout [Edgegap's documentation](https://docs.edgegap.com/learn/u
 
 First, you want to open Edgegap's editor window.
 
-<div align="left"><figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 Then fill in your token:
 
