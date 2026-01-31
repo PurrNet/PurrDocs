@@ -96,9 +96,20 @@ This code is modified from the Unity documentation on [CharacterController.Move]
 [SerializeField] float gravity = -10f;
 [SerializeField] float jumpHeight = 1f;
 
+private bool bool IsGrounded() {
+    // controller.isGrounded is weird, dont use it
+    return Physics.SphereCast(
+        transform.position - Vector3.up * (controller.height / 2 - 0.1f),
+        controller.radius - 0.05f,
+        Vector3.down,
+        out _,
+        0.2f
+    );
+}
+
 protected override void Simulate(PredictedCharacterControllerInput input, ref PredictedCharacterControllerState state, float delta)
 {
-    bool groundedPlayer = controller.isGrounded;
+    bool groundedPlayer = IsGrounded();
     if (groundedPlayer && state.Velocity.y < 0)
     {
         state.Velocity.y = 0f;
@@ -165,10 +176,20 @@ public class PredictedCharacterController : PredictedIdentity<PredictedCharacter
         input.Movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         input.Jump |= Input.GetKeyDown(KeyCode.Space);
     }
+    
+    private bool bool IsGrounded() {
+        return Physics.SphereCast(
+            transform.position - Vector3.up * (controller.height / 2 - 0.1f),
+            controller.radius - 0.05f,
+            Vector3.down,
+            out _,
+            0.2f
+        );
+    }
 
     protected override void Simulate(PredictedCharacterControllerInput input, ref PredictedCharacterControllerState state, float delta)
     {
-        bool groundedPlayer = controller.isGrounded;
+        bool groundedPlayer = IsGrounded();
         if (groundedPlayer && state.Velocity.y < 0)
         {
             state.Velocity.y = 0f;
