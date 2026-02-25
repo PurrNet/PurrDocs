@@ -33,7 +33,7 @@ For every **StateNode** that you make, you can add that to your scene as well. I
 
 ### State Nodes
 
-State nodes are what you know as your states. There are 2 kinds of state notes. Those that expect data, and those that don't.
+State nodes are what you know as your states. There are 2 kinds of state nodes. Those that expect data, and those that don't.
 
 First off, in order to have a state node, you need a new script which inherits from **StateNode** or **StateNode\<T>** depending on whether the state expects data or not.
 
