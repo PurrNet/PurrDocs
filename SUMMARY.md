@@ -128,6 +128,7 @@
   * [Network State Machine](plug-n-play-components/state-machine-auto-networked.md)
   * [Network Audio Source](plug-n-play-components/network-audio-source.md)
 * [🎮 Full game guides](full-game-guides/README.md)
+  * [📈 Incremental Game Sample](full-game-guides/incremental-game-sample.md)
   * [🔫 First Person Shooter](full-game-guides/first-person-shooter.md)
   * [🪓 Survival Game](full-game-guides/survival-game.md)
 * [✊ Community Guides](community-guides/README.md)
