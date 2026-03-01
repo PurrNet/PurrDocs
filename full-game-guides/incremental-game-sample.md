@@ -22,6 +22,8 @@ The setup is built so it's easy to scale on the core elements such as:
 * New Unity input system
 * PurrNet
 
+#### _<mark style="color:orange;">\[VIDEO GOES HERE]</mark>_
+
 ### Install instructions
 
 Coming soon
