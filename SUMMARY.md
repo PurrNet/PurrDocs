@@ -78,6 +78,7 @@
   * [Collider Rollback (Lag compensation)](systems-and-modules/collider-rollback.md)
   * [BitPacker (Serialization)](systems-and-modules/bitpacker-serialization/README.md)
     * [Networking custom classes, structs & types](systems-and-modules/bitpacker-serialization/networking-custom-classes-structs-and-types.md)
+    * [Async Serialization (packing)](systems-and-modules/bitpacker-serialization/async-serialization-packing.md)
     * [Delta Packers](systems-and-modules/bitpacker-serialization/delta-packers.md)
   * [Code stripping](systems-and-modules/code-stripping.md)
   * [Bandwidth Profiler](systems-and-modules/bandwidth-profiler.md)
