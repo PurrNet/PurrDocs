@@ -1,4 +1,5 @@
 ---
+description: PurrNet networking sample for an incremental game
 hidden: true
 ---
 
@@ -13,6 +14,13 @@ The setup is built so it's easy to scale on the core elements such as:
 * Upgrades that are based on scriptables.&#x20;
 * Player which is ran by state machine logic
 * Resource spawning which is fully modular and layer based.
+
+**Used in this sample:**
+
+* Kenney.nl for visual assets
+* Cinemachine
+* New Unity input system
+* PurrNet
 
 ### Install instructions
 
