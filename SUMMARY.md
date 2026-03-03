@@ -150,6 +150,7 @@
   * [Channels](terminology/channels.md)
   * [Client Auth/Everyone (Unsafe)](terminology/client-auth-everyone-unsafe.md)
   * [Host](terminology/host.md)
+  * [Owner Auth](terminology/owner-auth.md)
   * [Server Auth (Safe)](terminology/server-auth-safe.md)
   * [PlayerID](terminology/playerid-client-connection.md)
   * [Controller](terminology/controller.md)
