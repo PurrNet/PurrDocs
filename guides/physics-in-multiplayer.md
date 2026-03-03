@@ -40,7 +40,7 @@ It is very important to note that PurrDiction is essentially it's own networking
 
 [^4]: How consistent will the results match across all screens for gameplay
 
-[^5]: 
+[^5]: You should utilize this component for easy smooth visual physics, and not rely on this for gameplay precision. The other techniques are superior on that front.
 
 [^6]: It will never desync as the simulation is always located on a single machine (the server)
 
