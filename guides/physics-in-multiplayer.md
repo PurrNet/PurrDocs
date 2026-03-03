@@ -44,7 +44,7 @@ It is very important to note that PurrDiction is essentially it's own networking
 
 [^6]: It will never desync as the simulation is always located on a single machine (the server)
 
-[^7]: Depends on ping, but it'll stay responsive regardless.
+[^7]: The simulation will correct itself to be solid for gameplay and stay responsive regardless of ping.
 
 [^8]: How smooth things will be visually and feel for the client
 
