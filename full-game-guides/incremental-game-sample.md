@@ -25,7 +25,7 @@ The setup is built so it's easy to scale on the core elements such as:
 
 ### Install instructions
 
-1. Clone or download the [Github reposotitory](https://github.com/PurrNet/PurrNet-Incremental-Sample) ([https://github.com/PurrNet/PurrNet-Incremental-Sample](https://github.com/PurrNet/PurrNet-Incremental-Sample))
+1. Clone or download the [Github repository](https://github.com/PurrNet/PurrNet-Incremental-Sample) ([https://github.com/PurrNet/PurrNet-Incremental-Sample](https://github.com/PurrNet/PurrNet-Incremental-Sample))
 2. Open the project in Unity
 3. Open `Scenes/GameScene`
 4. Press Play. You should see your player spawn, be able to run around, chop trees, suck up loot and dump it at your base
