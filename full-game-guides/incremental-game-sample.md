@@ -1,6 +1,5 @@
 ---
 description: PurrNet networking sample for an incremental game
-hidden: true
 ---
 
 # 📈 Incremental Game Sample
@@ -22,7 +21,7 @@ The setup is built so it's easy to scale on the core elements such as:
 * New Unity input system
 * PurrNet
 
-#### _<mark style="color:orange;">\[VIDEO GOES HERE]</mark>_
+{% embed url="https://youtu.be/aX1gUZgG3Ig" %}
 
 ### Install instructions
 
