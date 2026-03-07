@@ -12,7 +12,7 @@ description: >-
 * [ ] Deterministic physics for prediction
 * [ ] Easy network conversion tools (Code)
 * [ ] Network Transform V2
-* [x] Addressables support
+* [x] [Addressables](../systems-and-modules/addressables/) support (scenes, objects, RPC's)
 * [x] [Async serialization](../systems-and-modules/bitpacker-serialization/async-serialization-packing.md) (async packing)
 * [x] Epic Games Transport (EOS)
 * [x] [Network Any Asset](../systems-and-modules/network-manager/network-assets.md)
