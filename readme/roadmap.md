@@ -8,7 +8,6 @@ description: >-
 
 * [ ] Host migration
 * [ ] Client owned scenes
-* [ ] PurrVoice (FMOD support)
 * [ ] PurrVoice (WWise support)
 * [ ] Deterministic physics for prediction
 * [ ] Network visualization tooling
@@ -16,6 +15,7 @@ description: >-
 * [ ] Network Pipe logic (local transporting layer to components)
 * [ ] PurrDiction sample
 * [ ] Network Transform V2
+* [x] PurrVoice (FMOD support)
 * [x] Easy network conversion tools (Components)
 * [x] Easy network conversion tools (Code)
 * [x] [Full game sample](../full-game-guides/incremental-game-sample.md) (w. source code)
