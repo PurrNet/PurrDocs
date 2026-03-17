@@ -6,14 +6,14 @@ description: >-
 
 # 🗺️ Roadmap
 
+* [ ] [Network visualization tooling](#user-content-fn-1)[^1]
+* [ ] [Network Pipe logic (local transporting layer to components)](#user-content-fn-2)[^2]
+* [ ] PurrLobby V2
+* [ ] PurrDiction sample
 * [ ] Host migration
 * [ ] Client owned scenes
 * [ ] PurrVoice (WWise support)
 * [ ] Deterministic physics for prediction
-* [ ] Network visualization tooling
-* [ ] PurrLobby V2
-* [ ] Network Pipe logic (local transporting layer to components)
-* [ ] PurrDiction sample
 * [ ] Network Transform V2
 * [x] PurrVoice (FMOD support)
 * [x] Easy network conversion tools (Components)
@@ -49,3 +49,7 @@ description: >-
 * [x] [SyncEvent ](../systems-and-modules/network-modules/sync-types/syncevent.md)(Auto network invoked events)
 * [x] Auto serialization
 * [x] Awaitable Coroutines
+
+[^1]: In scene visualization for things such as data usage heatmaps, or clear ownership visualization
+
+[^2]: Allowing individual components to move data through unique transport layers for much more flexibility and scalability
