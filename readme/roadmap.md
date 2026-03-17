@@ -6,12 +6,17 @@ description: >-
 
 # 🗺️ Roadmap
 
-* [ ] Easy network conversion tools (Components)
 * [ ] Host migration
 * [ ] Client owned scenes
 * [ ] Deterministic physics for prediction
-* [ ] Easy network conversion tools (Code)
+* [ ] Network visualization tooling
+* [ ] PurrLobby V2
+* [ ] Network Pipe logic (local transporting layer to components)
+* [ ] PurrDiction sample
 * [ ] Network Transform V2
+* [ ] Easy network conversion tools (Components)
+* [ ] Easy network conversion tools (Code)
+* [x] [Full game sample](../full-game-guides/incremental-game-sample.md) (w. source code)
 * [x] [Addressables](../systems-and-modules/addressables/) support (scenes, objects, RPC's)
 * [x] [Async serialization](../systems-and-modules/bitpacker-serialization/async-serialization-packing.md) (async packing)
 * [x] Epic Games Transport (EOS)
