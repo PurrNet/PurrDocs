@@ -16,8 +16,8 @@ description: >-
 * [ ] Network Pipe logic (local transporting layer to components)
 * [ ] PurrDiction sample
 * [ ] Network Transform V2
-* [ ] Easy network conversion tools (Components)
-* [ ] Easy network conversion tools (Code)
+* [x] Easy network conversion tools (Components)
+* [x] Easy network conversion tools (Code)
 * [x] [Full game sample](../full-game-guides/incremental-game-sample.md) (w. source code)
 * [x] [Addressables](../systems-and-modules/addressables/) support (scenes, objects, RPC's)
 * [x] [Async serialization](../systems-and-modules/bitpacker-serialization/async-serialization-packing.md) (async packing)
