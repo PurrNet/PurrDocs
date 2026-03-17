@@ -8,6 +8,8 @@ description: >-
 
 * [ ] Host migration
 * [ ] Client owned scenes
+* [ ] PurrVoice (FMOD support)
+* [ ] PurrVoice (WWise support)
 * [ ] Deterministic physics for prediction
 * [ ] Network visualization tooling
 * [ ] PurrLobby V2
