@@ -4,7 +4,9 @@ icon: chart-network
 
 # Network Modules
 
-NetworkModule is a base class in the PurrNet networking solution that allows you to create modular, network-aware components that are not MonoBehaviours. These modules can be attached to any [NetworkIdentity](../network-identity/), enabling code reuse and clean separation of concerns in your networked game.
+As your multiplayer game grows, you'll quickly find yourself wanting to reuse networking logic across different objects. Maybe multiple enemy types all need a health system, or several different objects share the same sync pattern. Putting all of that into MonoBehaviours can get messy, especially when you want to share logic between objects that don't share a component hierarchy.
+
+NetworkModule is a base class that solves this. It allows you to create modular, network-aware components that are not MonoBehaviours. These modules can be attached to any [NetworkIdentity](../network-identity/), enabling code reuse and clean separation of concerns in your networked game.
 
 {% embed url="https://youtu.be/1gY0oXmiIqo" %}
 
