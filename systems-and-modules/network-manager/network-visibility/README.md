@@ -1,5 +1,7 @@
 # Network Visibility
 
+In any multiplayer game with a larger world, you don't want every player receiving data about every single object at all times. If there are hundreds of objects on the other side of the map that a player can't even see, sending all that data is wasted bandwidth and can hurt performance. Network Visibility lets you control which objects each player actually receives data about, so you only send what matters.
+
 Overall this system deciphers whether the server should send data from a Network Identity to a specific client. The [Network Manager ](../)takes in a network visibility rule-set, and this rule-set consists of rules/conditions.
 
 In the [Network Rules ](../network-rules.md)you can modify the behavior of this as to whether the object is destroyed, de-spawned or simply stays without receiving or sending data.
