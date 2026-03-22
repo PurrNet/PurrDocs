@@ -4,7 +4,9 @@ icon: brain
 
 # Network Manager
 
-The Network Manager is the very core of the network. It acts as the heart and brain of PurrNet, so all settings of your network are setup through your network manager.
+Every multiplayer game needs a central place that manages the connection, keeps track of who's connected, and holds the settings that define how your networking behaves. Without it, you'd have to wire up connections, transports, prefab registration, and rules all manually across different scripts.
+
+The Network Manager is that central place. It acts as the heart and brain of PurrNet, so all settings of your network are setup through your network manager.
 
 Look at the [Installation/Setup](../../getting-started/installation-setup.md) segment for a guide on the setup.
 
