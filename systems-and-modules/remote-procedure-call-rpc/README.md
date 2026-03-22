@@ -4,7 +4,9 @@ icon: phone-flip
 
 # Remote Procedure Calls
 
-In short, an RPC allows you to call a method on another device/machine. If you're on a client and successfully call a ServerRpc, that method will now be called on the server machine and not on the local machine actually calling the method. This makes it very easy to interact with other machines over the network.
+In multiplayer, your game logic runs on multiple machines at the same time. But sometimes one machine needs to tell another to do something. For example, a client wants to tell the server "I just fired my weapon", or the server needs to tell all clients "this player just scored a point". You can't just call a method on another machine the way you would locally.
+
+That's exactly what RPCs (Remote Procedure Calls) are for. An RPC allows you to call a method on another device/machine. If you're on a client and successfully call a ServerRpc, that method will now be called on the server machine and not on the local machine actually calling the method. This makes it very easy to interact with other machines over the network.
 
 {% embed url="https://youtu.be/h2YRwb0RhcA" %}
 
