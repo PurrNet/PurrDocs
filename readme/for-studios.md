@@ -27,6 +27,10 @@ If you're moving from another networking solution, we provide migration planning
 
 If your project needs something that PurrNet doesn't currently offer, we can build it. Your requirements directly shape our roadmap, and you get early access to features built specifically for your use case.
 
+### Custom tooling for studio workflows
+
+Beyond the core library, we're actively building tooling designed to improve multiplayer workflows at scale. Things like better debugging, visualization, and profiling tools that make it easier to manage complex networked projects. Studio partners get exclusive access to these tools, and your feedback helps shape what we build next.
+
 ### Studio-exclusive packages
 
 Studio members get access to advanced networking tools and packages built specifically for production-scale games, not available to the public.
