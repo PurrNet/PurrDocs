@@ -4,7 +4,9 @@ icon: fingerprint
 
 # Network Identity
 
-The Network Identity is the core of most networking logic. This plays into the component based nature of object oriented programming with Unity. The [Network Behaviour](networkbehaviour.md) also inherits from Network Identity, meaning that nearly any script interacting on the network, is also a Network Identity.
+In multiplayer, the server and all clients need to agree on which objects exist and who they belong to. Every networked object needs some way to be uniquely identified across all machines, so that when the server says "update object X", every client knows exactly which object that is. Without this, there's no way to keep the game state consistent.
+
+The Network Identity is what makes this possible, and it's the core of most networking logic. This plays into the component based nature of object oriented programming with Unity. The [Network Behaviour](networkbehaviour.md) also inherits from Network Identity, meaning that nearly any script interacting on the network, is also a Network Identity.
 
 {% embed url="https://youtu.be/rOWmKKToqEw" %}
 
