@@ -1,6 +1,8 @@
 # Pooling
 
-Pooling is the act of re-utilizing prefabs when old ones are no longer being used. In PurrNet you can use pooling with networked objects. The way it works is that when an object is despawned or you lost visibility of it, instead of `Destroying` it, we will store it behind the scenes until you try to spawn another of that thing.
+In games where objects are frequently spawned and destroyed (projectiles, enemies, pickups, etc.), constantly creating and destroying GameObjects is expensive. Each instantiation allocates memory, and each destruction triggers garbage collection, which can cause frame hitches. This gets even worse in multiplayer where spawning and despawning happens more often across all players. Pooling solves this by recycling objects instead of destroying them.
+
+In PurrNet you can use pooling with networked objects. The way it works is that when an object is despawned or you lost visibility of it, instead of `Destroying` it, we will store it behind the scenes until you try to spawn another of that thing.
 
 To can enable pooling on your network prefabs:
 
