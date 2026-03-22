@@ -1,5 +1,7 @@
 # Authentication
 
+If anyone can connect to your game server without verification, you have no way to prevent unauthorized players from joining, and no way to identify who is who. Authentication gives you a gate at the connection level, so you can verify players before they get access to anything in your game. This could be as simple as a password check, or as complex as verifying a token from a backend service.
+
 In PurrNet, custom authenticators enable you to define your own authentication logic for multiplayer games. This guide will walk you through the steps to create a custom authenticator using a simple password-based example.
 
 {% hint style="info" %}
