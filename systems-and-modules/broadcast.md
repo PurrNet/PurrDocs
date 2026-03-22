@@ -4,7 +4,9 @@ icon: megaphone
 
 # Broadcasts
 
-Broadcasting in networking systems (like PurrNet) allows you to easily send and receive data without requiring network identities. It can be useful in certain systems and situations, however, for most setups, it will be just as good and easier to work with [RPC's](remote-procedure-call-rpc/).
+Sometimes you need to send data over the network that isn't tied to any specific game object. Think of things like a chat message, a global game event ("the match is starting"), or sending some data before the player has even spawned in. RPCs are tied to Network Identities, so they can't help you here.
+
+Broadcasts fill that gap. They allow you to easily send and receive data without requiring network identities. It can be useful in certain systems and situations, however, for most setups, it will be just as good and easier to work with [RPC's](remote-procedure-call-rpc/).
 
 {% embed url="https://youtu.be/bwIiKxbK-HE" %}
 
