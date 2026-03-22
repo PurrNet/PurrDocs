@@ -10,6 +10,7 @@
     * [RPC Benchmarks](readme/performance/performance.md)
     * [Network Transform benchmarks](readme/performance/network-transform-benchmarks.md)
   * [🥰 Support PurrNet](readme/support-purrnet.md)
+  * [🏢 For Studios](readme/for-studios.md)
 * [🏁 Getting Started](getting-started/README.md)
   * [Installation](getting-started/installation-setup.md)
   * [Minimal Setup](getting-started/getting-started.md)
