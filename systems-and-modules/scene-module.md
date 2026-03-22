@@ -4,7 +4,9 @@ icon: mountain-sun
 
 # Scene Management
 
-Using the Scene Module in PurrNet is as easy as changing scene with Unity's default scene manager. But there is also some more depth to understanding the logic of players in scenes.
+In a singleplayer game, loading a new scene is straightforward. But in multiplayer, you have a real problem: if one player loads a scene, every other connected player needs to load it too, and they all need to end up in the same state. On top of that, you might want some players in one scene and others in a different one entirely. Without networked scene management, you'd have to manually tell every client which scene to load, track who is where, and handle edge cases like late joiners loading into the wrong place.
+
+PurrNet's Scene Module takes care of all of this for you. Using it is as easy as changing scenes with Unity's default scene manager, but it keeps all your players in sync automatically. There is also some more depth to understanding the logic of players in scenes.
 
 Scene management **needs to be handled on the Server**, so everything below is needed to be read with that context!
 
