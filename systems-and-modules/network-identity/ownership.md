@@ -1,6 +1,8 @@
 # Ownership
 
-Ownership is relating to the relation between a [player ](../../terminology/playerid-client-connection.md)and a [Network Identity](./). Upon spawning a new Network Identity, some level of ownership exists, whether that'd be no owner meaning the server has full control, or a [player/client](../../terminology/playerid-client-connection.md) can be the owner.
+In multiplayer, you need a way to determine which player is allowed to control which object. Without ownership, either everyone can modify everything (which leads to chaos and cheating), or only the server can do anything (which makes the development loop more complex). Ownership lets you define who is "in charge" of a given object, and the networking layer can then enforce permissions based on that.
+
+Ownership is the relation between a [player ](../../terminology/playerid-client-connection.md)and a [Network Identity](./). Upon spawning a new Network Identity, some level of ownership exists, whether that'd be no owner meaning the server has full control, or a [player/client](../../terminology/playerid-client-connection.md) can be the owner.
 
 {% embed url="https://www.youtube.com/watch?v=uHxNSCYDmao" %}
 
