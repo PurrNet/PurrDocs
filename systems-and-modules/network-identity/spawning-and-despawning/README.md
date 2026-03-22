@@ -1,8 +1,8 @@
 # Spawning & Despawning
 
-Spawning and Despawning in PurrNet is as easy as instantiating and destroying in Unity!\
-\
-If the object contains a network identity (example your own scripts or the prefab link, network transform, etc.), it will automatically be spawned for other clients.
+When you create or destroy an object in singleplayer, it only exists on your machine. In multiplayer, all connected players need to see the same objects appear and disappear at the same time. Normally, this means you'd need separate "spawn over network" calls, server-side checks, and extra boilerplate every time you want to create an object. PurrNet removes all of that.
+
+Spawning and Despawning in PurrNet is as easy as instantiating and destroying in Unity! If the object contains a network identity (example your own scripts or the prefab link, network transform, etc.), it will automatically be spawned for other clients.
 
 {% embed url="https://youtu.be/XW5T6VKkeCM" %}
 
