@@ -1,6 +1,8 @@
 # PlayerIdentity
 
-The player identity allows you to very easily have access to your players based on ownership. The PlayerIdentity inherits from NetworkIdentity, so you still have all networking capabilities available, it's simply a layer on top to make your life easier!
+A very common need in multiplayer games is to find a specific player's object, whether that's the local player, a targeted player, or all players at once. Without a dedicated system for this, you'd end up writing your own player registry, managing dictionaries of player references, and handling edge cases like players joining and leaving. PlayerIdentity takes care of all that.
+
+The PlayerIdentity allows you to very easily have access to your players based on ownership. It inherits from NetworkIdentity, so you still have all networking capabilities available, it's simply a layer on top to make your life easier!
 
 You can easily utilize any of these:
 
