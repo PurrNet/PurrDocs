@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page acts as an overview of our current plans for future features. We
-  will generally try and keep it in priority from top to bottom.
+  An overview of what we're working on and what's coming next, roughly in
+  priority order from top to bottom.
 ---
 
 # 🗺️ Roadmap
