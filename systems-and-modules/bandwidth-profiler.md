@@ -4,7 +4,9 @@ icon: chart-column
 
 # Bandwidth Profiler
 
-The Bandwidth profiler allows you to do:
+Networking bugs are some of the hardest to track down. When something feels laggy or your game starts stuttering with more players, you need to know exactly what data is being sent, how much of it, and which objects are responsible. Without visibility into your network traffic, you're debugging blind.
+
+The Bandwidth profiler gives you that visibility. It allows you to do:
 
 * Real-time Analysis: Visualize sent and received data with a live traffic graph.
 * Detailed Breakdown: Inspect every RPC, see its parameters, and instantly highlight the source `GameObject` in the hierarchy.
