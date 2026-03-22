@@ -14,7 +14,7 @@ If you need physics in multiplayer, you might want to read the [Physics In Multi
 
 ### Settings
 
-It's a highly dynamic component, so although the default settings should work well for a lot of cases, it's recommended to familiarize yourself with what the various settings do.&#x20;
+It's a highly dynamic component, so although the default settings should work well for a lot of cases, it's recommended to familiarize yourself with what the various settings do.
 
 A lot of values behind the scenes are modified dynamically, which is why so many settings are exposed. Things like a flat acceptable error threshold or hard correction threshold, yielded bad results during collision and faster movement, which is why the acceleration settings help to dynamically expand the acceptable ranges during big acceleration changes.
 
@@ -33,11 +33,10 @@ networkRb.TeleportTo(respawnPosition);
 ```
 
 `TeleportTo` differs from setting `position`/`rotation` directly in that it:
-- Zeros out linear and angular velocity
-- Clears the interpolation buffer on all observers
-- Sends a reliable RPC so the teleport is never missed
-- Prevents the spring from trying to smoothly chase a position that was meant to be instant
+
+* Zeros out linear and angular velocity
+* Clears the interpolation buffer on all observers
+* Sends a reliable RPC so the teleport is never missed
+* Prevents the spring from trying to smoothly chase a position that was meant to be instant
 
 If you're replacing a `Rigidbody` reference with `NetworkRigidbody`, you do **not** need to change any of your existing `MovePosition`, `MoveRotation`, or `AddForce` calls — they work identically. Only use `TeleportTo` when you specifically need an instant, non-physical reposition.
-
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
