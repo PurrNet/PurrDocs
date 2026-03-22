@@ -4,6 +4,8 @@ icon: diamonds-4
 
 # Instance Handler
 
+In many games you'll have managers or systems (like a GameManager, ScoreManager, etc.) that need to be accessed from all sorts of places in your code. Without a clean way to find these instances, you end up with messy singleton patterns, static references, or FindObjectOfType calls scattered everywhere. The Instance Handler gives you a simple, centralized way to register and retrieve any instance from anywhere.
+
 The Instance Handler allows you to easily get access the [Network Manager](network-manager/) from anywhere, even non [Network Identity ](network-identity/)or [Network Behaviour ](network-identity/networkbehaviour.md)scripts:
 
 <pre class="language-csharp"><code class="lang-csharp"><strong>var nm = InstanceHandler.NetworkManager;
