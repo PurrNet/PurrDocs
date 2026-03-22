@@ -1,6 +1,8 @@
 # Network Rules
 
-Network Rules are some of the most uniquely useful features of PurrNet. These allow for you to fully customize your networking experience for the easiest possible workflow or full server auth to ensure a cheat free experience.
+In most networking solutions, you're locked into a single authority model. Either the server controls everything, or you're on your own. This means that during early development, you're often fighting the networking just to test basic gameplay, and when you're ready to ship, switching to a stricter model can require rewriting a lot of code.
+
+Network Rules solve this by letting you configure your authority model in one place, without changing any of your game code. These allow for you to fully customize your networking experience for the easiest possible workflow or full server auth to ensure a cheat free experience.
 
 {% embed url="https://youtu.be/oa5Y46ruuGk" %}
 
