@@ -4,7 +4,7 @@ description: Made by network game developers with experience.
 
 # 🐈 Introduction
 
-PurrNet is a free, powerful, [performant](readme/performance/) and highly modular networking library for Unity with a high level of focus towards the best possible developer experience. We do everything we can to avoid clutter & baking, without taking away any freedom to the developer. We're constantly improving and adding new tools, and have much more we can do!
+PurrNet is a free, [performant](readme/performance/) and highly modular networking library for Unity, built by developers who have spent years working with multiplayer games. Our focus is on giving you the best possible developer experience: no clutter, no baking, no core features locked behind a paywall. Just a networking solution that works the way Unity works.
 
 [See our official website here](https://purrnet.dev/)
 
@@ -17,51 +17,40 @@ Check out the [ROADMAP](readme/roadmap.md) to see what we are currently planning
 
 ### Our mission
 
-PurrNet is our attempt at the purrfect networking solution... It's a 100% free Unity Networking solution with no pro or premium version, and no features locked behind a pay-gate. You can use it to release, and we ask nothing in return! Read the [Unique to PurrNet](readme/unique-to-purrnet.md) section to see what we offer above other solutions!
+PurrNet is 100% free with no pro or premium version. You can use it to ship your game, and we ask nothing in return. No revenue sharing, no up-front cost, no strings attached.
 
-We have taken inspiration from other networking systems we've worked a lot with in the past like [Mirror](https://mirror-networking.gitbook.io/), [Fish-Net](https://fish-networking.gitbook.io/) and [Photon Quantum](https://www.photonengine.com/quantum). We've tried to keep our version of what the like about these systems, and improve or innovate where we felt needed. And clearly we're doing something right as FirstGearGames (FishNet) himself said: "anything to slow down purrnet development"
+We built PurrNet because we felt that existing networking solutions fight against Unity's natural workflow instead of embracing it. You shouldn't have to learn a completely different way of working just because your game is multiplayer. With PurrNet, if you know how to use Unity and C#, you already know most of what you need.
 
-Our mission has been to embrace the natural workflow of Unity rather than fight it, as we've felt other networking solutions do.
+Read the [Unique to PurrNet](readme/unique-to-purrnet.md) section to see what sets us apart!
 
 Make sure to join our Discord here: [https://discord.gg/NP9tP9Qx9R](https://discord.gg/NP9tP9Qx9R)
 
-Similar to other great networking systems like Mirror, we also use the same modular transport system, allowing for easy integration to any servers, relays or similar.
+{% hint style="info" %}
+**Building a multiplayer game as a studio?** We offer hands-on project support, migration planning, architecture reviews, and custom feature development. Everything is tailored to what your team actually needs. [Learn more about our studio support](readme/for-studios.md) or [get in touch directly](https://purrnet.dev/studios).
+{% endhint %}
 
-Our high-level API, allows for super easy and quick network development, with plenty of freedom for you as the developer. Use our [Network Rule system](systems-and-modules/network-manager/network-rules.md), to define how you prefer your workflow and game to function, from fully [safe/server auth](terminology/server-auth-safe.md), to full [client auth](terminology/client-auth-everyone-unsafe.md) allowing for the quickest multiplayer development!
+### What makes PurrNet different
+
+There are a few things that we think really set PurrNet apart. Here's a quick taste, and you can find the full list on the [Unique to PurrNet](readme/unique-to-purrnet.md) page.
+
+**Spawning and despawning just works.** You call `Instantiate()` and `Destroy()` the same way you already do in Unity, and PurrNet handles the networking for you. No special spawn calls, no extra steps.
+
+**You control the authority model.** Our [Network Rules](systems-and-modules/network-manager/network-rules.md) system lets you configure who can do what (spawn, despawn, call RPCs, sync data) without changing your code. Start with full client authority for fast prototyping, then tighten it to server authority when you're ready. One setting, not a rewrite.
+
+**No baking, no limitations.** We don't bake components or scene IDs. You can nest prefabs, rearrange your hierarchy, and work with version control without running into the edge cases that baking creates.
+
+**RPC innovations.** We support [Generic](systems-and-modules/remote-procedure-call-rpc/generic-rpc.md), [Static](systems-and-modules/remote-procedure-call-rpc/static-rpc.md), and [Awaitable](systems-and-modules/remote-procedure-call-rpc/awaitable-rpc.md) RPCs, giving you more flexibility in how you structure your networked code.
 
 ## Everyone vs Server Auth?
 
-Throughout PurrNet and this knowledge base, you'll find the use of a few words quite often. Most commonly: [Server Auth](terminology/server-auth-safe.md) and "[Everyone](terminology/client-auth-everyone-unsafe.md)".
+Throughout PurrNet and this documentation, you'll see two terms come up a lot: [Server Auth](terminology/server-auth-safe.md) and [Everyone](terminology/client-auth-everyone-unsafe.md). These define who is allowed to perform a given action.
 
-Server Auth means that only the server can perform the desired action. So if you set the [network rules](systems-and-modules/network-manager/network-rules.md) to use "[Server](terminology/server-auth-safe.md)", only the server can do the action. If you pick "[Everyone](terminology/client-auth-everyone-unsafe.md)" it means that all clients and the server are all allowed to perform the action.
+**Server Auth** means only the server can perform the action. This is the safe option for competitive games, since clients can't cheat by doing things they shouldn't be allowed to.
 
-This does technically create an "unsafe" environment, allowing for easy cheating, so this is only recommended for games where cheating is not a major concern. Some good examples are co-op or friendly PvP games.
+**Everyone** means all clients and the server can perform the action. This makes development faster and easier, but does mean clients have more control, which could allow cheating. This is a great fit for co-op games, friendly PvP, or during early development when you just want things to work.
 
-## Ease of use
+The important thing is that you set this through [Network Rules](systems-and-modules/network-manager/network-rules.md), not in your game code. So you can switch between the two at any time without rewriting anything.
 
-The biggest focus of PurrNet is ease of use and scalability for the project. This is greatly involving the "[Network Rules](systems-and-modules/network-manager/network-rules.md)"\
-Here are some examples:
+## Persistent user data
 
-#### Spawning & Despawning
-
-With most networking solutions you'd typically need to instantiate an object, follow that with a unique spawn call, and ensure that the instantiation and spawn call occur on the server. However, with PurrNet, you just have to follow your Unity experience and simply Instantiate the object... And that's really it!
-
-With the [network rules](systems-and-modules/network-manager/network-rules.md), you can allow "everyone" to handle spawning, essentially allowing all clients to spawn objects by simply instantiating them. If you only want server auth, you merely instantiate on the server, and the rest is still handled... Easy!
-
-And for despawning? It's the exact same thing! Simply call "Destroy()" as you would in Unity, and the rest is automatically networked for you.
-
-#### [RPC's](systems-and-modules/remote-procedure-call-rpc/) and [SyncVars](systems-and-modules/network-modules/sync-types/syncvar.md)
-
-With the [Network Rules](systems-and-modules/network-manager/network-rules.md), you can also set up whether the [SyncVar ](systems-and-modules/network-modules/sync-types/syncvar.md)or[ Rpc's ](systems-and-modules/remote-procedure-call-rpc/)allow for [everyone ](terminology/client-auth-everyone-unsafe.md)to call them. This in turn means that you don't have to ensure that the logic runs over the server, like in other networking solutions. This allows for quicker code writing and an easier workflow to learn.
-
-We even have [Generic](systems-and-modules/remote-procedure-call-rpc/generic-rpc.md), [Static ](systems-and-modules/remote-procedure-call-rpc/static-rpc.md)and [Awaitable ](systems-and-modules/remote-procedure-call-rpc/awaitable-rpc.md)RPC's which have not been seen before! (as far as we know)
-
-#### [Ownership](systems-and-modules/network-identity/ownership.md)
-
-When you spawn and despawn things, you can easily modify on a per-object basis who the default [owner ](systems-and-modules/network-identity/ownership.md)of the object is. If the spawning and despawning rules allow [everyone ](terminology/client-auth-everyone-unsafe.md)to spawn, it is easy to also make the spawning player the [owner ](systems-and-modules/network-identity/ownership.md)by simply changing this setting! No extra code is necessary.
-
-Through the [network rules](systems-and-modules/network-manager/network-rules.md), you can also easily allow clients to change the [ownership ](systems-and-modules/network-identity/ownership.md)of an object, allowing for easier use than any other current networking solution!
-
-## Persistent user data and connection
-
-Another great feature of PurrNet is the built-in cookies. This essentially allows for a server's knowledge of a player to remain beyond the connection. If a player disconnects and later connects again, the server is still aware that this is the same player, and can keep the data stored. This is modifiable as to where the data is stored and how persistent it is (Connection, Process, Machine).
+PurrNet has built-in support for persistent player data through its cookie system. If a player disconnects and later reconnects, the server still recognizes them as the same player and can restore their data. You can configure how persistent this is: scoped to the connection, the process, or the machine.
