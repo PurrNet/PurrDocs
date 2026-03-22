@@ -6,35 +6,50 @@ description: >-
 
 # ‼️ Unique to PurrNet
 
-Just like most other systems, we have the classic and expected behaviour, such as easy [synchronizing](../systems-and-modules/network-modules/sync-types/syncvar.md), [remote procedure calls](../systems-and-modules/remote-procedure-call-rpc/), [spawning & despawning](../systems-and-modules/network-identity/spawning-and-despawning/) and much more.
+PurrNet has all the core networking features you'd expect: [SyncVars](../systems-and-modules/network-modules/sync-types/syncvar.md), [RPCs](../systems-and-modules/remote-procedure-call-rpc/), [spawning & despawning](../systems-and-modules/network-identity/spawning-and-despawning/), and much more. But beyond the basics, there are a number of things we do differently that we think make a real difference in how you build multiplayer games.
 
 {% embed url="https://youtu.be/JJZY9cI2VqE" %}
 
-### Features
+### Works with Unity, not against it
 
-* **Working&#x20;**_**WITH**_**&#x20;Unity**\
-  With many networking solutions, you're constantly fighting the workflow of Unity. For example, a lot of solutions don't allow you to nest prefabs within each other. But you can do that perfectly fine with PurrNet.
-* **Generics**\
-  We fully support generics with networking. That means generic methods w. [RPCs](../systems-and-modules/remote-procedure-call-rpc/) and other generic data! This can greatly aid modular code and tool makers to make even better and more powerful addons/tools for PurrNet.
-* **Static RPC's**\
-  **Something we haven't seen in other systems is the ability to call** [**Remote Procedure Calls**](../systems-and-modules/remote-procedure-call-rpc/) **on static methods. Normally they have to be attached to the network behaviour itself, but with us, you get even more freedom!**
-* **Returnable RPC's**\
-  **This allows you to return values with methods easily, similar to how you'd naturally work with C#! The only difference being that you have to utilize the "await", in order to continue execution once the data has been received.**
-* [**Network Rules**](../systems-and-modules/network-manager/network-rules.md)\
-  These allow for you to fully customize your networking experience for the easiest possible workflow or full server authority to ensure a cheat-free experience.
-* **No Network Objects!**\
-  A lot of the limitations of network systems come from the enforced use of Network Objects to identify across the network. PurrNet doesn't do that, instead, we have every [NetworkBehavior ](../systems-and-modules/network-identity/networkbehaviour.md)act as its own [identity](../systems-and-modules/network-identity/).
-* [**Easy spawning & despawning**](../systems-and-modules/network-identity/spawning-and-despawning/)\
-  In order to spawn or despawn something, it can be as easy as just instantiating and destroying the object. Even our built-in object pooling system, plays into these standard Unity calls, making it super easy to adapt your workflow. If you prefer, you can modify your Network Rules to go to a spawn call like other systems.
-* **Easy testing**\
-  We're doing as much as we can to allow for easy testing. For example at runtime, you can just drag and drop any prefab within your [Network Prefabs scriptable](../systems-and-modules/network-manager/network-prefabs.md), and it will automatically be spawned. And deleting a network identity from the hierarchy will despawn it. Making multiplayer testing super easy!
-* [**Persistent Player data**](../terminology/playerid-client-connection.md)\
-  With PurrNet, you have persistent user data. If a user disconnects and later connects again, they will retain the same player ID and meta data as when they left!
-* **No baked components**\
-  We're **NOT** big fans of baking. It simply creates unnecessary limitations and opens up for a lot of annoying edge cases, and therefore, we don't do that!
-* **No scene ID baking**\
-  Similar to components, we don't pre-bake scene ID's. They are calculated by the beginning of runtime, but based on the order in the hierarchy, meaning that as long as the scenes align, so will the ID's across version control tools.
+A lot of networking solutions force you into a different workflow. Nested prefabs don't work, scene objects need baking, and you have to learn a whole new way of doing things you already know how to do. PurrNet is built to feel like Unity. If you can Instantiate, Destroy, and write MonoBehaviours, you can build multiplayer games with PurrNet.
 
-### Disclaimer
+### No baking
 
-The features mentioned on this page are not necessarily unique to PurrNet. These are the features that we haven't seen throughout our years of working with Unity multiplayer development. Other systems could have them or get them in the future! (This was written 27th of July, 2024)
+We don't bake components or scene IDs. Scene IDs are calculated at runtime based on hierarchy order, so as long as your scenes match, the IDs match. This means no conflicts in version control, no mysterious bake issues, and no extra build steps.
+
+### No Network Objects
+
+Most networking solutions require a single "Network Object" component per GameObject to identify it across the network. This creates limitations on how you structure your objects. PurrNet doesn't do this. Instead, every [NetworkBehaviour](../systems-and-modules/network-identity/networkbehaviour.md) acts as its own [Network Identity](../systems-and-modules/network-identity/), giving you per-component ownership and much more flexibility in how you build your objects.
+
+### Spawning and despawning
+
+To spawn a networked object, you just call `Instantiate()`. To despawn it, you call `Destroy()`. That's it. PurrNet handles the rest. Even our built-in [object pooling](../systems-and-modules/network-identity/pooling.md) hooks into these same Unity calls, so you don't have to change your workflow at all. If you prefer an explicit spawn call like other systems offer, you can configure that through [Network Rules](../systems-and-modules/network-manager/network-rules.md).
+
+### Network Rules
+
+[Network Rules](../systems-and-modules/network-manager/network-rules.md) let you configure your entire authority model from a single scriptable object. Who can spawn? Who can call RPCs? Who syncs data? You control all of this without touching your game code. This means you can prototype with full client authority and tighten security later, all by swapping a scriptable.
+
+### Network Modules
+
+[NetworkModule](../systems-and-modules/network-modules/) is a base class that lets you create reusable, network-aware components that aren't MonoBehaviours. You can attach them to any NetworkIdentity, which makes it easy to share networking logic across different objects without duplicate code.
+
+### Generic RPCs
+
+You can use generics with [RPCs](../systems-and-modules/remote-procedure-call-rpc/generic-rpc.md). This is great for modular code and tool makers who want to build flexible addons and systems on top of PurrNet.
+
+### Static RPCs
+
+You can call [RPCs on static methods](../systems-and-modules/remote-procedure-call-rpc/static-rpc.md), not just on NetworkBehaviours. This gives you more freedom in how you structure your code.
+
+### Returnable RPCs
+
+[Awaitable RPCs](../systems-and-modules/remote-procedure-call-rpc/awaitable-rpc.md) let you return values from remote calls, similar to how you'd work with async/await in regular C#. Call a method on the server, await the result, and keep going.
+
+### Persistent player data
+
+With PurrNet's [cookie system](../terminology/playerid-client-connection.md), if a player disconnects and reconnects, they keep the same player ID and metadata. The server knows it's the same person without you having to build that yourself.
+
+### Easy testing
+
+At runtime, you can drag and drop any prefab from your [Network Prefabs](../systems-and-modules/network-manager/network-prefabs.md) into the scene and it will automatically be spawned on the network. Deleting a network identity from the hierarchy will despawn it. This makes multiplayer testing in the editor much faster.
