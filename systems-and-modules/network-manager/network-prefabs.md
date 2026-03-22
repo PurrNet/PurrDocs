@@ -1,5 +1,7 @@
 # Network Prefabs
 
+When you spawn an object over the network, the other side needs to know which prefab to instantiate. The server might say "spawn prefab #7", but if the client doesn't have the same list of prefabs in the same order, it'll spawn the wrong thing or fail entirely. Network Prefabs solve this by giving all machines a shared registry of prefabs that PurrNet can reference by ID.
+
 The Network Prefabs is a scriptable object used by PurrNet to cross identify prefabs. This is used for [spawning and despawning](../network-identity/spawning-and-despawning/) of objects.
 
 This is set as a reference on your [NetworkManager](./)
