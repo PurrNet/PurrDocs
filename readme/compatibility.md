@@ -1,15 +1,15 @@
 # 💻 Compatibility
 
-PurrNet is/should be compatible with every system, and even allows for cross-platform networking. The modular transport layer allows you to easily "plug n' play" with the target transports you need, and the Composite transport allows you to utilize multiple transports at once.
+PurrNet supports every major platform, and the modular transport layer makes it easy to plug in the right transport for your target platform. The [Composite Transport](../systems-and-modules/transports/composite-transport.md) even allows you to use multiple transports at once for cross-platform networking.
 
 ✅ **PC**\
 ✅ **Linux**\
 ✅ **Mac**\
 ✅ **Android**\
-✅ **IOS**\
+✅ **iOS**\
 ✅ **WebGL**\
 ✅ **Nintendo Switch**\
-✅ **Playstation consoles**\
+✅ **PlayStation consoles**\
 ✅ **Xbox consoles**\
 ✅ **Dedicated server**\
 ✅ **Local server**
