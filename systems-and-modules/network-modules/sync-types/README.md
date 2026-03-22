@@ -1,5 +1,7 @@
 # Sync Types
 
+One of the most common things you need in multiplayer is keeping a value in sync across all players. A player's health, a scoreboard, an inventory list. Without sync types, you'd have to manually send RPCs every time a value changes, handle late joiners who missed earlier updates, and write a bunch of boilerplate to keep everything consistent. Sync types handle all of that for you automatically.
+
 All sync types (e.g., `SyncVar`, `SyncList`) are built on our network module system.\
 Any limitations or features of `NetworkModule` apply to them as well.
 
