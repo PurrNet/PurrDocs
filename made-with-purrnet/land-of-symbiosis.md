@@ -1,8 +1,8 @@
-# 👾 Land of Symbiosis
+# 👾 Symbiosis
 
 [Check it out on Steam](https://store.steampowered.com/app/2874540/Land_of_Symbiosis/)
 
-Land of Symbiosis is a solo or co-op Action RPG that blends base defense, exploration, and sandbox survival in a procedurally generated alien world.
+Symbiosis is a solo or co-op Action RPG that blends base defense, exploration, and sandbox survival in a procedurally generated alien world.
 
 Battle through waves of thousands of mechanical creatures, scavenge their remains, and loot the environment to craft powerful weapons, armor, and automated defenses.
 
@@ -17,4 +17,3 @@ Drinking and eating are handled efficiently by your advanced suit technology.
 However, generating oxygen is another story. You'll need to find, harvest, and process specific elements to keep your life support system running
 
 <figure><img src="../.gitbook/assets/New_base_defense.gif" alt=""><figcaption></figcaption></figure>
-
