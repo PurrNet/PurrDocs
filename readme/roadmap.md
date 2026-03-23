@@ -13,6 +13,7 @@ description: >-
 * [ ] Client owned scenes
 * [ ] PurrVoice (WWise support)
 * [ ] Deterministic physics for prediction
+* [ ] Predicted Animator
 * [ ] Network Transform V2
 * [x] [Network visualization tooling](#user-content-fn-1)[^1]
 * [x] [Network Pipe logic (local transporting layer to components)](#user-content-fn-2)[^2]
