@@ -6,15 +6,16 @@ description: >-
 
 # 🗺️ Roadmap
 
-* [ ] [Network visualization tooling](#user-content-fn-1)[^1]
-* [ ] [Network Pipe logic (local transporting layer to components)](#user-content-fn-2)[^2]
 * [ ] PurrLobby V2
+* [ ] Network LOD
 * [ ] PurrDiction sample
 * [ ] Host migration
 * [ ] Client owned scenes
 * [ ] PurrVoice (WWise support)
 * [ ] Deterministic physics for prediction
 * [ ] Network Transform V2
+* [x] [Network visualization tooling](#user-content-fn-1)[^1]
+* [x] [Network Pipe logic (local transporting layer to components)](#user-content-fn-2)[^2]
 * [x] PurrVoice (FMOD support)
 * [x] Easy network conversion tools (Components)
 * [x] Easy network conversion tools (Code)
