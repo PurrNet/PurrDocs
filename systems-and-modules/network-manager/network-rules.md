@@ -16,3 +16,15 @@ The rules are pretty self-explanatory if you take a look at the scriptable. It w
 * Who can assign ownership
 * Who is responsible of synchronizing values
 * And much more.
+
+## Include Instantiated Scene Objects
+
+By default, PurrNet only considers objects baked into the scene (tracked via `PurrSceneInfo`) as scene identities. This gives you a deterministic ordering across all clients, since Unity likes to reorder hierarchy roots between builds for no good reason.
+
+If you set up your scene programmatically, for example instantiating objects before the `NetworkManager` starts, those objects won't be picked up as scene identities. You can enable **Include Instantiated Scene Objects** in your spawn rules to change this.
+
+When enabled, any root `NetworkIdentity` objects in the scene at the time of collection get appended after the baked set. All clients need to instantiate these objects in the same order to keep identity assignments consistent.
+
+{% hint style="warning" %}
+This is opt-in. If your clients don't set up the scene in the same order, identity assignments will diverge. Only enable this if your programmatic scene setup is deterministic across all clients.
+{% endhint %}
