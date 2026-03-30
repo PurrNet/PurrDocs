@@ -2,6 +2,8 @@
 
 Working with the filters should be very straight forward. They allow easy audio manipulation to get the voice chat effect you desire for your game!
 
+The filtering is multithreaded by nature, causing very low costs (virtually none) to your main thread.
+
 <figure><img src="../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
 
 ### Filter level
@@ -9,8 +11,6 @@ Working with the filters should be very straight forward. They allow easy audio 
 Filters allow you to easily manipulate audio at any level of it's path. This in turn means that you can easily control whether the Sender, Server or Receiver will be the one applying the filter to the audio.
 
 **Sender:** This means that the audio is applied before it even reached the network, and as soon as input is received from your microphone device. This level is optimal for things such as noise cancellation, or funny effects that should be applied globally.
-
-**Server:** The server will de-compress the audio, apply the filter and compress it before sending to other clients. Generally this layer shouldn't be utilized heavily, as it can get computationally heavy for the server/host to handle all audio manipulation. But if you care about cheat proofing your voice, this is a good place to do so.
 
 **Receiver:** Here the receiver will be the one applying the effect. This is great for environment context relevant effects, such as a player being behind the wall for you, or under the water, etc. Essentially your local client sees someone else in some relevant context and need a filter reacting to that.
 
