@@ -113,6 +113,8 @@
   * [Security Model](client-side-prediction/security.md)
   * [Development Shortcuts](client-side-prediction/development-shortcuts.md)
 * [🧰 Tools](tools/README.md)
+  * [Conversion Tool](tools/conversion-tool/README.md)
+    * [Creating your own converter](tools/conversion-tool/creating-your-own-converter.md)
   * [PurrChat (AI assistant)](tools/purrchat-ai-copilot/README.md)
   * [PurrVoice (Voice chat)](tools/purrvoice-voice-chat/README.md)
     * [Providers](tools/purrvoice-voice-chat/providers/README.md)
