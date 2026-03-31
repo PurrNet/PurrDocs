@@ -2,7 +2,7 @@
 
 A dedicated server is a separate application that runs your game's server logic without any client-side components like rendering, input handling, or UI. This approach provides better performance, security, and scalability for multiplayer games.
 
-The cost? Well you need the server hosted somewhere. Whether that is self-hosting or utilizing a platform like [EdgeGap](edgegap.md) to more easily do so.
+The cost? Well you need the server hosted somewhere. Whether that is self-hosting or utilizing a platform like [Edgegap](edgegap.md) to more easily do so.
 
 Unlike a [Host](../terminology/host.md) setup where one player acts as both server and client, a dedicated server:
 
