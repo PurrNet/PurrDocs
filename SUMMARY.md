@@ -169,6 +169,7 @@
   * [🔥 CRACKED](made-with-purrnet/cracked.md)
   * [🐻 Kuroro Wilds](made-with-purrnet/kuroro-wilds.md)
   * [👾 Symbiosis](made-with-purrnet/land-of-symbiosis.md)
+  * [⚔️ A Smithing Game](made-with-purrnet/a-smithing-game.md)
   * [🐼 Bao Bao's™ Cozy Cleaning Services](made-with-purrnet/bao-baos-tm-cozy-cleaning-services.md)
   * [🐍 GeckoShop](made-with-purrnet/geckoshop.md)
   * [🐻 Sport Animals](made-with-purrnet/sport-animals.md)
