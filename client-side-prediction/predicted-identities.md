@@ -72,13 +72,20 @@ public class MyPredicted : PredictedIdentity<MyInput, MyState>
     { transform.SetPositionAndRotation(s.pos, s.rot); }
 
     protected override void GetFinalInput(ref MyInput i)
-    { i.x = Input.GetAxisRaw("Horizontal"); i.y = Input.GetAxisRaw("Vertical"); }
+    { i.input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); }
 
     protected override void SanitizeInput(ref MyInput i)
-    { var v = Vector2.ClampMagnitude(new Vector2(i.x, i.y), 1f); i.x = v.x; i.y = v.y; }
+    { 
+        if (!i.input.HasValue) return;
+        var v = Vector2.ClampMagnitude(new Vector2(i.input.Value.x, i.input.Value.y), 1f); 
+        i.input = v; 
+    }
 
     protected override void Simulate(MyInput i, ref MyState s, float dt)
-    { transform.position += new Vector3(i.x, 0, i.y) * dt * 5f; }
+    {
+        if (!i.input.HasValue) return;
+        transform.position += new Vector3(i.input.Value.x, 0, i.input.Value.y) * dt * 5f;
+    }
 
     protected override void UpdateView(MyState view, MyState? verified)
     { transform.SetPositionAndRotation(view.pos, view.rot); }
