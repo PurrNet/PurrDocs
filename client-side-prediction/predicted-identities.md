@@ -52,7 +52,7 @@ Use these flags for visuals (camera, highlights, UI). Keep simulation determinis
 
 ```csharp
 public struct MyInput : IPredictedData {
-    public float x, y; public void Dispose() {}
+    public Vector2? input; public void Dispose() {}
 }
 
 public struct MyState : IPredictedData<MyState> {
