@@ -15,7 +15,7 @@ private SyncLazyRef<Player> _player = new();
 
 protected override void OnSpawned(bool asServer)
 {
-    _target.onValueChanged += OnTargetChanged;
+    _target.onChanged += OnTargetChanged;
 
     if (asServer)
         _target.value = someIdentity;
@@ -35,7 +35,7 @@ private void OnTargetChanged(NetworkIdentity oldValue, NetworkIdentity newValue)
 Under the hood, SyncLazyRef stores a `GlobalNetworkID`, which pairs the target's scene and NetworkID. When that value arrives on a remote client:
 
 * If the target already lives in a loaded scene on that client, it resolves immediately.
-* If not, the reference waits. Once the target spawns, the reference resolves and `onValueChanged` fires.
+* If not, the reference waits. Once the target spawns, the reference resolves and `onChanged` fires.
 * If the target is despawned or its scene unloads, the reference clears back to null. If it shows up again later, it re-resolves without any extra work.
 
 ### Setting to null
