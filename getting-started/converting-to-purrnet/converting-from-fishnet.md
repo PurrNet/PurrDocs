@@ -105,6 +105,37 @@ private void MyRpc() { }
 private void MyRpc() { }
 ```
 
+### PlayerID vs NetworkConnection
+
+In FishNet you'd identify a client with a `NetworkConnection`. The PurrNet equivalent is the [PlayerID](../../terminology/playerid-client-connection.md) struct, which you'll get from things like RPC senders, ownership APIs and TargetRpc parameters.
+
+The two are not 1:1 though, and there are a couple of gotchas worth calling out:
+
+* `NetworkConnection.IsHost` / `IsServer` in FishNet describe the connection from the perspective of the **machine that owns it**, so on the host they return true.
+* `PlayerID` in PurrNet represents one *side* of a connection — almost always the **client side**. On a host, the host's own client `PlayerID` is just another client identity, so `info.sender.isServer` returns **false** even when the sender is the host.
+* The server itself is represented by a dedicated `PlayerID` with id `0`. This is the only `PlayerID` whose `isServer` returns **true**, and it's the value you'll see in `info.sender` when an RPC originates from the server (or from the *server side* of a host).
+
+The important distinction: a host runs a server **and** a client side by side on the same machine, and PurrNet treats them as separate identities. The server side of the host is *not* the same `PlayerID` as the client side of the host.
+
+If you want to know whether the RPC is currently executing on the server (host included), use `info.asServer` instead of `info.sender.isServer`:
+
+```csharp
+[ServerRpc(requireOwnership: false)]
+private void MyRpc(RPCInfo info = default)
+{
+    // True when running on the server side of the host (or a dedicated server).
+    bool runningOnServer = info.asServer;
+
+    // The PlayerID of whoever called the RPC.
+    // - From a remote client: that client's PlayerID.
+    // - From the host's client side: the host's *client* PlayerID (isServer == false).
+    // - From the server / host's server side: the server PlayerID (id 0, isServer == true).
+    PlayerID sender = info.sender;
+}
+```
+
+Rule of thumb when migrating: if your FishNet code asked the connection "are you the server/host?", you almost always want `info.asServer` in PurrNet. Use `PlayerID` to identify *which* participant a message belongs to, and remember that on a host the server and client sides are two different `PlayerID`s.
+
 ### Sync types
 
 Working with Synchronizing from FishNet to PurrNet is generally the same as well. The major difference between the two, is that PurrNet also allows for owner authorized SyncTypes, meaning you can handle them locally, and not forcibly through the server. You can read more on his on the individual page for the SyncTypes.\
