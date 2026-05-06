@@ -41,6 +41,7 @@
     * [Local Transport](systems-and-modules/transports/local-transport.md)
     * [Steam Transport](systems-and-modules/transports/steam-transport.md)
     * [Purr Transport](systems-and-modules/transports/purr-transport.md)
+    * [EOS Transport](systems-and-modules/transports/eos-transport.md)
     * [EOS Transport (Community)](systems-and-modules/transports/eos-transport-community.md)
     * [Purrnity Transport (Community)](systems-and-modules/transports/purrnity-transport-community.md)
     * [Simulating latency](systems-and-modules/transports/simulating-latency.md)
