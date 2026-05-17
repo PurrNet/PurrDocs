@@ -40,3 +40,62 @@ networkRb.TeleportTo(respawnPosition);
 * Prevents the spring from trying to smoothly chase a position that was meant to be instant
 
 If you're replacing a `Rigidbody` reference with `NetworkRigidbody`, you do **not** need to change any of your existing `MovePosition`, `MoveRotation`, or `AddForce` calls — they work identically. Only use `TeleportTo` when you specifically need an instant, non-physical reposition.
+
+### Position transforms (origin-shifted / large worlds)
+
+By default, an unparented `NetworkRigidbody` puts its raw Unity world-space position on the wire. That is fine for ordinary scenes, but it breaks down in two cases:
+
+* **Origin-shifted worlds** — each peer runs with a different local Unity origin (a common technique for large or streaming worlds), so a raw `Vector3` from one peer is meaningless on another.
+* **Very large coordinates** — a 32-bit `float` loses precision long before a large world reaches the limits of double precision.
+
+A **position transform** solves both. It is a pluggable converter, invoked only at the wire boundary, that maps outgoing positions into a shared, peer-agnostic absolute frame (a `double3`) and maps incoming absolute positions back into the receiving peer's Unity world space. The absolute `double3` is what travels on the wire and what the interpolation buffer stores, so a local origin shift needs no extra bookkeeping — the next conversion simply reflects the new offset and every buffered snapshot stays correct.
+
+Only translation is converted; rotation and velocity are already origin-invariant. **Parented** rigidbodies are also unaffected — parent-local coordinates are origin-invariant, so they keep using the legacy path regardless.
+
+Implement `INetworkRigidbodyPositionTransform`:
+
+```csharp
+using PurrNet;
+using Unity.Mathematics;
+using UnityEngine;
+
+public class OriginShiftTransform : MonoBehaviour, INetworkRigidbodyPositionTransform
+{
+    // Sender side: this peer's Unity world space -> shared absolute frame.
+    public double3 ToAbsolute(NetworkRigidbody self, Vector3 localWorldPos)
+    {
+        var origin = WorldOrigin.Current; // your peer's double3 origin offset
+        return new double3(localWorldPos.x, localWorldPos.y, localWorldPos.z) + origin;
+    }
+
+    // Receiver side: shared absolute frame -> this peer's Unity world space.
+    // Must be the exact inverse of ToAbsolute for the current origin.
+    public Vector3 ToLocal(NetworkRigidbody self, double3 absolutePosition)
+    {
+        var local = absolutePosition - WorldOrigin.Current;
+        return new Vector3((float)local.x, (float)local.y, (float)local.z);
+    }
+}
+```
+
+A transform is resolved on spawn, first non-null wins:
+
+1. A runtime override set via `networkRb.SetPositionTransform(transform)`.
+2. A sibling component implementing `INetworkRigidbodyPositionTransform` on the same GameObject.
+3. The process-wide static fallback `NetworkRigidbody.defaultPositionTransform`.
+
+```csharp
+// Apply to every NetworkRigidbody in the process (set this once at startup).
+NetworkRigidbody.defaultPositionTransform = new OriginShiftTransform();
+
+// Or override a single instance at runtime; pass null to fall back to the chain.
+networkRb.SetPositionTransform(myTransform);
+```
+
+{% hint style="warning" %}
+The transform must be configured **consistently across all peers** — `ToAbsolute`/`ToLocal` must agree on the absolute frame, and `ToLocal` must be the exact inverse of `ToAbsolute` for the current origin. A sibling component on a shared prefab or the static default both satisfy this; setting it asymmetrically (on some peers only) will make objects snap to the origin.
+
+A runtime override set with `SetPositionTransform` is **not** retained across a despawn/respawn — pooled objects re-run the resolution chain. Prefer a sibling component or the static default if you need it to persist.
+{% endhint %}
+
+When no transform is installed, positions travel on the wire exactly as in previous versions (a quantized `CompressedVector3` in the peer's own world space) — the feature is fully opt-in and the legacy path is byte-identical to prior behaviour.
