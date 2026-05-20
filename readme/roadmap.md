@@ -7,6 +7,8 @@ description: >-
 # 🗺️ Roadmap
 
 * [ ] PurrLobby V2
+* [ ] Telemetry tooling
+* [ ] Diagnostics/Incident tooling (w. network state & full hierarchy)
 * [ ] Network LOD
 * [ ] PurrDiction sample
 * [ ] Host migration
@@ -15,8 +17,9 @@ description: >-
 * [ ] Deterministic physics for prediction
 * [ ] Predicted Animator
 * [ ] Network Transform V2
-* [x] [Network visualization tooling](#user-content-fn-1)[^1]
-* [x] [Network Pipe logic (local transporting layer to components)](#user-content-fn-2)[^2]
+* [x] Platform orchestration
+* [x] Network visualization tooling
+* [x] Network Pipe logic (local transporting layer to components)
 * [x] PurrVoice (FMOD support)
 * [x] Easy network conversion tools (Components)
 * [x] Easy network conversion tools (Code)
@@ -51,7 +54,3 @@ description: >-
 * [x] [SyncEvent ](../systems-and-modules/network-modules/sync-types/syncevent.md)(Auto network invoked events)
 * [x] Auto serialization
 * [x] Awaitable Coroutines
-
-[^1]: In scene visualization for things such as data usage heatmaps, or clear ownership visualization
-
-[^2]: Allowing individual components to move data through unique transport layers for much more flexibility and scalability
