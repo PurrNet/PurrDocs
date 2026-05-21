@@ -28,3 +28,28 @@ private void DespawnMyObject() {
         Destroy(_spawnedObject.gameObject);
 }
 ```
+
+## Sending data with the spawn
+
+Sometimes you want an object to arrive already knowing something. A bullet that needs its damage, a pickup that needs its loot table, a character that needs a random seed. You could spawn it and then fire an RPC to fill in the details, but that's a second message and it can land a frame later. Instead you can pack the data straight into the spawn itself.
+
+Override `OnSerialize` to write data on the machine that spawns the object, and `OnDeserialize` to read it back on everyone who receives it. Whatever you write travels with the spawn packet, so on the receiving side it's read back first thing, before `OnEarlySpawn` and `OnSpawned` run. That means you can already rely on the data inside those callbacks.
+
+```csharp
+public class Bullet : NetworkIdentity
+{
+    protected override void OnSerialize(BitPacker packer)
+    {
+        Packer<string>.Write(packer, "Testing");
+    }
+
+    protected override void OnDeserialize(BitPacker packer)
+    {
+        Debug.Log(Packer<string>.Read(packer));
+    }
+}
+```
+
+Read it back in the exact same order you wrote it, otherwise you'll get garbage. `OnDeserialize` only fires when something was actually written in `OnSerialize`, so an empty override costs you nothing.
+
+This works on [network modules](../../network-modules/) too, so a module can attach its own data to the parent's spawn without the identity needing to know about it.
