@@ -38,9 +38,11 @@ Then set up your Epic dev account and product credentials under **Tools / EOS Pl
 
 1. Add the `EOSTransport` component to your `NetworkManager`.
 2. Set `socketName` to any string. Both peers just need to agree on it.
-3. On the client, set `remoteProductUserId` to the host's EOS Product User ID before connecting.
+3. On the client, set `remoteProductUserId` to the **host's** EOS Product User ID before connecting.
 4. Call `NetworkManager.StartServer()` to host, `NetworkManager.StartClient()` to join.
 
 If you call `StartClient()` on the same `NetworkManager` that's already hosting, it short-circuits to in-process delivery instead of going through EOS. Host loopback, no extra wiring.
+
+*If you're testing with multiple unity projects and running into connection issues make sure to focus the server window after connecting a client or it will fail due to inactivity.* 
 
 {% embed url="https://github.com/PurrNet/PurrNetEOSTransport" %}
