@@ -132,6 +132,7 @@
   * [Network Transform](plug-n-play-components/network-transform.md)
   * [Network Rigidbody](plug-n-play-components/network-rigidbody.md)
   * [Network Animator](plug-n-play-components/network-animator.md)
+  * [Network Bones](plug-n-play-components/network-bones.md)
   * [Network Ownership Toggle](plug-n-play-components/network-ownership-toggle.md)
   * [Network Reflection](plug-n-play-components/network-reflection-auto-sync.md)
   * [Network State Machine](plug-n-play-components/state-machine-auto-networked.md)
