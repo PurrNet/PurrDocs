@@ -14,14 +14,14 @@ You'll need a free [Gameye Developer Trial](https://trial.gameye.com/) account t
 Unlike some hosts, Gameye needs **no PurrNet addon or plugin**. Your server runs as a plain Linux container and Gameye manages it externally through a REST API. Nothing goes inside your Unity project.
 {% endhint %}
 
-### What you'll need
+## What you'll need
 
 * **Docker** ([Desktop or CLI](https://www.docker.com/products/docker-desktop/)) — to build and push your server image. Make sure it's running when you build.
 * **Unity Linux Dedicated Server Build Support** — add it via Unity Hub (`Installs → Add Modules`).
 * A **Gameye API token** — from your [Developer Trial](https://trial.gameye.com/).
 * An **OCI-compatible container registry** (Docker Hub, GitLab Registry, AWS ECR, GCP Artifact Registry — any works).
 
-### 1. Build a Linux dedicated server
+## 1. Build a Linux dedicated server
 
 Build your project for the **Dedicated Server** platform (Linux) — PurrNet has a **Build Server** button for exactly this.
 
@@ -31,7 +31,7 @@ Make sure your `NetworkManager` starts as a server in the build. The simplest wa
 Your transport binds a **fixed** internal port. Keep it fixed inside the container — Gameye maps an external port to it and returns that external port to your matchmaker.
 {% endhint %}
 
-### 2. Containerize the server
+## 2. Containerize the server
 
 Wrap your build in a Docker image. A PurrNet server needs nothing beyond a minimal Linux base:
 
@@ -57,11 +57,11 @@ docker build -t your-registry/purrnet-server:1.0.0 .
 docker push   your-registry/purrnet-server:1.0.0
 ```
 
-### 3. Register the image with Gameye
+## 3. Register the image with Gameye
 
 During onboarding, give Gameye your registry credentials and image name. Gameye pre-pulls your image onto infrastructure in every region you deploy to, so by the time your matchmaker calls the API there's no image transfer happening — just a container start.
 
-### 4. Start sessions from your backend
+## 4. Start sessions from your backend
 
 When a match is ready, call the Gameye Session API with your image and a target region:
 
@@ -94,7 +94,7 @@ Pass `host` and the external `host` port to your players — they connect their 
 That's it — no PurrNet addon, no SDK in your build, no DevOps. Push a Docker image, call an API.
 {% endhint %}
 
-### Notes
+## Notes
 
 * **Any PurrNet transport works.** UDP for action games, WebSockets for browser clients, Steam, or Composite. Your server binds the transport's listen port inside the container; Gameye maps an external port to it.
 * **Shut down cleanly when a match ends.** When your server process exits with code `0`, Gameye reclaims the compute and stops billing for that session. A common pattern is to quit once the last player disconnects.
