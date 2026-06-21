@@ -150,6 +150,7 @@
   * [Unity Multiplayer Services with PurrNet](community-guides/unity-multiplayer-services-with-purrnet.md)
 * [☁️ Game Server Hosting](game-server-hosting/README.md)
   * [Edgegap](game-server-hosting/edgegap.md)
+  * [Gameye](game-server-hosting/gameye.md)
 * [🧩 Addons](addons/README.md)
   * [Lobby System](addons/lobby-system.md)
     * [Making your own provider](addons/lobby-system/making-your-own-provider.md)
