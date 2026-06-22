@@ -10,3 +10,7 @@ private void Awake()
     DontDestroyOnLoad(this);
 }
 ```
+
+Note that PurrNet does not track the DDOL scene by default unless the Network Manager itself is also located there. If your manager lives in a different scene, any Network Identities you move to DDOL will fail to register and will show up as "Not Spawned".
+
+To fix this, locate your NetworkRules asset, go to the scene rules section, and enable `alwaysIncludeDontDestroyOnLoadScene`. This explicitly tells PurrNet to register the DDOL scene so it can discover and spawn your persistent objects correctly.
