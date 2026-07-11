@@ -56,6 +56,18 @@ When you need to reset visual drift (e.g., teleporting gameplay), call `ResetInt
 
 ***
 
+**Soft Correction vs Rollback Interpolation**
+
+These are separate correction paths:
+
+* With `FullPrediction`, the simulation is restored and replayed. View interpolation hides the visual difference between the pre-reconcile and post-reconcile result.
+* With `SoftCorrection`, the live client object is not restored. Verified state produces a pending pose or velocity error, and supported components consume that error during future live ticks.
+* With `ServerRelay`, the view follows verified state because the identity has no speculative future on that client.
+
+Built-in soft correction exposes an exponential correction rate and snap thresholds. Choose it only when smooth convergence is acceptable for gameplay; use full prediction when historical interaction correctness matters. See [Prediction Policies](prediction-policies.md).
+
+***
+
 **Owner vs. Controller**
 
 * `isOwner`: True when the identity’s owner matches `PredictionManager.localPlayer`.

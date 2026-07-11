@@ -15,7 +15,7 @@ public class Bomb : PredictedIdentity
     {
         // Create the timer (default: automatic countdown)
         _fuseTimer = new TimerModule(this);
-        
+
         // Hook into events
         _fuseTimer.onTimerEnded += Explode;
         _fuseTimer.onPredictedTimerUpdated_View += UpdateTimerUI;
@@ -55,7 +55,7 @@ protected override void Simulate(ref MyState state, float delta)
     {
         // Manually advance the timer
         // Use -delta to count down, or +delta to count up
-        _chargeTimer.TickTimer(-delta); 
+        _chargeTimer.TickTimer(-delta);
     }
 }
 ```

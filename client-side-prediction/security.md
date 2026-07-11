@@ -1,30 +1,54 @@
 # Security Model
 
-Client‑side prediction keeps gameplay responsive, but authority lives on the server. This page explains what data is trusted, how inputs are validated, and patterns to avoid client‑driven exploits.
+Client-side prediction improves responsiveness; it does not grant authority. The server receives player input, sanitizes it, runs the authoritative simulation, and sends verified state back to observers.
 
-***
+## What the client controls
 
-**Trust Model**
+An owning client can propose input for its predicted identities. It cannot directly declare an authoritative position, health value, spawn, hit, or physics result through the prediction state pipeline.
 
-* Server authoritative: Only player inputs are accepted from clients. Game state is never trusted from clients.
-* Server re‑simulates using received inputs and produces the authoritative state. Clients reconcile to that.
-* Ownership enforced: The server only accepts inputs for an identity from its owner.
+The server accepts input in the context of ownership and simulates the outcome itself. A modified client can still send malicious but correctly shaped input, so serialization and range checks are only the first layer of validation.
 
-Implications:
+## Sanitize input
 
-* A client can’t force state (position, health, spawns) — it can only propose inputs for identities it owns.
-* Desyncs are corrected by reconciliation; local client changes that don’t match server simulation are discarded visually over time.
+Override `SanitizeInput` to normalize or reject values before server simulation:
 
-***
+```csharp
+protected override void SanitizeInput(ref PlayerInput input)
+{
+    input.move = Vector2.ClampMagnitude(input.move, 1f);
 
-**Input Validation**
+    if (!float.IsFinite(input.aimRadians))
+        input.aimRadians = 0f;
+}
+```
 
-* Sanitize Inputs: Implement `SanitizeInput(ref INPUT)` to clamp, normalize, and drop invalid or out‑of‑range values. This runs on the server before simulation.
-* Extrapolate Input: For remote players, the client may extrapolate locally to smooth visuals. This is not trusted — the server still simulates from received inputs only.
-* Repeat Input Factor: Cap how many ticks a prior input is reused for remote interpolation; prevents long input stretching.
+Then validate intent against authoritative state inside simulation:
 
-Checklist:
+* Enforce cooldowns, ammo, stamina, and movement limits.
+* Confirm the identity is in a state where the action is legal.
+* Derive hits and collisions from server simulation rather than client claims.
+* Rate-limit expensive actions and predicted hierarchy creation.
 
-* Clamp analog ranges (e.g., normalize movement vectors).
-* Gate one‑shot actions (fire/jump) with game‑side cooldowns, not just input booleans.
-* Ignore inputs that don’t make sense for the current owned state (e.g., jump while already in the air if your design disallows it).
+## Missing and repeated input
+
+The server can extrapolate missing input depending on the Prediction Manager's Input Queue Settings. Strip edge-triggered actions in `ModifyExtrapolatedInput` so a missing frame cannot repeat jump, fire, interact, or purchase commands.
+
+Input queue limits are networking safeguards, not gameplay validation. Your simulation still needs domain-specific limits.
+
+## Policies do not change authority
+
+[Prediction policies](prediction-policies.md) change only how a client presents and reconciles an identity:
+
+* `ServerRelay` does not make a client authoritative; it reduces speculative client simulation.
+* `SoftCorrection` does not trust the client's result; verified server state remains the correction target.
+* `PredictedIfOwned` predicts the local owner's copy for responsiveness, while the server still verifies it.
+
+Do not use a smoother correction policy as evidence that a state is secure or valid.
+
+## Side effects and ordinary networking
+
+Prediction simulation can replay. Sending RPCs, granting rewards, writing persistence, or invoking external systems directly from an unguarded simulation callback can execute more than once.
+
+Keep authoritative rewards and persistence on the server, make them idempotent where possible, and trigger presentation with `PredictedEvent` or `predictionManager.isVerifiedView`.
+
+`PredictedIdentitySpawner` is intentionally marked `[PredictionUnsafe]` because it bridges predicted state to ordinary PurrNet hierarchy side effects. Use it narrowly and let PurrNet's network rules, visibility, and ownership checks govern the spawned identities.

@@ -22,6 +22,13 @@ Prediction Manager setting:
 
 * Validate Deterministic Data (bool): when enabled, the server writes each deterministic state and clients read+compare it. Mismatches log an error and trigger a `Debug.Break()` to help diagnose.
 
+Prediction policies:
+
+* `FullPrediction`, `ServerRelay`, and `PredictedIfOwned` are supported without turning deterministic identities into ordinary per-tick state replication.
+* `SoftCorrection` is not supported because deterministic identities do not receive the authoritative state deltas required to build a correction target. Selecting it resolves to `FullPrediction`.
+
+See [Prediction Policies](prediction-policies.md) for the client timeline behavior.
+
 ***
 
 **Overrides**

@@ -4,34 +4,16 @@ description: Non-mono bound predicted code for maximum flexibility
 
 # Predicted Modules
 
-{% hint style="warning" %}
-This is new functionality and currently only available on the dev branch. Once it's been tested, it'll be released fully.
-
-This was introduced in 1.2.2-beta.4\
-Dynamic modules were introduced in 1.3.0-beta.27\
-In case you don't see the functionality, ensure you are at least on this version of PurrDiction
-{% endhint %}
-
-The PredictedModule system allows you to encapsulate specific game logic and state into reusable, self-contained units. Instead of writing a `PredictedIdentity` that handles singular logic like timers, inventory, health, and such all in one script, you can break these features down into individual modules.
-
-#### Why use Modules?
-
-* Encapsulation: Keep logic and state (e.g., a Timer or Health system) isolated from other systems.
-* Reusability: Write a module once (like a `ProjectileMovementModule`) and drop it into any `PredictedIdentity`.
-* Network Efficiency: Modules have their own delta compression. If only one module changes, only that module's data is sent over the network.
-* Automatic History & Rollbacks: Modules automatically participate in the prediction rollback system, saving you from manually managing history buffers for every variable.
-
-***
-
-## Predicted Modules
-
 The PredictedModule system allows you to encapsulate specific game logic and state into reusable, self-contained units. Instead of writing a monolithic `PredictedIdentity` that handles movement, health, inventory, and abilities all in one script, you can break these features down into individual modules.
 
-#### Why use Modules?
+## Why use modules?
 
 * Encapsulation: Keep logic and state (e.g., a Timer or Health system) isolated from other systems.
 * Reusability: Write a module once (like a `ProjectileMovementModule`) and drop it into any `PredictedIdentity`.
+* Network efficiency: Modules have their own delta compression, so unchanged module state does not need a full resend.
 * Automatic History & Rollbacks: Modules automatically participate in the prediction rollback system, saving you from manually managing history buffers for every variable.
+
+Modules follow the simulation and reconciliation timeline of their containing identity. Configure [prediction policies](../prediction-policies.md) on the identity or its nearest scope, not on individual modules.
 
 {% hint style="info" %}
 Performance note: A predicted module acts similar to a predicted identity. This means that it's another state, and another simulation to handle. Pros of this is that it adds flexibility and modularity easily. The con being that now your identity is handling multiple simulations and multiple states which can be heavier for performance on both CPU and bandwidth. It's about weighing re-usability and flexibility vs performance.\
@@ -40,7 +22,7 @@ However, this is **not** heavier than having multiple predicted identities.
 
 ***
 
-#### Implementation Guide
+## Implementation Guide
 
 Creating a module involves two steps: defining the state and creating the module logic.
 
@@ -66,10 +48,10 @@ Inherit from `PredictedModule<TState>`. You typically override `Simulate` for lo
 public class HealthModule : PredictedModule<HealthState>
 {
     // You can customize the constructor for custom needs
-    public HealthModule(PredictedIdentity identity, int startingHealth) : base(identity) 
-    { 
+    public HealthModule(PredictedIdentity identity, int startingHealth) : base(identity)
+    {
         currentState.currentHealth = startingHealth;
-        
+
         // Updates the visual buffer to match the new current state immediately
         ResetInterpolation();
     }
@@ -83,7 +65,7 @@ public class HealthModule : PredictedModule<HealthState>
             state.currentHealth++;
         }
     }
-    
+
     public void ChangeHealth(int change) => currentState.currentHealth += change;
 
     // Visuals: runs every frame

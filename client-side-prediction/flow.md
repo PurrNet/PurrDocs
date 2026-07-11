@@ -103,6 +103,15 @@ Order (server and client):
 * `SyncTransforms()` and `UpdateInterpolation(accumulateError: true)` to smooth visual corrections.
 * Fire `onRollbackFinished`.
 
+Prediction policies alter which parts of this path run for an identity:
+
+* `FullPrediction` restores and replays normally.
+* `ServerRelay` skips speculative client simulation and runs verified ticks only.
+* `SoftCorrection` does not restore the live identity. It compares the verified state with client history, freezes physics while other systems replay, and consumes the resulting correction during later live ticks.
+* `PredictedIfOwned` resolves to full prediction or server relay for the current client before applying these rules.
+
+The server ignores these client timeline differences and simulates every identity. See [Prediction Policies](prediction-policies.md).
+
 View updates are not part of tick callbacks; see below.
 
 ***
@@ -146,3 +155,9 @@ View updates are not part of tick callbacks; see below.
   * `ResetInterpolation()` — clear smoothing (e.g., teleports).
   * `UpdateView(STATE viewState, STATE? verified)` — render visuals.
   * `OnViewOwnerChanged(old, new)` — view‑only ownership transitions.
+
+## One-shot side effects during catch-up
+
+`isVerified` can also be true while PurrDiction re-runs an already verified tick to rebuild state. Deterministic state mutation must still execute, but audio, VFX, UI notifications, achievements, and similar one-shot reactions should not.
+
+Use `predictionManager.isVerifiedView` when a side effect should run only on the first verified delivery, or use `PredictedEvent` to apply the appropriate owner/server/verified filtering automatically. `predictionManager.isCatchingUpFrames` exposes the underlying catch-up state for advanced cases.

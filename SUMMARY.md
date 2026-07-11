@@ -93,6 +93,7 @@
 * [PurrDiction](client-side-prediction/README.md)
   * [Overview](client-side-prediction/overview.md)
   * [Installation](client-side-prediction/installation.md)
+  * [Prediction Policies](client-side-prediction/prediction-policies.md)
   * [Predicted Identities](client-side-prediction/predicted-identities.md)
   * [Predicted Modules](client-side-prediction/predicted-modules/README.md)
     * [Predicted Timer Module](client-side-prediction/predicted-modules/predicted-timer-module.md)
