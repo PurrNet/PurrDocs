@@ -115,6 +115,7 @@
   * [Security Model](client-side-prediction/security.md)
   * [Development Shortcuts](client-side-prediction/development-shortcuts.md)
 * [🧰 Tools](tools/README.md)
+  * [Type Hash Resolver](tools/type-hash-resolver.md)
   * [Conversion Tool](tools/conversion-tool/README.md)
     * [Creating your own converter](tools/conversion-tool/creating-your-own-converter.md)
   * [PurrChat (AI assistant)](tools/purrchat-ai-copilot/README.md)

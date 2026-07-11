@@ -18,7 +18,29 @@ It's a highly dynamic component, so although the default settings should work we
 
 A lot of values behind the scenes are modified dynamically, which is why so many settings are exposed. Things like a flat acceptable error threshold or hard correction threshold, yielded bad results during collision and faster movement, which is why the acceleration settings help to dynamically expand the acceptable ranges during big acceleration changes.
 
-<table><thead><tr><th width="230">Setting</th><th>Effect</th></tr></thead><tbody><tr><td>Owner Auth</td><td>Decides who holds the truth of the simulation. If true, the owning client calculates physics (Client Auth). If false, the server does (Server Auth).</td></tr><tr><td>Interpolation Delay</td><td>How far behind real-time (in seconds) the interpolation target sits. Higher values absorb more network jitter but add visual latency. Default: 0.05s.</td></tr><tr><td>Prediction Factor</td><td>Pushes the target position forward using velocity to compensate for interpolation delay. 0 = no prediction, 1 = compensate for the full interpolation delay, >1 = predict further ahead. The offset is deterministic and identical on all machines.</td></tr><tr><td>Position Strength</td><td>How aggressively the rigidbody chases the target position. Acts as the natural frequency of a critically-damped spring. Higher values = tighter tracking but stiffer feel. The steady-state tracking lag is approximately velocity / strength.</td></tr><tr><td>Correction Range</td><td>The distance over which position correction ramps from zero to full strength. Larger values give softer correction, letting local collisions play out naturally before being pulled back. Smaller values give tighter snapping.</td></tr><tr><td>Rotation Strength</td><td>How aggressively the rigidbody corrects rotation errors. Works the same way as position strength but for angular correction.</td></tr><tr><td>Hard Snap Distance</td><td>If the position error exceeds this distance, the rigidbody teleports to the target instead of using forces. Acts as a safety net for large desync.</td></tr><tr><td>Hard Snap Angle</td><td>If the rotation error (degrees) exceeds this threshold, the rotation snaps instantly instead of using torque. Set to a negative value to disable rotation snapping entirely.</td></tr><tr><td>Acceptable Rotation Error</td><td>Rotation error (degrees) below which rotation correction stops, preventing micro-jitter at rest. Set to a negative value to disable rotation correction entirely.</td></tr><tr><td>Position Change Threshold</td><td>Minimum distance the rigidbody must move before triggering a network update. Prevents unnecessary updates while stationary.</td></tr><tr><td>Rotation Change Threshold</td><td>Minimum angle the rigidbody must rotate before triggering a network update.</td></tr><tr><td>Velocity Stop Threshold</td><td>If both linear and angular velocities are below this value, the object is considered stopped and will cease sending updates.</td></tr></tbody></table>
+<table><thead><tr><th width="230">Setting</th><th>Effect</th></tr></thead><tbody><tr><td>Owner Auth</td><td>Decides who holds the truth of the simulation. If true, the owning client calculates physics (Client Auth). If false, the server does (Server Auth).</td></tr><tr><td>Sync Velocity Relative To Parent</td><td>When using a real or soft parent, subtracts the parent Rigidbody's linear and angular motion before sending velocity. Enable this for objects moving on rotating or translating platforms.</td></tr><tr><td>Use Parent Frame Position Error</td><td>Measures correction and hard-snap distance in the active real-parent or soft-parent frame. This prevents parent motion by itself from appearing as child position error.</td></tr><tr><td>Interpolation Delay</td><td>How far behind real-time (in seconds) the interpolation target sits. Higher values absorb more network jitter but add visual latency. Default: 0.05s.</td></tr><tr><td>Prediction Factor</td><td>Pushes the target position forward using velocity to compensate for interpolation delay. 0 = no prediction, 1 = compensate for the full interpolation delay, >1 = predict further ahead. The offset is deterministic and identical on all machines.</td></tr><tr><td>Position Strength</td><td>How aggressively the rigidbody chases the target position. Acts as the natural frequency of a critically-damped spring. Higher values = tighter tracking but stiffer feel. The steady-state tracking lag is approximately velocity / strength.</td></tr><tr><td>Correction Range</td><td>The distance over which position correction ramps from zero to full strength. Larger values give softer correction, letting local collisions play out naturally before being pulled back. Smaller values give tighter snapping.</td></tr><tr><td>Rotation Strength</td><td>How aggressively the rigidbody corrects rotation errors. Works the same way as position strength but for angular correction.</td></tr><tr><td>Hard Snap Distance</td><td>If the position error exceeds this distance, the rigidbody teleports to the target instead of using forces. Acts as a safety net for large desync.</td></tr><tr><td>Hard Snap Angle</td><td>If the rotation error (degrees) exceeds this threshold, the rotation snaps instantly instead of using torque. Set to a negative value to disable rotation snapping entirely.</td></tr><tr><td>Acceptable Rotation Error</td><td>Rotation error (degrees) below which rotation correction stops, preventing micro-jitter at rest. Set to a negative value to disable rotation correction entirely.</td></tr><tr><td>Position Change Threshold</td><td>Minimum distance the rigidbody must move before triggering a network update. Prevents unnecessary updates while stationary.</td></tr><tr><td>Rotation Change Threshold</td><td>Minimum angle the rigidbody must rotate before triggering a network update.</td></tr><tr><td>Velocity Stop Threshold</td><td>If both linear and angular velocities are below this value, the object is considered stopped and will cease sending updates.</td></tr></tbody></table>
+
+### Parent-relative correction
+
+For a Rigidbody attached to a moving platform, enable both parent-relative options when you want the child's motion and correction error measured independently of the platform:
+
+```csharp
+networkRb.syncVelocityRelativeToParent = true;
+networkRb.useParentFramePositionError = true;
+```
+
+These options work with a real parent and with `SetSoftParent`. Velocity-relative mode requires a `Rigidbody` on the parent or one of its ancestors; without one, the parent's velocity contribution is treated as zero.
+
+A soft parent uses another Network Identity as the Rigidbody's sync frame without changing the Unity transform hierarchy. Call it on the controlling peer (the owner in owner-auth mode or the server in server-auth mode):
+
+```csharp
+networkRb.SetSoftParent(movingPlatformIdentity);
+
+// Return to the frame selected by the Space setting and real Unity parent.
+networkRb.ClearSoftParent();
+```
+
+The selected soft parent is included in state updates, ownership handoffs, and the initial state sent to late joiners.
 
 ### Teleporting
 
@@ -38,6 +60,27 @@ networkRb.TeleportTo(respawnPosition);
 * Clears the interpolation buffer on all observers
 * Sends a reliable RPC so the teleport is never missed
 * Prevents the spring from trying to smoothly chase a position that was meant to be instant
+
+To react when normal correction performs a hard **position** teleport because the error exceeded the configured threshold, subscribe to `onTeleportCorrection`:
+
+```csharp
+private void OnEnable()
+{
+    networkRb.onTeleportCorrection += OnTeleportCorrection;
+}
+
+private void OnDisable()
+{
+    networkRb.onTeleportCorrection -= OnTeleportCorrection;
+}
+
+private void OnTeleportCorrection(RigidbodyCorrectionContext context)
+{
+    Debug.Log($"Corrected from {context.previousPosition} to {context.targetPosition}");
+}
+```
+
+The callback runs after the hard correction has been applied. Its context includes the previous pose, target pose and velocities, measured errors, and the correction settings used for the decision.
 
 If you're replacing a `Rigidbody` reference with `NetworkRigidbody`, you do **not** need to change any of your existing `MovePosition`, `MoveRotation`, or `AddForce` calls — they work identically. Only use `TeleportTo` when you specifically need an instant, non-physical reposition.
 
