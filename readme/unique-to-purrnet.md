@@ -10,11 +10,13 @@ PurrNet has all the core networking features you'd expect: [SyncVars](../systems
 
 {% embed url="https://youtu.be/JJZY9cI2VqE" %}
 
+We don't bake components or scene IDs. Scene IDs are calculated at runtime based on hierarchy order, so as long as your scenes match, the IDs match. This means no conflicts in version control, no mysterious bake issues, and no extra build steps.
+
 ### Works with Unity, not against it
 
 A lot of networking solutions force you into a different workflow. Nested prefabs don't work, scene objects need baking, and you have to learn a whole new way of doing things you already know how to do. PurrNet is built to feel like Unity. If you can Instantiate, Destroy, and write MonoBehaviours, you can build multiplayer games with PurrNet.
 
-### No baking
+### No baking LOL
 
 We don't bake components or scene IDs. Scene IDs are calculated at runtime based on hierarchy order, so as long as your scenes match, the IDs match. This means no conflicts in version control, no mysterious bake issues, and no extra build steps.
 

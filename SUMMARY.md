@@ -1,8 +1,8 @@
 # Table of contents
 
 * [🐈 Introduction](README.md)
-  * [‼️ Unique to PurrNet](readme/unique-to-purrnet.md)
   * [💲 Pricing](readme/pricing.md)
+    * [‼️ Unique to PurrNet](readme/unique-to-purrnet.md)
   * [💻 Compatibility](readme/compatibility.md)
   * [📚 Addon library](readme/addon-library.md)
   * [🗺️ Roadmap](readme/roadmap.md)
