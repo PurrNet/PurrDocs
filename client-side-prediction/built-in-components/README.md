@@ -1,17 +1,20 @@
 # Built-in Components
 
-Quick references for the most commonly used PurrDiction components you can drop into scenes.
+PurrDiction ships components for common predicted gameplay. They are production building blocks as well as source examples for custom identities.
 
-**Prebuilt Samples**
+| Component | Use it for |
+| --- | --- |
+| [Predicted Transform](predicted-transform.md) | Rollback-aware position and rotation with visual interpolation and correction. |
+| [Predicted Rigidbody / Rigidbody2D](predicted-rigidbody-2d-and-3d.md) | Unity physics bodies simulated by the Prediction Manager with rollback state and predicted collision events. |
+| [Predicted Projectile 3D](predicted-projectile-3d.md) | Lightweight cast-based spherical projectiles with gravity, triggers, and bounce behavior. |
+| [Predicted Identity Spawner](predicted-identity-spawner.md) | A deliberate bridge from a predicted object to one or more ordinary PurrNet Network Identities. |
 
-* Located under `Assets/PurrDiction/Runtime/Prebuilt/`.
-* Examples: `TopDownMovement_CC`, `TopDownMovement_RB`, `RigidbodyShooter`, `RigidbodyKnockback`, `RigidbodyJump`.
-* Intended as reference implementations; adapt logic to your project’s states/inputs.
+Supporting systems include:
 
-***
+* `PredictedPhysicsCallbacks` for rollback-aware 3D collision and trigger events on custom predicted objects.
+* `PredictedStateMachine` for modular predicted state logic.
+* `PredictedRandom`, `PredictedTime`, `PredictedPlayers`, and `PredictedHierarchy`, enabled through the Prediction Manager's built-in systems.
 
-**Related Systems**
+Reference implementations for top-down character-controller and Rigidbody movement live under `Assets/PurrDiction/Runtime/Prebuilt/`. Copy the patterns you need rather than treating the samples as a general-purpose character controller.
 
-* `PredictedStateMachine`: Modular state logic with view hooks. See the State Machine docs.
-* `PredictedRandom`: Deterministic RNG for predicted code paths.
-* `PredictedPlayers`, `PredictedTime`, `PredictedHierarchy`: Built‑ins registered by `PredictionManager` to support common gameplay needs.
+Before choosing a component, decide whether it should use [full prediction, server relay, soft correction, or ownership-based prediction](../prediction-policies.md).

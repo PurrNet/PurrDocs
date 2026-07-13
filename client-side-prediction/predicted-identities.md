@@ -1,6 +1,6 @@
 # Predicted Identities
 
-Predicted identities are regular Unity components that PurrDiction simulates deterministically. The system snapshots and reconciles their `STATE` against server authority, while your code focuses on clean, single‑player‑style logic.
+Predicted identities are regular Unity components that PurrDiction simulates on its tick timeline. The system snapshots and reconciles their `STATE` against server authority, while your code focuses on clean, single-player-style logic.
 
 **Variants**
 
@@ -20,7 +20,7 @@ Both `INPUT` and `STATE` must be structs that implement the appropriate predicti
 
 * `LateAwake()` — Called once after fresh spawn initialization. View‑only setup is appropriate here.
 * `SimulationStart()` — First tick only, before simulation begins. Good for caching or one‑time transitions.
-* `Simulate(...)` — Deterministic simulation each tick. Use only `STATE`/`INPUT` and deterministic data.
+* `Simulate(...)` — Replayable simulation each tick. Use only `STATE`, `INPUT`, and predicted or deterministic data sources.
 * `LateSimulate(...)` — Optional late pass after `Simulate` each tick (e.g., composing derived values).
 * `Destroyed()` — Called when despawning/cleanup occurs (pool or destroy).
 * `ResetState()` — Clears ownership/IDs and resets interpolation and internal caches for pooling.
@@ -45,6 +45,22 @@ View & interpolation:
 * `OnViewOwnerChanged(oldOwner, newOwner)` — View‑only callback when ownership changes; do not mutate simulation here.
 
 Use these flags for visuals (camera, highlights, UI). Keep simulation deterministic and independent of local presentation.
+
+***
+
+**Prediction Policy**
+
+Every identity resolves a client timeline from its local setting or the nearest `PredictionPolicyScope`. The default is `FullPrediction`. Use `PredictedIfOwned` for the common local-player/remote-player split, `ServerRelay` for verified-only client copies, and `SoftCorrection` only on identities that explicitly support it.
+
+```csharp
+// Persistent local override, including after a scope refresh.
+SetPredictionPolicyOverride(PredictionPolicy.PredictedIfOwned);
+
+// Return to the nearest active scope.
+UsePredictionPolicyScope();
+```
+
+See [Prediction Policies](prediction-policies.md) for the behavior, scope rules, and runtime APIs.
 
 ***
 
@@ -75,10 +91,10 @@ public class MyPredicted : PredictedIdentity<MyInput, MyState>
     { i.input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); }
 
     protected override void SanitizeInput(ref MyInput i)
-    { 
+    {
         if (!i.input.HasValue) return;
-        var v = Vector2.ClampMagnitude(new Vector2(i.input.Value.x, i.input.Value.y), 1f); 
-        i.input = v; 
+        var v = Vector2.ClampMagnitude(new Vector2(i.input.Value.x, i.input.Value.y), 1f);
+        i.input = v;
     }
 
     protected override void Simulate(MyInput i, ref MyState s, float dt)

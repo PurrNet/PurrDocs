@@ -10,6 +10,23 @@ To can enable pooling on your network prefabs:
 
 The way to utilize pooling is quite simple with PurrNet, in fact if you ticked the box you are already done. You keep calling `Instantiate` and `Destroy` and we handle it for you.
 
+## Getting a local instance directly from the pool
+
+Normal `Instantiate` calls on a registered network prefab notify PurrNet and follow the usual network spawning path. `UnityProxy.InstantiateDirectlyFromPool` is available when you deliberately need an instance from the configured pool **without** that automatic network-spawn notification:
+
+```csharp
+var localInstance = UnityProxy.InstantiateDirectlyFromPool(
+    projectilePrefab,
+    transform.position,
+    transform.rotation);
+```
+
+The method has overloads matching the common Unity `Instantiate` forms, including parent, scene, and generic component overloads. If the object is not a registered pooled prefab, it falls back to Unity's regular `Object.Instantiate`.
+
+{% hint style="warning" %}
+This is an advanced local-instantiation API. The returned object is not automatically spawned over the network. Use ordinary `Instantiate` when other peers should receive the spawn.
+{% endhint %}
+
 If you need to reset some data once it get pooled you have an override on your `NetworkIdentities` that gets called for cleanup:
 
 ```csharp
@@ -18,6 +35,8 @@ protected override void OnPoolReset()
     // reset some stuff
 }
 ```
+
+Serialized `SyncVar`, `SyncList`, and `SyncDictionary` fields automatically restore the initial values saved with the prefab when their object is reset for pooling. Use `OnPoolReset` for your own non-sync fields, cached references, subscriptions, and other custom state.
 
 There is one caveat. PurrNet allows pooling of children separately and even partial pooling where a prefab might be constructed partly from pooled parts and partly from instantiated parts. But this does cause one issues which is possible mangling or loss of references. Note that this is only an issue when you are mix and matching prefab parts and parents. To fix this we made a `Reference<>` module available for you and it is meant to be used like this:
 

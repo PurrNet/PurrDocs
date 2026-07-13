@@ -30,3 +30,27 @@ Look at the [Installation/Setup](../../getting-started/installation-setup.md) se
 **Network Rules:** These are the [Network Rules](network-rules.md) to use with the Network Manager. Just simply select the scriptable you want to use. This can be overwritten on the individual [network identity](../network-identity/).
 
 **Visibility Rules:** This is the [Visibility ](network-visibility/)rule-set to use. This will decipher the default rules for player to Network Identity relation. This can be overwritten on the individual [network identity](../network-identity/).
+
+## Unreliable messages and the MTU
+
+**MTU Exceeded Behaviour** controls what happens when a message is too large for one packet on an `Unreliable` or `UnreliableSequenced` [channel](../../terminology/channels.md). The setting is under the Network Manager's runtime settings and defaults to **Fragment**.
+
+| Mode | Behavior | Use when |
+| --- | --- | --- |
+| Fragment | Splits the message into MTU-sized unreliable fragments. The complete message is delivered only if every fragment arrives; missing fragments are not resent. | You want to preserve unreliable delivery and can tolerate losing the entire message. |
+| Upgrade To Reliable | Sends the oversized message as `ReliableOrdered` and logs a warning. | Delivery matters more than preserving latency and unreliable semantics. |
+| Drop | Discards the oversized message and logs an error. | Oversized messages indicate a mistake and must never silently become reliable or consume fragment bandwidth. |
+
+The MTU is reported by the active transport and can vary by transport, channel, connection, and platform. Avoid designing around one hard-coded byte count.
+
+{% hint style="warning" %}
+Fragmentation is a fallback, not a substitute for controlling message size. Each additional fragment is another packet that can be lost. For large data that must arrive intact, use a reliable channel or a purpose-built system such as [SyncBigData](../network-modules/syncbigdata/README.md).
+{% endhint %}
+
+You can also inspect or change the mode in code before connecting:
+
+```csharp
+using PurrNet.Transports;
+
+networkManager.mtuExceededBehaviour = MTUExceededBehaviour.Fragment;
+```

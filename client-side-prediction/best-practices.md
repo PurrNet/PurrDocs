@@ -1,147 +1,88 @@
 # Best Practices
 
-**Use Structs for `INPUT` and `STATE`**
+Prediction failures usually come from state that cannot be restored, simulation code with hidden side effects, or a client timeline that does not match the object's gameplay role.
 
-* Define `INPUT` and `STATE` as **structs** in C#, not classes.
-* Structs are value types, which ensures predictable behavior during prediction and reconciliation.
-*   Example:
+## Put every mutable simulation value in state
 
-    ```csharp
-    public struct MyInput : IPredictedData
-    {
-        public float horizontal;
-        public float vertical;
-        public bool jump;
-    }
-
-    public struct MyState : IPredictedData<MyState>
-    {
-        public Vector3 position;
-        public Quaternion rotation;
-        public bool isJumping;
-    }
-    ```
-
-**Why?**
-
-* Structs are copied by value, making them ideal for storing snapshot data that needs to be reconciled.
-* Avoids unintended side effects that can occur with reference types (classes).
-
-***
-
-**2. Initialize State with `GetInitialState`**
-
-* Use the `protected override STATE GetInitialState()` method to define the default values for your `STATE` struct.
-* This method is called when the entity is first created, ensuring that it starts with a valid initial state.
-
-**Example**:
+`INPUT` and `STATE` must be structs implementing the appropriate `IPredictedData` interface. State should include every value that can change a later simulation result: position, velocity, cooldowns, counters, targets, random state, active modes, and stable predicted object IDs.
 
 ```csharp
-protected override MyState GetInitialState()
+public struct PlayerInput : IPredictedData
 {
-    return new MyState
-    {
-        position = Vector3.zero,
-        rotation = Quaternion.identity,
-        isJumping = false
-    };
+    public Vector2 move;
+    public bool jump;
+    public void Dispose() { }
+}
+
+public struct PlayerState : IPredictedData<PlayerState>
+{
+    public Vector3 position;
+    public Vector3 velocity;
+    public float jumpCooldown;
+    public void Dispose() { }
 }
 ```
 
-**Why?**
+Inspector fields are configuration, not mutable simulation state. If a serialized value can change at runtime and affect gameplay, copy it into state or change it through a predicted operation.
 
-* Ensures that your entity starts with a consistent and predictable state.
-* Avoids undefined behavior caused by uninitialized state variables.
+## Initialize and bridge state deliberately
 
-***
+Use `GetInitialState` for a complete starting snapshot. Use `GetUnityState` and `SetUnityState` when state lives partly in Unity components such as Transform or Rigidbody.
 
-**3. Treat `STATE` as the Source of Truth**
+Do not change a Unity component during simulation without ensuring the corresponding state captures and restores that change. Built-in transform and physics components already implement this bridge.
 
-* Any data that affects the simulation should be part of the `STATE` struct.
-* Use `STATE` to store:
-  * Entity position, rotation, and velocity.
-  * Flags or variables that control behavior (e.g., `isJumping`, `isShooting`).
-* Avoid modifying Unity components directly (e.g., `Transform.position`) without synchronizing them with the `STATE`.
+## Keep simulation replay-safe
 
-**Why?**
+`Simulate` and `LateSimulate` can execute more than once for the same tick. They may mutate predicted state, create objects through `PredictedHierarchy`, and use deterministic built-in systems. They must not directly perform irreversible work such as:
 
-* The `STATE` struct is reconciled by the CSP system, ensuring consistency between the client and server.
-* Directly modifying Unity components can lead to desynchronization and unpredictable behavior.
+* Playing audio or particles
+* Sending analytics or achievements
+* Writing save data
+* Calling external services
+* Sending ordinary RPCs on every replay
 
-***
+Use `PredictedEvent`, `predictionManager.isVerifiedView`, or view callbacks for one-shot presentation. Do not skip deterministic state mutations merely because `isCatchingUpFrames` is true.
 
-**4. Use `GetUnityState` and `SetUnityState` for External Components**
+## Read time and randomness from the predicted world
 
-* If your `STATE` affects Unity components (e.g., `Transform`, `Rigidbody`), use these overrides to synchronize them:
-  * **`protected override void GetUnityState(ref STATE state)`**:
-    * Updates the `STATE` struct with data from Unity components (e.g., reading the `Transform.position`).
-  * **`protected override void SetUnityState(STATE state)`**:
-    * Applies the `STATE` to Unity components (e.g., setting the `Transform.position`).
+Do not use `Time.deltaTime`, `Time.time`, `UnityEngine.Random`, frame count, or wall-clock time in tick simulation. Use the callback's `delta`, `PredictedTime`, and `PredictedRandom` so rollback recreates the same sequence.
 
-**Example**:
+For strict cross-platform determinism, use `DeterministicIdentity`, `sfloat`, or fixed-point types. Unity physics is rollback-compatible through the built-in components but not guaranteed bit-identical across machines.
 
-```csharp
-protected override void GetUnityState(ref MyState state)
-{
-    state.position = transform.position;
-    state.rotation = transform.rotation;
-}
+## Validate input on the server
 
-protected override void SetUnityState(MyState state)
-{
-    transform.position = state.position;
-    transform.rotation = state.rotation;
-}
-```
+Implement `SanitizeInput` to clamp ranges and remove impossible values. Validate resulting actions against authoritative state as well: a sanitized fire button still needs a server-side cooldown, ammo check, and ownership check.
 
-**Why?**
+Remove one-shot edges such as jump or fire from extrapolated input in `ModifyExtrapolatedInput`; otherwise a missing packet can repeat them.
 
-* These methods ensure that Unity components are properly synchronized with the `STATE`, maintaining consistency during prediction and reconciliation.
+## Choose the cheapest correct policy
 
-***
+* Use `FullPrediction` when the object affects local gameplay and must reconcile exact interactions.
+* Use `PredictedIfOwned` for locally controlled actors when remote copies can follow verified state.
+* Use `ServerRelay` for server-driven objects where client latency is acceptable.
+* Use `SoftCorrection` only for supported, non-critical objects that may converge over time.
 
-**5. Make `SerializeField` Constants Only**
+Avoid using soft correction merely to hide a broken deterministic simulation. It changes consistency guarantees, not just visuals.
 
-* Use `SerializeField` only for **constant values** that do not change during simulation (e.g., speed, prefab references).
-* Avoid using `SerializeField` for variables that are part of the simulation logic (e.g., position, velocity).
+## Treat history data as owned memory
 
-**Why?**
+PurrDiction copies and disposes states frequently. Use PurrNet disposable collections for variable-sized state, implement `Dispose`, and implement `IDuplicate<T>` when a state contains owned buffers that need deep copying. Never retain a disposable collision contact list beyond its callback.
 
-* `SerializeField` variables are not reconciled by the CSP system, so changing them during simulation can lead to desynchronization.
+Implement `IEquatable<T>` for complex input or state when equality checks would otherwise be expensive or ambiguous.
 
-***
+## Use stable predicted references
 
-**6. Keep Simulation Logic Deterministic**
+Store `PredictedObjectID` in state instead of direct GameObject references for predicted objects that can be created, deleted, pooled, or recreated during rollback. Resolve the object through `PredictedHierarchy` when needed.
 
-* Ensure that all simulation logic (e.g., movement, physics) is deterministic and based on the `STATE` or `INPUT`.
+## Test the failure modes
 
-**Why?**
+Test as a remote client, not only as host. Exercise:
 
-* Deterministic logic ensures that the client and server produce the same results, even when running at different times or frame rates.
+* Latency, jitter, and packet loss
+* Ownership transfer and reconnect
+* Spawn/despawn during rollback
+* Pool reuse under every configured policy
+* Different render frame rates and tick rates
+* Large corrections, teleports, and late joiners
 
-***
-
-**7. Implement `IDuplicate<T>` on Complex Structs**
-
-- PurrDiction copies states frequently for history and reconciliation.
-- If your `STATE` contains nested complex structs, implement `IDuplicate<T>` on those types so the packer can clone them without serialize/deserialize overhead.
-- Also implement `IEquatable<T>` to speed up delta/equality checks.
-
-***
-
-**8. Prefer Inspector Labels in Docs**
-
-- Use the Inspector’s friendly labels in guidance (e.g., Interpolation Settings, Float Accuracy).
-- Code still references exact identifiers; search by label or identifier as needed.
-
-***
-
-#### Summary of Best Practices
-
-| **Practice**                            | **Why It Matters**                                                              |
-| --------------------------------------- | ------------------------------------------------------------------------------- |
-| Use structs for `INPUT` and `STATE`     | Ensures predictable behavior and avoids side effects of reference types.        |
-| Use `GetInitialState` for defaults      | Provides a consistent starting state for entities.                              |
-| Treat `STATE` as the source of truth    | Prevents desynchronization and maintains consistency between client and server. |
-| Use `GetUnityState` and `SetUnityState` | Properly synchronizes Unity components with the `STATE`.                        |
-| Make `SerializeField` constants only    | Avoids desynchronization caused by unreconciled changes.                        |
+Use the bandwidth and prediction profilers to verify history size, correction frequency, and per-tick state cost before optimizing individual fields.

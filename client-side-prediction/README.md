@@ -2,16 +2,41 @@
 icon: crystal-ball
 ---
 
-# PurrDiction (Client Side Prediction)
+# PurrDiction
+
+PurrDiction is PurrNet's client-side prediction addon. It lets the controlling client simulate input immediately while the server runs the authoritative simulation. When a verified server frame arrives, the client restores the verified state, replays newer inputs, and smooths any visible correction.
 
 {% embed url="https://youtu.be/GcDFfpGypZM" %}
 
-Client-side prediction is a technique used particularly in games to provide a local, responsive experience in a multiplayer environment. It involves predicting future game states on the client side based on user inputs, allowing the game to feel instant and reactive.
+Use PurrDiction for gameplay where waiting for a round trip would feel bad: player movement, vehicles, projectiles, physics interactions, combat state, or other tick-based systems.
 
-For example, if you are controlling a character and keep moving right, the client can predict that you will continue moving right and display this movement immediately. This way, when you interact with other players, both see a consistent outcome.
+## The mental model
 
-Of course, predictions can sometimes be incorrect. When this happens, the client needs to apply corrections. This involves adjusting the game state to match the server's authoritative state, ensuring that everything remains consistent and accurate.
+Every predicted object has two layers:
 
-Don't worry if this sounds a bit confusing at first—this overview is meant to set the stage and help you understand the design decisions and limitations involved in client-side prediction.
+* **Simulation** runs at the network tick rate. Inputs and state are saved so PurrDiction can roll back and replay them.
+* **View** runs once per rendered frame. It turns corrected simulation state into smooth visuals without changing gameplay.
 
-<figure><img src="../../.gitbook/assets/1715578825487.png" alt=""><figcaption></figcaption></figure>
+The server remains authoritative. Clients send input, not trusted gameplay state.
+
+```mermaid
+flowchart LR
+  A["Read local input"] --> B["Predict immediately"]
+  B --> C["Send input to server"]
+  C --> D["Server simulates"]
+  D --> E["Verified frame returns"]
+  E --> F["Rollback and replay"]
+  F --> G["Smooth the view"]
+```
+
+## Start here
+
+1. [Install and configure PurrDiction](installation.md).
+2. Read the [architecture overview](overview.md).
+3. Choose a [prediction policy](prediction-policies.md) for each kind of object.
+4. Implement a [Predicted Identity](predicted-identities.md), or begin with a [built-in component](built-in-components/README.md).
+5. Review [input handling](input-handling.md), [state handling](state-handling.md), and the [execution flow](flow.md) before building more complex interactions.
+
+{% hint style="warning" %}
+Prediction can hide latency; it cannot remove server authority or make nondeterministic gameplay safe. Code that affects gameplay must be replay-safe, and one-shot presentation effects must not fire again during catch-up or rollback.
+{% endhint %}
