@@ -30,7 +30,7 @@ All the tests include 100 NT’s in the scene. The only thing that is modified b
 
 ## Average Usage
 
-This is the average across all 5 tests. See the [Raw results](network-transform-benchmarks.md#raw-results-1) for data of the individual data points.
+This is the average across all 5 tests. See the [Raw results](network-transform-benchmarks.md#raw-results) for data of the individual data points.
 
 | System                  | Download    | Upload      |
 | ----------------------- | ----------- | ----------- |
