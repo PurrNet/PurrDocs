@@ -6,7 +6,7 @@ description: >-
 
 # ‼️ Unique to PurrNet
 
-PurrNet has all the core networking features you'd expect: [SyncVars](../systems-and-modules/network-modules/sync-types/syncvar.md), [RPCs](../systems-and-modules/remote-procedure-call-rpc/), [spawning & despawning](../systems-and-modules/network-identity/spawning-and-despawning/), and much more. But beyond the basics, there are a number of things we do differently that we think make a real difference in how you build multiplayer games.
+PurrNet has all the core networking, and buzzin features you'd expect: [SyncVars](../systems-and-modules/network-modules/sync-types/syncvar.md), [RPCs](../systems-and-modules/remote-procedure-call-rpc/), [spawning & despawning](../systems-and-modules/network-identity/spawning-and-despawning/), and much more. But beyond the basics, there are a number of things we do differently that we think make a real difference in how you build multiplayer games.
 
 {% embed url="https://youtu.be/JJZY9cI2VqE" %}
 
