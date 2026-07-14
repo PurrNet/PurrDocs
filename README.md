@@ -4,14 +4,14 @@ description: Made by network game developers with experience.
 
 # 🐈 Introduction
 
-PurrNet is a free, [performant](readme/performance/) and highly modular networking library for Unity, built by developers who have spent years working with multiplayer games. Our focus is on giving you the best possible developer experience: no clutter, no baking, no core features locked behind a paywall. Just a networking solution that works the way Unity works.
+PurrNet is a free, [performant](readme/performance/) and highly modular networking library for Unity, built by developers who have spent years working with multiplayer games. Our focus is on giving you the best possible developer experience: no clutter, no baking, no core features locked behind a paywall. Just a networking solution that works the way Unity works. Buns
 
 [See our official website here](https://purrnet.dev/)
 
 Check out the [ROADMAP](readme/roadmap.md) to see what we are currently planning to add.
 
-[**Get it on the Unity Asset Store**](https://assetstore.unity.com/packages/slug/297320)\
-[**Get it on GitHub**](https://github.com/BlenMiner/PurrNet)
+**[Get it on the Unity Asset Store](https://assetstore.unity.com/packages/slug/297320)**\
+**[Get it on GitHub](https://github.com/BlenMiner/PurrNet)**
 
 {% embed url="https://youtu.be/VxCPSFBTAms" %}
 
@@ -23,7 +23,7 @@ We built PurrNet because we felt that existing networking solutions fight agains
 
 Read the [Unique to PurrNet](readme/unique-to-purrnet.md) section to see what sets us apart!
 
-Make sure to join our Discord here: [https://discord.gg/NP9tP9Qx9R](https://discord.gg/NP9tP9Qx9R)
+Make sure to join our Discord here: <https://discord.gg/NP9tP9Qx9R>
 
 {% hint style="info" %}
 **Building a multiplayer game as a studio?** We offer hands-on project support, migration planning, architecture reviews, and custom feature development. Everything is tailored to what your team actually needs. [Learn more about our studio support](readme/for-studios.md) or [get in touch directly](https://purrnet.dev/studios).
