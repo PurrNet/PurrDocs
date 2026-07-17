@@ -12,12 +12,13 @@ The state machine also have a custom editor allowing for easy debugging and runt
 
 By default, the state machine is server auth, but you can use the bool in the inspector, to change whether you'd rather have it be owner auth. The main difference is who is allowed to change states on the state machine. The "controller" (whether that is the server or owner), will always handle state changes local to make it fast and responsive.
 
-The state machine is extremely useful at keeping games aligned, and we personally use it for game state handling, which could look something like:\
-&#x31;_. Countdown state_\
-&#xNAN;_&#x32;. Spawning enemies state_\
-&#xNAN;_&#x33;. Spawning boss state_\
-&#xNAN;_&#x34;. Round end state_\
-&#xNAN;_&#x35;. Shop state_
+The state machine is extremely useful at keeping games aligned, and we personally use it for game state handling, which could look something like:
+
+1. _Countdown state_
+2. _Spawning enemies state_
+3. _Spawning boss state_
+4. _Round end state_
+5. _Shop state_
 
 _They can also be used for other things like the state of your player, in the case of using owner auth._
 
@@ -120,6 +121,7 @@ The PurrNet State Machine supports advanced transition logic through the `CanEnt
 Each `StateNode` can override these methods to define custom logic:
 
 * **Non-Generic States**: Override `CanEnter()` and `CanExit()` to implement logic without additional data.
+
 * **Generic States**: Override `CanEnter(T data)` and `CanExit()` to implement logic that considers external data.
 
 By utilizing these methods, you can ensure that your state machine transitions only occur when certain conditions are met, enhancing the robustness of your game's logic.
