@@ -172,6 +172,7 @@
   * [Dissonance](integrations/dissonance.md)
   * [Cozy Weather](integrations/cozy-weather.md)
 * [🕹️ Made with PurrNet](made-with-purrnet/README.md)
+  * [🍔 Happy's Humble Burger Cult](made-with-purrnet/happy-s-humble-burger-cult.md)
   * [🔥 CRACKED](made-with-purrnet/cracked.md)
   * [🐻 Kuroro Wilds](made-with-purrnet/kuroro-wilds.md)
   * [👾 Symbiosis](made-with-purrnet/land-of-symbiosis.md)
