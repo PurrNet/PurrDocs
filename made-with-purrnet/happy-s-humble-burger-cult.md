@@ -5,6 +5,8 @@ You and your crew are hired to participate in an experiment run by the Paragon C
 
 [Play the game now on Steam!](https://store.steampowered.com/app/3453910/Happys_Humble_Burger_Cult)
 
+{% embed url="../.gitbook/assets/28a82f722f2bb0c300a95ccfd8856b52.webm" mode="gif" %}
+
 ### **Escape the nightmare**
 
 Every shift is a ticking clock – the kitchen always wins eventually. Once the simulation collapses, Asset Joy breaks containment and begins her hunt. The iconic mascot is back for blood – and you have only one chance to escape!
@@ -28,11 +30,19 @@ Happy's Humble Burger Cult (formerly *Burgatory*) is the next chapter in the Scy
 ### **Features**
 
 * Chaotic first-person cooking horror for up to 4 players
-* Cook fast food meals and serve them to customers
-* Prepare and pack burgers, fries, drinks, and desserts
-* Close up shop and escape when the monster goes on a hunt
-* Work together to hit your quota and survive
-* 6 restaurants with a variety of menu items
-* 35+ gameplay modifiers
-* Lobby area with mini-games and social space
-* A new chapter in the Happy’s Humble saga
+
+- Cook fast food meals and serve them to customers
+
+- Prepare and pack burgers, fries, drinks, and desserts
+
+- Close up shop and escape when the monster goes on a hunt
+
+- Work together to hit your quota and survive
+
+- 6 restaurants with a variety of menu items
+
+- 35+ gameplay modifiers
+
+- Lobby area with mini-games and social space
+
+- A new chapter in the Happy’s Humble saga
