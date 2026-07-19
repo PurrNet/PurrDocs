@@ -20,7 +20,7 @@ If you don’t require strict bit‑determinism, prefer [`PredictedIdentity<STAT
 
 Prediction Manager setting:
 
-* Validate Deterministic Data (bool): when enabled, the server writes each deterministic state and clients read+compare it. Mismatches log an error and trigger a `Debug.Break()` to help diagnose.
+* Validate Deterministic Data (bool): when enabled, the server writes each deterministic state into its frames and clients compare it against their own state for the same server tick. The comparison is aligned to the tick the server serialized, so latency, jitter, and frame hitches never produce false positives. If it logs a mismatch, your deterministic state genuinely diverged; the error includes both states and triggers a `Debug.Break()` to help diagnose.
 
 Prediction policies:
 
@@ -40,13 +40,13 @@ See [Prediction Policies](prediction-policies.md) for the client timeline behavi
 * `protected virtual void UpdateView(STATE viewState, STATE? verified)`
 * `protected virtual STATE Interpolate(STATE from, STATE to, float t)`
 
-Note the `sfloat` delta — use deterministic math throughout your simulation. You can also mix in `FP` for fixed point math.
+Note the `sfloat` delta: use deterministic math throughout your simulation. You can also mix in `FP` for fixed point math.
 
 ***
 
 **STATE Requirements**
 
-* `STATE : struct, IPredictedData<STATE>` — same as other identities.
+* `STATE : struct, IPredictedData<STATE>`, same as other identities.
 * Provide deterministic operations via `IMath<STATE>` (used by default interpolation): `Add`, `Scale`, `Negate`.
 * Avoid non‑deterministic data (raw `float` computation); prefer `sfloat` or integer/fixed‑point math inside state operations.
 
@@ -92,4 +92,5 @@ public class Oscillator : DeterministicIdentity<OscState>
 * Use `sfloat` and integer math for all simulation‑impacting calculations.
 * Avoid sampling Unity time or random APIs directly; use `PredictedTime` and `PredictedRandom`.
 * Keep any conversions to `float` purely in `UpdateView`.
+* Only mutate state from the simulated timeline: `SimulationStart`, `Simulate`, or events that fire from inside another identity's simulation (like `PredictedPlayers.onPlayerAdded`). Never mutate state from `Awake`, `LateAwake`, or other Unity callbacks; those run at setup time, which differs per peer, and deterministic state is never corrected afterwards. `SimulationStart` is the right place for one-time setup that reads other identities, since it runs at the first simulated tick and its executed flag is part of the rollback state.
 * Enable Validate Deterministic Data only during development; it adds extra packing/comparison overhead.

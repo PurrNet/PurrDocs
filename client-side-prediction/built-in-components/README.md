@@ -8,6 +8,7 @@ PurrDiction ships components for common predicted gameplay. They are production 
 | [Predicted Rigidbody / Rigidbody2D](predicted-rigidbody-2d-and-3d.md) | Unity physics bodies simulated by the Prediction Manager with rollback state and predicted collision events. |
 | [Predicted Projectile 3D](predicted-projectile-3d.md) | Lightweight cast-based spherical projectiles with gravity, triggers, and bounce behavior. |
 | [Predicted Identity Spawner](predicted-identity-spawner.md) | A deliberate bridge from a predicted object to one or more ordinary PurrNet Network Identities. |
+| [Predicted Parent](predicted-parent.md) | Opt-in predicted transform parenting: reparenting rolls back, replays, and reaches late joiners. |
 
 Supporting systems include:
 

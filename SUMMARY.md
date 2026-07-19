@@ -105,6 +105,7 @@
     * [Predicted Rigidbody (2D & 3D)](client-side-prediction/built-in-components/predicted-rigidbody-2d-and-3d.md)
     * [Predicted Projectile (3D)](client-side-prediction/built-in-components/predicted-projectile-3d.md)
     * [Predicted Identity Spawner](client-side-prediction/built-in-components/predicted-identity-spawner.md)
+    * [Predicted Parent](client-side-prediction/built-in-components/predicted-parent.md)
   * [Deterministic Identity](client-side-prediction/deterministic-identity.md)
   * [Predicted Hierarchy](client-side-prediction/predicted-hierarchy.md)
   * [Interacting With Multiple Identities](client-side-prediction/multi-identity-interactions.md)
