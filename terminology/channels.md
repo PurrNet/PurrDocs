@@ -44,4 +44,6 @@ A transport can only place a limited amount of data in one packet. This limit is
 
 `UnreliableSequenced` keeps its sequencing behavior when fragmentation is enabled. A newer message on the same stream supersedes an older incomplete fragmented message, and an older message cannot overwrite a newer completed one.
 
+Individual RPCs on `Unreliable` can override the global setting through the `mtuExceeded` attribute parameter. Dropped fragmented messages are reported in the Bandwidth Profiler with their payload type and drop reason.
+
 See [Network Manager](../systems-and-modules/network-manager/README.md#unreliable-messages-and-the-mtu) for configuration guidance.

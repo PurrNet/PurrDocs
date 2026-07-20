@@ -54,3 +54,16 @@ using PurrNet.Transports;
 
 networkManager.mtuExceededBehaviour = MTUExceededBehaviour.Fragment;
 ```
+
+### Per-RPC override
+
+Individual RPCs can override the Network Manager setting through the `mtuExceeded` attribute parameter:
+
+```csharp
+[ObserversRpc(channel: Channel.Unreliable, mtuExceeded: MTUBehaviour.Fragment)]
+private void SendSnapshot(SnapshotData data) { }
+```
+
+`MTUBehaviour.NetworkManager` is the default and follows the global setting. The override is ignored on `UnreliableSequenced`: sequencing is a property of the whole channel, so only the Network Manager setting applies there and the code generator warns about it at build time.
+
+Fragmented messages that fail to complete are counted in the [Bandwidth Profiler](../bandwidth-profiler.md), including the payload type and the reason the message was dropped.

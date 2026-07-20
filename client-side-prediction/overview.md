@@ -35,6 +35,10 @@ Not every object needs the same prediction cost. A [prediction policy](predictio
 
 Policies only alter client behavior. The server always simulates every identity normally.
 
+## Networking model
+
+PurrDiction sends inputs and frames over unreliable channels. Clients resend recent input ticks until the server acknowledges them, and each server frame carries state as a delta against a tick the client has already verified. A lost frame is never retransmitted: the next frame that arrives re-simulates the missing ticks with the real inputs it carries, so packet loss costs replay work instead of a round trip. Full frames, used for joins and resyncs, are the only reliable traffic.
+
 ## What PurrDiction does not do
 
 PurrDiction is not a replacement for PurrNet's Network Identities, RPCs, visibility, ownership, or security rules. Predicted gameplay uses its own identities and state pipeline, but the Prediction Manager itself is networked through PurrNet and can deliberately bridge to normal networked objects when needed.

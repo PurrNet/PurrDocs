@@ -62,7 +62,7 @@ Order (server and client):
 
 2. Input preparation
 
-* Server: dequeues pending client input frames.
+* Server: consumes each client's input stamped for the current tick. Clients resend recent input ticks until the server acknowledges them, so a lost input packet is recovered by the next one.
 * For each identity: `PrepareInput(isServer, isController, localTick, extrapolate)`
   * On local controller: calls your `GetFinalInput`, `SanitizeInput`, writes to history.
   * On server for remotes: consumes `QueueInput` or optionally extrapolates.
@@ -94,12 +94,16 @@ Order (server and client):
 
 **Reconciliation (OnPostTick on client)**
 
-* Receive verified server frames and compute a target tick to reconcile to.
+Client tick labels are server ticks. The client simulates a few ticks ahead of the last verified server tick, stamps its inputs with the server ticks it predicts they will execute at, and every server frame is addressed by the tick it verifies.
+
+* Frames arrive over unreliable delivery. Frames at or below the verified tick are stale and get discarded.
 * Fire `onStartingToRollback`.
-* Perform one of:
-  * In‑place: `RollbackToFrame(tick)` → `SimulateFrameInPlace(tick)` → `SimulateFrame(tick, save=true)`
-  * From previous frame: `RollbackToFrame(frame, stateTick, inputTick)` → `SimulateFrame(verifiedTick, save=true)`
-* Mark `isVerified = false`, then replay to the latest local tick: `ReplayToLatestTick(lastVerified + 1)`.
+* For each newer frame:
+  * Full frames (join, resync) load the complete world at their server tick.
+  * Delta frames decode against a baseline tick both sides already verified. If earlier frames were lost, the gap ticks are first re-simulated with the real inputs carried in the frame, so a lost frame costs replay work instead of a retransmission round trip.
+  * The verified tick is simulated, its result is saved to history, and the verified tick advances.
+* If the client's lead over the server drifts out of range, the manager re-centers the local tick. Corrections only move the tick forward or briefly pause it; the timeline never rewinds.
+* Mark `isVerified = false`, then replay from the first unverified tick to the latest local tick.
 * `SyncTransforms()` and `UpdateInterpolation(accumulateError: true)` to smooth visual corrections.
 * Fire `onRollbackFinished`.
 
