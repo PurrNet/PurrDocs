@@ -10,7 +10,7 @@ Utilizing statics are super common during your development flow, so why shouldn'
 
 Now keep in mind that this can be unsafe if you run gameplay logic through it, as we don't have a [network identity](../network-identity/) to check ownership with.
 
-This works with all RPC types such as: **ServerRpc, ObserversRPC, TargetRPC**. It also works with [generic ](generic-rpc.md)and [awaitable ](awaitable-rpc.md)RPC's!
+This works with all RPC types such as: **ServerRpc, ObserversRPC, TargetRPC**. It also works with [generic](generic-rpc.md) and [awaitable](awaitable-rpc.md) RPC's!
 
 ```csharp
 private void SendData()
