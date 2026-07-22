@@ -10,3 +10,4 @@ PurrNet offers out of the box addressables support for Unity. It handles the usa
 Addressables support is currently a young feature, and is likely to be improved in the future. Let us know if anything doesn't work as intended, and we'll be right on it!
 {% endhint %}
 
+{% embed url="https://youtu.be/4fNVI2YI2t0" %}
