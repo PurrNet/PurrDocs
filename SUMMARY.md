@@ -133,6 +133,7 @@
     * [Lip Sync](tools/purrvoice-voice-chat/lip-sync.md)
 * [Plug n' play components](plug-n-play-components/README.md)
   * [Network Transform](plug-n-play-components/network-transform.md)
+    * [Adaptive sync](plug-n-play-components/network-transform/adaptive-sync.md)
   * [Network Rigidbody](plug-n-play-components/network-rigidbody.md)
   * [Network Animator](plug-n-play-components/network-animator.md)
   * [Network Bones](plug-n-play-components/network-bones.md)

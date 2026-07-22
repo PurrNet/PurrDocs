@@ -21,6 +21,7 @@ Network Transform synchronizes a GameObject's position, rotation, scale, and opt
 | Character Controller Patch | Temporarily coordinates a 3D Character Controller while applying received transforms. It can cause physics callbacks to run more than once. |
 | Owner Auth | When enabled, the owning client controls the transform. When disabled, the server controls it. |
 | Interpolation Timing | Applies interpolation during the selected Unity update phase. Match this to the system that reads or moves the transform. |
+| Adaptive Sync | Reduces the send rate while motion can be reconstructed accurately. See [Adaptive sync](network-transform/adaptive-sync.md). |
 
 <figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt="Network Transform inspector"><figcaption><p>The Network Transform component</p></figcaption></figure>
 
