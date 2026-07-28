@@ -39,6 +39,12 @@ Policies only alter client behavior. The server always simulates every identity 
 
 PurrDiction sends inputs and frames over unreliable channels. Clients resend recent input ticks until the server acknowledges them, and each server frame carries state as a delta against a tick the client has already verified. A lost frame is never retransmitted: the next frame that arrives re-simulates the missing ticks with the real inputs it carries, so packet loss costs replay work instead of a round trip. Full frames, used for joins and resyncs, are the only reliable traffic.
 
+Each delta frame also carries the recent input history for every input-driven identity, so the client can replay gap ticks with real inputs. This section is compressed against the previous tick: identity ids are only restated when the set changes, and an input that did not change since the previous tick costs a single bit instead of a full payload. In practice this keeps frame sizes close to their low-latency cost even at high ping, since the redundancy window grows with round-trip time.
+
+### Recovering from heavy packet loss
+
+Sustained packet loss can outpace the delta stream: if frames keep getting lost, the client stops acknowledging progress, the redundancy window grows, and larger frames become even more likely to lose a fragment. PurrDiction detects this per client by watching how fast their acknowledged baseline advances. When a client falls below half the tick rate over a detection window, the server switches that client to reliable full frames, delivered one at a time per acknowledgement round trip. Bandwidth stays bounded, the client keeps predicting locally, and the moment acknowledgements flow normally again the client returns to the regular unreliable delta stream. Healthy connections never enter this path, no matter how high their latency is, because their baseline advances every tick.
+
 ## What PurrDiction does not do
 
 PurrDiction is not a replacement for PurrNet's Network Identities, RPCs, visibility, ownership, or security rules. Predicted gameplay uses its own identities and state pipeline, but the Prediction Manager itself is networked through PurrNet and can deliberately bridge to normal networked objects when needed.

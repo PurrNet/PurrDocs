@@ -102,6 +102,7 @@ Client tick labels are server ticks. The client simulates a few ticks ahead of t
   * Full frames (join, resync) load the complete world at their server tick.
   * Delta frames decode against a baseline tick both sides already verified. If earlier frames were lost, the gap ticks are first re-simulated with the real inputs carried in the frame, so a lost frame costs replay work instead of a retransmission round trip.
   * The verified tick is simulated, its result is saved to history, and the verified tick advances.
+* Under sustained heavy loss the server notices a client's acknowledged baseline has stopped advancing and temporarily promotes that client to reliable full frames, one per acknowledgement round trip, until the client catches up. See the [networking model](overview.md#networking-model) for details.
 * If the client's lead over the server drifts out of range, the manager re-centers the local tick. Corrections only move the tick forward or briefly pause it; the timeline never rewinds.
 * Mark `isVerified = false`, then replay from the first unverified tick to the latest local tick.
 * `SyncTransforms()` and `UpdateInterpolation(accumulateError: true)` to smooth visual corrections.

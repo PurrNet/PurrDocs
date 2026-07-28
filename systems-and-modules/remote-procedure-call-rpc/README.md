@@ -105,6 +105,15 @@ The TargetRPC will call **Server -> Client**, or **Client -> Client** if your [n
 * _**BufferLast**_ - If set to true, when the target [client](../../terminology/playerid-client-connection.md) joins again (we can only hold their data if we've seen them before), they will get the most recent call of the method with the data within the parameters.
 * _**RunLocally**_ - If set to true, the caller will run the method logic locally, avoiding the networking route. If the server calls it, the server will also run the method. If a client calls it, the client will run the method immediately, instead of awaiting the servers call.
 
+### Shared parameters
+
+All three RPC types also accept these parameters:
+
+* _**Channel**_ - The delivery channel for the RPC. Defaults to `ReliableOrdered`. Use `Unreliable` or `UnreliableSequenced` for high frequency data where a lost call is acceptable.
+* _**CompressionLevel**_ - Compresses the RPC payload before sending. Defaults to `None`. `Fast` is cheap enough for per tick data, while `Best` trades CPU for the smallest payload and suits rare but large calls.
+* _**MtuExceeded**_ - What to do when an unreliable RPC is larger than a single packet. Defaults to `NetworkManager`, which follows the behaviour configured on your Network Manager. `UpgradeToReliable` reroutes the call over the reliable channel, `Drop` discards it, and `Fragment` splits it into unreliable fragments that are reassembled on arrival. A fragmented message is dropped as a whole if any fragment is lost, preserving unreliable semantics.
+* _**Immediate**_ - By default, RPCs are batched and flushed together with the rest of the network traffic, and received calls are processed in the next receive phase. Setting this to **true** puts the call on the immediate lane instead: it is flushed to the transport at the end of the same frame it was called in, and the receiving side executes it as soon as the packet arrives rather than waiting for the next receive phase. Use it for time sensitive calls where shaving off queueing delay matters. Immediate calls batch less efficiently, so keep the regular lane for everything else.
+
 ### RPC Info
 
 RPC Info is a super useful tool to get information about an RPC that has just been sent.
