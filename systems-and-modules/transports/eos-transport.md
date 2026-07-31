@@ -37,7 +37,7 @@ Then set up your Epic dev account and product credentials under **Tools / EOS Pl
 ### Usage
 
 1. Add the `EOSTransport` component to your `NetworkManager`.
-2. Add the `EOSManager` to the scene
+2. Add the `EOSManager` to the scene (& follow the EOS setup guides)
 3. Set `socketName` to any string. Both peers just need to agree on it.
 4. On the client, set `remoteProductUserId` to the **host's** EOS Product User ID before connecting.
 5. Call `NetworkManager.StartServer()` to host, `NetworkManager.StartClient()` to join.
