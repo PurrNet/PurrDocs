@@ -30,6 +30,10 @@ protected override void Simulate(PlayerInput input, ref PlayerState state, float
 
 The 3D wrapper exposes `AddForce`, `AddTorque`, relative-force variants, explosion force, `MovePosition`, `MoveRotation`, pose and velocity properties, gravity, and kinematic state. The 2D wrapper provides the equivalent Rigidbody2D operations.
 
+Torque follows Unity's own semantics. `AddTorque` and `AddRelativeTorque` on the 3D wrapper apply the body's world-space inverse inertia tensor for `Force` and `Impulse` modes; locked or zero inertia axes receive no angular velocity, and `Acceleration` or `VelocityChange` bypass mass and inertia. The 2D wrapper divides by the body's moment of inertia and works in degrees per second. The 3D relative variants rotate the vector by the body's rotation only, so object scale does not distort applied forces, and `AddForceAtPosition` derives its torque from the lever arm about the center of mass in both 2D and 3D.
+
+Always drive the body through the wrapper inside `Simulate`, never through the raw Unity `Rigidbody`. On clients where the resolved policy is `ServerRelay`, the body is forced kinematic and posed from verified state; the 3D wrapper's velocity setters, which every force method routes through, silently do nothing on a kinematic body, and the 2D wrapper skips static bodies. The same `Simulate` code therefore runs on every peer without fighting the relayed pose; writing to the raw component bypasses these guards.
+
 ## Settings and policies
 
 `PredictedRigidbody` exposes **Float Accuracy** for packed 3D body state and an **Event Mask** for selecting collision and trigger callbacks. Both body types expose **Soft Velocity Correction Rate** for `SoftCorrection`.
@@ -40,6 +44,7 @@ Policy behavior is specialized for physics:
 * `ServerRelay` keeps the body kinematic on clients and poses it from verified state.
 * `SoftCorrection` freezes the body during replay, then blends verified pose and velocity error into the live body.
 * `PredictedIfOwned` uses full prediction for the local owner and server relay elsewhere.
+* `PredictedIfOwnedWithSoftFallback` uses full prediction for the local owner and soft correction elsewhere, so remote bodies keep simulating and converge without rollback.
 
 See [Prediction Policies](../prediction-policies.md) before mixing different policy types in the same collision scene.
 

@@ -2,6 +2,12 @@
 
 PurrDiction is an addon to PurrNet. Install a compatible PurrNet version first; PurrDiction's package does not declare PurrNet as an automatic UPM dependency.
 
+## Supported Unity versions
+
+The package compiles on Unity 2022 as well as Unity 6: the runtime and prebuilt components select the correct Rigidbody velocity API and physics material type for the editor version automatically.
+
+The prebuilt sample components do not require the Input System package. When the new Input System is not enabled, they fall back to the legacy Input Manager for keyboard polling.
+
 ## Install from Git
 
 In Unity, open **Window > Package Manager**, select **Add package from git URL**, and use the stable branch:

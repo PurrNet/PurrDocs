@@ -32,14 +32,17 @@ Not every object needs the same prediction cost. A [prediction policy](predictio
 * **Server Relay** only follows verified server ticks on clients.
 * **Soft Correction** keeps simulating locally and converges toward verified state without rewinding the live object.
 * **Predicted If Owned** fully predicts the locally owned copy and relays remote-owned copies.
+* **Predicted If Owned With Soft Fallback** fully predicts the locally owned copy and soft-corrects everyone else's.
 
 Policies only alter client behavior. The server always simulates every identity normally.
 
 ## Networking model
 
-PurrDiction sends inputs and frames over unreliable channels. Clients resend recent input ticks until the server acknowledges them, and each server frame carries state as a delta against a tick the client has already verified. A lost frame is never retransmitted: the next frame that arrives re-simulates the missing ticks with the real inputs it carries, so packet loss costs replay work instead of a round trip. Full frames, used for joins and resyncs, are the only reliable traffic.
+PurrDiction sends inputs and frames over unreliable channels. The client uploads each input tick several times inside a short redundancy window derived from its input-margin band, so input bandwidth stays flat as round-trip time grows: an unchanged input costs about one bit per extra copy, and the server drops fully duplicate uploads before parsing them.
 
-Each delta frame also carries the recent input history for every input-driven identity, so the client can replay gap ticks with real inputs. This section is compressed against the previous tick: identity ids are only restated when the set changes, and an input that did not change since the previous tick costs a single bit instead of a full payload. In practice this keeps frame sizes close to their low-latency cost even at high ping, since the redundancy window grows with round-trip time.
+Each server frame carries state as a delta against a tick the client has already verified, plus the newest input for each input-driven identity, written as a delta against the input block that client last acknowledged: an input that did not change costs a single repeat bit. Inputs for [deterministic identities](deterministic-identity.md) instead ride a guaranteed transcript that is re-sent until acknowledged; if a client falls further behind than the transcript window, the server re-anchors it with a full frame, so deterministic state always converges.
+
+A lost frame is never retransmitted: the next frame that arrives re-simulates the missing ticks with the inputs it carries, so packet loss costs replay work instead of a round trip. Full frames, used for joins and resyncs, are the only reliable traffic.
 
 ### Recovering from heavy packet loss
 
