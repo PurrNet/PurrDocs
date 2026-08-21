@@ -55,6 +55,7 @@
     * [Pooling](systems-and-modules/network-identity/pooling.md)
   * [Network Modules](systems-and-modules/network-modules/README.md)
     * [Common Pitfalls](systems-and-modules/network-modules/common-pitfalls.md)
+    * [Owner Only](systems-and-modules/network-modules/owner-only.md)
     * [Sync Types](systems-and-modules/network-modules/sync-types/README.md)
       * [SyncVar](systems-and-modules/network-modules/sync-types/syncvar.md)
       * [Validated SyncVar](systems-and-modules/network-modules/sync-types/validated-syncvar.md)
