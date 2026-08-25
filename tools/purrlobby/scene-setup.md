@@ -54,7 +54,6 @@ The game scene is set **on the game allocator asset**, not on the `LobbyManager`
 | `PurrTransportGameAllocator` | Create → PurrLobby → PurrNet → Game Allocator |
 | `SteamGameAllocator` | Create → PurrLobby → Steam → Game Allocator |
 | `NakamaGameAllocator` | Create → PurrLobby → Nakama → Game Allocator |
-| `EdgegapGameAllocator` | Create → PurrLobby → Edgegap → Game Allocator |
 
 The field uses a scene picker, so you select the scene asset rather than typing a name. Leaving it empty throws a clear error when a launch is attempted rather than failing silently.
 

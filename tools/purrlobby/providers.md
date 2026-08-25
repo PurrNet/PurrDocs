@@ -57,7 +57,7 @@ The most capable backend PurrLobby ships with, and the one to use if you want yo
 Nakama runs locally in Docker, so you can develop against a real server from the start.
 
 {% hint style="warning" %}
-`NakamaGameAllocator` runs gameplay over Nakama's relayed match socket, a WebSocket with a custom message protocol. It suits turn-based games, not fast-paced ones. Keep Nakama for session, lobby and matchmaking and swap just the allocator for `PurrTransportGameAllocator`, `SteamGameAllocator` or `EdgegapGameAllocator` when you need tighter networking.
+`NakamaGameAllocator` runs gameplay over Nakama's relayed match socket, a WebSocket with a custom message protocol. It suits turn-based games, not fast-paced ones. Keep Nakama for session, lobby and matchmaking and swap just the allocator for `PurrTransportGameAllocator` or `SteamGameAllocator` when you need tighter networking.
 {% endhint %}
 
 {% hint style="success" %}
@@ -65,23 +65,6 @@ See the dedicated [**Nakama**](nakama.md) page for running a server locally, poi
 {% endhint %}
 
 Requires [Nakama Unity](https://github.com/heroiclabs/nakama-unity).
-
-## Edgegap
-
-Edgegap is matchmaking plus managed dedicated servers, so there is no lobby provider at all.
-
-| Asset | Settings |
-| ----- | -------- |
-| `EdgegapMatchmakingProvider` | Configured through its custom inspector |
-| `EdgegapGameAllocator` | `Game Scene`, `Transport` (UDP), `Port Name`, `Deployment Timeout Ms` (300000), `Poll Interval Ms` (2000) |
-
-The matchmaker forms the match **and** deploys the server, so a found match already carries usable connection info and there is no separate allocation step. Pair `EdgegapMatchmakingProvider` with `EdgegapGameAllocator` so both agree on transport and port selection.
-
-`Port Name` is optional; leave it empty to use the first port whose protocol matches the chosen transport.
-
-Because players connect to a dedicated server, this allocator sets `supportsHosting` to false. A host request is downgraded to a client connection automatically.
-
-Requires the [Edgegap Unity plugin](https://github.com/edgegap/edgegap-unity-plugin) and PurrServices.
 
 ## The generic matchmaker
 

@@ -12,37 +12,7 @@ It is also the most capable backend PurrLobby ships with, and the one to reach f
 Heroic Labs is a PurrNet sponsor. If you are choosing a backend, Nakama is well worth a look: the server is Apache 2.0 licensed and free to self-host, so you can build and ship on your own infrastructure with no vendor lock-in, and move to their managed [Heroic Cloud](https://heroiclabs.com/pricing/) later if you would rather not run it yourself.
 {% endhint %}
 
-## What PurrLobby uses
-
-| Role | Asset | Backed by |
-| ---- | ----- | --------- |
-| Session | `NakamaSessionProvider` | Nakama device authentication |
-| Lobby | `NakamaLobbyProvider` | Nakama relayed matches |
-| Matchmaking | `NakamaMatchmakingProvider` | Nakama's ticket matchmaker |
-| Game allocation | `NakamaGameAllocator` | Nakama relayed match as the transport |
-
-Preset assets for all four, plus a pre-filled orchestrator, ship in `Assets/PurrLobby/Providers/Nakama/Preset`. Drag `Orchestrator.Nakama` onto your `LobbyManager` and the only thing left to configure is where your server lives.
-
 Requires [Nakama Unity](https://github.com/heroiclabs/nakama-unity).
-
-## Choosing a game allocator
-
-{% hint style="warning" %}
-**`NakamaGameAllocator` is not meant for fast-paced games.** It routes gameplay through Nakama's relayed match socket, which is a WebSocket carrying a custom message protocol. That is a good fit for turn-based games, card and board games, and anything else where a little latency does not hurt. It is the wrong tool for shooters, fighting games, racing, or anything else that needs tight networking.
-{% endhint %}
-
-This is not a problem, because the orchestrator's four slots are independent. Nakama is excellent at session, lobby and matchmaking, so keep it for those and swap **only** the game allocator for a lower-latency path:
-
-| Instead of `NakamaGameAllocator` | Gameplay runs over |
-| -------------------------------- | ------------------ |
-| `PurrTransportGameAllocator` | PurrTransport relay |
-| `SteamGameAllocator` | Steam relay sockets |
-| `EdgegapGameAllocator` | A deployed dedicated server |
-| Your own allocator | Whatever transport you configure, for example direct UDP |
-
-A Nakama session, Nakama lobbies, the Nakama matchmaker, and PurrTransport for the actual match is a perfectly normal setup. Nothing in the menu flow changes; only the transport the game scene connects with does.
-
-See [Custom providers](custom-providers.md) if none of the shipped allocators fit.
 
 ## Testing locally
 
@@ -66,10 +36,14 @@ The server comes up on `127.0.0.1`:
 
 Open [http://127.0.0.1:7351](http://127.0.0.1:7351) for the console and sign in with `admin` / `password`. The console is useful while building a lobby flow: you can watch matches appear and disappear, inspect accounts created by device login, and read server logs as players join.
 
-The shipped `Nakama Config` preset already points at this local server, so a fresh Docker instance needs no changes on the Unity side.
+### Connecting PurrLobby to it
+
+Preset assets ship in `Assets/PurrLobby/Providers/Nakama/Preset`, including a pre-filled orchestrator. Drag `Orchestrator.Nakama` onto your `LobbyManager` and you are done: the shipped `Nakama Config` already points at this local server, so a fresh Docker instance needs no changes on the Unity side.
+
+Press play and the menu will authenticate against your container. Watch the console at `127.0.0.1:7351` to see the account appear.
 
 {% hint style="warning" %}
-The local defaults are development values. Change the server key before exposing an instance to anything other than your own machine, and use HTTPS in production.
+The local defaults are development values. Change the server key before exposing an instance to anything beyond your own machine, and use HTTPS in production. See [Is the server key safe to ship?](nakama.md#is-the-server-key-safe-to-ship) below.
 {% endhint %}
 
 ## Pointing at a server
@@ -85,6 +59,8 @@ The endpoint lives on a `NakamaConfig` asset (**Create → PurrLobby → Nakama 
 
 For Heroic Cloud or your own hosted instance, set `Scheme` to `Https`, `Host` to the address from your Heroic Labs dashboard, `Port` to `443`, and `Server Key` to the key configured on that instance.
 
+Keeping separate config assets for local and hosted, and swapping which one the session provider references, is an easy way to move between them without editing fields.
+
 ### Is the server key safe to ship?
 
 {% hint style="info" %}
@@ -98,18 +74,44 @@ Two rules still apply:
 
 Real protection comes from server-side logic, not the key. If you add runtime RPCs, guard each one by checking for a user id in the context, since Nakama has no middleware-style policy layer.
 
-Keeping separate config assets for local and hosted, and swapping which one the session provider references, is an easy way to move between them without editing fields.
+## What PurrLobby uses
 
-## Provider settings
+| Role | Asset | Backed by |
+| ---- | ----- | --------- |
+| Session | `NakamaSessionProvider` | Nakama device authentication |
+| Lobby | `NakamaLobbyProvider` | Nakama relayed matches |
+| Matchmaking | `NakamaMatchmakingProvider` | Nakama's ticket matchmaker |
+| Game allocation | `NakamaGameAllocator` | Nakama relayed match as the transport |
+
+### Settings
 
 | Asset | Settings |
 | ----- | -------- |
+| `NakamaConfig` | `Scheme`, `Host`, `Port`, `Server Key` |
 | `NakamaSessionProvider` | `Config`, `Session PlayerPref Key` |
 | `NakamaLobbyProvider` | `Session Provider`, `Max Players`, `Snapshot Timeout Ms` (4000), `Query Limit` (100) |
 | `NakamaMatchmakingProvider` | `Min Count` (2), `Max Count` (4) |
 | `NakamaGameAllocator` | `Game Scene`, `Wait For Game Start Flag` (off) |
 
 `Session PlayerPref Key` is where the device session token is cached so returning players skip the login step. `Snapshot Timeout Ms` is how long a joining player waits for the lobby owner's first state snapshot before failing the join. `Query Limit` caps how many matches the browser lists. `Wait For Game Start Flag` makes the host wait on a lobby metadata flag before connecting; leave it off unless your flow needs it, since most pre-load the scene and connect immediately.
+
+## Choosing a game allocator
+
+{% hint style="warning" %}
+**`NakamaGameAllocator` is not meant for fast-paced games.** It routes gameplay through Nakama's relayed match socket, which is a WebSocket carrying a custom message protocol. That is a good fit for turn-based games, card and board games, and anything else where a little latency does not hurt. It is the wrong tool for shooters, fighting games, racing, or anything else that needs tight networking.
+{% endhint %}
+
+This is not a problem, because the orchestrator's four slots are independent. Nakama is excellent at session, lobby and matchmaking, so keep it for those and swap **only** the game allocator for a lower-latency path:
+
+| Instead of `NakamaGameAllocator` | Gameplay runs over |
+| -------------------------------- | ------------------ |
+| `PurrTransportGameAllocator` | PurrTransport relay |
+| `SteamGameAllocator` | Steam relay sockets |
+| Your own allocator | Whatever transport you configure, for example direct UDP |
+
+A Nakama session, Nakama lobbies, the Nakama matchmaker, and PurrTransport for the actual match is a perfectly normal setup. Nothing in the menu flow changes; only the transport the game scene connects with does.
+
+See [Custom providers](custom-providers.md) if none of the shipped allocators fit.
 
 ## Capabilities, and how to lift them
 

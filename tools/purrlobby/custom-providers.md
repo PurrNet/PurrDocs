@@ -139,7 +139,7 @@ For a backend that deploys servers rather than having a player host:
 protected override bool supportsHosting => false;
 ```
 
-`AllocateGame` then returns the deployed server's address, and every player connects as a client. `EdgegapGameAllocator` works this way.
+`AllocateGame` then returns the deployed server's address, and every player connects as a client.
 
 ## Testing
 

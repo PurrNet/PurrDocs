@@ -72,7 +72,7 @@ That last point is why the game scene needs no PurrLobby component: the session 
 
 * Aborts if the scene's `GameSession` is already exiting.
 * Requires a `NetworkManager` in the scene, and refuses to run if auto-start is still active. During a lobby-driven load it never is, since `LoadGameScene` has suppressed it.
-* Downgrades a host request to a client when the allocator sets `supportsHosting` to false, which is what dedicated-server backends like Edgegap do.
+* Downgrades a host request to a client when the allocator sets `supportsHosting` to false, which is what dedicated-server backends do.
 * Calls the allocator's `ConfigureTransport`, which adds and configures the right transport component on the `NetworkManager`.
 * Calls `StartHost()` or `StartClient()`.
 

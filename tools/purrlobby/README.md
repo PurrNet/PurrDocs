@@ -16,6 +16,7 @@ PurrLobby replaces the older [Lobby System](../../addons/lobby-system.md) addon.
 
 | Page | What it covers |
 | ---- | -------------- |
+| [Getting started](getting-started.md) | Run the sample, then point it at your own game scene |
 | [How it works](how-it-works.md) | The orchestrator, the boot sequence, and the menu to game handoff |
 | [Scene setup](scene-setup.md) | What goes in the menu scene and the game scene |
 | [Providers](providers.md) | Every backend and its settings |
@@ -70,34 +71,19 @@ The second approach is worth doing up front if you expect to restyle the UI heav
 
 ## Providers
 
-| Provider         | Lobbies                   | Lobby Browser     | Matchmaking                  | Game Allocation       |
-| ---------------- | ------------------------- | ----------------- | ---------------------------- | --------------------- |
-| PurrNet Services | yes                       | yes               | via generic lobby matchmaker | PurrTransport         |
-| Steam            | yes                       | yes               | via generic lobby matchmaker | Steam sockets         |
-| Nakama           | create/join by id or code | basic (ids only)  | yes                          | Nakama relayed match  |
-| Edgegap          | no                        | no                | yes                          | managed server assignment |
+A backend is four ScriptableObjects assigned to a `GameOrchestrator`: session, lobby, matchmaking and game allocation. PurrLobby ships working sets for **PurrNet Services**, **Steam** and **Nakama**, each with preset assets and a pre-filled orchestrator.
 
-Providers advertise their optional lobby actions through `LobbyCapabilities`. The menu hides unsupported buttons automatically, so a backend without lobby browsing will not show the browser entry point.
-
-{% hint style="info" %}
-**The Nakama row describes this provider, not Nakama.** Nakama is fully capable of everything in the table, including rich lobby listings, private lobbies and random join, through a custom server module. This provider deliberately targets a stock Nakama server so it works with no server-side setup. See the [Nakama page](nakama.md) for the details and how to lift the limits.
-{% endhint %}
+The slots are independent, so you can take the best part of each. Providers also advertise their optional lobby actions through `LobbyCapabilities`, and the menu hides unsupported buttons automatically, so a backend without lobby browsing simply shows no browser entry point.
 
 {% hint style="warning" %}
-`NakamaGameAllocator` runs gameplay over a WebSocket relay, which suits turn-based games rather than fast-paced ones. The orchestrator's slots are independent, so a common setup is Nakama for session, lobby and matchmaking with `PurrTransportGameAllocator` or `SteamGameAllocator` for the match itself.
+`NakamaGameAllocator` runs gameplay over a WebSocket relay, which suits turn-based games rather than fast-paced ones. A common setup is Nakama for session, lobby and matchmaking with `PurrTransportGameAllocator` or `SteamGameAllocator` for the match itself.
 {% endhint %}
 
 Full settings for every backend are on the [Providers](providers.md) page.
 
 ## Getting started
 
-1. Open `Assets/PurrLobby/Scenes/MenuScene.unity` for a working example, and `GameScene.unity` for the receiving end.
-2. Select the **LobbyManager** in the scene and assign a `GameOrchestrator`. Preset orchestrators live under `Assets/PurrLobby/Providers/.../Preset`.
-3. Choose the session, lobby, matchmaking, and game allocator providers for your backend.
-4. Set the allocator's `Game Scene` to your gameplay scene.
-5. Make sure your game scene has a `NetworkManager`. Auto-start flags can stay on; PurrLobby suppresses them for its own load so the scene still works as a direct-play test environment.
-
-[Scene setup](scene-setup.md) walks through both scenes properly.
+Open `Assets/PurrLobby/Scenes/MenuScene.unity`, add it and `GameScene.unity` to Build Settings, and press play. From there, [Getting started](getting-started.md) walks through pointing it at your own game scene.
 
 ## Customizing
 
