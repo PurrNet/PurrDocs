@@ -19,6 +19,8 @@ PurrLobby is built from three pieces that stay out of each other's way: an **orc
 
 Mix and match freely. A Steam lobby with the generic matchmaker and Steam sockets is just as valid as PurrNet Services lobbies with PurrTransport.
 
+This matters more than it first looks. The slots are independent, so you can take the best part of each backend: Nakama for session, lobby and matchmaking, paired with `PurrTransportGameAllocator` so the match itself does not run over Nakama's WebSocket relay. Swapping the allocator changes only how the game scene connects, and nothing in the menu flow notices.
+
 The asset is shared between the menu and game scenes, so it doubles as the handoff channel. At runtime it also carries:
 
 * `activeLobby`, the lobby the player is currently in, so the game scene can leave it on the way out.

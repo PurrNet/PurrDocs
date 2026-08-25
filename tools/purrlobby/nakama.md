@@ -25,6 +25,25 @@ Preset assets for all four, plus a pre-filled orchestrator, ship in `Assets/Purr
 
 Requires [Nakama Unity](https://github.com/heroiclabs/nakama-unity).
 
+## Choosing a game allocator
+
+{% hint style="warning" %}
+**`NakamaGameAllocator` is not meant for fast-paced games.** It routes gameplay through Nakama's relayed match socket, which is a WebSocket carrying a custom message protocol. That is a good fit for turn-based games, card and board games, and anything else where a little latency does not hurt. It is the wrong tool for shooters, fighting games, racing, or anything else that needs tight networking.
+{% endhint %}
+
+This is not a problem, because the orchestrator's four slots are independent. Nakama is excellent at session, lobby and matchmaking, so keep it for those and swap **only** the game allocator for a lower-latency path:
+
+| Instead of `NakamaGameAllocator` | Gameplay runs over |
+| -------------------------------- | ------------------ |
+| `PurrTransportGameAllocator` | PurrTransport relay |
+| `SteamGameAllocator` | Steam relay sockets |
+| `EdgegapGameAllocator` | A deployed dedicated server |
+| Your own allocator | Whatever transport you configure, for example direct UDP |
+
+A Nakama session, Nakama lobbies, the Nakama matchmaker, and PurrTransport for the actual match is a perfectly normal setup. Nothing in the menu flow changes; only the transport the game scene connects with does.
+
+See [Custom providers](custom-providers.md) if none of the shipped allocators fit.
+
 ## Testing locally
 
 Nakama runs locally in Docker, which is the fastest way to develop against it.
@@ -75,9 +94,9 @@ Keeping separate config assets for local and hosted, and swapping which one the 
 | `NakamaSessionProvider` | `Config`, `Session PlayerPref Key` |
 | `NakamaLobbyProvider` | `Session Provider`, `Max Players`, `Snapshot Timeout Ms` (4000), `Query Limit` (100) |
 | `NakamaMatchmakingProvider` | `Min Count` (2), `Max Count` (4) |
-| `NakamaGameAllocator` | `Game Scene` |
+| `NakamaGameAllocator` | `Game Scene`, `Wait For Game Start Flag` (off) |
 
-`Session PlayerPref Key` is where the device session token is cached so returning players skip the login step. `Snapshot Timeout Ms` is how long a joining player waits for the lobby owner's first state snapshot before failing the join. `Query Limit` caps how many matches the browser lists.
+`Session PlayerPref Key` is where the device session token is cached so returning players skip the login step. `Snapshot Timeout Ms` is how long a joining player waits for the lobby owner's first state snapshot before failing the join. `Query Limit` caps how many matches the browser lists. `Wait For Game Start Flag` makes the host wait on a lobby metadata flag before connecting; leave it off unless your flow needs it, since most pre-load the scene and connect immediately.
 
 ## Capabilities, and how to lift them
 

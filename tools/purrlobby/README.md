@@ -83,6 +83,10 @@ Providers advertise their optional lobby actions through `LobbyCapabilities`. Th
 **The Nakama row describes this provider, not Nakama.** Nakama is fully capable of everything in the table, including rich lobby listings, private lobbies and random join, through a custom server module. This provider deliberately targets a stock Nakama server so it works with no server-side setup. See the [Nakama page](nakama.md) for the details and how to lift the limits.
 {% endhint %}
 
+{% hint style="warning" %}
+`NakamaGameAllocator` runs gameplay over a WebSocket relay, which suits turn-based games rather than fast-paced ones. The orchestrator's slots are independent, so a common setup is Nakama for session, lobby and matchmaking with `PurrTransportGameAllocator` or `SteamGameAllocator` for the match itself.
+{% endhint %}
+
 Full settings for every backend are on the [Providers](providers.md) page.
 
 ## Getting started

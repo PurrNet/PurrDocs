@@ -52,9 +52,13 @@ The most capable backend PurrLobby ships with, and the one to use if you want yo
 | `NakamaSessionProvider` | `Config`, `Session PlayerPref Key` |
 | `NakamaLobbyProvider` | `Session Provider`, `Max Players`, `Snapshot Timeout Ms` (4000), `Query Limit` (100) |
 | `NakamaMatchmakingProvider` | `Min Count` (2), `Max Count` (4) |
-| `NakamaGameAllocator` | `Game Scene` |
+| `NakamaGameAllocator` | `Game Scene`, `Wait For Game Start Flag` (off) |
 
 Nakama runs locally in Docker, so you can develop against a real server from the start.
+
+{% hint style="warning" %}
+`NakamaGameAllocator` runs gameplay over Nakama's relayed match socket, a WebSocket with a custom message protocol. It suits turn-based games, not fast-paced ones. Keep Nakama for session, lobby and matchmaking and swap just the allocator for `PurrTransportGameAllocator`, `SteamGameAllocator` or `EdgegapGameAllocator` when you need tighter networking.
+{% endhint %}
 
 {% hint style="success" %}
 See the dedicated [**Nakama**](nakama.md) page for running a server locally, pointing PurrLobby at it, and extending the lobby browser with a server module.
