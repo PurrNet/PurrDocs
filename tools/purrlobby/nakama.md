@@ -85,6 +85,19 @@ The endpoint lives on a `NakamaConfig` asset (**Create → PurrLobby → Nakama 
 
 For Heroic Cloud or your own hosted instance, set `Scheme` to `Https`, `Host` to the address from your Heroic Labs dashboard, `Port` to `443`, and `Server Key` to the key configured on that instance.
 
+### Is the server key safe to ship?
+
+{% hint style="info" %}
+**Yes. The server key is designed to live in your client.** Every Nakama client SDK takes it as a constructor argument, so it ends up in your build where a determined player can read it. Its privileges are deliberately narrow: it gates only the authentication and session-refresh endpoints, and every other API call requires a session token. Someone holding just the key can create an account on your server, not act as an existing player.
+
+Two rules still apply:
+
+* **Change it from `defaultkey` before you go live**, and use `Https` so it is not readable in transit. Heroic Labs recommends regenerating `server_key`, `session.encryption_key` and `runtime.http_key` server-side, all to different random values.
+* **Never ship Nakama's `http_key` or console credentials.** The runtime `http_key` bypasses session authentication and would expose every server RPC. `NakamaConfig` has no field for either, so it cannot carry them into a build by accident.
+{% endhint %}
+
+Real protection comes from server-side logic, not the key. If you add runtime RPCs, guard each one by checking for a user id in the context, since Nakama has no middleware-style policy layer.
+
 Keeping separate config assets for local and hosted, and swapping which one the session provider references, is an easy way to move between them without editing fields.
 
 ## Provider settings
