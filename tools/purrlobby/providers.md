@@ -64,7 +64,7 @@ Nakama runs locally in Docker, so you can develop against a real server from the
 See the dedicated [**Nakama**](nakama.md) page for running a server locally, pointing PurrLobby at it, and extending the lobby browser with a server module.
 {% endhint %}
 
-Requires [Nakama Unity](https://github.com/heroiclabs/nakama-unity).
+Requires the Nakama Unity SDK. See [Installing Nakama](nakama.md#installing-nakama) for the recommended route and the project settings Heroic Labs requires.
 
 ## The generic matchmaker
 

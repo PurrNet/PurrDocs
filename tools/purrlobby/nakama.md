@@ -12,14 +12,40 @@ It is also the most capable backend PurrLobby ships with, and the one to reach f
 Heroic Labs is a PurrNet sponsor. If you are choosing a backend, Nakama is well worth a look: the server is Apache 2.0 licensed and free to self-host, so you can build and ship on your own infrastructure with no vendor lock-in, and move to their managed [Heroic Cloud](https://heroiclabs.com/pricing/) later if you would rather not run it yourself.
 {% endhint %}
 
-Requires [Nakama Unity](https://github.com/heroiclabs/nakama-unity).
+## Installing Nakama
+
+Two pieces: the Nakama Unity SDK in your project, and a server for it to talk to.
+
+### The Unity SDK
+
+The quickest route is from inside PurrLobby. Assign any Nakama provider to your orchestrator and an **Install Nakama Unity** button appears in the `LobbyManager` inspector, which installs the official package through UPM for you.
+
+To do it by hand, open **Window → Package Manager → Add package from git URL** and paste the URL from Heroic Labs' [Unity client guide](https://heroiclabs.com/docs/nakama/client-libraries/unity/):
+
+```text
+https://github.com/heroiclabs/nakama-unity.git?path=/Packages/Nakama#<tag>
+```
+
+Replace `<tag>` with a version from the [nakama-unity releases](https://github.com/heroiclabs/nakama-unity/releases).
+
+{% hint style="warning" %}
+Heroic Labs also distributes the SDK through the Unity Asset Store and as a `Nakama.unitypackage`. Both drop the SDK into `Assets/` rather than installing a UPM package, and PurrLobby's Nakama providers activate off the package being present. Prefer the git URL or the install button.
+{% endhint %}
+
+Their guide calls out a required project setting after install: set **Edit → Project Settings → Player → Other Settings → Api Compatibility Level** to **.NET Standard 2.1**. Unity 2019.4.1 or newer is required on their side.
+
+Two platform notes from the same guide: Android wants **Use System TLS** enabled, and WebGL needs the `UnityWebRequestAdapter`. Their [Unity client guide](https://heroiclabs.com/docs/nakama/client-libraries/unity/) covers both, along with socket threading options.
+
+### The server
+
+Docker is the fastest way to develop locally and is covered next. Heroic Labs also documents [Windows](https://heroiclabs.com/docs/nakama/getting-started/install/windows/), [macOS](https://heroiclabs.com/docs/nakama/getting-started/install/macos/) and [Linux](https://heroiclabs.com/docs/nakama/getting-started/install/linux/) binaries, and managed deployments on [Heroic Cloud](https://heroiclabs.com/docs/heroic-cloud/concepts/titles/nakama-deployments/). Their full [install guide index](https://heroiclabs.com/docs/nakama/getting-started/install/) is the canonical reference.
 
 ## Testing locally
 
-Nakama runs locally in Docker, which is the fastest way to develop against it.
+Nakama runs locally in Docker, which is the fastest way to develop against it. These steps mirror Heroic Labs' [Docker install guide](https://heroiclabs.com/docs/nakama/getting-started/install/docker/), which is the source to follow if anything here drifts.
 
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-2. Make a folder for the server and drop in a `docker-compose.yml`. Heroic Labs publishes ready-made PostgreSQL and CockroachDB compose files in their [Docker install guide](https://heroiclabs.com/docs/nakama/getting-started/install/docker/).
+2. Make a folder for the server and drop in a `docker-compose.yml`. Heroic Labs publishes ready-made PostgreSQL and CockroachDB compose files in that guide; copy whichever you prefer.
 3. From that folder, start it:
 
 ```bash
@@ -34,13 +60,13 @@ The server comes up on `127.0.0.1`:
 | 7351 | Developer console |
 | 7349 | gRPC |
 
-Open [http://127.0.0.1:7351](http://127.0.0.1:7351) for the console and sign in with `admin` / `password`. The console is useful while building a lobby flow: you can watch matches appear and disappear, inspect accounts created by device login, and read server logs as players join.
+Open <a href="http://127.0.0.1:7351" target="_blank" rel="noreferrer">http://127.0.0.1:7351</a> for the console and sign in with `admin` / `password`. The console is useful while building a lobby flow: you can watch matches appear and disappear, inspect accounts created by device login, and read server logs as players join.
 
 ### Connecting PurrLobby to it
 
 Preset assets ship in `Assets/PurrLobby/Providers/Nakama/Preset`, including a pre-filled orchestrator. Drag `Orchestrator.Nakama` onto your `LobbyManager` and you are done: the shipped `Nakama Config` already points at this local server, so a fresh Docker instance needs no changes on the Unity side.
 
-Press play and the menu will authenticate against your container. Watch the console at `127.0.0.1:7351` to see the account appear.
+Press play and the menu will authenticate against your container. Watch the <a href="http://127.0.0.1:7351" target="_blank" rel="noreferrer">console</a> to see the account appear.
 
 {% hint style="warning" %}
 The local defaults are development values. Change the server key before exposing an instance to anything beyond your own machine, and use HTTPS in production. See [Is the server key safe to ship?](nakama.md#is-the-server-key-safe-to-ship) below.
@@ -128,6 +154,8 @@ To lift any of it, write a server RPC that returns the listing data you want and
 ## Further reading
 
 * [Nakama documentation](https://heroiclabs.com/docs/nakama/)
+* [Installing Nakama](https://heroiclabs.com/docs/nakama/getting-started/install/)
 * [Unity client guide](https://heroiclabs.com/docs/nakama/client-libraries/unity/)
+* [Server configuration](https://heroiclabs.com/docs/nakama/getting-started/configuration/)
 * [Matchmaker](https://heroiclabs.com/docs/nakama/concepts/multiplayer/matchmaker/)
 * [Relayed multiplayer](https://heroiclabs.com/docs/nakama/concepts/multiplayer/relayed/)
