@@ -18,23 +18,25 @@ Two pieces: the Nakama Unity SDK in your project, and a server for it to talk to
 
 ### The Unity SDK
 
-The quickest route is from inside PurrLobby. Assign any Nakama provider to your orchestrator and an **Install Nakama Unity** button appears in the `LobbyManager` inspector, which installs the official package through UPM for you.
+Install it through the PurrNet package manager, the same way you installed PurrLobby:
 
-To do it by hand, open **Window → Package Manager → Add package from git URL** and paste the URL from Heroic Labs' [Unity client guide](https://heroiclabs.com/docs/nakama/client-libraries/unity/):
+1. Open **Tools → PurrNet → PurrNet Packages** (`Ctrl+Shift+Alt+P`).
+2. Find **Nakama** in the list.
+3. Pick a version and hit **Install**.
 
-```text
-https://github.com/heroiclabs/nakama-unity.git?path=/Packages/Nakama#<tag>
-```
-
-Replace `<tag>` with a version from the [nakama-unity releases](https://github.com/heroiclabs/nakama-unity/releases).
+There is a shortcut too: assign any Nakama provider to your orchestrator and an **Install Nakama Unity** button appears directly in the `LobbyManager` inspector. Both routes install the official Heroic Labs package through UPM, so you never have to hand-enter a git URL or pick a tag yourself.
 
 {% hint style="warning" %}
-Heroic Labs also distributes the SDK through the Unity Asset Store and as a `Nakama.unitypackage`. Both drop the SDK into `Assets/` rather than installing a UPM package, and PurrLobby's Nakama providers activate off the package being present. Prefer the git URL or the install button.
+Prefer either of those over a manual install. Heroic Labs also distributes the SDK through the Unity Asset Store and as a `Nakama.unitypackage`, and both drop it into `Assets/` rather than installing a UPM package. PurrLobby's Nakama providers activate off the package being present, so those routes leave them switched off.
+
+Their [Unity client guide](https://heroiclabs.com/docs/nakama/client-libraries/unity/) documents every option, including the manual UPM git URL if you would rather manage it yourself.
 {% endhint %}
 
 Their guide calls out a required project setting after install: set **Edit → Project Settings → Player → Other Settings → Api Compatibility Level** to **.NET Standard 2.1**. Unity 2019.4.1 or newer is required on their side.
 
-Two platform notes from the same guide: Android wants **Use System TLS** enabled, and WebGL needs the `UnityWebRequestAdapter`. Their [Unity client guide](https://heroiclabs.com/docs/nakama/client-libraries/unity/) covers both, along with socket threading options.
+One platform note from the same guide: Android wants **Use System TLS** enabled in Player settings.
+
+The adapter setup their guide describes is already handled for you. PurrLobby builds its client with `UnityWebRequestAdapter`, which is the WebGL-safe HTTP path, and its socket through `NewSocket`, which selects `JsWebSocketAdapter` automatically on WebGL builds and dispatches events on Unity's main thread.
 
 ### The server
 
