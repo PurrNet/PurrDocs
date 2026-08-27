@@ -47,7 +47,7 @@ Docker is the fastest way to develop locally and is covered next. Heroic Labs al
 Nakama runs locally in Docker, which is the fastest way to develop against it. These steps mirror Heroic Labs' [Docker install guide](https://heroiclabs.com/docs/nakama/getting-started/install/docker/), which is the source to follow if anything here drifts.
 
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-2. Make a folder for the server and drop in a `docker-compose.yml`. Heroic Labs publishes ready-made PostgreSQL and CockroachDB compose files in that guide; copy whichever you prefer.
+2. Make a folder for the server and drop in a `docker-compose.yml`. Heroic Labs publishes a ready-made PostgreSQL compose file in that guide;
 3. From that folder, start it:
 
 ```bash
@@ -56,13 +56,13 @@ docker compose up
 
 The server comes up on `127.0.0.1`:
 
-| Port | Purpose |
-| ---- | ------- |
+| Port | Purpose                                         |
+| ---- | ----------------------------------------------- |
 | 7350 | Client API, which is what PurrLobby connects to |
-| 7351 | Developer console |
-| 7349 | gRPC |
+| 7351 | Developer console                               |
+| 7349 | gRPC                                            |
 
-Open <a href="http://127.0.0.1:7351" target="_blank" rel="noreferrer">http://127.0.0.1:7351</a> for the console and sign in with `admin` / `password`. The console is useful while building a lobby flow: you can watch matches appear and disappear, inspect accounts created by device login, and read server logs as players join.
+Open <a href="http://127.0.0.1:7351" target="_blank" rel="noreferrer"><http://127.0.0.1:7351></a> for the console and sign in with `admin` / `password`. The console is useful while building a lobby flow: you can watch matches appear and disappear, inspect accounts created by device login, and read server logs as players join.
 
 ### Connecting PurrLobby to it
 
@@ -78,12 +78,12 @@ The local defaults are development values. Change the server key before exposing
 
 The endpoint lives on a `NakamaConfig` asset (**Create → PurrLobby → Nakama → Config**), which `NakamaSessionProvider` references:
 
-| Field | Default | Notes |
-| ----- | ------- | ----- |
-| `Scheme` | `Http` | Switch to `Https` for any remote server |
-| `Host` | `127.0.0.1` | Hostname or IP |
-| `Port` | `7350` | Client API port. Usually `443` over HTTPS |
-| `Server Key` | `defaultkey` | Must match your server's configured key |
+| Field        | Default      | Notes                                     |
+| ------------ | ------------ | ----------------------------------------- |
+| `Scheme`     | `Http`       | Switch to `Https` for any remote server   |
+| `Host`       | `127.0.0.1`  | Hostname or IP                            |
+| `Port`       | `7350`       | Client API port. Usually `443` over HTTPS |
+| `Server Key` | `defaultkey` | Must match your server's configured key   |
 
 For Heroic Cloud or your own hosted instance, set `Scheme` to `Https`, `Host` to the address from your Heroic Labs dashboard, `Port` to `443`, and `Server Key` to the key configured on that instance.
 
@@ -97,6 +97,7 @@ Keeping separate config assets for local and hosted, and swapping which one the 
 Two rules still apply:
 
 * **Change it from `defaultkey` before you go live**, and use `Https` so it is not readable in transit. Heroic Labs recommends regenerating `server_key`, `session.encryption_key` and `runtime.http_key` server-side, all to different random values.
+
 * **Never ship Nakama's `http_key` or console credentials.** The runtime `http_key` bypasses session authentication and would expose every server RPC. `NakamaConfig` has no field for either, so it cannot carry them into a build by accident.
 {% endhint %}
 
@@ -104,22 +105,22 @@ Real protection comes from server-side logic, not the key. If you add runtime RP
 
 ## What PurrLobby uses
 
-| Role | Asset | Backed by |
-| ---- | ----- | --------- |
-| Session | `NakamaSessionProvider` | Nakama device authentication |
-| Lobby | `NakamaLobbyProvider` | Nakama relayed matches |
-| Matchmaking | `NakamaMatchmakingProvider` | Nakama's ticket matchmaker |
-| Game allocation | `NakamaGameAllocator` | Nakama relayed match as the transport |
+| Role            | Asset                       | Backed by                             |
+| --------------- | --------------------------- | ------------------------------------- |
+| Session         | `NakamaSessionProvider`     | Nakama device authentication          |
+| Lobby           | `NakamaLobbyProvider`       | Nakama relayed matches                |
+| Matchmaking     | `NakamaMatchmakingProvider` | Nakama's ticket matchmaker            |
+| Game allocation | `NakamaGameAllocator`       | Nakama relayed match as the transport |
 
 ### Settings
 
-| Asset | Settings |
-| ----- | -------- |
-| `NakamaConfig` | `Scheme`, `Host`, `Port`, `Server Key` |
-| `NakamaSessionProvider` | `Config`, `Session PlayerPref Key` |
-| `NakamaLobbyProvider` | `Session Provider`, `Max Players`, `Snapshot Timeout Ms` (4000), `Query Limit` (100) |
-| `NakamaMatchmakingProvider` | `Min Count` (2), `Max Count` (4) |
-| `NakamaGameAllocator` | `Game Scene`, `Wait For Game Start Flag` (off) |
+| Asset                       | Settings                                                                             |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| `NakamaConfig`              | `Scheme`, `Host`, `Port`, `Server Key`                                               |
+| `NakamaSessionProvider`     | `Config`, `Session PlayerPref Key`                                                   |
+| `NakamaLobbyProvider`       | `Session Provider`, `Max Players`, `Snapshot Timeout Ms` (4000), `Query Limit` (100) |
+| `NakamaMatchmakingProvider` | `Min Count` (2), `Max Count` (4)                                                     |
+| `NakamaGameAllocator`       | `Game Scene`, `Wait For Game Start Flag` (off)                                       |
 
 `Session PlayerPref Key` is where the device session token is cached so returning players skip the login step. `Snapshot Timeout Ms` is how long a joining player waits for the lobby owner's first state snapshot before failing the join. `Query Limit` caps how many matches the browser lists. `Wait For Game Start Flag` makes the host wait on a lobby metadata flag before connecting; leave it off unless your flow needs it, since most pre-load the scene and connect immediately.
 
@@ -131,11 +132,11 @@ Real protection comes from server-side logic, not the key. If you add runtime RP
 
 This is not a problem, because the orchestrator's four slots are independent. Nakama is excellent at session, lobby and matchmaking, so keep it for those and swap **only** the game allocator for a lower-latency path:
 
-| Instead of `NakamaGameAllocator` | Gameplay runs over |
-| -------------------------------- | ------------------ |
-| `PurrTransportGameAllocator` | PurrTransport relay |
-| `SteamGameAllocator` | Steam relay sockets |
-| Your own allocator | Whatever transport you configure, for example direct UDP |
+| Instead of `NakamaGameAllocator` | Gameplay runs over                                       |
+| -------------------------------- | -------------------------------------------------------- |
+| `PurrTransportGameAllocator`     | PurrTransport relay                                      |
+| `SteamGameAllocator`             | Steam relay sockets                                      |
+| Your own allocator               | Whatever transport you configure, for example direct UDP |
 
 A Nakama session, Nakama lobbies, the Nakama matchmaker, and PurrTransport for the actual match is a perfectly normal setup. Nothing in the menu flow changes; only the transport the game scene connects with does.
 
@@ -156,8 +157,13 @@ To lift any of it, write a server RPC that returns the listing data you want and
 ## Further reading
 
 * [Nakama documentation](https://heroiclabs.com/docs/nakama/)
+
 * [Installing Nakama](https://heroiclabs.com/docs/nakama/getting-started/install/)
+
 * [Unity client guide](https://heroiclabs.com/docs/nakama/client-libraries/unity/)
+
 * [Server configuration](https://heroiclabs.com/docs/nakama/getting-started/configuration/)
+
 * [Matchmaker](https://heroiclabs.com/docs/nakama/concepts/multiplayer/matchmaker/)
+
 * [Relayed multiplayer](https://heroiclabs.com/docs/nakama/concepts/multiplayer/relayed/)
