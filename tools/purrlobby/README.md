@@ -12,28 +12,14 @@ The UI is already built. You choose a backend, assign your game scene, and custo
 PurrLobby replaces the older [Lobby System](../../addons/lobby-system.md) addon. New projects should use PurrLobby.
 {% endhint %}
 
-## In this section
-
-| Page | What it covers |
-| ---- | -------------- |
-| [Getting started](getting-started.md) | Run the sample, then point it at your own game scene |
-| [How it works](how-it-works.md) | The orchestrator, the boot sequence, and the menu to game handoff |
-| [Scene setup](scene-setup.md) | What goes in the menu scene and the game scene |
-| [Providers](providers.md) | Every backend and its settings |
-| [Nakama](nakama.md) | Running a server locally and pointing PurrLobby at it |
-| [Customizing the UI](customizing-the-ui.md) | Views, the stack, theming, adding your own screens |
-| [In the game scene](in-game.md) | Pause menu, game over, reconnect, voice |
-| [Custom providers](custom-providers.md) | Writing your own backend or transport |
-
 ## Requirements
 
 * Unity **2022.3** or newer.
 * [PurrNet](https://github.com/PurrNet/PurrNet) and [PurrUI](https://github.com/PurrNet/PurrUI).
-* PurrServices when using the PurrNet Services lobby provider or the Edgegap game allocator.
+* PurrServices when using the PurrNet Services lobby provider.
 * Optional, depending on backend:
   * [Steamworks.NET](https://github.com/rlabrecque/Steamworks.NET) for the Steam providers.
   * [Nakama Unity](https://github.com/heroiclabs/nakama-unity) for the Nakama providers.
-  * [Edgegap Unity plugin](https://github.com/edgegap/edgegap-unity-plugin) for Edgegap workflows.
 
 Provider code is compiled out when its SDK is absent, so you only need the packages for the backends you actually use.
 
