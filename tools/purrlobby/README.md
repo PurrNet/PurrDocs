@@ -12,13 +12,20 @@ The UI is already built. You choose a backend, assign your game scene, and custo
 PurrLobby replaces the older [Lobby System](../../addons/lobby-system.md) addon. New projects should use PurrLobby.
 {% endhint %}
 
+{% embed url="https://youtu.be/7LYEeXx0ZBo" %}
+
 ## Requirements
 
 * Unity **2022.3** or newer.
+
 * [PurrNet](https://github.com/PurrNet/PurrNet) and [PurrUI](https://github.com/PurrNet/PurrUI).
+
 * PurrServices when using the PurrNet Services lobby provider.
+
 * Optional, depending on backend:
+
   * [Steamworks.NET](https://github.com/rlabrecque/Steamworks.NET) for the Steam providers.
+
   * [Nakama Unity](https://github.com/heroiclabs/nakama-unity) for the Nakama providers.
 
 Provider code is compiled out when its SDK is absent, so you only need the packages for the backends you actually use.
@@ -42,6 +49,7 @@ PurrUI is listed as a dependency and is installed alongside it. The package page
 Two ways to keep your customizations:
 
 * **Deselect your files during import.** PurrLobby imports into `Assets/PurrLobby`, so updating opens Unity's interactive import window. Uncheck anything you have modified to keep your version and take the rest of the update.
+
 * **Duplicate before you edit.** Copy any prefab or asset you plan to change into your own folder outside `Assets/PurrLobby` and point your scenes at the copy. Updates then never touch your version.
 
 The second approach is worth doing up front if you expect to restyle the UI heavily, since it keeps your work fully separate from the package.
@@ -49,10 +57,15 @@ The second approach is worth doing up front if you expect to restyle the UI heav
 ## What's included
 
 * Menu flow: main menu, create lobby, join by code, lobby browser, matchmaking, and an in-lobby view with a player list and chat.
+
 * Ready-up and owner-driven game start.
+
 * A scene handoff that loads the game scene, connects the network transport, and returns to the menu on leave, game over, or connection loss.
+
 * A ready-made pause menu and server-driven game over for the game scene.
+
 * Swappable provider interfaces for sessions, lobbies, matchmaking, and game allocation.
+
 * Prefabs and sample scenes under `Assets/PurrLobby`.
 
 ## Providers

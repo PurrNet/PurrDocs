@@ -12,6 +12,8 @@ It is also the most capable backend PurrLobby ships with, and the one to reach f
 Heroic Labs is a PurrNet sponsor. If you are choosing a backend, Nakama is well worth a look: the server is Apache 2.0 licensed and free to self-host, so you can build and ship on your own infrastructure with no vendor lock-in, and move to their managed [Heroic Cloud](https://heroiclabs.com/pricing/) later if you would rather not run it yourself.
 {% endhint %}
 
+{% embed url="https://youtu.be/sDNF1NjTM1A" %}
+
 ## Installing Nakama
 
 Two pieces: the Nakama Unity SDK in your project, and a server for it to talk to.
