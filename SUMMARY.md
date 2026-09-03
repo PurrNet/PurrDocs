@@ -30,6 +30,7 @@
     * [Network Rules](systems-and-modules/network-manager/network-rules.md)
     * [Network Prefabs](systems-and-modules/network-manager/network-prefabs.md)
     * [Network Assets](systems-and-modules/network-manager/network-assets.md)
+    * [Scene Scoped Prefabs & Assets](systems-and-modules/network-manager/scene-scoped-prefabs-and-assets.md)
     * [Network Visibility](systems-and-modules/network-manager/network-visibility/README.md)
       * [Using the visibility](systems-and-modules/network-manager/network-visibility/using-the-visibility.md)
       * [Distance condition](systems-and-modules/network-manager/network-visibility/distance-condition.md)

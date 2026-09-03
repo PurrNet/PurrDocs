@@ -10,6 +10,8 @@ Settings of the Network Assets scriptable allows you to easily modify which proj
 
 Refreshing the type list might be necessary if you add or remove types from your game, like making a new scriptable object for example.
 
+The **Folder / Scene** field also accepts a scene. The registry then pulls the assets that scene references, filtered by the enabled types, and regenerates when the scene is saved. With auto generate on, the list mirrors what the scan finds, so assets that are no longer referenced are removed. Pair it with a `NetworkSceneAssets` component in the scene to make those assets [scene scoped](scene-scoped-prefabs-and-assets.md), so they load and unload with the scene.
+
 ### How to use it?
 
 All you need is the network assets assigned in your network manager and do networking as you normally would and it will just work!\
