@@ -34,7 +34,7 @@ The id that goes over the network carries the scene it belongs to, so the receiv
 
 Because the scene of the instance decides the scope, instantiate the object into the scene it belongs to, for example by parenting it under something in that scene. An object spawned into a different scene still resolves through the fallback, but it is the warning case above.
 
-Assets work the same way. When an asset from a scene registry is sent in an RPC or a sync var, it is looked up in the global registry first and then in the loaded scenes. On the receiving side it resolves through the scene named in the id, so an asset that only lives in a scene registry is only valid while that scene is loaded. Referencing one from an object that outlives the scene, such as something under `DontDestroyOnLoad`, gives you a null on peers that have unloaded it.
+Assets work the same way. When an asset from a scene registry is sent in an RPC or a sync var, it is looked up in the global registry first, then in the scene of the object sending it, then in any other loaded scene. Static RPCs have no object, so for them the sender's scene is skipped. On the receiving side it resolves through the scene named in the id, so an asset that only lives in a scene registry is only valid while that scene is loaded. Referencing one from an object that outlives the scene, such as something under `DontDestroyOnLoad`, gives you a null on peers that have unloaded it.
 
 ## Lifetime and memory
 
