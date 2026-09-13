@@ -1,5 +1,11 @@
 # Lobby System
 
+{% hint style="warning" %}
+**This lobby system is obsolete.** It has been replaced by [**PurrLobby**](../tools/purrlobby/), which ships a ready-made menu flow, more providers, matchmaking, and a scene handoff into your game.
+
+New projects should use PurrLobby. This page is kept for existing projects still on the old addon.
+{% endhint %}
+
 With PurrNet, it's exceptionally easy to get started with a lobby in your game. We've built a plug n' play lobby setup for you to use with any provider (or self host) that you'd like. It comes with a Steam provider ready to use.
 
 {% embed url="https://www.youtube.com/watch?v=fIBAlOJxqtg" %}

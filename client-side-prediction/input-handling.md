@@ -60,6 +60,31 @@ public class SimpleCC : PredictedIdentity<SimpleWASDInput, SimpleCCState>
 
 ***
 
+**Redundancy and Bandwidth**
+
+Input travels over unreliable channels; redundancy replaces reliable delivery:
+
+- Each upload carries a short window of recent ticks (sized from the adaptive input margin, clamped between 4 and 32 ticks), so a lost packet is repaired by the next one.
+- Within a packet, a tick whose serialized input matches the previous tick costs a single repeat bit; held or idle inputs are nearly free.
+- Server frames echo only the newest input per identity, written as a delta against the input block the client last acknowledged, with the same repeat‑bit shortcut when it is unchanged, so input cost in server frames does not grow with ping.
+- The client resends its current window every 20 ms until a newer one replaces it; the server discards resends that contain no new ticks before parsing them.
+
+Worst‑case upload cost is the redundancy window times the serialized input size times the tick rate. Keep `INPUT` structs small and stable; a field that changes every tick defeats the repeat‑bit compression.
+
+Inputs for `DeterministicIdentity<INPUT, STATE>` are the exception: it exposes the same input API, but the server re‑sends every tick of its input until the client acknowledges, because every peer must simulate from identical inputs. See [Deterministic Identity](deterministic-identity.md).
+
+***
+
+**Diagnostics**
+
+`PredictionManager` exposes read‑only counters for input traffic:
+
+- `inputRedundancyTickCount`: the upload redundancy window in ticks at the current tick rate.
+- `guaranteedInputHistorySystems`: how many registered systems ride the guaranteed input transcript instead of the newest‑only path.
+- `inputSendsTotal`, `inputBytesSentTotal`, `inputTicksSentTotal`: cumulative sends, payload bytes, and window ticks uploaded.
+
+***
+
 **Why This Pattern**
 
 - Determinism: All input used in simulation is captured, sanitized, and stored per tick.

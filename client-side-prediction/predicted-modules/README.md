@@ -83,6 +83,10 @@ public class HealthModule : PredictedModule<HealthState>
 
 Modules constructed before the first simulation tick (typically inside `LateAwake`) are static. They live for the lifetime of the identity and are not state-tracked. Modules constructed during simulation are dynamic and replicate automatically.
 
+Static modules frame the identity's state payload, so every peer must construct the same static modules in the same order. Do not gate their construction on ownership, `isServer`, or other per-peer conditions; use a dynamic module when a module should exist only sometimes.
+
+When a peer decodes state whose static roster differs from its own, PurrDiction raises `PredictedModuleRosterMismatchException`, logs an error describing both rosters, and suspends state replication for that identity until it is destroyed or respawned. Fix the mismatch by making static module registration unconditional on every peer.
+
 To use a module, instantiate it within your `PredictedIdentity`. It will automatically register itself with the identity's prediction lifecycle.
 
 ```csharp

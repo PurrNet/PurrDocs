@@ -10,11 +10,12 @@ A prediction policy controls how one `PredictedIdentity` participates in client 
 | `ServerRelay` | Runs only verified server ticks on clients and never predicts into the local future. Relay rigidbodies are kinematic on clients and act as verified geometry for predicted objects. | Remote actors, server-driven hazards, or objects where latency is acceptable and rollback cost is not. |
 | `SoftCorrection` | Keeps simulating locally, skips live rollback, compares verified state with client history, and blends the error into the current simulation. | Debris, props, ragdolls, and other physics where convergence matters more than an exact historical pose. |
 | `PredictedIfOwned` | Resolves to `FullPrediction` for the local owner and `ServerRelay` for everyone else, including unowned copies. | Player pawns and vehicles that should feel immediate only to their controller. |
+| `PredictedIfOwnedWithSoftFallback` | Resolves to `FullPrediction` for the local owner and `SoftCorrection` for everyone else, including unowned copies. Identities that do not support soft correction use `ServerRelay` for the non-owner branch. | Player pawns and vehicles whose remote copies should keep simulating locally and converge smoothly instead of replaying only verified ticks. |
 
 `ServerRelay` intentionally lives behind the local predicted timeline by roughly network latency plus buffering. `SoftCorrection` stays responsive but is convergent rather than historically exact, so it is a poor choice for gameplay-critical collision or hit validation.
 
 {% hint style="warning" %}
-`SoftCorrection` is supported only by identities that implement verified-state correction. The built-in `PredictedTransform`, `PredictedRigidbody`, `PredictedRigidbody2D`, and `PredictedProjectile3D` support it. Unsupported and deterministic identities normalize it to `FullPrediction` and report an error when appropriate.
+`SoftCorrection` is supported only by identities that implement verified-state correction. The built-in `PredictedTransform`, `PredictedRigidbody`, `PredictedRigidbody2D`, and `PredictedProjectile3D` support it. Unsupported and deterministic identities keep `SoftCorrection` as their configured policy but behave as `ServerRelay` on clients; the fallback is automatic and no error is logged.
 {% endhint %}
 
 When a Rigidbody or projectile shares a GameObject with `PredictedTransform`, the physics component controls the transform's effective policy so pose and velocity follow the same timeline.
@@ -43,6 +44,8 @@ private void Awake()
 }
 ```
 
+`PredictionPolicyScope` can be subclassed. Override `protected virtual PredictionPolicy ResolveLocalPolicy(PredictedIdentity identity)` to pick a policy per descendant identity, for example by team or by distance. **Inherit From Parent** and automatic descendant refresh keep working, and ownership changes cause registered identities to resolve the method again.
+
 ## Runtime switching
 
 There are three deliberately different APIs:
@@ -61,6 +64,8 @@ identity.UsePredictionPolicyScope();
 `configuredPredictionPolicy` changes the serialized/local fallback policy. `predictionPolicy` is the currently applied result, and `GetResolvedPredictionPolicy()` returns the active or currently resolvable value.
 
 Policy changes are safest at ownership or gameplay phase boundaries. The next reconciliation aligns the identity with its new timeline. Persistent overrides and scope configuration are restored correctly when pooled objects are reused.
+
+Override `OnPredictionPolicyChanged` on an identity to react to policy transitions. It also fires when the resolved behavior changes without a configuration change, such as an ownership flip under `PredictedIfOwned` or `PredictedIfOwnedWithSoftFallback`; in that case the arguments are the resolved old and new behaviors, so read the `predictionPolicy` property inside the callback when you need the configured value.
 
 ## Soft-correction tuning
 

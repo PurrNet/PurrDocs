@@ -133,9 +133,18 @@ Delete cascades follow the simulated graph, meaning `PredictedParent` state wher
 
 ***
 
+**Runtime-Created Objects**
+
+Every `PredictedIdentity` must either exist in the scene file at discovery time or be spawned through `PredictionManager.hierarchy.Create`. An identity instantiated at runtime outside the hierarchy (via `Object.Instantiate` or procedural creation) is never discovered during registration: it never simulates or syncs, its state stays uninitialized, and physics events involving it pass a null `other` to callbacks.
+
+The manager logs a warning during scene discovery when it finds such an identity, naming the object and the fix: spawn it with `hierarchy.Create`, keep it in the scene file, or enable **Include Instantiated Scene Objects** in your Network Rules if you intentionally instantiate scene-style predicted objects at runtime.
+
+***
+
 **Best Practices**
 
 * Only create/destroy from within simulation code paths (or via machine/state transitions) to keep behavior deterministic under replay.
+* Never `Object.Instantiate` a predicted prefab directly; go through `hierarchy.Create` so the object is registered and simulated.
 * Prefer `TryCreate` and check the boolean to handle invalid or unregistered prefabs gracefully.
 * Store and pass around `PredictedObjectID` rather than `GameObject` to remain resilient across rollbacks.
 * When you need to know if two ids belong to the same spawned prefab, use `SameInstance` or `TryGetRootId` instead of comparing raw ids.

@@ -96,7 +96,7 @@ This code is modified from the Unity documentation on [CharacterController.Move]
 [SerializeField] float gravity = -10f;
 [SerializeField] float jumpHeight = 1f;
 
-private bool bool IsGrounded() {
+private bool IsGrounded() {
     // controller.isGrounded is weird, dont use it
     return Physics.SphereCast(
         transform.position - Vector3.up * (controller.height / 2 - 0.1f),
@@ -177,7 +177,7 @@ public class PredictedCharacterController : PredictedIdentity<PredictedCharacter
         input.Jump |= Input.GetKeyDown(KeyCode.Space);
     }
     
-    private bool bool IsGrounded() {
+    private bool IsGrounded() {
         return Physics.SphereCast(
             transform.position - Vector3.up * (controller.height / 2 - 0.1f),
             controller.radius - 0.05f,

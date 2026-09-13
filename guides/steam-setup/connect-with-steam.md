@@ -26,11 +26,14 @@ So you want to make a multiplayer Steam game, and you're looking to get started 
 This guide is being written using the following:
 
 * Unity 6002.2.6f1
+
 * PurrNet 1.15.0
-* Heathen's Toolkit for Steakworks 2025
+
+* Heathen's Toolkit for Steamkworks 2025
+
 * Steam installed and running
 
-For PurrNet installation instructions please reference the [installation guide](../../getting-started/installation-setup.md). If you aren't familiar with Heathen's Toolkit for Steakworks SDK I highly recommend checking it out if you're serious about using Steam—it just makes your life easier. If you don't want to use Heathen's, then the script example I show won't work out of the box for you, but the majority of this guide will still be helpful. We will install Heathen's Toolkit at the end of this guide to ensure that everyone can follow along until then.
+For PurrNet installation instructions please reference the [installation guide](../../getting-started/installation-setup.md). If you aren't familiar with Heathen's Toolkit for Steamkworks SDK I highly recommend checking it out if you're serious about using Steam—it just makes your life easier. If you don't want to use Heathen's, then the script example I show won't work out of the box for you, but the majority of this guide will still be helpful. We will install Heathen's Toolkit at the end of this guide to ensure that everyone can follow along until then.
 
 For reference, my Package Manager looks like the following after PurrNet installation:
 

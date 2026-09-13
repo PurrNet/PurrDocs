@@ -16,16 +16,19 @@ If you don’t require strict bit‑determinism, prefer [`PredictedIdentity<STAT
 
 * Uses `sfloat` delta in `Simulate`/`LateSimulate` for deterministic time steps.
 * History, rollback, and interpolation are the same pattern as stateful identities.
-* Networking: by default it doesn’t send state each tick; instead, you can turn on validation to compare states.
+* Networking: it doesn’t send simulation state each tick; ownership metadata syncs when it changes, and the optional desync policy detects divergence from compact state hashes.
 
-Prediction Manager setting:
+Prediction Manager settings (**Determinism** section):
 
-* Validate Deterministic Data (bool): when enabled, the server writes each deterministic state into its frames and clients compare it against their own state for the same server tick. The comparison is aligned to the tick the server serialized, so latency, jitter, and frame hitches never produce false positives. If it logs a mismatch, your deterministic state genuinely diverged; the error includes both states and triggers a `Debug.Break()` to help diagnose.
+* **Desync Policy**: how the server responds when a client’s deterministic state diverges from its own. `Ignore` (default) does no hashing and has zero overhead. `Report` raises `predictionManager.onDesyncDetected` on the server and `onLocalDesync` on the diverged client, with no automatic recovery. `Resync` re‑baselines the diverged client’s entire timeline with a full frame. `Correct` heals just the diverged identity by resending its authoritative state.
+* **Desync Check Interval**: how often clients report tick‑salted hashes of settled deterministic state to the server, in seconds (default 0.25). Hashing only runs when at least one identity’s resolved policy is not `Ignore`.
+
+Each `DeterministicIdentity` also has its own **Desync Policy** field (`Inherit` by default) that overrides the global setting; it is resolved once during setup. Hashes are compared at the same settled tick on both peers, so latency, jitter, and frame hitches never produce false positives.
 
 Prediction policies:
 
 * `FullPrediction`, `ServerRelay`, and `PredictedIfOwned` are supported without turning deterministic identities into ordinary per-tick state replication.
-* `SoftCorrection` is not supported because deterministic identities do not receive the authoritative state deltas required to build a correction target. Selecting it resolves to `FullPrediction`.
+* `SoftCorrection` is not supported because deterministic identities do not receive the authoritative state deltas required to build a correction target. Selecting it keeps `SoftCorrection` as the configured policy, but the identity behaves as `ServerRelay` on clients. The non‑owner branch of `PredictedIfOwnedWithSoftFallback` falls back to `ServerRelay` the same way.
 
 See [Prediction Policies](prediction-policies.md) for the client timeline behavior.
 
@@ -87,10 +90,18 @@ public class Oscillator : DeterministicIdentity<OscState>
 
 ***
 
+**Inputs and Convergence**
+
+`DeterministicIdentity<INPUT, STATE>` mirrors `PredictedIdentity<INPUT, STATE>`: implement `GetFinalInput`, `UpdateInput`, and `SanitizeInput` the same way, and `Simulate(INPUT input, ref STATE state, sfloat delta)` receives the deterministic delta. Because every peer must feed identical inputs into the simulation, these inputs are delivered on a guaranteed transcript rather than best‑effort: the server includes every input tick since the client’s last acknowledged frame in each outgoing frame, up to a 32 tick window, so a lost packet is repaired by the next one.
+
+If a client falls further behind than that window, the server sends a full frame that re‑anchors its deterministic timeline. Either way the simulation converges; packet loss can delay deterministic state but never permanently fork it.
+
+***
+
 **Best Practices**
 
 * Use `sfloat` and integer math for all simulation‑impacting calculations.
 * Avoid sampling Unity time or random APIs directly; use `PredictedTime` and `PredictedRandom`.
 * Keep any conversions to `float` purely in `UpdateView`.
 * Only mutate state from the simulated timeline: `SimulationStart`, `Simulate`, or events that fire from inside another identity's simulation (like `PredictedPlayers.onPlayerAdded`). Never mutate state from `Awake`, `LateAwake`, or other Unity callbacks; those run at setup time, which differs per peer, and deterministic state is never corrected afterwards. `SimulationStart` is the right place for one-time setup that reads other identities, since it runs at the first simulated tick and its executed flag is part of the rollback state.
-* Enable Validate Deterministic Data only during development; it adds extra packing/comparison overhead.
+* Leave **Desync Policy** on `Ignore` unless you need divergence detection. `Report` is a good development default; `Resync` or `Correct` are safe to ship when you want automatic recovery, at the cost of periodic hashing and reporting.

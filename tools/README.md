@@ -6,3 +6,4 @@ PurrNet includes editor tools for diagnosing and maintaining a networked project
 * [Conversion Tool](conversion-tool/README.md) migrates code, prefabs, and scenes from supported networking libraries.
 * [PurrChat](purrchat-ai-copilot/README.md) provides an AI assistant for PurrNet development.
 * [PurrVoice](purrvoice-voice-chat/README.md) adds networked voice chat.
+* [PurrLobby](purrlobby/README.md) is a drop-in lobby and matchmaking front-end with a ready-made menu flow.

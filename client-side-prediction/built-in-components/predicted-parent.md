@@ -36,7 +36,9 @@ To spawn an object already attached to something, use the `Create` overloads tha
 
 **Behavior Details**
 
-* Delete cascades follow the simulated attachment. A piece reparented away from its dying instance survives the delete; a foreign piece parented under a dying instance is detached and kept alive.
+* Delete cascades follow the simulated attachment. A piece reparented away from its dying instance survives the delete; a foreign piece parented under a dying instance is detached and kept alive. When a correction deletes several nested instances at once, they are removed per root, so a delete inside a delete cascades the same way on every peer.
+* Client-local decoration survives corrections. A piece without the component that you reparent for visuals keeps its attachment across rollback and reconcile: when a rebuild detaches or recreates the piece, the hierarchy re-attaches it to the same anchor on a best-effort basis, including its placement under plain child transforms, and drops the link only when the anchor is gone for good.
+* A piece that comes back at the same object id under a different owner during a correction is fully reset instead of silently reused in place.
 * If the target parent does not exist yet at the moment a correction is applied (for example the parent spawns in the same frame), the component keeps the target pending and attaches as soon as it resolves. A warning is logged if it cannot attach right away.
 * If you restructure plain transforms between the piece and its predicted ancestor without changing the piece's own parent, call `RefreshParentLink()` so the link is re-resolved on the next capture.
 

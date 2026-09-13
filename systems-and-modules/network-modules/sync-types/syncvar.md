@@ -31,4 +31,6 @@ When populating the SyncVar, you can do a few things:
 
 * Feed it nothing: `new();`
 * Feed it a default: `new(5);` //In case of number
-* Feed it settings like `ownerAuth` or `sendIntervalInSeconds`
+* Feed it settings like `ownerAuth`, `sendIntervalInSeconds` or `ownerOnly`
+
+If a value should only be shared between the server and the object's owner (an inventory, a hand of cards), pass `ownerOnly: true`. Other players never receive it, and you can mix owner-only and normal SyncVars on the same identity. See [Owner Only](../owner-only.md) for details.
