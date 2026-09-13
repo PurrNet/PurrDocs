@@ -135,6 +135,7 @@
   * [Network Transform](plug-n-play-components/network-transform.md)
     * [Adaptive sync](plug-n-play-components/network-transform/adaptive-sync.md)
   * [Network Rigidbody](plug-n-play-components/network-rigidbody.md)
+  * [Network Rigidbody 2D](plug-n-play-components/network-rigidbody-2d.md)
   * [Network Animator](plug-n-play-components/network-animator.md)
   * [Network Bones](plug-n-play-components/network-bones.md)
   * [Network Ownership Toggle](plug-n-play-components/network-ownership-toggle.md)

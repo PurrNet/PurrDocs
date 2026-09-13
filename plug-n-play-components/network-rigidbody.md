@@ -12,6 +12,10 @@ If you need physics in multiplayer, you might want to read the [Physics In Multi
 
 {% embed url="https://youtu.be/cCeHzBMch58" %}
 
+{% hint style="info" %}
+Working in 2D? Use the [Network Rigidbody 2D](network-rigidbody-2d.md) instead, it shares the same core and settings.
+{% endhint %}
+
 ### Settings
 
 It's a highly dynamic component, so although the default settings should work well for a lot of cases, it's recommended to familiarize yourself with what the various settings do.
@@ -105,7 +109,7 @@ using UnityEngine;
 public class OriginShiftTransform : MonoBehaviour, INetworkRigidbodyPositionTransform
 {
     // Sender side: this peer's Unity world space -> shared absolute frame.
-    public double3 ToAbsolute(NetworkRigidbody self, Vector3 localWorldPos)
+    public double3 ToAbsolute(NetworkRigidbodyBase self, Vector3 localWorldPos)
     {
         var origin = WorldOrigin.Current; // your peer's double3 origin offset
         return new double3(localWorldPos.x, localWorldPos.y, localWorldPos.z) + origin;
@@ -113,7 +117,7 @@ public class OriginShiftTransform : MonoBehaviour, INetworkRigidbodyPositionTran
 
     // Receiver side: shared absolute frame -> this peer's Unity world space.
     // Must be the exact inverse of ToAbsolute for the current origin.
-    public Vector3 ToLocal(NetworkRigidbody self, double3 absolutePosition)
+    public Vector3 ToLocal(NetworkRigidbodyBase self, double3 absolutePosition)
     {
         var local = absolutePosition - WorldOrigin.Current;
         return new Vector3((float)local.x, (float)local.y, (float)local.z);
