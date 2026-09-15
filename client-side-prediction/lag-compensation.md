@@ -54,6 +54,18 @@ Server-controlled identities, such as bots, have no view offset; for them `lagCo
 
 Because the query is part of the simulation, the outcome lives in predicted state and rolls back and replays like anything else. You do not need a `ServerRpc`, a rollback tick in your input, or any client-to-server validation call; sending the fire button is enough.
 
+## How this differs from PurrNet's rollbackTick
+
+`predictionManager.rollbackTick` is PurrNet's `NetworkIdentity.rollbackTick`, which every identity has: the synced precise tick minus half the measured round trip, in the tick manager's own tick space. It is a latency estimate meant for the classic flow where a client raycasts locally, sends the tick in a `ServerRpc`, and the server rewinds by it.
+
+`lagCompensationTick` is a different quantity:
+
+* It is in prediction tick space. Client prediction ticks are already stamped with the server ticks they execute at, so round trip is not what needs compensating. What needs compensating is how far behind the live tick the player's screen was, which is the view interpolation offset.
+* It is per identity, not per peer. It answers "what was this identity's controller looking at when they produced this tick's input", and the server derives it from the offset that client uploaded with the input, clamped to **Max Lag Compensation Seconds**.
+* It is recorded per tick, so it replays and rolls back deterministically. It is only meaningful inside `Simulate`.
+
+Use `lagCompensationTick` with `predictionManager.lagCompensation` for predicted identities. `rollbackTick` remains the right input for direct `RollbackModule` calls from ordinary networked code.
+
 ## Available queries
 
 `predictionManager.lagCompensation` mirrors the `RollbackModule` query surface, addressed in prediction ticks. Every method takes the tick first and then the usual Unity arguments:

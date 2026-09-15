@@ -54,7 +54,7 @@ Calls are cheap and just mark the player dirty. The change is committed when the
 
 For the player it is hidden from, a root is projected out of the frame entirely:
 
-* The hierarchy state written to them no longer lists the instance, so their client removes it, the same way it applies any other verified removal.
+* The hierarchy state written to them no longer lists the instance, so their client removes it, the same way it applies any other verified removal. The object is deactivated and parked in the rollback pool first, in case the next frame brings it back, and after two seconds of ticks it is destroyed, or returned to the prefab pool when the prefab opts into pooling. `Destroyed()` fires at that point, not at the moment it disappears.
 * State sections and input sections skip every identity inside the root.
 * Physics collision and trigger events are dropped from their frame when either side of the contact is hidden.
 
@@ -107,3 +107,4 @@ The hidden policy you set with `HideFrom` is untouched and becomes effective aga
 
 * [Network Identities in Predicted Prefabs](built-in-components/predicted-identity-spawner.md) follow predicted visibility: a player observes the mirrored `NetworkIdentity` components exactly while they can see the predicted root.
 * Store `PredictedObjectID` values you hide, not GameObjects, and treat the hidden set as server-side bookkeeping. It is not part of predicted state and does not roll back.
+* When a player stops observing the Prediction Manager, for example because they disconnected, their hidden set, acquisitions, and visibility timeline are all dropped. A handle you still hold for that player becomes inert; disposing it is safe and does nothing. If the same player id is reused for a new connection, it starts from the default-visible policy.
