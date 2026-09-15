@@ -24,7 +24,7 @@ Every peer collects the identities in the same order, which is the deterministic
 The predicted world is. The mirror uses PurrNet's manual spawn path, so the mirrored identities are flagged as manually spawned and PurrNet's own spawn rules and visibility rules never run for them:
 
 * Lifetime follows the predicted instance. You never call `Spawn` or `Despawn` on them yourself, and PurrNet will not despawn them on its own.
-* Observers are set by the mirror from predicted visibility. PurrNet's visibility evaluation skips manually spawned identities, so visibility conditions and rules on them are ignored. To stop a player from seeing one, hide the predicted root from that player with `predictionManager.HideFrom(player, rootId)`; the mirrored identities follow.
+* Observers are set by the mirror from predicted visibility. PurrNet's visibility evaluation skips manually spawned identities, so visibility conditions and rules on them are ignored. To stop a player from seeing one, hide the predicted root from that player with `predictionManager.HideFrom(player, rootId)`; the mirrored identities follow. See [Predicted Visibility](../predicted-visibility.md).
 * Ownership is copied from the predicted owner when the identities spawn and again whenever the predicted owner changes. Ownership you set on the identity directly survives only until the next predicted ownership change, so treat the predicted owner as the source of truth.
 * PurrNet's despawn-on-owner-disconnect rule also skips manually spawned identities. Their teardown is entirely the predicted instance being deleted.
 

@@ -113,6 +113,7 @@
   * [Predicted Hierarchy](client-side-prediction/predicted-hierarchy.md)
   * [Interacting With Multiple Identities](client-side-prediction/multi-identity-interactions.md)
   * [Lag Compensation](client-side-prediction/lag-compensation.md)
+  * [Predicted Visibility](client-side-prediction/predicted-visibility.md)
   * [Predicted State Machine](client-side-prediction/predicted-state-machine/README.md)
     * [Predicted State Node](client-side-prediction/predicted-state-machine/predicted-state-node.md)
   * [Views and Interpolation](client-side-prediction/views-and-interpolation.md)

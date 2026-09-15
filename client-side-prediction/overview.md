@@ -61,3 +61,4 @@ Prediction also does not guarantee that arbitrary Unity code is deterministic. U
 * [Security Model](security.md) explains what the server trusts.
 * [Views and Interpolation](views-and-interpolation.md) separates correction from presentation.
 * [Lag Compensation](lag-compensation.md) rewinds hit tests to what the shooter saw.
+* [Predicted Visibility](predicted-visibility.md) controls which players receive which predicted objects.
