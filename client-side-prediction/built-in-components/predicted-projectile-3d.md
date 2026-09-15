@@ -33,7 +33,19 @@ protected override void Simulate(ref ShotState state, float delta)
 
 ## Events
 
+{% version range="<1.4.0" %}
+
 The component exposes `onCollisionEnter/Exit/Stay` and `onTriggerEnter/Exit/Stay`. Solid events include `PhysicsCollision`; trigger events provide the other GameObject.
+
+{% endversion %}
+
+{% version range=">=1.4.0" %}
+
+The component exposes `onPredictedCollisionEnter/Exit/Stay` and `onPredictedTriggerEnter/Exit/Stay`. Collision events hand you a `PredictedCollision` with the other GameObject, its `PredictedComponentID`, and the `PhysicsCollision` contact data. Trigger events hand you a `PredictedTrigger` with the GameObject and id. On an Exit caused by the other object being deleted, the GameObject is null but the id is still valid, so store ids rather than objects. The payloads are described on the [Predicted Rigidbody](predicted-rigidbody-2d-and-3d.md#collision-and-trigger-events) page.
+
+The GameObject-only `onCollisionEnter/Exit/Stay` and `onTriggerEnter/Exit/Stay` events still fire but are marked obsolete, and they skip the Exit raised by a deletion since they have no GameObject to pass.
+
+{% endversion %}
 
 Only objects resolvable to predicted component IDs participate in the predicted event stream. Configure the Layer Mask narrowly, and use the Event Mask to avoid recording callbacks the projectile does not need.
 

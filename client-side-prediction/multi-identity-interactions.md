@@ -70,6 +70,12 @@ Note: Do not attempt to modify another identity’s input history. Instead, muta
 
 * Use `PredictedEvent`/`PredictedEvent<T>` for view‑safe eventing across identities. Events only invoke when it’s valid to do so (server, owner while not replaying, or verified client), preventing double‑fire during replays.
 
+{% version range=">=1.4.0" %}
+
+* `PredictedEvent` comes in every arity up to sixteen arguments: `PredictedEvent<T1, T2>`, `PredictedEvent<T1, T2, T3>`, and so on. `AddListener`, `RemoveListener`, and `Invoke` take the matching `Action<>` and argument list, so you can pass the hit point, the damage, and the attacker id in one call instead of packing them into a struct.
+
+{% endversion %}
+
 ```csharp
 // In an identity
 private PredictedEvent onHit;

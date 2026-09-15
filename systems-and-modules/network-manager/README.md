@@ -31,6 +31,33 @@ Look at the [Installation/Setup](../../getting-started/installation-setup.md) se
 
 **Visibility Rules:** This is the [Visibility ](network-visibility/)rule-set to use. This will decipher the default rules for player to Network Identity relation. This can be overwritten on the individual [network identity](../network-identity/).
 
+## Kicking and disconnecting players
+
+To remove a player from the server, call `KickPlayer` on the players manager with their `PlayerID`. The server closes their connection if they still have one, unregisters the player, and tells every other client they left, so `onPlayerLeft` fires as it would for a normal disconnect. Call it from the server:
+
+```csharp
+if (networkManager.isServer)
+    networkManager.playerModule.KickPlayer(playerToKick);
+```
+
+`playerModule` resolves to the server-side players manager when the server is running, and to the client-side one otherwise. You can also fetch it explicitly:
+
+```csharp
+if (networkManager.TryGetModule<PlayersManager>(asServer: true, out var players))
+    players.KickPlayer(playerToKick);
+```
+
+There is no API for a client to kick anyone; send a `ServerRpc` and let the server decide.
+
+To leave a game yourself, stop the local side of the connection:
+
+```csharp
+networkManager.StopClient(); // disconnect this client from the server
+networkManager.StopServer(); // shut the server down, which disconnects everyone
+```
+
+Both stop the underlying transport. On a host, stopping the server also ends its local client.
+
 ## Unreliable messages and the MTU
 
 **MTU Exceeded Behaviour** controls what happens when a message is too large for one packet on an `Unreliable` or `UnreliableSequenced` [channel](../../terminology/channels.md). The setting is under the Network Manager's runtime settings and defaults to **Fragment**.

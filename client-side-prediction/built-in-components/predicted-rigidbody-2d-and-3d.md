@@ -38,6 +38,21 @@ Always drive the body through the wrapper inside `Simulate`, never through the r
 
 `PredictedRigidbody` exposes **Float Accuracy** for packed 3D body state and an **Event Mask** for selecting collision and trigger callbacks. Both body types expose **Soft Velocity Correction Rate** for `SoftCorrection`.
 
+{% version range=">=1.4.0" %}
+
+The default **Event Mask** is Collision Enter, Collision Exit, Trigger Enter, and Trigger Exit. The Stay variants are opt-in because Unity reports them once per touching pair per physics step, which adds up fast on a busy body. Turn them on only where you actually read them.
+
+Behind the scenes, the Unity collision messages live on small hidden proxy components that are attached only while the matching event kinds are enabled. Unity generates contact reports and a managed callback for every script class that declares a collision message, whether or not that message does anything, so a body with no enabled events pays nothing. The proxies are hidden in the inspector and never serialized.
+
+You can change the mask at runtime through the `eventMask` property. Setting it attaches or detaches the proxies right away:
+
+```csharp
+// Only listen for trigger stay while the ability is active.
+predictedRigidbody.eventMask = PredictedRigidbody.DEFAULT_EVENT_MASK | PhysicsEventMask.TriggerStay;
+```
+
+{% endversion %}
+
 Policy behavior is specialized for physics:
 
 * `FullPrediction` simulates the body and rewinds it during replay.
@@ -50,7 +65,9 @@ See [Prediction Policies](../prediction-policies.md) before mixing different pol
 
 ## Collision and trigger events
 
-Subscribe to the component's prediction-aware events instead of treating ordinary Unity callbacks as final gameplay notifications:
+Subscribe to the component's prediction-aware events instead of treating ordinary Unity callbacks as final gameplay notifications.
+
+{% version range="<1.4.0" %}
 
 ```csharp
 private void OnEnable()
@@ -71,4 +88,54 @@ private void OnPredictedCollision(GameObject other, PhysicsCollision collision)
 
 `PhysicsCollision` contains predicted contact data, relative velocity, and impulse. The 2D event supplies a `DisposableList<Physics2DContactPoint>` that is owned by PurrDiction; consume it during the callback and do not retain it.
 
+{% endversion %}
+
+{% version range=">=1.4.0" %}
+
+The events are `onPredictedCollisionEnter`, `onPredictedCollisionExit`, `onPredictedCollisionStay`, `onPredictedTriggerEnter`, `onPredictedTriggerExit`, and `onPredictedTriggerStay`. Each one hands you a single struct:
+
+```csharp
+private void OnEnable()
+{
+    predictedRigidbody.onPredictedCollisionEnter += OnPredictedCollision;
+    predictedRigidbody.onPredictedTriggerExit += OnPredictedTriggerExit;
+}
+
+private void OnDisable()
+{
+    predictedRigidbody.onPredictedCollisionEnter -= OnPredictedCollision;
+    predictedRigidbody.onPredictedTriggerExit -= OnPredictedTriggerExit;
+}
+
+private void OnPredictedCollision(PredictedCollision collision)
+{
+    // collision.other      -> the other GameObject
+    // collision.otherId    -> its PredictedComponentID
+    // collision.collision  -> PhysicsCollision with contacts, relative velocity, and impulse
+}
+
+private void OnPredictedTriggerExit(PredictedTrigger trigger)
+{
+    // trigger.other is null when the other object was deleted this tick.
+    // trigger.otherId is still valid, so bookkeeping keyed by id keeps working.
+    currentState.overlapping.Remove(trigger.otherId);
+}
+```
+
+| Payload | Fields |
+| --- | --- |
+| `PredictedTrigger` | `other`, `otherId` |
+| `PredictedCollision` (3D) | `other`, `otherId`, `collision` (`PhysicsCollision`) |
+| `PredictedCollision2D` (2D) | `other`, `otherId`, `contacts` (`DisposableList<Physics2DContactPoint>`) |
+
+The id is the whole reason these exist. When a predicted object is deleted from the hierarchy while it is touching something, the Exit event still fires, but the GameObject is already gone by then, so `other` is null. `otherId` is always the id the other object had when the contact was recorded, which makes it safe to key overlap sets, damage tables, or cooldowns by id and clean them up on Exit. Do not store the GameObject in state; store the `PredictedComponentID` and resolve it through the hierarchy when you need the object.
+
+The 2D `contacts` list is owned by PurrDiction; consume it during the callback and do not retain it.
+
+The older `onCollisionEnter`, `onCollisionExit`, `onCollisionStay`, `onTriggerEnter`, `onTriggerExit`, and `onTriggerStay` events still fire, but they are marked obsolete. They pass only the GameObject, so an Exit caused by the other object being deleted is skipped for them entirely; only the struct events see it. Migrate by swapping the event name and changing the handler signature to take the struct.
+
+{% endversion %}
+
 For one-shot presentation, use `PredictedEvent`, `predictionManager.isVerifiedView`, or defer the effect to view code so catch-up and replay do not duplicate it.
+
+For collision and trigger events on predicted objects that are not rigidbodies, such as a Character Controller, see [Predicted Physics Callbacks](predicted-physics-callbacks.md).

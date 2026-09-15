@@ -14,6 +14,12 @@ Predicted identities are regular Unity components that PurrDiction simulates on 
 
 Both `INPUT` and `STATE` must be structs that implement the appropriate prediction interfaces (`IPredictedData`, `IPredictedData<T>`).
 
+{% version range=">=1.4.0" %}
+
+On `StatelessPredictedIdentity` the view hooks are parameterless as well: override `UpdateView()` and `LateUpdateView()`. The old `UpdateView(StatelessHeSaid, StatelessHeSaid?)` overload still compiles but is marked obsolete.
+
+{% endversion %}
+
 ***
 
 **Lifecycle Hooks**
@@ -32,7 +38,9 @@ Unity bridging:
 
 View & interpolation:
 
+* `ViewStart(STATE viewState, STATE? verified)`: Runs once, right before the first `UpdateView`, for view setup that needs a real state.
 * `UpdateView(STATE viewState, STATE? verified)` — Render using the current interpolated `viewState`. `verified` holds the last server snapshot, when present.
+* `LateUpdateView(STATE viewState, STATE? verified)`: Runs after every identity has finished `UpdateView` for the frame. Use it for cameras, IK, or anything that reads another identity's freshly rendered pose.
 * `ResetInterpolation()` — Clear internal smoothing/error.
 
 ***
@@ -45,6 +53,12 @@ View & interpolation:
 * `OnViewOwnerChanged(oldOwner, newOwner)` — View‑only callback when ownership changes; do not mutate simulation here.
 
 Use these flags for visuals (camera, highlights, UI). Keep simulation deterministic and independent of local presentation.
+
+{% version range=">=1.4.0" %}
+
+* `lagCompensationTick`: Inside `Simulate`, the precise prediction tick the controlling player was looking at when they produced this tick's input. Pass it to `predictionManager.lagCompensation` queries to hit-test the world as the player saw it. See [Lag Compensation](lag-compensation.md).
+
+{% endversion %}
 
 ***
 

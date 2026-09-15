@@ -32,7 +32,7 @@ Acceptable when:
 
 - Server‑Only Spawn/Despawn
   - Create or delete predicted objects only on the server. Clients will not create them until verified; expect a visible pop.
-  - Mitigation: Use PredictedIdentitySpawner to mirror verified spawns deterministically; tune smoothing on affected visuals.
+  - Mitigation: Spawn from a shared input or state so clients predict the create too; otherwise tune smoothing on affected visuals and mask the late appearance.
 
 - Server‑Only Teleport
   - Teleport or re‑position on the server in response to a trigger. Clients will hard‑correct.

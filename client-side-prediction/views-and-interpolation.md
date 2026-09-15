@@ -8,6 +8,7 @@ PurrDiction separates simulation state from presentation. You simulate and recon
 
 * Simulation runs at the network tick rate, including local prediction and server‑verified replays.
 * Each frame, the Prediction Manager calls `UpdateView(deltaTime)` on predicted identities in either `Update` or `LateUpdate` based on the Update View Mode setting.
+* Once every identity has run `UpdateView`, the manager runs `LateUpdateView` on all of them in the same pass. This is the place for cameras, IK, and anything that reads another identity's freshly rendered pose.
 * For `PredictedIdentity<STATE>`:
   * A small interpolation buffer smooths from the last verified state toward the latest predicted state.
   * `UpdateView(STATE viewState, STATE? verified)` receives the interpolated view plus the most recent verified snapshot, if available.
@@ -17,7 +18,15 @@ Key APIs on `PredictedIdentity<STATE>`:
 * `public override void ResetInterpolation()`
 * `public override void UpdateRollbackInterpolationState(float delta, bool accumulateError)`
 * `protected virtual void ModifyRollbackViewState(ref STATE state, float delta, bool accumulateError)`
+* `protected virtual void ViewStart(STATE viewState, STATE? verified)`
 * `protected virtual void UpdateView(STATE viewState, STATE? verified)`
+* `protected virtual void LateUpdateView(STATE viewState, STATE? verified)`
+
+{% version range=">=1.4.0" %}
+
+`StatelessPredictedIdentity` gets the same two hooks without arguments: `UpdateView()` and `LateUpdateView()`.
+
+{% endversion %}
 
 Terminology:
 
@@ -28,9 +37,17 @@ Terminology:
 
 **Interpolation Buffer**
 
-* A per‑identity interpolation helper buffers several ticks (`~tickRate/10`, min 2) to absorb jitter.
+* A per‑identity interpolation helper buffers up to 0.1 s of ticks (`tickRate / 10`, min 3) to absorb jitter.
 * Default interpolation blends linearly: `IMath<T>.Add/Scale/Negate` on `STATE`. You can override `Interpolate(STATE from, STATE to, float t)`.
 * When reconciliation happens, the system snapshots and adjusts the buffer to smoothly approach the corrected timeline.
+
+{% version range=">=1.4.0" %}
+
+* The manager keeps one view clock for the whole scene. Every identity samples its own buffer at the same `predictionManager.viewTick`, so objects that spawned at different times still present the same moment; a player and the projectile they just fired never drift apart by a fraction of a tick.
+* `viewTick` is also what [lag compensation](lag-compensation.md) reports to the server, so the rewind used for hit tests matches what was on screen.
+* Per identity, `viewInterpolationBufferSize`, `viewAnchorTick`, `viewNextSampleTick`, and `hasPendingViewLatch` expose the buffer for debugging. A gap of more than one tick between the anchor and the next sample means the view is gliding across ticks that were never latched, for example after a lead jump.
+
+{% endversion %}
 
 Tip: If your `STATE` contains non‑linear fields (e.g., quaternions), override `Interpolate` and use slerp or domain‑specific blending.
 

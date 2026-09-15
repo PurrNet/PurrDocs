@@ -16,6 +16,10 @@ So rollback is mostly useful in games where the server is in charge of all the m
 
 You can think of collider rollback as server validating hits accounting for your ping.
 
+{% hint style="info" %}
+Using PurrDiction? Predicted identities get a ready-made version of this: call `predictionManager.lagCompensation` from `Simulate` with `lagCompensationTick` and the rewind is handled for you, no RPC needed. See [Lag Compensation](../client-side-prediction/lag-compensation.md).
+{% endhint %}
+
 ## Setting up colliders for rollback
 
 Add `ColliderRollback` component and you should be about done.\

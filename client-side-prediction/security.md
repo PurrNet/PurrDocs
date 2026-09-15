@@ -51,4 +51,16 @@ Prediction simulation can replay. Sending RPCs, granting rewards, writing persis
 
 Keep authoritative rewards and persistence on the server, make them idempotent where possible, and trigger presentation with `PredictedEvent` or `predictionManager.isVerifiedView`.
 
+{% version range="<1.4.0" %}
+
 `PredictedIdentitySpawner` is intentionally marked `[PredictionUnsafe]` because it bridges predicted state to ordinary PurrNet hierarchy side effects. Use it narrowly and let PurrNet's network rules, visibility, and ownership checks govern the spawned identities.
+
+{% endversion %}
+
+{% version range=">=1.4.0" %}
+
+`NetworkIdentity` components inside predicted prefabs are spawned manually by the server from the authoritative topology, and only from verified topology on clients, so a client cannot spawn or despawn a networked object by predicting. Their observers and owner come from the predicted world, not from PurrNet's visibility rules, so what a player can see of them is exactly what they can see of the predicted object. RPC ownership checks still apply as usual. See [Network Identities in Predicted Prefabs](built-in-components/predicted-identity-spawner.md).
+
+Lag-compensated hit tests are resolved by the server from its own collider history. The client only reports how far behind it was presenting, and the server clamps that to **Max Lag Compensation Seconds**, so a modified client cannot rewind further than you allow. See [Lag Compensation](lag-compensation.md).
+
+{% endversion %}

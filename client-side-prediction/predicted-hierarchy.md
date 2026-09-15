@@ -128,8 +128,20 @@ Delete cascades follow the simulated graph, meaning `PredictedParent` state wher
 
 **Spawning Network Identities**
 
+{% version range="<1.4.0" %}
+
 * Use `PredictedIdentitySpawner` to mirror a set of `NetworkIdentity` objects between server and clients based on prediction state.
 * The spawner coordinates early spawn, observer assignment, ownership, and finalization in both server and verified client passes.
+
+{% endversion %}
+
+{% version range=">=1.4.0" %}
+
+* Any `NetworkIdentity` inside a predicted prefab is spawned automatically when the instance enters the authoritative topology and despawned when it leaves. Ownership and observers follow the predicted object.
+* Clients only spawn them once the instance is part of a verified frame, so speculative creates and rollbacks never touch PurrNet.
+* See [Network Identities in Predicted Prefabs](built-in-components/predicted-identity-spawner.md) for the details and the upgrade note on the old `PredictedIdentitySpawner` component.
+
+{% endversion %}
 
 ***
 

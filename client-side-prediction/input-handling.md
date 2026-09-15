@@ -80,7 +80,19 @@ Inputs for `DeterministicIdentity<INPUT, STATE>` are the exception: it exposes t
 `PredictionManager` exposes read‑only counters for input traffic:
 
 - `inputRedundancyTickCount`: the upload redundancy window in ticks at the current tick rate.
+
+{% version range="<1.4.0" %}
+
 - `guaranteedInputHistorySystems`: how many registered systems ride the guaranteed input transcript instead of the newest‑only path.
+
+{% endversion %}
+
+{% version range=">=1.4.0" %}
+
+- `inputHistorySystems`: how many registered input‑bearing systems there are. Every authoritative input is now retained for verification, so this replaces the old `guaranteedInputHistorySystems` counter.
+
+{% endversion %}
+
 - `inputSendsTotal`, `inputBytesSentTotal`, `inputTicksSentTotal`: cumulative sends, payload bytes, and window ticks uploaded.
 
 ***

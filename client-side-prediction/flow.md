@@ -124,8 +124,9 @@ View updates are not part of tick callbacks; see below.
 **View Update (Client)**
 
 * `PredictionManager.Update` or `LateUpdate` (based on `UpdateViewMode`):
-  * For each identity: `UpdateView(Time.unscaledDeltaTime)`
+  * The manager advances the shared view clock, then for each identity: `UpdateView(Time.unscaledDeltaTime)`
   * Identities compute/advance `viewState` and render visuals.
+  * Then for each identity: `LateUpdateView(Time.unscaledDeltaTime)`, once every `UpdateView` has run.
 * Ownership changes trigger `OnViewOwnerChanged(old, new)` inside `UpdateView`.
 
 ***
@@ -158,8 +159,12 @@ View updates are not part of tick callbacks; see below.
 * View & Interpolation
   * `UpdateRollbackInterpolationState(delta, accumulateError)` — accumulate/compute view corrections.
   * `ResetInterpolation()` — clear smoothing (e.g., teleports).
+  * `ViewStart(STATE viewState, STATE? verified)`: once, before the first `UpdateView`.
   * `UpdateView(STATE viewState, STATE? verified)` — render visuals.
+  * `LateUpdateView(STATE viewState, STATE? verified)`: after every identity's `UpdateView` this frame.
   * `OnViewOwnerChanged(old, new)` — view‑only ownership transitions.
+* Lag compensation (inside `Simulate`)
+  * `lagCompensationTick`: the tick the controlling player was presenting; feed it to `predictionManager.lagCompensation` queries. See [Lag Compensation](lag-compensation.md).
 
 ## One-shot side effects during catch-up
 

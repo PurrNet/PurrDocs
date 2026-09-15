@@ -60,3 +60,4 @@ Prediction also does not guarantee that arbitrary Unity code is deterministic. U
 * [Best Practices](best-practices.md) covers replay-safe simulation design.
 * [Security Model](security.md) explains what the server trusts.
 * [Views and Interpolation](views-and-interpolation.md) separates correction from presentation.
+* [Lag Compensation](lag-compensation.md) rewinds hit tests to what the shooter saw.
