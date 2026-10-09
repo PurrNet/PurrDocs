@@ -11,8 +11,8 @@ flowchart TD
   A[Pre-Tick] --> B[Prepare Inputs]
   B --> C[Save Pre-Sim State]
   C --> D[Simulate]
-  D --> E[Late Simulate]
-  E --> F[Physics]
+  D --> E[Physics]
+  E --> F[Late Simulate]
   F --> G[Save Post-Sim]
   G --> H[Networking]
   H --> I[PostSim]
@@ -26,8 +26,8 @@ flowchart TD
   K[Verified Frame] --> L[Rollback to Tick]
   L --> M[Simulate Verified Tick]
   M --> N[Replay to Latest]
-  N --> O[Update Interpolation]
-  O --> P[Sync Transforms]
+  N --> O[Sync Transforms]
+  O --> P[Update Interpolation]
 ```
 
 Per-frame view update (client):
@@ -42,12 +42,19 @@ flowchart LR
 **Startup & Registration**
 
 * `PredictionManager.Awake`
+
   * Registers instance per scene, sets Unity physics to script mode per provider, initializes pooling.
+
 * `OnEarlySpawn`
+
   * Registers built‑in systems (Hierarchy, Players, Physics2D/3D, Time).
+
   * Registers scene `PredictedIdentity` components and assigns IDs/owners.
+
 * `PredictedIdentity.Setup`
+
   * Called per identity with `NetworkManager`, `PredictionManager`, component ID, and owner.
+
   * On first spawn, calls `LateAwake()` once.
 
 ***
@@ -63,31 +70,41 @@ Order (server and client):
 2. Input preparation
 
 * Server: consumes each client's input stamped for the current tick. Clients resend recent input ticks until the server acknowledges them, so a lost input packet is recovered by the next one.
+
 * For each identity: `PrepareInput(isServer, isController, localTick, extrapolate)`
+
   * On local controller: calls your `GetFinalInput`, `SanitizeInput`, writes to history.
+
   * On server for remotes: consumes `QueueInput` or optionally extrapolates.
 
 3. Save pre‑simulation state
 
 * `SaveStateInHistory(localTick)` for non‑event identities.
+
 * Server: write initial frame payloads for state and inputs.
 
 4. Simulation passes
 
 * `SimulateTick(localTick, delta)` → your `Simulate(...)` implementation.
-* `LateSimulateTick(delta)` → your `LateSimulate(...)` implementation.
+
 * `DoPhysicsPass()` integrates Unity physics for the tick.
+
+* `LateSimulateTick(delta)` → your `LateSimulate(...)` implementation.
 
 5. Save post‑simulation state
 
 * `SaveStateInHistory(localTick)` for event‑handler identities.
+
 * Server: write event streams and send frames to clients.
 
 6. Post‑simulate & finish
 
 * `PostSimulate()` per identity for any finalization.
+
 * Finalize input/state per role (server vs client).
+
 * Advance `localTick`.
+
 * `isSimulating = false`.
 
 ***
@@ -97,23 +114,38 @@ Order (server and client):
 Client tick labels are server ticks. The client simulates a few ticks ahead of the last verified server tick, stamps its inputs with the server ticks it predicts they will execute at, and every server frame is addressed by the tick it verifies.
 
 * Frames arrive over unreliable delivery. Frames at or below the verified tick are stale and get discarded.
+
 * Fire `onStartingToRollback`.
+
 * For each newer frame:
+
   * Full frames (join, resync) load the complete world at their server tick.
+
   * Delta frames decode against a baseline tick both sides already verified. If earlier frames were lost, the gap ticks are first re-simulated with the real inputs carried in the frame, so a lost frame costs replay work instead of a retransmission round trip.
+
   * The verified tick is simulated, its result is saved to history, and the verified tick advances.
+
 * Under sustained heavy loss the server notices a client's acknowledged baseline has stopped advancing and temporarily promotes that client to reliable full frames, one per acknowledgement round trip, until the client catches up. See the [networking model](overview.md#networking-model) for details.
+
 * If the client's lead over the server drifts out of range, the manager re-centers the local tick. Corrections only move the tick forward or briefly pause it; the timeline never rewinds.
+
 * Mark `isVerified = false`, then replay from the first unverified tick to the latest local tick.
+
 * `SyncTransforms()` and `UpdateInterpolation(accumulateError: true)` to smooth visual corrections.
+
 * Fire `onRollbackFinished`.
 
 Prediction policies alter which parts of this path run for an identity:
 
 * `FullPrediction` restores and replays normally.
+
 * `ServerRelay` skips speculative client simulation and runs verified ticks only.
+
 * `SoftCorrection` does not restore the live identity. It compares the verified state with client history, freezes physics while other systems replay, and consumes the resulting correction during later live ticks.
+
 * `PredictedIfOwned` resolves to full prediction or server relay for the current client before applying these rules.
+
+* `PredictedIfOwnedWithSoftFallback` resolves to full prediction for the local owner and soft correction for everyone else; identities that do not support soft correction fall back to server relay for the non local owner branch.
 
 The server ignores these client timeline differences and simulates every identity. See [Prediction Policies](prediction-policies.md).
 
@@ -124,9 +156,13 @@ View updates are not part of tick callbacks; see below.
 **View Update (Client)**
 
 * `PredictionManager.Update` or `LateUpdate` (based on `UpdateViewMode`):
+
   * The manager advances the shared view clock, then for each identity: `UpdateView(Time.unscaledDeltaTime)`
+
   * Identities compute/advance `viewState` and render visuals.
+
   * Then for each identity: `LateUpdateView(Time.unscaledDeltaTime)`, once every `UpdateView` has run.
+
 * Ownership changes trigger `OnViewOwnerChanged(old, new)` inside `UpdateView`.
 
 ***
@@ -134,36 +170,67 @@ View updates are not part of tick callbacks; see below.
 **Override Cheat‑Sheet**
 
 * Spawning/Pooling
+
   * `OnPreSetup()` — before `Setup` on server‑side systems.
+
   * `LateAwake()` — once on fresh spawn; view‑only setup.
+
   * `ResetState()` — clear owner/IDs and interpolation; called when reusing pooled instances.
+
   * `Destroyed()` — cleanup on despawn/unregister.
+
 * Input (on `PredictedIdentity<INPUT, STATE>`)
+
   * `GetFinalInput(ref INPUT)` — per tick, returns current frame input for the controller.
+
   * `UpdateInput(ref INPUT)` — per Unity frame; cache edge‑triggered inputs.
+
   * `SanitizeInput(ref INPUT)` — clamp/normalize before simulation.
+
   * `ModifyExtrapolatedInput(ref INPUT)` — strip non‑continuous inputs during remote extrapolation.
+
 * Simulation
+
   * `SimulationStart()` — before first `Simulate` for this identity.
+
   * `Simulate(...)` — deterministic tick logic; mutate only `STATE`.
+
   * `LateSimulate(...)` — optional second pass each tick.
+
   * `PostSimulate()` — finalize per tick.
+
 * State ↔ Unity
+
   * `GetUnityState(ref STATE)` — read Unity → state when needed.
+
   * `SetUnityState(STATE)` — apply rollback state → Unity.
+
 * Reconciliation / History
+
   * `SaveStateInHistory(tick)` — invoked by manager before/after simulation.
+
   * `Rollback(tick)` — restore snapshot and apply to Unity.
+
   * `ClearFuture(tick)` — drop states beyond a given tick.
+
   * `GetLatestUnityState()` — manager asks identities to resync after replays.
+
 * View & Interpolation
+
   * `UpdateRollbackInterpolationState(delta, accumulateError)` — accumulate/compute view corrections.
+
   * `ResetInterpolation()` — clear smoothing (e.g., teleports).
+
   * `ViewStart(STATE viewState, STATE? verified)`: once, before the first `UpdateView`.
+
   * `UpdateView(STATE viewState, STATE? verified)` — render visuals.
+
   * `LateUpdateView(STATE viewState, STATE? verified)`: after every identity's `UpdateView` this frame.
+
   * `OnViewOwnerChanged(old, new)` — view‑only ownership transitions.
+
 * Lag compensation (inside `Simulate`)
+
   * `lagCompensationTick`: the tick the controlling player was presenting; feed it to `predictionManager.lagCompensation` queries. See [Lag Compensation](lag-compensation.md).
 
 ## One-shot side effects during catch-up
