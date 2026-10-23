@@ -68,7 +68,7 @@ Note: Do not attempt to modify another identity’s input history. Instead, muta
 
 **Cross‑Identity Events**
 
-* Use `PredictedEvent`/`PredictedEvent<T>` for view‑safe eventing across identities. Events only invoke when it’s valid to do so (server, owner while not replaying, or verified client), preventing double‑fire during replays.
+* Use `PredictedEvent`/`PredictedEvent<T>` for one-shot presentation across identities. By default, the owner presents predicted occurrences and other clients wait for verification. The server invokes normally.
 
 {% version range=">=1.4.0" %}
 
@@ -86,6 +86,33 @@ protected override void LateAwake()
 void SimulateHit()
 { onHit.Invoke(); } // will invoke only in valid contexts
 ```
+
+### Verified-only events and view mode (dev branch)
+
+The current PurrDiction `dev` branch also delivers an owner's occurrence when it first appears during verified simulation. For example, another player causing a respawn may never have been predicted locally. An occurrence already presented by the owner is suppressed when the same tick is verified.
+
+Use the opt-in `View` mode for VFX or audio that should present the first local occurrence on any peer, including a new occurrence discovered during speculative replay:
+
+```csharp
+private PredictedEvent onRespawnView;
+
+protected override void LateAwake()
+{
+    onRespawnView = new PredictedEvent(predictionManager, this, PredictedEventMode.View);
+    onRespawnView.AddListener(RespawnVisuals);
+}
+
+private void RespawnVisuals() { /* reset visual effects */ }
+
+// Call from the simulation path that actually performs the respawn.
+private void SimulateRespawn() => onRespawnView.Invoke();
+```
+
+The mode overload is available on every event arity. The existing two-argument constructor selects `PredictedEventMode.Auto`.
+
+Occurrences are identified by event instance, simulation tick, and invocation order within that tick. Multiple calls in a tick remain distinct; keep their ordering deterministic and use separate event instances for independent event streams. The first presentation's arguments are retained visually: a later correction does not invoke that occurrence again or undo a mispredicted effect. Delivery history is bounded to the world's replay window, and catch-up suppresses presentation without recording skipped occurrences as delivered.
+
+Keep event listeners limited to presentation. Gameplay state must change on every relevant simulation pass, including replay, outside the filtered listener. `PredictedEvent` filters local invocations; it does not send an RPC or an event transcript, so the simulation must still invoke the event on the receiving peer. Construct events in `LateAwake` for their simulation lifetime. If you deliberately retain an event across a new lifetime with the same ID, call `ResetDeliveryHistory()`; changing the identity's ID clears its delivery history automatically.
 
 ***
 

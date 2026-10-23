@@ -16,9 +16,12 @@ Create a new C# script in your Unity project, and name it something meaningful, 
 
 Your custom authenticator class should inherit from `AuthenticationBehaviour<T>`. This ensures that your class adheres to the PurrNet authentication structure.
 
+Keep `[RegisterNetworkType(typeof(AuthenticationRequest<YourPayload>))]` on your game-side authenticator, in the same assembly as your payload. The request envelope is defined in `PurrNet.Runtime`, but its closed variant is registered by your game assembly. You do not need to move the authenticator or payload into the PurrNet package.
+
 ```csharp
 using System.Threading.Tasks;
 using UnityEngine;
+using PurrNet;
 using PurrNet.Authentication;
 using PurrNet.Transports;
 
@@ -97,6 +100,7 @@ public enum DenialReasonCode : byte
 ```csharp
 using System.Threading.Tasks;
 using UnityEngine;
+using PurrNet;
 using PurrNet.Authentication;
 using PurrNet.Transports;
 

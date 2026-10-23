@@ -102,6 +102,7 @@
   * [Predicted Modules](client-side-prediction/predicted-modules/README.md)
     * [Predicted Timer Module](client-side-prediction/predicted-modules/predicted-timer-module.md)
   * [Input Handling](client-side-prediction/input-handling.md)
+  * [Predicted Object References](client-side-prediction/predicted-object-references.md)
   * [State Handling](client-side-prediction/state-handling.md)
   * [Execution Flow](client-side-prediction/flow.md)
   * [Built-in Components](client-side-prediction/built-in-components/README.md)

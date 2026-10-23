@@ -1,6 +1,8 @@
 # Input Handling
 
-Input handling in PurrDiction centers around the generic `PredictedIdentity<INPUT, STATE>` base class. Implement `GetFinalInput(ref INPUT input)` to gather per‑frame input, and optionally `UpdateInput(ref INPUT input)` to cache edge‑triggered inputs (e.g., key down) from Unity’s frame loop.
+Input handling in PurrDiction centers around the generic `PredictedIdentity<INPUT, STATE>` base class. Implement `GetFinalInput(ref INPUT input)` to gather input for the next simulation tick, and optionally `UpdateInput(ref INPUT input)` to cache edge‑triggered inputs (e.g., key down) from Unity’s frame loop.
+
+To refer to predicted objects in input or state, see [Predicted Object References](predicted-object-references.md).
 
 ***
 
