@@ -33,7 +33,7 @@ Look at the [Installation/Setup](../../getting-started/installation-setup.md) se
 
 ## Kicking and disconnecting players
 
-To remove a player from the server, call `KickPlayer` on the players manager with their `PlayerID`. The server closes their connection if they still have one, unregisters the player, and tells every other client they left, so `onPlayerLeft` fires as it would for a normal disconnect. Call it from the server:
+To remove a player from the server, call `KickPlayer` on the players manager with their `PlayerID`. The server closes their connection if they still have one, unregisters the player, and tells every other client they left, so `onPlayerLeft` fires as it would for a normal disconnect (see [Connection & Player Events](connection-and-player-events.md) for the other join and leave events). Call it from the server:
 
 ```csharp
 if (networkManager.isServer)

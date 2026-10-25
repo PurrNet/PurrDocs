@@ -37,6 +37,7 @@
       * [Whitelist and blacklist](systems-and-modules/network-manager/network-visibility/whitelist-and-blacklist.md)
       * [Evaluating visibility](systems-and-modules/network-manager/network-visibility/using-the-visibility.md)
     * [Authentication](systems-and-modules/network-manager/authentication.md)
+    * [Connection & Player Events](systems-and-modules/network-manager/connection-and-player-events.md)
   * [Transports](systems-and-modules/transports/README.md)
     * [Composite Transport](systems-and-modules/transports/composite-transport.md)
     * [UDP Transport](systems-and-modules/transports/udp-transport.md)
