@@ -110,6 +110,73 @@ Every GameObject inside a spawned prefab that carries at least one `PredictedIde
 
 ***
 
+**Who Can Create and Delete**
+
+Prediction is server authoritative, whatever your network rules say: a `Create` or `Delete` only sticks when the server performs it. A client can still call them, but the result is only a guess. When the next verified server state arrives, the client rolls back to it, and anything the server never created is removed and sent back to the pool. That's why a client-side `hierarchy.Create` from a UI button or another `MonoBehaviour` callback shows the object for a frame or a few ticks and then it's gone. On a host it seems to work, because the host is the server.
+
+To spawn from a client action, get the request to the server in one of these ways:
+
+*   **As input (predicted)**: put the request in your input and call `Create` inside `Simulate`. The client spawns it right away as a prediction, the server runs the same input and makes it real, and the two match up. Use a counter rather than a one-tick `bool`: the server repeats the last input when one goes missing, and a counter makes a repeat or a lost tick harmless.
+
+    ```csharp
+    public struct SpawnInput : IPredictedData
+    {
+        public uint spawnCount;
+        public void Dispose() { }
+    }
+
+    public struct SpawnerState : IPredictedData<SpawnerState>
+    {
+        public uint handledSpawns;
+        public void Dispose() { }
+    }
+
+    public class PlayerSpawner : PredictedIdentity<SpawnInput, SpawnerState>
+    {
+        [SerializeField] private GameObject prefab;
+        private uint _spawnClicks;
+
+        // Hook the UI button to this instead of calling hierarchy.Create directly
+        public void OnSpawnClicked() => _spawnClicks++;
+
+        protected override void UpdateInput(ref SpawnInput input)
+        {
+            input.spawnCount = _spawnClicks;
+        }
+
+        protected override void Simulate(SpawnInput input, ref SpawnerState state, float delta)
+        {
+            while (state.handledSpawns < input.spawnCount)
+            {
+                state.handledSpawns++;
+                predictionManager.hierarchy.Create(prefab, transform.position, transform.rotation, owner);
+            }
+        }
+    }
+    ```
+*   **Through a `ServerRpc` (not predicted)**: send the request to the server and call `Create` there. The object appears on the client once the server's state comes back, after a round trip. This fits menus, lobby buttons, and anything that doesn't need instant feedback.
+
+    ```csharp
+    public class SpawnMenu : NetworkBehaviour
+    {
+        [SerializeField] private PredictionManager predictionManager;
+        [SerializeField] private GameObject playerPrefab;
+
+        // UI button -> this
+        public void OnSpawnClicked() => RequestSpawn();
+
+        [ServerRpc(requireOwnership: false)]
+        private void RequestSpawn(RPCInfo info = default)
+        {
+            predictionManager.hierarchy.Create(playerPrefab, Vector3.zero, Quaternion.identity, info.sender);
+        }
+    }
+    ```
+
+`Delete` works the same way. Deleting on a client outside `Simulate` gets undone by the next server state.
+
+***
+
 **Reparenting**
 
 Transform parents are not synchronized by default. A piece without a [`PredictedParent`](built-in-components/predicted-parent.md) component always belongs to its authored prefab parent as far as the simulation is concerned, and physically reparenting it is treated as client-local decoration. Add `PredictedParent` to a piece to make its parent part of predicted state, so reparenting rolls back, replays, and reaches late joiners like any other state change.
@@ -155,7 +222,7 @@ The manager logs a warning during scene discovery when it finds such an identity
 
 **Best Practices**
 
-* Only create/destroy from within simulation code paths (or via machine/state transitions) to keep behavior deterministic under replay.
+* Only create/destroy from within simulation code paths (or via machine/state transitions) to keep behavior deterministic under replay. For client actions such as UI buttons, see **Who Can Create and Delete** above.
 * Never `Object.Instantiate` a predicted prefab directly; go through `hierarchy.Create` so the object is registered and simulated.
 * Prefer `TryCreate` and check the boolean to handle invalid or unregistered prefabs gracefully.
 * Store and pass around `PredictedObjectID` rather than `GameObject` to remain resilient across rollbacks.
