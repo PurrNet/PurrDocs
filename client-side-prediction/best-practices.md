@@ -43,6 +43,23 @@ Do not change a Unity component during simulation without ensuring the correspon
 
 Use `PredictedEvent`, `predictionManager.isVerifiedView`, or view callbacks for one-shot presentation. Do not skip deterministic state mutations merely because `isCatchingUpFrames` is true.
 
+## Don't mix regular networking into predicted gameplay
+
+A `PredictedIdentity` is not a `NetworkIdentity`. Predicted gameplay is synced by input, state and reconciliation, and the usual PurrNet tools either don't work on it or fight with rollback. Inside predicted gameplay, use the predicted equivalent:
+
+| Instead of | Use |
+| --- | --- |
+| `ServerRpc`, `ObserversRpc`, `TargetRpc` to change gameplay | Input for player intent, state for the result. PurrNet's codegen rejects a non-static RPC on a class that is not a `NetworkIdentity` or `NetworkClass`, and an RPC sent from `Simulate` goes out again on every replay. |
+| `SyncVar` and other sync types | Fields in your predicted state. Sync types only sync through a spawned `NetworkIdentity`. |
+| `Instantiate` and `Destroy` | `predictionManager.hierarchy.Create` and `Delete` (see [Predicted Hierarchy](predicted-hierarchy.md)). |
+| `NetworkTransform` | `PredictedTransform`, or `PredictedRigidbody` / `PredictedRigidbody2D` for physics. Two components writing the same Transform will fight. |
+| `NetworkAnimator` | Set `Animator` parameters from the view state in `UpdateView` (see [Views and Interpolation](views-and-interpolation.md)). |
+| A `Transform`, `GameObject` or `PredictedIdentity` reference in state, input or an RPC | A `PredictedObjectID` or `PredictedComponentID`, resolved back when needed (see [Predicted Object References](predicted-object-references.md)). Instances can be recreated or pooled across rollbacks, so a direct reference can point at the wrong object or nothing. PurrNet also can't pack a Transform that is not under a spawned `NetworkIdentity`; it sends it as null and logs a `packed as null` warning. |
+
+This also applies to the component returned by `TryCreateAndGet`: use it right away in the same tick, and store its ID if you need it later.
+
+You can still use RPCs and sync types for things outside the simulation, such as chat, lobby, menus, or a display name. If a predicted prefab needs them, put a `NetworkIdentity` on it; the prediction system spawns and despawns it with the predicted object (see [Network Identities in Predicted Prefabs](built-in-components/predicted-identity-spawner.md)). Keep gameplay decisions in predicted state.
+
 ## Read time and randomness from the predicted world
 
 Do not use `Time.deltaTime`, `Time.time`, `UnityEngine.Random`, frame count, or wall-clock time in tick simulation. Use the callback's `delta`, `PredictedTime`, and `PredictedRandom` so rollback recreates the same sequence.
