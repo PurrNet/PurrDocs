@@ -57,8 +57,34 @@ public class SimpleCC : PredictedIdentity<SimpleWASDInput, SimpleCCState>
 - Remote players can use extrapolated input if the latest input is missing.
 - Control behavior via fields on `PredictedIdentity<INPUT, STATE>`:
   - Extrapolate Input: enables extrapolation for remote input.
-  - Repeat Input Factor: caps how many ticks a prior input can be reused.
+  - Repeat Input Factor: caps how long a prior input can be reused (see below).
 - Override `ModifyExtrapolatedInput(ref INPUT input)` to disable non‑continuous inputs during extrapolation (e.g., `jump = false`).
+
+**Repeat Input Factor**
+
+When a peer simulates an identity it doesn't own and has no input for that tick, it reuses the nearest known input. Repeat Input Factor sets how far away that input may be:
+
+```
+maxTicks = ceil(repeatInputFactor * 10 / (tickDelta * 60))
+```
+
+That works out to about `repeatInputFactor / 6` seconds at any tick rate. Past that, the identity simulates with default input instead.
+
+| Repeat Input Factor | Reuse window | At 60 Hz |
+| --- | --- | --- |
+| 0.8 (default) | ~133 ms | 8 ticks |
+| 3 | ~0.5 s | 30 ticks |
+| 6 | ~1 s | 60 ticks |
+| 60 | ~10 s | 600 ticks |
+
+This mostly matters on clients for other players' objects under `FullPrediction`. There, a remote player's newest known input is about a round trip old, so the client fills the gap up to the present by repeating it:
+
+- **Too low for your ping:** the window ends before the present, and the remote player gets default input for the rest of the gap. They seem to stop or coast until verified state corrects them.
+- **Too high:** a released key or changed direction keeps being applied for the whole window. The remote player overshoots, then snaps back when the real input arrives. A value like 60 keeps a stale input alive for about 10 seconds, far longer than any network gap.
+
+Keep it near the default. Raise it only enough to cover your expected round trip (for example, about 1.5 for 250 ms). If remote players still overshoot at high ping, don't predict them. Use [`PredictedIfOwned`](prediction-policies.md) so remote copies follow verified server state without guessing their input.
+
+The owner always uses its own recorded input, so this setting never affects the local player. On the server, missing client input is governed by the Prediction Manager's **Extrapolate Missing Inputs** setting: when it's on, the server repeats the client's last input until a new one arrives. When it's off, the server uses default input.
 
 ***
 
