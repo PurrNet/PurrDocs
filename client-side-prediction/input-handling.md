@@ -52,6 +52,51 @@ public class SimpleCC : PredictedIdentity<SimpleWASDInput, SimpleCCState>
 
 ***
 
+**Reading Input From Another Component**
+
+Your input handler doesn't need to be a `PredictedIdentity`. Only the predicted script that consumes the input does. `GetFinalInput` and `UpdateInput` can read from any component: your own `InputHandler`, Unity's `PlayerInput`, or anything else.
+
+This works because PurrDiction only calls them on the peer that controls the identity: the owner, or the server for objects without an owner. `GetFinalInput` runs once for each new tick. The result is sanitized, saved in the input history, and sent to the server. Rollbacks replay the saved input and never call `GetFinalInput` again, so your input component is never rolled back.
+
+```csharp
+public class PlayerInputHandler : MonoBehaviour
+{
+    public Vector2 Move => new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+    public bool Dash => Input.GetKey(KeyCode.LeftShift);
+    public bool JumpPressedThisFrame => Input.GetKeyDown(KeyCode.Space);
+}
+
+public class PlayerMovement : PredictedIdentity<SimpleWASDInput, SimpleCCState>
+{
+    [SerializeField] private PlayerInputHandler _input;
+
+    protected override void GetFinalInput(ref SimpleWASDInput input)
+    {
+        var move = _input.Move;
+        input.horizontal = move.x;
+        input.vertical   = move.y;
+        input.dash       = _input.Dash;
+    }
+
+    protected override void UpdateInput(ref SimpleWASDInput input)
+    {
+        input.jump |= _input.JumpPressedThisFrame;
+    }
+
+    protected override void Simulate(SimpleWASDInput input, ref SimpleCCState state, float delta)
+    {
+        // Use `input` here, never `_input`.
+    }
+}
+```
+
+- Copy everything the simulation needs into `INPUT`. Don't read the input component in `Simulate`. Replays, the server, and other clients simulate this identity too, and there the component has stale values or no values at all.
+- Read one-shot inputs (key down, `WasPressedThisFrame`) in `UpdateInput`, which runs every frame. Reading them in `GetFinalInput` misses presses that happen on frames without a tick.
+- Keep anything that must roll back in `STATE`, not in the input component. That includes cooldowns, ammo, and charge timers.
+- Don't make the input handler a `PredictedIdentity` just to hold input. Each identity with input uploads its own input every tick.
+
+***
+
 **Extrapolation and Repeat**
 
 - Remote players can use extrapolated input if the latest input is missing.
