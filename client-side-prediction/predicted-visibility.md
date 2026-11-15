@@ -9,7 +9,7 @@ By default every player receives every predicted object. Predicted visibility le
 Use it for fog of war, per-team objects, interior cells, or anything where sending an object to a player would leak information or waste bandwidth.
 
 {% hint style="info" %}
-Predicted visibility is separate from PurrNet's [Network Visibility](../systems-and-modules/network-manager/network-visibility/) rules. It only governs predicted objects created through the hierarchy. Scene objects are always visible to everyone.
+Predicted visibility is separate from PurrNet's [Network Visibility](../systems-and-modules/network-manager/network-visibility/) rules. It governs every predicted object the hierarchy tracks: prefab instances and objects placed in the scene alike. A hidden scene object is deactivated on that player's client and the same object comes back when it is shown again. Get its id with `predictionManager.hierarchy.TryGetId(gameObject, out var objectId)`.
 {% endhint %}
 
 ## The API
