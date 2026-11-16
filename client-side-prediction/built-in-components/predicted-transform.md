@@ -9,7 +9,7 @@
 | Graphics | Optional visual transform updated by the view pass. Keep gameplay colliders and simulation on the root. |
 | Float Accuracy | `Purrfect` sends full values, `Medium` uses compressed position/rotation, and `Low` uses half-precision state. Lower precision saves bandwidth at the cost of visible accuracy. |
 | Interpolation Settings | `TransformInterpolationSettings` asset controlling normal rollback correction. A default asset ships with PurrDiction. |
-| Unparent Graphics | Temporarily separates graphics from the root so predicted hierarchy pooling and replay enable/disable operations do not disturb the visual transform. |
+| Unparent Graphics | Temporarily separates graphics from the root so predicted hierarchy pooling and replay enable/disable operations do not disturb the visual transform. The detached graphics are hidden when the root is still disabled at the end of a frame, for example after `hierarchy.Delete`, and shown again when it comes back. |
 | Character Controller Patch | Temporarily disables an attached Character Controller while applying restored state. |
 | Soft Correction | Correction rate and snap thresholds used when the resolved [prediction policy](../prediction-policies.md) is `SoftCorrection`. |
 

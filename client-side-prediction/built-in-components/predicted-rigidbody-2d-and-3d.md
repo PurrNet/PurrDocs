@@ -136,6 +136,16 @@ The older `onCollisionEnter`, `onCollisionExit`, `onCollisionStay`, `onTriggerEn
 
 {% endversion %}
 
+{% version range=">=1.4.0" %}
+
+## One-way platforms (2D)
+
+A `PlatformEffector2D` with **Use One Way** decides once per contact, when the contact begins, whether a body passes through, and Unity keeps that decision inside the physics engine where a rollback cannot restore it. Without help, a replay that starts while a body is partway through the platform gets a fresh contact there and pushes the body out on top (or underneath), so the client sees its body snap onto the platform for a few frames and then back. A contact left over from before the rollback can also keep a body passing through where it should land.
+
+From PurrDiction 1.5.0-beta.18, `PredictedRigidbody2D` handles this for you, with no extra component or setup. On clients, each body remembers per tick which one-way platforms it was passing through, and when a replay restores that tick it holds those collider pairs apart with `Physics2D.IgnoreCollision` until they separate, and drops leftover contacts the tick says it should collide with. The server never rolls back, so it skips this. It is local to each client and sends nothing over the network.
+
+{% endversion %}
+
 For one-shot presentation, use `PredictedEvent`, `predictionManager.isVerifiedView`, or defer the effect to view code so catch-up and replay do not duplicate it.
 
 For collision and trigger events on predicted objects that are not rigidbodies, such as a Character Controller, see [Predicted Physics Callbacks](predicted-physics-callbacks.md).

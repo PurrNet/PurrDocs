@@ -218,6 +218,22 @@ Every `PredictedIdentity` must either exist in the scene file at discovery time 
 
 The manager logs a warning during scene discovery when it finds such an identity, naming the object and the fix: spawn it with `hierarchy.Create`, keep it in the scene file, or enable **Include Instantiated Scene Objects** in your Network Rules if you intentionally instantiate scene-style predicted objects at runtime.
 
+{% version range=">=1.4.1" %}
+
+**Pre-Spawn Hook**
+
+`PredictedHierarchy.onPreSpawn` is a static event raised when a GameObject enters a prediction world, before any of its predicted identities run setup (`OnPreSetup`, `LateAwake`). It fires for prefab instances, whether freshly instantiated or taken from the prefab pool, and for scene objects when they are registered. It is the place to inject dependencies, like `HierarchyV2.onPreSpawn` for network identities. Rollbacks that bring back a GameObject the hierarchy is still holding do not raise it again.
+
+```csharp
+PredictedHierarchy.onPreSpawn += spawn =>
+{
+    // spawn.gameObject, spawn.predictionManager, spawn.isSceneObject, spawn.fromPool
+    container.InjectGameObject(spawn.gameObject);
+};
+```
+
+{% endversion %}
+
 ***
 
 **Best Practices**
