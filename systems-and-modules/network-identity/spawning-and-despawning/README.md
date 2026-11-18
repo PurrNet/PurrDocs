@@ -52,4 +52,27 @@ public class Bullet : NetworkIdentity
 
 Read it back in the exact same order you wrote it, otherwise you'll get garbage. `OnDeserialize` only fires when something was actually written in `OnSerialize`, so an empty override costs you nothing.
 
+### Who gets called
+
+`OnSerialize` runs on the machine that spawns the object, once for every remote player the object is sent to. That includes players who join or start seeing the object later, so they get whatever the values are at that moment. `OnDeserialize` runs on the machines that receive the spawn.
+
+The spawner never gets `OnDeserialize`, it already has the data. A host doesn't serialize for its own local client either, so if you test as host with nobody else connected, neither method is called.
+
+### Set your data before the spawn
+
+The object spawns inside `Instantiate`, so by the time you get the reference back, `OnSerialize` has already run for everyone currently connected. Setting fields on the next line is too late for them:
+
+```csharp
+var bullet = Instantiate(bulletPrefab);
+bullet.damage = 50; // connected players already received the spawn without this
+```
+
+The data has to be on the object by the time `Awake` finishes. If it comes from outside the object, turn off `Auto Spawn On Instantiate` in the spawn rules of your [network rules](../../network-manager/network-rules.md) and spawn it yourself once it's ready:
+
+```csharp
+var bullet = Instantiate(bulletPrefab);
+bullet.damage = 50;
+NetworkManager.main.Spawn(bullet.gameObject);
+```
+
 This works on [network modules](../../network-modules/) too, so a module can attach its own data to the parent's spawn without the identity needing to know about it.
